@@ -31,7 +31,7 @@ $(document).ready(function(){
 
         });
     });   
-
+asfasd
 
     $(document).ready(function(){
         $(document).on("click",".btn_add_lab", function(e){
