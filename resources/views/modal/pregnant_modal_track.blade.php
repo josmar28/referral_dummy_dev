@@ -606,20 +606,132 @@
                                             <th>Management/Intervention</th>
                                         </tr>
                                         <tr>
-                                            <td><input type="date" class="form-control" name="date_of_lab[]"></td>
-                                            <td> <input type="text" class="form-control" name="cbc_result[]"> </td>
-                                            <td> <input type="text" class="form-control" name="ua_result[]"> </td>
-                                            <td> <input type="text" class="form-control" name="utz[]"> </td>
-                                            <td rowspan="5" id="blood_type"> <textarea name="blood_type" class="form-control"></textarea></td>
-                                            <td rowspan="5" id="hbsag_result"> <textarea name="hbsag_result" class="form-control"></textarea> </td>
-                                            <td rowspan="5" id="vdrl_result"> <textarea name="vdrl_result" class="form-control"></textarea></td>
+                                            <td> <input type="date" class="form-control" name="date_of_lab[]"></td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        Hgb: <input type="text" class="form-control" name="cbc_hgb[]"> 
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        WBC: <input type="text" class="form-control" name="cbc_wbc[]">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        RBC: <input type="text" class="form-control" name="cbc_rbc[]"> 
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        Platelet: <input type="text" class="form-control" name="cbc_platelet[]">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        Hct: <input type="text" class="form-control" name="cbc_hct[]">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        Pus: <input type="text" class="form-control" name="ua_pus[]"> 
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        RBC: <input type="text" class="form-control" name="ua_rbc[]">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        Sugar: <input type="text" class="form-control" name="ua_sugar[]"> 
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        Specific Gravity: <input type="text" class="form-control" name="ua_gravity[]">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        Albumin: <input type="text" class="form-control" name="ua_albumin[]">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td> <textarea name="utz[]" class="form-control"></textarea> </td>
+                                            <td rowspan="5" id="blood_type">
+                                                    <select name="blood_type" class="form-control-select select2" required>
+                                                        <option value="">Select type...</option>
+                                                        <option value="fullterm">A+</option>
+                                                        <option value="preterm">A-</option>
+                                                        <option value="stillbirth">B+</option>
+                                                        <option value="abortion">B-</option>
+                                                        <option value="fullterm">AB+</option>
+                                                        <option value="preterm">AB-</option>
+                                                        <option value="stillbirth">O+</option>
+                                                        <option value="abortion">O-</option>
+                                                    </select> 
+                                            </td>
+                                            <td rowspan="5" id="hbsag_result">
+                                                    <select name="hbsag_result" class="form-control-select select2" required>
+                                                        <option value="">Select HBsAg...</option>
+                                                        <option value="fullterm">Reactive</option>
+                                                        <option value="preterm">Non-Reactine</option>
+                                                    </select> 
+                                            </td>
+                                            <td rowspan="5" id="vdrl_result"> 
+                                                    <select name="vdrl_result" class="form-control-select select2" required>
+                                                        <option value="">Select VDRL...</option>
+                                                        <option value="fullterm">Reactive</option>
+                                                        <option value="preterm">Non-Reactine</option>
+                                                    </select> 
+                                            </td>
                                             <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
                                         </tr>
                                         <!-- <tr>
-                                            <td><input type="date" class="form-control" name="date_of_lab[]"></td>
-                                            <td><input type="text" class="form-control" name="cbc_result[]"> </td>
-                                            <td><input type="text" class="form-control" name="ua_result[]"> </td>
-                                            <td><input type="text" class="form-control" name="utz[]"> </td>
+                                           <td> <input type="date" class="form-control" name="date_of_lab[]"></td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        Hgb: <input type="text" class="form-control" name="cbc_hgb[]"> 
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        WBC: <input type="text" class="form-control" name="cbc_wbc[]">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        RBC: <input type="text" class="form-control" name="cbc_rbc[]"> 
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        Platelet: <input type="text" class="form-control" name="cbc_platelet[]">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        Hct: <input type="text" class="form-control" name="cbc_hct[]">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        Pus: <input type="text" class="form-control" name="ua_pus[]"> 
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        RBC: <input type="text" class="form-control" name="ua_rbc[]">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        Sugar: <input type="text" class="form-control" name="ua_sugar[]"> 
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        Specific Gravity: <input type="text" class="form-control" name="ua_gravity[]">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        Albumin: <input type="text" class="form-control" name="ua_albumin[]">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td> <textarea name="utz[]" class="form-control"></textarea> </td>
                                             <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
                                         </tr>
                                         <tr>
@@ -711,7 +823,8 @@
                                     <table class="table table-striped">
 
                                         <tr>
-                                            <td width="25%"> <label>Delivery Outcome:  </label> 
+                                            <td width="25%">
+                                                 <label>Delivery Outcome:  </label> 
                                                     <select name="delivery_outcome" class="form-control-select select2" required>
                                                         <option value="">Select Outcome...</option>
                                                         <option value="fullterm">Fullterm</option>
