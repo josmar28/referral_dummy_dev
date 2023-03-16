@@ -149,7 +149,7 @@
     var level = "{{Session::get('auth')->level}}";
     var facility = "{{Session::get('auth')->facility_id}}";
     var user_id = "{{Session::get('auth')->id}}";
-    var pusher = new Pusher('474748c793f9e8b1a52b', {
+    var pusher = new Pusher('6b44d09aefdc93e3f42c', {
       cluster: 'ap1'
     });
    
@@ -166,6 +166,27 @@
                 delay: false
             });
       }
+    });
+
+
+    var channel1 = pusher.subscribe('pregnant_channel');
+    channel1.bind('pregnant_event', function(data) {
+        if(facility == data['referred_to']) {
+            play();
+          Lobibox.notify('success', {
+                title: "New Pregnant Referral" ,
+                msg: "From: "+ data['referring_facility_name'] +" To: "+ data['referred_to_name']  +"<br> Referred by: " + data['referring_md_name'],
+                img: "{{ url('resources/img/dohro12logo2.png') }}",
+                width: 450,
+                sound:true,
+                delay: false
+            });
+      }
+    });
+
+    var channel3 = pusher.subscribe('my-channel');
+    channel3.bind('my-event', function(data) {
+      alert(JSON.stringify(data));
     });
 
 

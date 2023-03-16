@@ -60,7 +60,7 @@ use App\Http\Controllers\doctor\CSSCtrl as CSSCtrl;
                                     
                                     $checker1 = CSSCtrl::checkCSS($row->code);
 
-                                    $modal = ($row->type=='normal') ? '#normalFormModal' : '#pregnantFormModal';
+                                    $modal = ($row->type=='normal') ? '#normalFormModal' : '#RefferedpregnantFormModalTrack';
                                     $type = ($row->type=='normal') ? 'Non-Pregnant' : 'Pregnant';
                                     ?>
                                     <tr>
@@ -142,6 +142,7 @@ use App\Http\Controllers\doctor\CSSCtrl as CSSCtrl;
     </script>
     @include('script.datetime')
     @include('script.accepted')
+    @include('script.referred')
 
     <script src="{{ url('resources/plugin/daterange/moment.min.js') }}"></script>
     <script src="{{ url('resources/plugin/daterange/daterangepicker.js') }}"></script>

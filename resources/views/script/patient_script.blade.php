@@ -31,7 +31,10 @@ $(document).ready(function(){
 
         });
     });   
-asfasd
+    
+    $('#RefferedpregnantFormModalTrack').on('hidden.bs.modal', function () {
+         $('.pregnant_modal_content').load(document.URL +  ' .pregnant_modal_content');
+        })
 
     $(document).ready(function(){
         $(document).on("click",".btn_add_lab", function(e){

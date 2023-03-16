@@ -205,6 +205,10 @@
 
 {{--Script for Call Button--}}
 <script>
+ $('#RefferedpregnantFormModalTrack').on('hidden.bs.modal', function () {
+         $('.pregnant_modal_content').load(document.URL +  ' .pregnant_modal_content');
+        })
+        
     $('body').on('click','.btn-call',function(){
         $('.loading').show();
         var action_md = $(this).data('action_md');
@@ -370,6 +374,7 @@
         form_type = $(this).data('type');
         id = $(this).data('id');
 
+
         $('#normalFormModal').find('span').html('');
         $('#RefferedpregnantFormModalTrack').find('span').html('');
 
@@ -380,7 +385,9 @@
             getPregnantFormv2();
         }
     });
-
+    $('body').on('hidden.bs.modal', '.modal', function () {
+        $(this).removeData('bs.modal');
+      });
     function getPregnantFormv2()
 {
     $.ajax({
@@ -468,10 +475,6 @@
                 $('.patient_contact').html(contact);
                 }
 
-                
-
-
-                
                 if(sign_symptoms !=null)
                 {
 
@@ -496,6 +499,11 @@
                     if(sign_symptoms.significant_decline == 'yes')
                     {
                         $('.prev_significant_decline').prop('checked', true);
+                    }
+
+                    if(sign_symptoms.persistent_contractions == 'yes')
+                    {
+                        $('.prev_persistent_contractions').prop('checked', true);
                     }
 
                     if(sign_symptoms.premature_rupture == 'yes')
@@ -755,31 +763,41 @@
                     //     $('#table_lab_res tr:last').after(markup);
                     //     }
                     // });
-                    if(lab_result)
+                    if(lab_result.length > 0)
                     {
                         for (let i = 1; i < lab_result.length; i++) 
-                    {
-                        $('.date_of_lab').val(lab_result[0].date_of_lab);
-                        $('.cbc_result').val(lab_result[0].cbc_result);
-                        $('.ua_result').val(lab_result[0].ua_result);
-                        $('.utz').val(lab_result[0].utz);
-                        $('.blood_type').val(lab_result[0].blood_type);
-                        $('.hbsag_result').val(lab_result[0].hbsag_result);
-                        $('.vdrl_result').val(lab_result[0].vdrl_result);
-                        $('.lab_remarks').val(lab_result[0].lab_remarks);
+                        {
+                            $('.date_of_lab').val(lab_result[0].date_of_lab);
 
-                        console.log(lab_result[i].date_of_lab);
-                        var markup = '<tr><td><input type="date" class="form-control" value="' + lab_result[i].date_of_lab + '" name="date_of_lab[]" disabled></td><td><input type="text" value="' + lab_result[i].cbc_result + '" class="form-control" name="cbc_result[]" disabled> </td><td><input type="text" value="' + lab_result[i].ua_result + '" class="form-control" name="ua_result[]" disabled> </td><td><input type="text" value="' + lab_result[i].utz + '" class="form-control" name="utz[]" disabled> </td><td><textarea name="lab_remarks[]" class="form-control" disabled> ' + lab_result[i].lab_remarks + ' </textarea> </td></tr>';
-                        $('#table_lab_res_referred tr:last').after(markup);
+                            $('.cbc_hgb').val(lab_result[0].cbc_hgb);
+                            $('.cbc_wbc').val(lab_result[0].cbc_wbc);
+                            $('.cbc_rbc').val(lab_result[0].cbc_rbc);
+                            $('.cbc_platelet').val(lab_result[0].cbc_platelet);
+                            $('.cbc_hct').val(lab_result[0].cbc_hct);
 
-                        $('#blood_type_referred').attr('rowspan', function(i, rs) { return rs + 1; })
-                        $('#hbsag_result_referred').attr('rowspan', function(i, rs) { return rs + 1; })
-                        $('#vdrl_result_referred').attr('rowspan', function(i, rs) { return rs + 1; })
+                            $('.ua_pus').val(lab_result[0].ua_pus);
+                            $('.ua_rbc').val(lab_result[0].ua_rbc);
+                            $('.ua_sugar').val(lab_result[0].ua_sugar);
+                            $('.ua_gravity').val(lab_result[0].ua_gravity);
+                            $('.ua_albumin').val(lab_result[0].ua_albumin);
+
+                            $('.utz').val(lab_result[0].utz);
+                            $('.blood_type').val(lab_result[0].blood_type);
+                            $('.hbsag_result').val(lab_result[0].hbsag_result);
+                            $('.vdrl_result').val(lab_result[0].vdrl_result);
+                            $('.lab_remarks').val(lab_result[0].lab_remarks);
+
+                            console.log(lab_result[i].date_of_lab);
+                            //var markup = '<tr><td><input type="date" class="form-control" value="' + lab_result[i].date_of_lab + '" name="date_of_lab[]" disabled></td><td><input type="text" value="' + lab_result[i].cbc_result + '" class="form-control" name="cbc_result[]" disabled> </td><td><input type="text" value="' + lab_result[i].ua_result + '" class="form-control" name="ua_result[]" disabled> </td><td><input type="text" value="' + lab_result[i].utz + '" class="form-control" name="utz[]" disabled> </td><td><textarea name="lab_remarks[]" class="form-control" disabled> ' + lab_result[i].lab_remarks + ' </textarea> </td></tr>';
+                            var markup = '<tr><td> <input type="date" class="form-control" value="' + lab_result[i].date_of_lab + '" name="date_of_lab[]" disabled></td><td><div class="row"><div class="col-md-6">Hgb: <input type="text" class="form-control" name="cbc_hgb[]" value="' + lab_result[i].cbc_hgb + '" disabled> </div><div class="col-md-6">WBC: <input type="text" class="form-control" name="cbc_wbc[]" value="' + lab_result[i].cbc_wbc + '" disabled></div></div><div class="row"><div class="col-md-6">RBC: <input type="text" class="form-control" name="cbc_rbc[]" value="' + lab_result[i].cbc_rbc + '" disabled> </div><div class="col-md-6">Platelet: <input type="text" class="form-control" value="' + lab_result[i].cbc_platelet + '" name="cbc_platelet[]" disabled></div></div><div class="row"><div class="col-md-12">Hct: <input type="text" class="form-control" value="' + lab_result[i].cbc_hct + '" name="cbc_hct[]" disabled></div></div></td><td><div class="row"><div class="col-md-6">Pus: <input type="text" class="form-control" value="' + lab_result[i].ua_pus + '" name="ua_pus[]" disabled> </div><div class="col-md-6">RBC: <input type="text" class="form-control" value="' + lab_result[i].ua_rbc + '" name="ua_rbc[]" disabled></div></div><div class="row"><div class="col-md-6">Sugar: <input type="text" class="form-control" value="' + lab_result[i].ua_sugar + '" name="ua_sugar[]" disabled> </div><div class="col-md-6">Specific Gravity: <input type="text" class="form-control" value="' + lab_result[i].ua_gravity + '" name="ua_gravity[]" disabled></div></div><div class="row"><div class="col-md-12">Albumin: <input type="text" class="form-control" value="' + lab_result[i].ua_albumin + '" name="ua_albumin[]" disabled></div></div></td><td> <textarea name="utz[]" class="form-control" disabled>' + lab_result[i].utz + '</textarea> </td><td><textarea name="lab_remarks[]" class="form-control" disabled>' + lab_result[i].lab_remarks + '</textarea> </td></tr>';
+                            $('#table_lab_res_referred tr:last').after(markup);
+
+                            $('#blood_type_referred').attr('rowspan', function(i, rs) { return rs + 1; })
+                            $('#hbsag_result_referred').attr('rowspan', function(i, rs) { return rs + 1; })
+                            $('#vdrl_result_referred').attr('rowspan', function(i, rs) { return rs + 1; })
+                        }
                     }
-
-                    }
-                 
-
+                    
                     if(preg_outcome)
                     {
                         $('.delivery_outcome').val(preg_outcome.delivery_outcome);   

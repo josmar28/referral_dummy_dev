@@ -119,7 +119,7 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                                                         data-track_id="{{ $row->id }}"
                                                         data-patient_name="{{ $row->patient_name }}"
                                                         data-code="{{ $row->code}}">
-                                                        <i class="fa-solid fa-skull-crossbones"></i>
+                                                        <i class="fas fa-skull-crossbones"></i>
                                                 </button>
                                                 <a href="#viewupload_modal"
                                                     data-toggle="modal"
@@ -174,7 +174,7 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                                                         data-track_id="{{ $row->id }}"
                                                         data-patient_name="{{ $row->patient_name }}"
                                                         data-code="{{ $row->code}}">
-                                                        <i class="fa-brands fa-accessible-icon"></i>
+                                                        <i class="fab fa-accessible-icon"></i>
                                                 </button>
 
                                                 <button class="btn btn-sm btn-success btn-action btn-transfer"
@@ -230,11 +230,11 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                                 <td>Patient Admitted</td>
                             </tr>
                             <tr>
-                                <td class="text-right" width="60px"><button class="btn btn-sm btn-warning"><i class="fa-brands fa-accessible-icon"></i></i> </button></td>
+                                <td class="text-right" width="60px"><button class="btn btn-sm btn-warning"><i class="fab fa-accessible-icon"></i> </button></td>
                                 <td>Patient Discharged</td>
                             </tr>
                             <tr>
-                                <td class="text-right" width="60px"><button class="btn btn-sm btn-primary"><i class="fa-brands fa-accessible-icon"></i></i></button></td>
+                                <td class="text-right" width="60px"><button class="btn btn-sm btn-primary"><i class="fab fa-accessible-icon"></i> </button></td>
                                 <td>Patient Move</td>
                             </tr>
                             <tr>

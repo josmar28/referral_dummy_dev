@@ -10,7 +10,7 @@
 <div class="modal fade" role="dialog" id="pregnantFormModalTrack">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
-            <form method="POST" class="form-submit" action="{{ url('doctor/patient/refer/pregnant') }}">
+            <form method="POST" class="form-submit" action="{{ url('doctor/patient/refer/pregnant') }}" novalidate>
             <div class="jim-content">
                 @include('include.header_form')
                 <div class="title-form">Risk Assessment Check list for Pregnant Women</div>
@@ -93,7 +93,7 @@
                                                 Family Monthly Income:
                                                     <select name="family_income" class="form-control" required>
                                                         <option value="">Select Income...</option>
-                                                        <option value="rich">> 219,140</option>
+                                                        <option value="rich"> 219,140</option>
                                                         <option value="high">131,484 - 219,140</option>
                                                         <option value="upper_middle">76,670 - 131,483</option>
                                                         <option value="middle">43,829 - 76,669</option>
@@ -279,13 +279,6 @@
                                                                             <option value="3rd">3rd</option>
                                                                             <option value="4th">4th</option>
                                                                             <option value="5th">5th</option>
-                                                                            <option value="6th">6th</option>
-                                                                            <option value="7th">7th</option>
-                                                                            <option value="8th">8th</option>
-                                                                            <option value="9th">9th</option>
-                                                                            <option value="10th">10th</option>
-                                                                            <option value="11th">11th</option>
-                                                                            <option value="12th">12th</option>
                                                                             </select> Visit 
                                                                         </span>
                                                                     </td>
@@ -374,6 +367,10 @@
                                                                 </tr>
                                                                 <tr class="sign_symthoms_table_box">
                                                                     <td ><input type="checkbox" value="yes" name="significant_decline" stlye="float:left">Significant decline fetal movement (less than 10 in 12 hrs during 2 ½ of pregnancy) </td>
+                                                                 
+                                                                </tr>
+                                                                <tr class="sign_symthoms_table_box">
+                                                                    <td ><input type="checkbox" value="yes" name="persistent_contractions" stlye="float:left">Persistent contractions</td>
                                                                  
                                                                 </tr>
                                                                 <tr class="sign_symthoms_table_box">
@@ -546,6 +543,10 @@
                                                                  
                                                                 </tr>
                                                                 <tr class="sign_symthoms_table_box">
+                                                                    <td ><input type="checkbox" class="prev_persistent_contractions" stlye="float:left" disabled>Persistent contractions</td>
+                                                                 
+                                                                </tr>
+                                                                <tr class="sign_symthoms_table_box">
                                                                     <td ><input type="checkbox" class="prev_premature_rupture" stlye="float:left" disabled>Premature rupture of the bag of membrane </td>
                                                                  
                                                                 </tr>
@@ -641,6 +642,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6">
+                                                    <br>
                                                         Sugar: <input type="text" class="form-control" name="ua_sugar[]"> 
                                                     </div>
                                                     <div class="col-md-6">
@@ -657,28 +659,28 @@
                                             <td rowspan="5" id="blood_type">
                                                     <select name="blood_type" class="form-control-select select2" required>
                                                         <option value="">Select type...</option>
-                                                        <option value="fullterm">A+</option>
-                                                        <option value="preterm">A-</option>
-                                                        <option value="stillbirth">B+</option>
-                                                        <option value="abortion">B-</option>
-                                                        <option value="fullterm">AB+</option>
-                                                        <option value="preterm">AB-</option>
-                                                        <option value="stillbirth">O+</option>
-                                                        <option value="abortion">O-</option>
+                                                        <option value="a+">A+</option>
+                                                        <option value="a-">A-</option>
+                                                        <option value="b+">B+</option>
+                                                        <option value="b-">B-</option>
+                                                        <option value="ab+">AB+</option>
+                                                        <option value="ab-">AB-</option>
+                                                        <option value="o+">O+</option>
+                                                        <option value="o-">O-</option>
                                                     </select> 
                                             </td>
                                             <td rowspan="5" id="hbsag_result">
                                                     <select name="hbsag_result" class="form-control-select select2" required>
                                                         <option value="">Select HBsAg...</option>
-                                                        <option value="fullterm">Reactive</option>
-                                                        <option value="preterm">Non-Reactine</option>
+                                                        <option value="reactive">Reactive</option>
+                                                        <option value="non_reactive">Non-Reactine</option>
                                                     </select> 
                                             </td>
                                             <td rowspan="5" id="vdrl_result"> 
                                                     <select name="vdrl_result" class="form-control-select select2" required>
                                                         <option value="">Select VDRL...</option>
-                                                        <option value="fullterm">Reactive</option>
-                                                        <option value="preterm">Non-Reactine</option>
+                                                        <option value="reactive">Reactive</option>
+                                                        <option value="non_reactive">Non-Reactine</option>
                                                     </select> 
                                             </td>
                                             <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
@@ -855,7 +857,7 @@
                                                         <option value="">Select Delivery...</option>
                                                         <option value="nsvd">Normal Spontaneous Vaginal Delivery (NSVD)</option>
                                                         <option value="caesarean">Caesarean</option>
-                                                        <option value="vinal_after_caesarean">Vaginal Birth After Caesarean</option>
+                                                        <option value="vaginal_after_caesarean">Vaginal Birth After Caesarean</option>
                                                         <option value="assisted_vaginal_delivery">Assisted Vaginal Delivery</option>
                                                     </select>
                                             </td>

@@ -12,6 +12,8 @@ use App\Http\Controllers\DeviceTokenCtrl;
 use App\Http\Controllers\ParamCtrl;
 use App\Icd10;
 use App\Events\PreferredNotif;
+use App\Events\PregnantNotif;
+use App\Events\MyEvent;
 use App\Muncity;
 use App\PatientForm;
 use App\Patients;
@@ -474,6 +476,7 @@ class PatientCtrl extends Controller
         }
         else if($type==='pregnant')
         {
+           
             
             // dd($req->delivery_outcome,$req->birth_attendant,$req->status_on_discharge,$req->type_of_delivery,$req->final_diagnosis);
             $data = array(
@@ -513,6 +516,14 @@ class PatientCtrl extends Controller
                 'sibling_rank' => ($req->sibling_rank) ? $req->sibling_rank: NULL,
                 'out_of' => ($req->out_of) ? $req->out_of: NULL,
             );
+
+            $fac = Facility::find($user->facility_id);
+            $referring_md = User::find($user->id);
+            $fac_to = Facility::find($req->referred_facility);
+            
+            event(new PregnantNotif($data,$fac,$referring_md,$fac_to));
+
+            
             $form = PregnantFormv2::Create($data);
             if($form->wasRecentlyCreated){
                 PregnantFormv2::where('unique_id',$unique_id)
@@ -521,6 +532,9 @@ class PatientCtrl extends Controller
                     ]);
                 $tracking_id = self::addTracking($code,$patient_id,$user,$req,$type,$form->id);
             }
+
+      
+          
 
             $data1 = array(
                 'unique_id' => $unique_id,
@@ -577,6 +591,7 @@ class PatientCtrl extends Controller
                 'vaginal_spotting' => ($req->vaginal_spotting) ? $req->vaginal_spotting: NULL,
                 'severe_nausea' => ($req->severe_nausea) ? $req->severe_nausea: NULL,
                 'significant_decline' => ($req->significant_decline) ? $req->significant_decline:NULL,
+                'persistent_contractions' => ($req->persistent_contractions) ? $req->persistent_contractions:NULL,
                 'premature_rupture' => ($req->premature_rupture) ? $req->premature_rupture:NULL,
                 'fetal_pregnancy' => ($req->fetal_pregnancy) ? $req->fetal_pregnancy: NULL,
                 'severe_headache' => ($req->severe_headache) ? $req->severe_headache: NULL,
@@ -615,8 +630,16 @@ class PatientCtrl extends Controller
                         'unique_id' => $unique_id,
                         'patient_woman_id' => $patient_id,
                         'date_of_lab' => ($lab) ? $lab: NULL,
-                        'cbc_result' => ($req->cbc_result[$key]) ? $req->cbc_result[$key]: NULL,
-                        'ua_result' => ($req->ua_result[$key]) ? $req->ua_result[$key]: NULL,
+                        'cbc_hgb' => ($req->cbc_hgb[$key]) ? $req->cbc_hgb[$key]: NULL,
+                        'cbc_wbc' => ($req->cbc_wbc[$key]) ? $req->cbc_wbc[$key]: NULL,
+                        'cbc_rbc' => ($req->cbc_rbc[$key]) ? $req->cbc_rbc[$key]: NULL,
+                        'cbc_platelet' => ($req->cbc_platelet[$key]) ? $req->cbc_platelet[$key]: NULL,
+                        'cbc_hct' => ($req->cbc_hct[$key]) ? $req->cbc_hct[$key]: NULL,
+                        'ua_pus' => ($req->ua_pus[$key]) ? $req->ua_pus[$key]: NULL,
+                        'ua_rbc' => ($req->ua_rbc[$key]) ? $req->ua_rbc[$key]: NULL,
+                        'ua_sugar' => ($req->ua_sugar[$key]) ? $req->ua_sugar[$key]: NULL,
+                        'ua_gravity' => ($req->ua_gravity[$key]) ? $req->ua_gravity[$key]: NULL,
+                        'ua_albumin' => ($req->ua_albumin[$key]) ? $req->ua_albumin[$key]: NULL,
                         'utz' => ($req->utz[$key]) ? $req->utz[$key]: NULL,
                         'blood_type' => ($req->blood_type) ? $req->blood_type: NULL,
                         'hbsag_result' => ($req->hbsag_result) ? $req->hbsag_result:NULL,

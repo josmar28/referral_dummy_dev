@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="{{ asset('resources/plugin/Ionicons/css/ionicons.min.css') }}">
 
     <!-- Font awesome -->
+    <link href="{{ asset('resources/assets/fontawesome/css/fontawesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('resources/assets/fontawesome/css/brands.css') }}" rel="stylesheet">
+    <link href="{{ asset('resources/assets/fontawesome/css/solid.css') }}" rel="stylesheet">
     <link href="{{ asset('resources/assets/css/font-awesome.min.css') }}" rel="stylesheet">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="{{ asset('resources/assets/css/ie10-viewport-bug-workaround.css') }}" rel="stylesheet">
