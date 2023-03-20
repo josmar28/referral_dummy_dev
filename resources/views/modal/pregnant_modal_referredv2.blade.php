@@ -383,136 +383,137 @@
                             </div>
 
                             <div id="menu3" class="tab-pane fade">
-                       
-                                    <table class="table table-striped pre_pregnancy_table" id="table_lab_res_referred">
-                                        <tr class="bg-gray">
-                                            <th>Date of Lab.</th>
-                                            <th>CBC Result</th>
-                                            <th>UA Result</th>
-                                            <th>UTZ</th>
-                                            <th>Blood Type</th>
-                                            <th>HBsAg Result</th>
-                                            <th>VDRL Result</th>
-                                            <th>Management/Intervention</th>
-                                        </tr>
-                                        <tr>
-                                            <td> <input type="date" class="form-control date_of_lab" name="date_of_lab[]" disabled></td>
-                                            <td>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        Hgb: <input type="text" class="form-control cbc_hgb" name="cbc_hgb[]" disabled> 
+                                    <div id="myDiv">
+                                        <table class="table table-striped pre_pregnancy_table" id="table_lab_res_referred">
+                                            <tr class="bg-gray">
+                                                <th>Date of Lab.</th>
+                                                <th>CBC Result</th>
+                                                <th>UA Result</th>
+                                                <th>UTZ</th>
+                                                <th>Blood Type</th>
+                                                <th>HBsAg Result</th>
+                                                <th>VDRL Result</th>
+                                                <th>Management/Intervention</th>
+                                            </tr>
+                                            <tr>
+                                                <td> <input type="date" class="form-control date_of_lab" name="date_of_lab[]" disabled></td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Hgb: <input type="text" class="form-control cbc_hgb" name="cbc_hgb[]" disabled> 
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            WBC: <input type="text" class="form-control cbc_wbc" name="cbc_wbc[]" disabled>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        WBC: <input type="text" class="form-control cbc_wbc" name="cbc_wbc[]" disabled>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            RBC: <input type="text" class="form-control cbc_rbc" name="cbc_rbc[]" disabled> 
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            Platelet: <input type="text" class="form-control cbc_platelet" name="cbc_platelet[]" disabled>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        RBC: <input type="text" class="form-control cbc_rbc" name="cbc_rbc[]" disabled> 
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            Hct: <input type="text" class="form-control cbc_hct" name="cbc_hct[]" disabled>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        Platelet: <input type="text" class="form-control cbc_platelet" name="cbc_platelet[]" disabled>
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Pus: <input type="text" class="form-control ua_pus" name="ua_pus[]" disabled> 
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            RBC: <input type="text" class="form-control ua_rbc" name="ua_rbc[]"disabled>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        Hct: <input type="text" class="form-control cbc_hct" name="cbc_hct[]" disabled>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <br>
+                                                            Sugar: <input type="text" class="form-control ua_sugar" name="ua_sugar[]" disabled> 
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            Specific Gravity: <input type="text" class="form-control ua_gravity" name="ua_gravity[]" disabled>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        Pus: <input type="text" class="form-control ua_pus" name="ua_pus[]" disabled> 
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            Albumin: <input type="text" class="form-control ua_albumin" name="ua_albumin[]" disabled>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        RBC: <input type="text" class="form-control ua_rbc" name="ua_rbc[]"disabled>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <br>
-                                                        Sugar: <input type="text" class="form-control ua_sugar" name="ua_sugar[]" disabled> 
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        Specific Gravity: <input type="text" class="form-control ua_gravity" name="ua_gravity[]" disabled>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        Albumin: <input type="text" class="form-control ua_albumin" name="ua_albumin[]" disabled>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td> <textarea name="utz[]" class="form-control utz" disabled></textarea> </td>
-                                            <td rowspan="5" id="blood_type">
-                                                    <select name="blood_type" class="form-control blood_type" disabled>
-                                                        <option value="">Select type...</option>
-                                                        <option value="a+">A+</option>
-                                                        <option value="a-">A-</option>
-                                                        <option value="b+">B+</option>
-                                                        <option value="b-">B-</option>
-                                                        <option value="ab+">AB+</option>
-                                                        <option value="ab-">AB-</option>
-                                                        <option value="o+">O+</option>
-                                                        <option value="o-">O-</option>
-                                                    </select> 
-                                            </td>
-                                            <td rowspan="5" id="hbsag_result">
-                                                    <select name="hbsag_result" class="form-control hbsag_result" disabled>
-                                                        <option value="">Select HBsAg...</option>
-                                                        <option value="reactive">Reactive</option>
-                                                        <option value="non_reactine">Non-Reactine</option>
-                                                    </select> 
-                                            </td>
-                                            <td rowspan="5" id="vdrl_result"> 
-                                                    <select name="vdrl_result" class="form-control vdrl_result" disabled>
-                                                        <option value="">Select VDRL...</option>
-                                                        <option value="reactive">Reactive</option>
-                                                        <option value="non_reactine">Non-Reactine</option>
-                                                    </select> 
-                                            </td>
-                                            <td><textarea name="lab_remarks[]" class="form-control lab_remarks" disabled></textarea> </td>
-                                        </tr>
-                                        <!-- <tr>
-                                            <td><input type="date" class="form-control date_of_lab" name="date_of_lab[]" disabled></td>
-                                            <td> <input type="text" class="form-control cbc_result" name="cbc_result[]" disabled> </td>
-                                            <td> <input type="text" class="form-control ua_result" name="ua_result[]" disabled> </td>
-                                            <td> <input type="text" class="form-control utz" name="utz[]" disabled> </td>
-                                            <td rowspan="1" id="blood_type_referred"> <textarea name="blood_type" class="form-control blood_type" disabled></textarea></td>
-                                            <td rowspan="1" id="hbsag_result_referred"> <textarea name="hbsag_result" class="form-control hbsag_result" disabled></textarea> </td>
-                                            <td rowspan="1" id="vdrl_result_referred"> <textarea name="vdrl_result" class="form-control vdrl_result" disabled></textarea></td>
-                                            <td><textarea name="lab_remarks[]" class="form-control lab_remarks"  disabled></textarea> </td>
-                                        </tr> -->
-                                        <!-- <tr>
-                                            <td><input type="date" class="form-control" name="date_of_lab[]"></td>
-                                            <td><input type="text" class="form-control" name="cbc_result[]"> </td>
-                                            <td><input type="text" class="form-control" name="ua_result[]"> </td>
-                                            <td><input type="text" class="form-control" name="utz[]"> </td>
-                                            <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="date" class="form-control" name="date_of_lab[]"></td>
-                                            <td><input type="text" class="form-control" name="cbc_result[]"> </td>
-                                            <td><input type="text" class="form-control" name="ua_result[]"> </td>
-                                            <td><input type="text" class="form-control" name="utz[]"> </td>
-                                            <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="date" class="form-control" name="date_of_lab[]"></td>
-                                            <td><input type="text" class="form-control" name="cbc_result[]"> </td>
-                                            <td><input type="text" class="form-control" name="ua_result[]"> </td>
-                                            <td><input type="text" class="form-control" name="utz[]"> </td>
-                                            <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="date" class="form-control" name="date_of_lab[]"></td>
-                                            <td><input type="text" class="form-control" name="cbc_result[]"> </td>
-                                            <td><input type="text" class="form-control" name="ua_result[]"> </td>
-                                            <td><input type="text" class="form-control" name="utz[]"> </td>
-                                            <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
-                                        </tr> -->
-                                    </table>
+                                                </td>
+                                                <td> <textarea name="utz[]" class="form-control utz" disabled></textarea> </td>
+                                                <td rowspan="5" id="blood_type">
+                                                        <select name="blood_type" class="form-control blood_type" disabled>
+                                                            <option value="">Select type...</option>
+                                                            <option value="a+">A+</option>
+                                                            <option value="a-">A-</option>
+                                                            <option value="b+">B+</option>
+                                                            <option value="b-">B-</option>
+                                                            <option value="ab+">AB+</option>
+                                                            <option value="ab-">AB-</option>
+                                                            <option value="o+">O+</option>
+                                                            <option value="o-">O-</option>
+                                                        </select> 
+                                                </td>
+                                                <td rowspan="5" id="hbsag_result">
+                                                        <select name="hbsag_result" class="form-control hbsag_result" disabled>
+                                                            <option value="">Select HBsAg...</option>
+                                                            <option value="reactive">Reactive</option>
+                                                            <option value="non_reactine">Non-Reactine</option>
+                                                        </select> 
+                                                </td>
+                                                <td rowspan="5" id="vdrl_result"> 
+                                                        <select name="vdrl_result" class="form-control vdrl_result" disabled>
+                                                            <option value="">Select VDRL...</option>
+                                                            <option value="reactive">Reactive</option>
+                                                            <option value="non_reactine">Non-Reactine</option>
+                                                        </select> 
+                                                </td>
+                                                <td><textarea name="lab_remarks[]" class="form-control lab_remarks" disabled></textarea> </td>
+                                            </tr>
+                                            <!-- <tr>
+                                                <td><input type="date" class="form-control date_of_lab" name="date_of_lab[]" disabled></td>
+                                                <td> <input type="text" class="form-control cbc_result" name="cbc_result[]" disabled> </td>
+                                                <td> <input type="text" class="form-control ua_result" name="ua_result[]" disabled> </td>
+                                                <td> <input type="text" class="form-control utz" name="utz[]" disabled> </td>
+                                                <td rowspan="1" id="blood_type_referred"> <textarea name="blood_type" class="form-control blood_type" disabled></textarea></td>
+                                                <td rowspan="1" id="hbsag_result_referred"> <textarea name="hbsag_result" class="form-control hbsag_result" disabled></textarea> </td>
+                                                <td rowspan="1" id="vdrl_result_referred"> <textarea name="vdrl_result" class="form-control vdrl_result" disabled></textarea></td>
+                                                <td><textarea name="lab_remarks[]" class="form-control lab_remarks"  disabled></textarea> </td>
+                                            </tr> -->
+                                            <!-- <tr>
+                                                <td><input type="date" class="form-control" name="date_of_lab[]"></td>
+                                                <td><input type="text" class="form-control" name="cbc_result[]"> </td>
+                                                <td><input type="text" class="form-control" name="ua_result[]"> </td>
+                                                <td><input type="text" class="form-control" name="utz[]"> </td>
+                                                <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type="date" class="form-control" name="date_of_lab[]"></td>
+                                                <td><input type="text" class="form-control" name="cbc_result[]"> </td>
+                                                <td><input type="text" class="form-control" name="ua_result[]"> </td>
+                                                <td><input type="text" class="form-control" name="utz[]"> </td>
+                                                <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type="date" class="form-control" name="date_of_lab[]"></td>
+                                                <td><input type="text" class="form-control" name="cbc_result[]"> </td>
+                                                <td><input type="text" class="form-control" name="ua_result[]"> </td>
+                                                <td><input type="text" class="form-control" name="utz[]"> </td>
+                                                <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type="date" class="form-control" name="date_of_lab[]"></td>
+                                                <td><input type="text" class="form-control" name="cbc_result[]"> </td>
+                                                <td><input type="text" class="form-control" name="ua_result[]"> </td>
+                                                <td><input type="text" class="form-control" name="utz[]"> </td>
+                                                <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
+                                            </tr> -->
+                                        </table>
+                                    </div>
                             </div>
 
                             <!-- <div id="menu4" class="tab-pane fade">

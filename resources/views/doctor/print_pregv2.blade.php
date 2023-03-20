@@ -42,7 +42,7 @@
 <span class="text" style="left:615.1px;top:153.8px;">Date:</span>
 </span>
 <span style="font-size:17px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:662.5px;top:153.8px;text-decoration:underline">date_referred</span>
+<span class="text" style="left:662.5px;top:153.8px;">{{$data['form']->referred_date_name}}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:69.7px;top:177.7px;">Name of Facility: {{$data['form']->referring_facility_name}} &nbsp;</span>
@@ -618,7 +618,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:869.4px;top:710.5px;">ion&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:69.7px;top:748.0px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][0]->date_of_lab }}</span>
+<span class="text" style="left:69.7px;top:748.0px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][0]->date_of_lab_name }}</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:164.3px;top:757.5px;">Hgb</span>
@@ -829,7 +829,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:800.7px;top:746.0px;white-space:normal; width: 160px; word-wrap:break-word">{{ $data['lab_result'][1]->lab_remarks }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:69.7px;top:782.6px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][1]->date_of_lab }}</span>
+<span class="text" style="left:69.7px;top:782.6px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][1]->date_of_lab_name }}</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:164.3px;top:794.0px;">Hgb</span>
@@ -913,7 +913,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:800.7px;top:782.6px;white-space:normal; width: 160px; word-wrap:break-word">{{ $data['lab_result'][1]->lab_remarks }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:69.7px;top:818.5px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][2]->date_of_lab }}&nbsp;</span>
+<span class="text" style="left:69.7px;top:818.5px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][2]->date_of_lab_name }}&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:164.3px;top:830.0px;">Hgb</span>
@@ -997,7 +997,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:800.7px;top:818.5px;white-space:normal; width: 160px; word-wrap:break-word">{{ $data['lab_result'][2]->lab_remarks }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:69.7px;top:853.7px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][3]->date_of_lab }}</span>
+<span class="text" style="left:69.7px;top:853.7px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][3]->date_of_lab_name }}</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:164.3px;top:865.1px;">Hgb</span>
@@ -1081,7 +1081,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:800.7px;top:853.7px;white-space:normal; width: 160px; word-wrap:break-word">{{ $data['lab_result'][3]->lab_remarks }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:69.7px;top:889.2px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][4]->date_of_lab }}</span>
+<span class="text" style="left:69.7px;top:889.2px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][4]->date_of_lab_name }}</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:164.3px;top:900.6px;">Hgb</span>
@@ -1275,7 +1275,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:871.6px;top:1008.7px;">Remarks&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1028.9px;">@if($data['sign_symptoms']->vaginal_spotting == 'yes')
+<span class="text" style="left:69.7px;top:1028.9px;">@if($data['first_tri_visit']->vaginal_spotting == 'yes')
 ☑
 @else
 
@@ -1308,9 +1308,9 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 </span>
 <span style="font-size:12px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:378.2px;top:1098.5px;">AOG:</span>
-<span class="text" style="left:406.7px;top:1098.5px;text-decoration:underline">&nbsp;aog</span>
+<span class="text" style="left:406.7px;top:1098.5px;text-decoration:underline">&nbsp;{{ $data['first_tri_visit']->aog }}</span>
 <span class="text" style="left:378.2px;top:1111.9px;">BP:</span>
-<span class="text" style="left:398.2px;top:1111.9px;">{{ $data['first_tri_visit']->bp }}</span>
+<span class="text" style="left:398.2px;top:1111.9px;"></span>
 <span class="text" style="left:422.1px;top:1111.9px;">Temp:&nbsp;</span>
 <span class="text" style="left:453.1px;top:1111.9px;">{{ $data['first_tri_visit']->temp }}&nbsp;</span>
 <span class="text" style="left:378.2px;top:1125.4px;">HR:</span>
@@ -1327,7 +1327,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:378.2px;top:1163.7px;">Examination:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:378.2px;top:1175.6px;">other_physical</span>
+<span class="text" style="left:378.2px;top:1175.6px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['first_tri_visit']->other_physical_exam }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:378.2px;top:1202.1px;">A</span>
@@ -1339,7 +1339,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:460.5px;top:1202.1px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:378.2px;top:1219.7px;">Assessment_diag&nbsp;</span>
+<span class="text" style="left:378.2px;top:1219.7px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['first_tri_visit']->assessment_diagnosis }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:378.2px;top:1246.2px;">P</span>
@@ -1351,7 +1351,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:441.0px;top:1246.2px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:378.2px;top:1264.1px;">plant_intervention</span>
+<span class="text" style="left:378.2px;top:1264.1px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['first_tri_visit']->plan_intervention }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:497.8px;top:1028.9px;">S</span>
@@ -1376,8 +1376,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 </span>
 <span style="font-size:12px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:497.8px;top:1098.5px;">AOG:</span>
-<span class="text" style="left:526.3px;top:1098.5px;text-decoration:underline">&nbsp;ao</span>
-<span class="text" style="left:540.4px;top:1098.5px;text-decoration:underline">g</span>
+<span class="text" style="left:526.3px;top:1098.5px;text-decoration:underline">&nbsp;{{ $data['second_tri_visit']->aog }}</span>
 <span class="text" style="left:497.2px;top:1111.9px;">BP:</span>
 <span class="text" style="left:515.2px;top:1111.9px;">{{ $data['second_tri_visit']->bp }}</span>
 <span class="text" style="left:539.1px;top:1111.9px;">Temp:&nbsp;</span>
@@ -1397,8 +1396,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:544.2px;top:1163.7px;">n:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:497.8px;top:1175.6px;">other_physica</span>
-<span class="text" style="left:544.8px;top:1175.6px;">l</span>
+<span class="text" style="left:497.8px;top:1175.6px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['second_tri_visit']->other_physical_exam }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:497.8px;top:1202.1px;">A</span>
@@ -1411,7 +1409,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:580.2px;top:1202.1px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:497.8px;top:1219.7px;">Assessment_diag</span>
+<span class="text" style="left:497.8px;top:1219.7px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['second_tri_visit']->assessment_diagnosis }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:497.8px;top:1246.2px;">P</span>
@@ -1424,7 +1422,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:560.7px;top:1246.2px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:497.8px;top:1264.1px;">plant_intervention</span>
+<span class="text" style="left:497.8px;top:1264.1px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['second_tri_visit']->plan_intervention }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:616.5px;top:1028.9px;">S</span>
@@ -1449,7 +1447,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 </span>
 <span style="font-size:12px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:616.5px;top:1098.5px;">AOG:</span>
-<span class="text" style="left:645.0px;top:1098.5px;text-decoration:underline">&nbsp;aog</span>
+<span class="text" style="left:645.0px;top:1098.5px;text-decoration:underline">&nbsp;{{ $data['third_tri_visit']->aog }}</span>
 <span class="text" style="left:616.2px;top:1111.9px;">BP:</span>
 <span class="text" style="left:636.2px;top:1111.9px;">{{ $data['third_tri_visit']->bp }}</span>
 <span class="text" style="left:657.1px;top:1111.9px;">Temp:&nbsp;</span>
@@ -1468,7 +1466,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:616.5px;top:1163.7px;">Examination:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:616.5px;top:1175.6px;">other_physical</span>
+<span class="text" style="left:616.5px;top:1175.6px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['third_tri_visit']->other_physical_exam }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:616.5px;top:1202.1px;">A</span>
@@ -1480,7 +1478,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:698.8px;top:1202.1px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:616.5px;top:1219.7px;">Assessment_diag&nbsp;</span>
+<span class="text" style="left:616.5px;top:1219.7px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['third_tri_visit']->assessment_diagnosis }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:616.5px;top:1246.2px;">P</span>
@@ -1492,7 +1490,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:679.4px;top:1246.2px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:616.5px;top:1264.1px;">plant_intervention</span>
+<span class="text" style="left:616.5px;top:1264.1px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['third_tri_visit']->plan_intervention }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:735.0px;top:1028.9px;">S</span>
@@ -1520,8 +1518,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:12px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:735.0px;top:1098.5px;">AOG</span>
 <span class="text" style="left:760.3px;top:1098.5px;">:</span>
-<span class="text" style="left:763.5px;top:1098.5px;text-decoration:underline">&nbsp;aog</span>
-
+<span class="text" style="left:763.5px;top:1098.5px;text-decoration:underline">&nbsp;{{ $data['fourth_tri_visit']->aog }}</span>
 <span class="text" style="left:735.2px;top:1111.9px;">BP:</span>
 <span class="text" style="left:755.2px;top:1111.9px;">{{ $data['fourth_tri_visit']->bp }}</span>
 <span class="text" style="left:776.1px;top:1111.9px;">Temp:&nbsp;</span>
@@ -1541,7 +1538,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:735.0px;top:1163.7px;">Examination:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:735.0px;top:1175.6px;">other_physical</span>
+<span class="text" style="left:735.0px;top:1175.6px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['fourth_tri_visit']->other_physical_exam }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:735.0px;top:1202.1px;">A</span>
@@ -1553,7 +1550,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:817.4px;top:1202.1px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:735.0px;top:1219.7px;">Assessment_diag&nbsp;</span>
+<span class="text" style="left:735.0px;top:1219.7px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['fourth_tri_visit']->assessment_diagnosis }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:735.0px;top:1246.2px;">P</span>
@@ -1565,7 +1562,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:797.9px;top:1246.2px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:735.0px;top:1264.1px;">plant_intervention</span>
+<span class="text" style="left:735.0px;top:1264.1px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['fourth_tri_visit']->plan_intervention }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:853.7px;top:1028.9px;">S</span>
@@ -1590,8 +1587,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 </span>
 <span style="font-size:12px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:853.7px;top:1098.5px;">AOG:</span>
-<span class="text" style="left:882.2px;top:1098.5px;text-decoration:underline">&nbsp;aog</span>
-
+<span class="text" style="left:882.2px;top:1098.5px;text-decoration:underline">&nbsp;{{ $data['fifth_tri_visit']->aog }}</span>
 <span class="text" style="left:853.2px;top:1111.9px;">BP:</span>
 <span class="text" style="left:873.2px;top:1111.9px;">{{ $data['fifth_tri_visit']->bp }}</span>
 <span class="text" style="left:894.1px;top:1111.9px;">Temp:&nbsp;</span>
@@ -1611,8 +1607,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:877.2px;top:1163.7px;">mination:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:853.7px;top:1175.6px;">other</span>
-<span class="text" style="left:871.0px;top:1175.6px;">_physical</span>
+<span class="text" style="left:853.7px;top:1175.6px;normal; width: 110px; word-wrap:break-word">{{ $data['fifth_tri_visit']->other_physical_exam }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:853.7px;top:1202.1px;">A</span>
@@ -1625,7 +1620,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:936.0px;top:1202.1px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:853.7px;top:1219.7px;">Assessment_diag</span>
+<span class="text" style="left:853.7px;top:1219.7px;normal; width: 110px; word-wrap:break-word">{{ $data['fifth_tri_visit']->assessment_diagnosis }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:853.7px;top:1246.2px;">P</span>
@@ -1637,11 +1632,10 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:916.5px;top:1246.2px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:853.7px;top:1264.1px;">p</span>
-<span class="text" style="left:857.9px;top:1264.1px;">lant_intervention</span>
+<span class="text" style="left:853.7px;top:1264.1px;normal; width: 110px; word-wrap:break-word">{{ $data['fifth_tri_visit']->plan_intervention }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1047.1px;">@if($data['sign_symptoms']->severe_nausea == 'yes')
+<span class="text" style="left:69.7px;top:1047.1px;">@if($data['first_tri_visit']->severe_nausea == 'yes')
 ☑
 @else
 
@@ -1652,7 +1646,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:101.4px;top:1047.1px;">vere nausea and vomiting&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1065.1px;">@if($data['sign_symptoms']->significant_decline == 'yes')
+<span class="text" style="left:69.7px;top:1065.1px;">@if($data['first_tri_visit']->significant_decline == 'yes')
 ☑
 @else
 
@@ -1666,7 +1660,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:104.0px;top:1082.6px;">12 hrs during 2 ½ of pregnancy)&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1100.7px;">@if($data['sign_symptoms']->persistent_contractions == 'yes')
+<span class="text" style="left:69.7px;top:1100.7px;">@if($data['first_tri_visit']->persistent_contractions == 'yes')
 ☑
 @else
 
@@ -1677,7 +1671,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:101.4px;top:1100.7px;">rsistent contractions&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1118.7px;">@if($data['sign_symptoms']->premature_rupture == 'yes')
+<span class="text" style="left:69.7px;top:1118.7px;">@if($data['first_tri_visit']->premature_rupture == 'yes')
 ☑
 @else
 
@@ -1694,7 +1688,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:1136.2px;">membrane&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1154.3px;">@if($data['sign_symptoms']->fetal_pregnancy == 'yes')
+<span class="text" style="left:69.7px;top:1154.3px;">@if($data['first_tri_visit']->fetal_pregnancy == 'yes')
 ☑
 @else
 
@@ -1704,7 +1698,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:86.3px;top:1154.3px;">Multi fetal pregnancy&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1172.5px;">@if($data['sign_symptoms']->severe_headache == 'yes')
+<span class="text" style="left:69.7px;top:1172.5px;">@if($data['first_tri_visit']->severe_headache == 'yes')
 ☑
 @else
 
@@ -1723,7 +1717,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:103.2px;top:1189.8px;">ng of vision</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1207.9px;">@if($data['sign_symptoms']->abdominal_pain == 'yes')
+<span class="text" style="left:69.7px;top:1207.9px;">@if($data['first_tri_visit']->abdominal_pain == 'yes')
 ☑
 @else
 
@@ -1735,7 +1729,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:265.9px;top:1207.9px;">pain&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1226.2px;">@if($data['sign_symptoms']->edema_hands == 'yes')
+<span class="text" style="left:69.7px;top:1226.2px;">@if($data['first_tri_visit']->edema_hands == 'yes')
 ☑
 @else
 
@@ -1747,7 +1741,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:260.7px;top:1226.2px;">ace&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1244.2px;">@if($data['sign_symptoms']->fever_pallor == 'yes')
+<span class="text" style="left:69.7px;top:1244.2px;">@if($data['first_tri_visit']->fever_pallor == 'yes')
 ☑
 @else
 
@@ -1757,7 +1751,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:86.3px;top:1244.2px;">Fever or pallor&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1262.3px;">@if($data['sign_symptoms']->seizure_consciousness == 'yes')
+<span class="text" style="left:69.7px;top:1262.3px;">@if($data['first_tri_visit']->seizure_consciousness == 'yes')
 ☑
 @else
 
@@ -1769,7 +1763,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:261.9px;top:1262.3px;">ess&nbsp;&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1280.6px;">@if($data['sign_symptoms']->difficulty_breathing == 'yes')
+<span class="text" style="left:69.7px;top:1280.6px;">@if($data['first_tri_visit']->difficulty_breathing == 'yes')
 ☑
 @else
 
@@ -1780,7 +1774,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:101.4px;top:1280.6px;">fficulty of breathing&nbsp;&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1298.6px;">@if($data['sign_symptoms']->painful_urination == 'yes')
+<span class="text" style="left:69.7px;top:1298.6px;">@if($data['first_tri_visit']->painful_urination == 'yes')
 ☑
 @else
 
@@ -1790,7 +1784,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:86.3px;top:1298.6px;">Painful urination&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1316.9px;">@if($data['sign_symptoms']->elevated_bp == 'yes')
+<span class="text" style="left:69.7px;top:1316.9px;">@if($data['first_tri_visit']->elevated_bp == 'yes')
 ☑
 @else
 
@@ -2032,11 +2026,16 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 </span>
 <span style="font-size:17px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:897.9px;top:161.3px;">Visit&nbsp;</span>
-<span class="text" style="left:378.2px;top:181.3px;">Date: date1&nbsp;</span>
-<span class="text" style="left:497.8px;top:181.3px;">Date: date2&nbsp;</span>
-<span class="text" style="left:616.5px;top:181.3px;">Date: date3&nbsp;</span>
-<span class="text" style="left:735.0px;top:181.3px;">Date: date4&nbsp;</span>
-<span class="text" style="left:853.7px;top:181.3px;">Date: date5&nbsp;</span>
+<span class="text" style="left:370.2px;top:181.6px;">Date: &nbsp;</span>
+<span class="text" style="left:410.2px;top:187.6px;font-size:9.3px">{{ $data['first_tri_visit_2nd']->date_of_visit }}&nbsp;</span>
+<span class="text" style="left:489.8px;top:181.6px;">Date:</span>
+<span class="text" style="left:529.0px;top:187.6px;font-size:9.3px">{{ $data['second_tri_visit_2nd']->date_of_visit }}&nbsp;</span>
+<span class="text" style="left:608.5px;top:181.6px;">Date:</span>
+<span class="text" style="left:647.5px;top:187.6px;font-size:9.3px">{{ $data['third_tri_visit_2nd']->date_of_visit }}&nbsp;</span>
+<span class="text" style="left:727.0px;top:181.6px;">Date:</span>
+<span class="text" style="left:765.5px;top:187.6px;font-size:9.3px">{{ $data['fourth_tri_visit_2nd']->date_of_visit }}&nbsp;</span>
+<span class="text" style="left:845.7px;top:181.6px;">Date:&nbsp;</span>
+<span class="text" style="left:884.7px;top:187.6px;font-size:9.3px">{{ $data['fifth_tri_visit_2nd']->date_of_visit }}&nbsp;</span>
 <span class="text" style="left:381.8px;top:201.4px;">Management&nbsp;</span>
 <span class="text" style="left:515.5px;top:201.4px;">Remarks&nbsp;</span>
 <span class="text" style="left:634.2px;top:201.4px;">Remarks&nbsp;</span>
@@ -2044,7 +2043,11 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:871.6px;top:201.4px;">Remarks&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:221.5px;"></span>
+<span class="text" style="left:69.7px;top:221.5px;">@if($data['first_tri_visit_2nd']->vaginal_spotting == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:221.5px;">Vaginal spotting or bleeding&nbsp;&nbsp;</span>
@@ -2059,7 +2062,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:417.3px;top:221.5px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:426.1px;top:228.1px;">subjective1</span>
+<span class="text" style="left:371.1px;top:235.1px;white-space:normal; width: 117px; word-wrap:break-word">{{ $data['first_tri_visit_2nd']->subjective }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:378.2px;top:273.5px;">O</span>
@@ -2072,20 +2075,26 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 </span>
 <span style="font-size:12px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:378.2px;top:291.0px;">AOG:</span>
-<span class="text" style="left:406.7px;top:291.0px;text-decoration:underline">&nbsp;aog</span>
-<span class="text" style="left:378.2px;top:304.4px;">BP: bp</span>
-<span class="text" style="left:422.1px;top:304.4px;">Temp: temp&nbsp;</span>
-<span class="text" style="left:378.2px;top:317.9px;">HR: hr</span>
-<span class="text" style="left:422.3px;top:317.9px;">RR: rr&nbsp;</span>
-<span class="text" style="left:378.2px;top:331.3px;">FH: fh</span>
-<span class="text" style="left:420.9px;top:331.3px;">FHT: fht&nbsp;</span>
+<span class="text" style="left:406.7px;top:291.0px;text-decoration:underline">&nbsp;{{ $data['first_tri_visit_2nd']->aog }}</span>
+<span class="text" style="left:378.2px;top:305.9px;">BP:</span>
+<span class="text" style="left:400.2px;top:305.9px;">{{ $data['first_tri_visit_2nd']->bp }}</span>
+<span class="text" style="left:422.1px;top:304.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:453.1px;top:304.9px;">{{ $data['first_tri_visit_2nd']->temp }}&nbsp;</span>
+<span class="text" style="left:378.2px;top:317.4px;">HR:</span>
+<span class="text" style="left:400.2px;top:317.4px;">{{ $data['first_tri_visit_2nd']->hr }}</span>
+<span class="text" style="left:422.3px;top:317.4px;">RR:&nbsp;</span>
+<span class="text" style="left:442.3px;top:317.4px;">{{ $data['first_tri_visit_2nd']->rr }}&nbsp;</span>
+<span class="text" style="left:378.2px;top:331.8px;">FH:</span>
+<span class="text" style="left:398.2px;top:331.8px;">{{ $data['first_tri_visit_2nd']->fh }}</span>
+<span class="text" style="left:420.9px;top:331.8px;">FHT:&nbsp;</span>
+<span class="text" style="left:445.9px;top:331.8px;">{{ $data['first_tri_visit_2nd']->fht }}&nbsp;</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:378.2px;top:344.8px;">Other Physical</span>
 <span class="text" style="left:378.2px;top:356.4px;">Examination:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:378.2px;top:368.1px;">other_physical</span>
+<span class="text" style="left:376.2px;top:368.1px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['first_tri_visit_2nd']->other_physical_exam }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:378.2px;top:394.8px;">A</span>
@@ -2097,7 +2106,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:460.5px;top:394.8px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:378.2px;top:412.4px;">Assessment_diag&nbsp;</span>
+<span class="text" style="left:376.2px;top:412.4px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['first_tri_visit_2nd']->assessment_diagnosis }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:378.2px;top:439.0px;">P</span>
@@ -2109,7 +2118,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:441.0px;top:439.0px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:378.2px;top:456.7px;">plant_intervention</span>
+<span class="text" style="left:376.2px;top:456.7px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['first_tri_visit_2nd']->plan_intervention }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:497.8px;top:221.5px;">S</span>
@@ -2121,7 +2130,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:537.0px;top:221.5px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:545.8px;top:228.1px;">subjective1</span>
+<span class="text" style="left:489.8px;top:235.1px;white-space:normal; width: 117px; word-wrap:break-word">{{ $data['second_tri_visit_2nd']->subjective }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:497.8px;top:273.5px;">O</span>
@@ -2134,20 +2143,26 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 </span>
 <span style="font-size:12px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:497.8px;top:291.0px;">AOG:</span>
-<span class="text" style="left:526.3px;top:291.0px;text-decoration:underline">&nbsp;aog</span>
-<span class="text" style="left:497.8px;top:304.4px;">BP: bp</span>
-<span class="text" style="left:539.0px;top:304.4px;">Temp: temp&nbsp;</span>
-<span class="text" style="left:497.8px;top:317.9px;">HR: hr</span>
-<span class="text" style="left:542.0px;top:317.9px;">RR: rr&nbsp;</span>
-<span class="text" style="left:497.8px;top:331.3px;">FH: fh</span>
-<span class="text" style="left:540.6px;top:331.3px;">FHT: fht&nbsp;</span>
+<span class="text" style="left:526.3px;top:291.0px;text-decoration:underline">&nbsp;{{ $data['second_tri_visit_2nd']->aog }}</span>
+<span class="text" style="left:497.2px;top:304.9px;">BP:</span>
+<span class="text" style="left:515.2px;top:304.9px;">{{ $data['second_tri_visit_2nd']->bp }}</span>
+<span class="text" style="left:539.1px;top:304.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:570.1px;top:304.9px;">{{ $data['second_tri_visit_2nd']->temp }}&nbsp;</span>
+<span class="text" style="left:497.2px;top:317.4px;">HR:</span>
+<span class="text" style="left:518.2px;top:317.4px;">{{ $data['second_tri_visit_2nd']->hr }}</span>
+<span class="text" style="left:542.3px;top:317.4px;">RR:&nbsp;</span>
+<span class="text" style="left:563.3px;top:317.4px;">{{ $data['second_tri_visit_2nd']->rr }}&nbsp;</span>
+<span class="text" style="left:497.2px;top:331.8px;">FH:</span>
+<span class="text" style="left:515.2px;top:331.8px;">{{ $data['second_tri_visit_2nd']->fh }}</span>
+<span class="text" style="left:540.9px;top:331.8px;">FHT:&nbsp;</span>
+<span class="text" style="left:565.9px;top:331.8px;">{{ $data['second_tri_visit_2nd']->fht }}&nbsp;</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:497.8px;top:344.8px;">Other Physical</span>
 <span class="text" style="left:497.8px;top:356.4px;">Examination:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:497.8px;top:368.1px;">other_physical</span>
+<span class="text" style="left:495.8px;top:368.1px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['second_tri_visit_2nd']->other_physical_exam }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:497.8px;top:394.8px;">A</span>
@@ -2159,7 +2174,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:580.2px;top:394.8px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:497.8px;top:412.4px;">Assessment_diag&nbsp;</span>
+<span class="text" style="left:495.8px;top:412.4px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['second_tri_visit_2nd']->assessment_diagnosis }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:497.8px;top:439.0px;">P</span>
@@ -2171,7 +2186,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:560.7px;top:439.0px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:497.8px;top:456.7px;">plant_intervention</span>
+<span class="text" style="left:495.8px;top:456.7px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['second_tri_visit_2nd']->plan_intervention }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:616.5px;top:221.5px;">S</span>
@@ -2183,7 +2198,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:655.7px;top:221.5px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:664.5px;top:228.1px;">subjective1</span>
+<span class="text" style="left:608.5px;top:235.1px;white-space:normal; width: 117px; word-wrap:break-word">{{ $data['third_tri_visit_2nd']->subjective }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:616.5px;top:273.5px;">O</span>
@@ -2197,15 +2212,19 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:12px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:616.5px;top:291.0px;">AO</span>
 <span class="text" style="left:633.4px;top:291.0px;">G:</span>
-<span class="text" style="left:645.0px;top:291.0px;text-decoration:underline">&nbsp;aog</span>
-<span class="text" style="left:616.5px;top:304.4px;">BP:</span>
-<span class="text" style="left:634.0px;top:304.4px;">&nbsp;bp</span>
-<span class="text" style="left:657.7px;top:304.4px;">Temp: temp&nbsp;</span>
-<span class="text" style="left:616.5px;top:317.9px;">HR:</span>
-<span class="text" style="left:639.0px;top:317.9px;">hr</span>
-<span class="text" style="left:660.7px;top:317.9px;">RR: rr&nbsp;</span>
-<span class="text" style="left:616.5px;top:331.3px;">FH: fh</span>
-<span class="text" style="left:659.3px;top:331.3px;">FHT: fht&nbsp;</span>
+<span class="text" style="left:645.0px;top:291.0px;text-decoration:underline">&nbsp;{{ $data['third_tri_visit_2nd']->aog }}</span>
+<span class="text" style="left:616.2px;top:304.9px;">BP:</span>
+<span class="text" style="left:636.2px;top:304.9px;">{{ $data['third_tri_visit_2nd']->bp }}</span>
+<span class="text" style="left:657.1px;top:304.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:688.1px;top:304.9px;">{{ $data['third_tri_visit_2nd']->temp }}&nbsp;</span>
+<span class="text" style="left:616.2px;top:317.4px;">HR:</span>
+<span class="text" style="left:638.2px;top:317.4px;">{{ $data['third_tri_visit_2nd']->hr }}</span>
+<span class="text" style="left:660.3px;top:317.4px;">RR:&nbsp;</span>
+<span class="text" style="left:680.3px;top:317.4px;">{{ $data['third_tri_visit_2nd']->rr }}&nbsp;</span>
+<span class="text" style="left:616.2px;top:331.8px;">FH:</span>
+<span class="text" style="left:636.2px;top:331.8px;">{{ $data['third_tri_visit_2nd']->fh }}</span>
+<span class="text" style="left:659.9px;top:331.8px;">FHT:&nbsp;</span>
+<span class="text" style="left:684.9px;top:331.8px;">{{ $data['third_tri_visit_2nd']->fht }}&nbsp;</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:616.5px;top:344.8px;">Othe</span>
@@ -2214,7 +2233,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:640.0px;top:356.4px;">mination:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:616.5px;top:368.1px;">other_physical</span>
+<span class="text" style="left:614.5px;top:368.1px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['third_tri_visit_2nd']->other_physical_exam }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:616.5px;top:394.8px;">A</span>
@@ -2226,8 +2245,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:698.8px;top:394.8px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:616.5px;top:412.4px;">A</span>
-<span class="text" style="left:622.5px;top:412.4px;">ssessment_diag&nbsp;</span>
+<span class="text" style="left:614.5px;top:412.4px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['third_tri_visit_2nd']->assessment_diagnosis }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:616.5px;top:439.0px;">P</span>
@@ -2239,8 +2257,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:679.4px;top:439.0px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:616.5px;top:456.7px;">p</span>
-<span class="text" style="left:620.7px;top:456.7px;">lant_intervention</span>
+<span class="text" style="left:614.7px;top:456.7px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['third_tri_visit_2nd']->plan_intervention }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:735.0px;top:221.5px;">S</span>
@@ -2252,7 +2269,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:774.2px;top:221.5px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:783.0px;top:228.1px;">subjective1</span>
+<span class="text" style="left:727.0px;top:235.1px;white-space:normal; width: 117px; word-wrap:break-word">{{ $data['fourth_tri_visit_2nd']->subjective }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:735.0px;top:273.5px;">O</span>
@@ -2265,22 +2282,26 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 </span>
 <span style="font-size:12px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:735.0px;top:291.0px;">AOG:</span>
-<span class="text" style="left:763.5px;top:291.0px;text-decoration:underline">&nbsp;aog</span>
-<span class="text" style="left:735.0px;top:304.4px;">BP: bp</span>
-<span class="text" style="left:776.2px;top:304.4px;">Temp:&nbsp;</span>
-<span class="text" style="left:809.7px;top:304.4px;">temp</span>
-<span class="text" style="left:735.0px;top:317.9px;">HR: hr</span>
-<span class="text" style="left:779.2px;top:317.9px;">RR:&nbsp;</span>
-<span class="text" style="left:800.9px;top:317.9px;">rr&nbsp;</span>
-<span class="text" style="left:735.0px;top:331.3px;">FH: fh</span>
-<span class="text" style="left:777.8px;top:331.3px;">FHT: fht&nbsp;</span>
+<span class="text" style="left:763.5px;top:291.0px;text-decoration:underline">&nbsp;{{ $data['fourth_tri_visit_2nd']->aog }}</span>
+<span class="text" style="left:735.2px;top:304.9px;">BP:</span>
+<span class="text" style="left:755.2px;top:304.9px;">{{ $data['fourth_tri_visit_2nd']->bp }}</span>
+<span class="text" style="left:776.1px;top:304.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:807.1px;top:304.9px;">{{ $data['fourth_tri_visit_2nd']->temp }}&nbsp;</span>
+<span class="text" style="left:735.2px;top:317.4px;">HR:</span>
+<span class="text" style="left:755.2px;top:317.4px;">{{ $data['fourth_tri_visit_2nd']->hr }}</span>
+<span class="text" style="left:779.3px;top:317.4px;">RR:&nbsp;</span>
+<span class="text" style="left:800.3px;top:317.4px;">{{ $data['fourth_tri_visit_2nd']->rr }}&nbsp;</span>
+<span class="text" style="left:735.2px;top:331.8px;">FH:</span>
+<span class="text" style="left:755.2px;top:331.8px;">{{ $data['fourth_tri_visit_2nd']->fh }}</span>
+<span class="text" style="left:777.9px;top:331.8px;">FHT:&nbsp;</span>
+<span class="text" style="left:803.9px;top:331.8px;">{{ $data['fourth_tri_visit_2nd']->fht }}&nbsp;</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:735.0px;top:344.8px;">Other Physical</span>
 <span class="text" style="left:735.0px;top:356.4px;">Examination:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:735.0px;top:368.1px;">other_physical</span>
+<span class="text" style="left:733.0px;top:368.1px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['fourth_tri_visit_2nd']->other_physical_exam }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:735.0px;top:394.8px;">A</span>
@@ -2292,7 +2313,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:817.4px;top:394.8px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:735.0px;top:412.4px;">Assessment_diag&nbsp;</span>
+<span class="text" style="left:733.0px;top:412.4px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['fourth_tri_visit_2nd']->assessment_diagnosis }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:735.0px;top:439.0px;">P</span>
@@ -2304,7 +2325,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:797.9px;top:439.0px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:735.0px;top:456.7px;">plant_intervention</span>
+<span class="text" style="left:733.0px;top:456.7px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['fourth_tri_visit_2nd']->plan_intervention }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:853.7px;top:221.5px;">S</span>
@@ -2316,7 +2337,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:892.9px;top:221.5px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:901.7px;top:228.1px;">subjective1</span>
+<span class="text" style="left:845.7px;top:235.1px;white-space:normal; width: 117px; word-wrap:break-word">{{ $data['fifth_tri_visit_2nd']->subjective }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:853.7px;top:273.5px;">O</span>
@@ -2329,20 +2350,26 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 </span>
 <span style="font-size:12px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:853.7px;top:291.0px;">AOG:</span>
-<span class="text" style="left:882.2px;top:291.0px;text-decoration:underline">&nbsp;aog</span>
-<span class="text" style="left:853.7px;top:304.4px;">BP: bp</span>
-<span class="text" style="left:891.9px;top:304.4px;">&nbsp;Temp: temp&nbsp;</span>
-<span class="text" style="left:853.7px;top:317.9px;">HR: hr</span>
-<span class="text" style="left:897.9px;top:317.9px;">RR: rr&nbsp;</span>
-<span class="text" style="left:853.7px;top:331.3px;">FH: fh</span>
-<span class="text" style="left:896.5px;top:331.3px;">FHT: fht&nbsp;</span>
+<span class="text" style="left:882.2px;top:291.0px;text-decoration:underline">&nbsp;{{ $data['fifth_tri_visit_2nd']->aog }}</span>
+<span class="text" style="left:853.2px;top:304.9px;">BP:</span>
+<span class="text" style="left:873.2px;top:304.9px;">{{ $data['fifth_tri_visit_2nd']->bp }}</span>
+<span class="text" style="left:894.1px;top:304.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:925.1px;top:304.9px;">{{ $data['fifth_tri_visit_2nd']->temp }}&nbsp;</span>
+<span class="text" style="left:853.2px;top:317.4px;">HR:</span>
+<span class="text" style="left:873.2px;top:317.4px;">{{ $data['fifth_tri_visit_2nd']->hr }}</span>
+<span class="text" style="left:897.3px;top:317.4px;">RR:&nbsp;</span>
+<span class="text" style="left:918.3px;top:317.4px;">{{ $data['fifth_tri_visit_2nd']->rr }}&nbsp;</span>
+<span class="text" style="left:853.2px;top:331.8px;">FH:</span>
+<span class="text" style="left:872.2px;top:331.8px;">{{ $data['fifth_tri_visit_2nd']->fh }}</span>
+<span class="text" style="left:896.9px;top:331.8px;">FHT:&nbsp;</span>
+<span class="text" style="left:922.9px;top:331.8px;">{{ $data['fifth_tri_visit_2nd']->fht }}&nbsp;</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:853.7px;top:344.8px;">Other Physical</span>
 <span class="text" style="left:853.7px;top:356.4px;">Examination:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:853.7px;top:368.1px;">other_physical</span>
+<span class="text" style="left:851.7px;top:368.1px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['fifth_tri_visit_2nd']->other_physical_exam }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:853.7px;top:394.8px;">A</span>
@@ -2354,7 +2381,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:936.0px;top:394.8px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:853.7px;top:412.4px;">Assessment_diag&nbsp;</span>
+<span class="text" style="left:851.7px;top:412.4px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['fifth_tri_visit_2nd']->assessment_diagnosis }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:853.7px;top:439.0px;">P</span>
@@ -2366,10 +2393,14 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:916.5px;top:439.0px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:853.7px;top:456.7px;">plant_intervention</span>
+<span class="text" style="left:851.7px;top:456.7px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['fifth_tri_visit_2nd']->plan_intervention }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:239.6px;"></span>
+<span class="text" style="left:69.7px;top:239.6px;">@if($data['first_tri_visit_2nd']->severe_nausea == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:239.6px;">Se</span>
@@ -2377,7 +2408,11 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:120.6px;top:239.6px;">re nausea and vomiting&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:257.8px;"></span>
+<span class="text" style="left:69.7px;top:257.8px;">@if($data['first_tri_visit_2nd']->significant_decline == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:257.8px;">Sig</span>
@@ -2387,14 +2422,22 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:122.8px;top:275.1px;">hrs during 2 ½ of pregnancy)&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:293.4px;"></span>
+<span class="text" style="left:69.7px;top:293.4px;">@if($data['first_tri_visit_2nd']->persistent_contractions == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:293.4px;">Per</span>
 <span class="text" style="left:106.4px;top:293.4px;">sistent contractions&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:311.4px;"></span>
+<span class="text" style="left:69.7px;top:311.4px;">@if($data['first_tri_visit_2nd']->premature_rupture == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:311.4px;">Pre</span>
@@ -2410,14 +2453,22 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:107.2px;top:328.7px;">rane&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:347.0px;"></span>
+<span class="text" style="left:69.7px;top:347.0px;">@if($data['first_tri_visit_2nd']->fetal_pregnancy == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:347.0px;">Mu</span>
 <span class="text" style="left:107.2px;top:347.0px;">lti fetal pregnancy&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:365.1px;"></span>
+<span class="text" style="left:69.7px;top:365.1px;">@if($data['first_tri_visit_2nd']->severe_headache == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:365.1px;">Persistent</span>
@@ -2429,46 +2480,74 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:103.2px;top:382.3px;">ng of vision&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:400.6px;"></span>
+<span class="text" style="left:69.7px;top:400.6px;">@if($data['first_tri_visit_2nd']->abdominal_pain == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:400.6px;">Abdominal pain or epigastric pain&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:418.7px;"></span>
+<span class="text" style="left:69.7px;top:418.7px;">@if($data['first_tri_visit_2nd']->edema_hands == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:418.7px;">Edema of the hands, feet or face&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:436.8px;"></span>
+<span class="text" style="left:69.7px;top:436.8px;">@if($data['first_tri_visit_2nd']->fever_pallor == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:436.8px;">Fe</span>
 <span class="text" style="left:101.4px;top:436.8px;">ver or pallor&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:455.1px;"></span>
+<span class="text" style="left:69.7px;top:455.1px;">@if($data['first_tri_visit_2nd']->seizure_consciousness == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:455.1px;">Se</span>
 <span class="text" style="left:101.4px;top:455.1px;">izure or loss of consciousness&nbsp;&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:473.1px;"></span>
+<span class="text" style="left:69.7px;top:473.1px;">@if($data['first_tri_visit_2nd']->difficulty_breathing == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:473.1px;">Di</span>
 <span class="text" style="left:101.4px;top:473.1px;">fficulty of breathing&nbsp;&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:491.4px;"></span>
+<span class="text" style="left:69.7px;top:491.4px;">@if($data['first_tri_visit_2nd']->painful_urination == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:491.4px;">Painful urination</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:509.5px;"></span>
+<span class="text" style="left:69.7px;top:509.5px;">@if($data['first_tri_visit_2nd']->elevated_bp == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:509.5px;">Elevated blood pressure (&gt;120/90)&nbsp;</span>
@@ -2545,11 +2624,16 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 </span>
 <span style="font-size:17px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:897.9px;top:554.2px;">Visit&nbsp;</span>
-<span class="text" style="left:378.2px;top:574.3px;">Date: date1&nbsp;</span>
-<span class="text" style="left:497.8px;top:574.3px;">Date: date2&nbsp;</span>
-<span class="text" style="left:616.5px;top:574.3px;">Date: date3&nbsp;</span>
-<span class="text" style="left:735.0px;top:574.3px;">Date: date4&nbsp;</span>
-<span class="text" style="left:853.7px;top:574.3px;">Date: date5&nbsp;</span>
+<span class="text" style="left:370.2px;top:574.6px;">Date: &nbsp;</span>
+<span class="text" style="left:410.2px;top:580.6px;font-size:9.3px">{{ $data['first_tri_visit_3rd']->date_of_visit }}&nbsp;</span>
+<span class="text" style="left:489.8px;top:574.6px;">Date:</span>
+<span class="text" style="left:529.0px;top:580.6px;font-size:9.3px">{{ $data['second_tri_visit_3rd']->date_of_visit }}&nbsp;</span>
+<span class="text" style="left:608.5px;top:574.6px;">Date:</span>
+<span class="text" style="left:647.5px;top:580.6px;font-size:9.3px">{{ $data['third_tri_visit_3rd']->date_of_visit }}&nbsp;</span>
+<span class="text" style="left:727.0px;top:574.6px;">Date:</span>
+<span class="text" style="left:765.5px;top:580.6px;font-size:9.3px">{{ $data['fourth_tri_visit_3rd']->date_of_visit }}&nbsp;</span>
+<span class="text" style="left:845.7px;top:574.6px;">Date:&nbsp;</span>
+<span class="text" style="left:884.7px;top:580.6px;font-size:9.3px">{{ $data['fifth_tri_visit_3rd']->date_of_visit }}&nbsp;</span>
 <span class="text" style="left:381.8px;top:594.4px;">Management&nbsp;</span>
 <span class="text" style="left:515.5px;top:594.4px;">Remarks&nbsp;</span>
 <span class="text" style="left:634.2px;top:594.4px;">Remarks&nbsp;</span>
@@ -2557,7 +2641,11 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:871.6px;top:594.4px;">Remarks&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:614.5px;"></span>
+<span class="text" style="left:69.7px;top:614.5px;">@if($data['first_tri_visit_3rd']->vaginal_spotting == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:614.5px;">Va</span>
@@ -2573,7 +2661,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:417.3px;top:614.5px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:426.1px;top:621.1px;">subjective1</span>
+<span class="text" style="left:371.1px;top:628.1px;white-space:normal; width: 117px; word-wrap:break-word">{{ $data['first_tri_visit_3rd']->subjective }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:378.2px;top:666.5px;">O</span>
@@ -2586,20 +2674,26 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 </span>
 <span style="font-size:12px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:378.2px;top:684.0px;">AOG:</span>
-<span class="text" style="left:406.7px;top:684.0px;text-decoration:underline">&nbsp;aog</span>
-<span class="text" style="left:378.2px;top:697.4px;">BP: bp</span>
-<span class="text" style="left:422.1px;top:697.4px;">Temp: temp&nbsp;</span>
-<span class="text" style="left:378.2px;top:711.1px;">HR: hr</span>
-<span class="text" style="left:422.3px;top:711.1px;">RR: rr&nbsp;</span>
-<span class="text" style="left:378.2px;top:724.5px;">FH: fh</span>
-<span class="text" style="left:420.9px;top:724.5px;">FHT: fht&nbsp;</span>
+<span class="text" style="left:406.7px;top:684.0px;text-decoration:underline">&nbsp;{{ $data['first_tri_visit_3rd']->aog }}</span>
+<span class="text" style="left:378.2px;top:697.9px;">BP:</span>
+<span class="text" style="left:400.2px;top:697.9px;">{{ $data['first_tri_visit_3rd']->bp }}</span>
+<span class="text" style="left:422.1px;top:697.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:453.1px;top:697.9px;">{{ $data['first_tri_visit_3rd']->temp }}&nbsp;</span>
+<span class="text" style="left:378.2px;top:711.4px;">HR:</span>
+<span class="text" style="left:400.2px;top:711.4px;">{{ $data['first_tri_visit_3rd']->hr }}</span>
+<span class="text" style="left:422.3px;top:711.4px;">RR:&nbsp;</span>
+<span class="text" style="left:442.3px;top:711.4px;">{{ $data['first_tri_visit_3rd']->rr }}&nbsp;</span>
+<span class="text" style="left:378.2px;top:724.8px;">FH:</span>
+<span class="text" style="left:398.2px;top:724.8px;">{{ $data['first_tri_visit_3rd']->fh }}</span>
+<span class="text" style="left:420.9px;top:724.8px;">FHT:&nbsp;</span>
+<span class="text" style="left:445.9px;top:724.8px;">{{ $data['first_tri_visit_3rd']->fht }}&nbsp;</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:378.2px;top:738.0px;">Other Physical</span>
 <span class="text" style="left:378.2px;top:749.4px;">Examination:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:378.2px;top:761.3px;">other_physical</span>
+<span class="text" style="left:375.2px;top:761.3px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['first_tri_visit_3rd']->other_physical_exam }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:378.2px;top:787.8px;">A</span>
@@ -2611,7 +2705,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:460.5px;top:787.8px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:378.2px;top:805.5px;">Assessment_diag&nbsp;</span>
+<span class="text" style="left:375.2px;top:805.5px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['first_tri_visit_3rd']->assessment_diagnosis }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:378.2px;top:832.0px;">P</span>
@@ -2623,7 +2717,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:441.0px;top:832.0px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:378.2px;top:849.6px;">plant_intervention</span>
+<span class="text" style="left:375.2px;top:849.6px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['first_tri_visit_3rd']->plan_intervention }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:497.8px;top:614.5px;">S</span>
@@ -2635,7 +2729,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:537.0px;top:614.5px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:545.8px;top:621.1px;">subjective1</span>
+<span class="text" style="left:490.8px;top:628.1px;white-space:normal; width: 117px; word-wrap:break-word">{{ $data['second_tri_visit_3rd']->subjective }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:497.8px;top:666.5px;">O</span>
@@ -2648,20 +2742,26 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 </span>
 <span style="font-size:12px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:497.8px;top:684.0px;">AOG:</span>
-<span class="text" style="left:526.3px;top:684.0px;text-decoration:underline">&nbsp;aog</span>
-<span class="text" style="left:497.8px;top:697.4px;">BP: bp</span>
-<span class="text" style="left:539.0px;top:697.4px;">Temp: temp&nbsp;</span>
-<span class="text" style="left:497.8px;top:711.1px;">HR: hr</span>
-<span class="text" style="left:542.0px;top:711.1px;">RR: rr&nbsp;</span>
-<span class="text" style="left:497.8px;top:724.5px;">FH: fh</span>
-<span class="text" style="left:540.6px;top:724.5px;">FHT: fht&nbsp;</span>
+<span class="text" style="left:526.3px;top:684.0px;text-decoration:underline">&nbsp;{{ $data['second_tri_visit_3rd']->aog }}</span>
+<span class="text" style="left:497.2px;top:697.9px;">BP:</span>
+<span class="text" style="left:515.2px;top:697.9px;">{{ $data['second_tri_visit_3rd']->bp }}</span>
+<span class="text" style="left:539.1px;top:697.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:570.1px;top:697.9px;">{{ $data['second_tri_visit_3rd']->temp }}&nbsp;</span>
+<span class="text" style="left:497.2px;top:711.4px;">HR:</span>
+<span class="text" style="left:518.2px;top:711.4px;">{{ $data['second_tri_visit_3rd']->hr }}</span>
+<span class="text" style="left:542.3px;top:711.4px;">RR:&nbsp;</span>
+<span class="text" style="left:563.3px;top:711.4px;">{{ $data['second_tri_visit_3rd']->rr }}&nbsp;</span>
+<span class="text" style="left:497.2px;top:724.8px;">FH:</span>
+<span class="text" style="left:515.2px;top:724.8px;">{{ $data['second_tri_visit_3rd']->fh }}</span>
+<span class="text" style="left:540.9px;top:724.8px;">FHT:&nbsp;</span>
+<span class="text" style="left:565.9px;top:724.8px;">{{ $data['second_tri_visit_3rd']->fht }}&nbsp;</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:497.8px;top:738.0px;">Other Physical</span>
 <span class="text" style="left:497.8px;top:749.4px;">Examination:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:497.8px;top:761.3px;">other_physical</span>
+<span class="text" style="left:495.8px;top:761.3px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['second_tri_visit_3rd']->other_physical_exam }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:497.8px;top:787.8px;">A</span>
@@ -2673,7 +2773,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:580.2px;top:787.8px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:497.8px;top:805.5px;">Assessment_diag&nbsp;</span>
+<span class="text" style="left:495.8px;top:805.5px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['second_tri_visit_3rd']->assessment_diagnosis }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:497.8px;top:832.0px;">P</span>
@@ -2685,7 +2785,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:560.7px;top:832.0px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:497.8px;top:849.6px;">plant_intervention</span>
+<span class="text" style="left:495.8px;top:849.6px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['second_tri_visit_3rd']->plan_intervention }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:616.5px;top:614.5px;">S</span>
@@ -2697,7 +2797,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:655.7px;top:614.5px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:664.5px;top:621.1px;">subjective1</span>
+<span class="text" style="left:608.5px;top:628.1px;white-space:normal; width: 117px; word-wrap:break-word">{{ $data['third_tri_visit_3rd']->subjective }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:616.5px;top:666.5px;">O</span>
@@ -2710,14 +2810,20 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 </span>
 <span style="font-size:12px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:616.5px;top:684.0px;">AOG:</span>
-<span class="text" style="left:645.0px;top:684.0px;text-decoration:underline">&nbsp;aog</span>
-<span class="text" style="left:616.5px;top:697.4px;">BP: bp</span>
-<span class="text" style="left:657.7px;top:697.4px;">Temp: temp&nbsp;</span>
-<span class="text" style="left:616.5px;top:711.1px;">HR:</span>
-<span class="text" style="left:639.0px;top:711.1px;">hr</span>
-<span class="text" style="left:660.7px;top:711.1px;">RR: rr&nbsp;</span>
-<span class="text" style="left:616.5px;top:724.5px;">FH: fh</span>
-<span class="text" style="left:659.3px;top:724.5px;">FHT: fht&nbsp;</span>
+<span class="text" style="left:645.0px;top:684.0px;text-decoration:underline">&nbsp;{{ $data['third_tri_visit_3rd']->aog }}</span>
+<span class="text" style="left:616.2px;top:697.9px;">BP:</span>
+<span class="text" style="left:636.2px;top:697.9px;">{{ $data['third_tri_visit_3rd']->bp }}</span>
+<span class="text" style="left:657.1px;top:697.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:688.1px;top:697.9px;">{{ $data['third_tri_visit_3rd']->temp }}&nbsp;</span>
+<span class="text" style="left:616.2px;top:711.4px;">HR:</span>
+<span class="text" style="left:638.2px;top:711.4px;">{{ $data['third_tri_visit_3rd']->hr }}</span>
+<span class="text" style="left:660.3px;top:711.4px;">RR:&nbsp;</span>
+<span class="text" style="left:680.3px;top:711.4px;">{{ $data['third_tri_visit_3rd']->rr }}&nbsp;</span>
+<span class="text" style="left:616.2px;top:724.8px;">FH:</span>
+<span class="text" style="left:636.2px;top:724.8px;">{{ $data['third_tri_visit_3rd']->fh }}</span>
+<span class="text" style="left:659.9px;top:724.8px;">FHT:&nbsp;</span>
+<span class="text" style="left:684.9px;top:724.8px;">{{ $data['third_tri_visit_3rd']->fht }}&nbsp;</span>
+
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:616.5px;top:738.0px;">Other Physical</span>
@@ -2725,7 +2831,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:622.7px;top:749.4px;">xamination:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:616.5px;top:761.3px;">other_physical</span>
+<span class="text" style="left:614.5px;top:761.3px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['third_tri_visit_3rd']->other_physical_exam }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:616.5px;top:787.8px;">A</span>
@@ -2737,8 +2843,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:698.8px;top:787.8px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:616.5px;top:805.5px;">A</span>
-<span class="text" style="left:622.5px;top:805.5px;">ssessment_diag&nbsp;</span>
+<span class="text" style="left:614.5px;top:805.5px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['third_tri_visit_3rd']->assessment_diagnosis }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:616.5px;top:832.0px;">P</span>
@@ -2750,7 +2855,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:679.4px;top:832.0px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:616.5px;top:849.6px;">plant_intervention</span>
+<span class="text" style="left:614.5px;top:849.6px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['third_tri_visit_3rd']->plan_intervention }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:735.0px;top:614.5px;">S</span>
@@ -2762,8 +2867,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:774.2px;top:614.5px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:783.0px;top:621.1px;">su</span>
-<span class="text" style="left:790.5px;top:621.1px;">bjective1</span>
+<span class="text" style="left:727.0px;top:628.1px;white-space:normal; width: 117px; word-wrap:break-word">{{ $data['fourth_tri_visit_3rd']->subjective }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:735.0px;top:666.5px;">O</span>
@@ -2776,23 +2880,28 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 </span>
 <span style="font-size:12px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:735.0px;top:684.0px;">AOG:</span>
-<span class="text" style="left:763.5px;top:684.0px;text-decoration:underline">&nbsp;aog</span>
-<span class="text" style="left:735.0px;top:697.4px;">BP: bp</span>
-<span class="text" style="left:776.2px;top:697.4px;">Temp: temp&nbsp;</span>
-<span class="text" style="left:735.0px;top:711.1px;">HR: hr</span>
-<span class="text" style="left:779.2px;top:711.1px;">RR: rr&nbsp;</span>
-<span class="text" style="left:735.0px;top:724.5px;">FH: fh</span>
-<span class="text" style="left:777.8px;top:724.5px;">FHT: fht&nbsp;</span>
+<span class="text" style="left:763.5px;top:684.0px;text-decoration:underline">&nbsp;{{ $data['fourth_tri_visit_3rd']->aog }}</span>
+<span class="text" style="left:735.2px;top:697.9px;">BP:</span>
+<span class="text" style="left:755.2px;top:697.9px;">{{ $data['fourth_tri_visit_3rd']->bp }}</span>
+<span class="text" style="left:776.1px;top:697.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:807.1px;top:697.9px;">{{ $data['fourth_tri_visit_3rd']->temp }}&nbsp;</span>
+<span class="text" style="left:735.2px;top:711.4px;">HR:</span>
+<span class="text" style="left:755.2px;top:711.4px;">{{ $data['fourth_tri_visit_3rd']->hr }}</span>
+<span class="text" style="left:779.3px;top:711.4px;">RR:&nbsp;</span>
+<span class="text" style="left:800.3px;top:711.4px;">{{ $data['fourth_tri_visit_3rd']->rr }}&nbsp;</span>
+<span class="text" style="left:735.2px;top:724.8px;">FH:</span>
+<span class="text" style="left:755.2px;top:724.8px;">{{ $data['fourth_tri_visit_3rd']->fh }}</span>
+<span class="text" style="left:777.9px;top:724.8px;">FHT:&nbsp;</span>
+<span class="text" style="left:803.9px;top:724.8px;">{{ $data['fourth_tri_visit_3rd']->fht }}&nbsp;</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:735.0px;top:738.0px;">Other Physical</span>
 <span class="text" style="left:735.0px;top:749.4px;">Examination:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:735.0px;top:761.3px;">other_physical</span>
+<span class="text" style="left:733.0px;top:761.3px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['fourth_tri_visit_3rd']->other_physical_exam }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
-<span class="text" style="left:735.0px;top:787.8px;">A</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:745.8px;top:794.4px;">ssessment /Diagnosis</span>
@@ -2801,7 +2910,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:817.4px;top:787.8px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:735.0px;top:805.5px;">Assessment_diag&nbsp;</span>
+<span class="text" style="left:733.0px;top:805.5px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['fourth_tri_visit_3rd']->assessment_diagnosis }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:735.0px;top:832.0px;">P</span>
@@ -2813,7 +2922,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:797.9px;top:832.0px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:735.0px;top:849.6px;">plant_intervention</span>
+<span class="text" style="left:733.0px;top:849.6px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['fourth_tri_visit_3rd']->plan_intervention }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:853.7px;top:614.5px;">S</span>
@@ -2825,7 +2934,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:892.9px;top:614.5px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:901.7px;top:621.1px;">subjective1</span>
+<span class="text" style="left:845.7px;top:628.1px;white-space:normal; width: 117px; word-wrap:break-word">{{ $data['fifth_tri_visit_3rd']->subjective }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:853.7px;top:666.5px;">O</span>
@@ -2838,20 +2947,26 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 </span>
 <span style="font-size:12px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:853.7px;top:684.0px;">AOG:</span>
-<span class="text" style="left:882.2px;top:684.0px;text-decoration:underline">&nbsp;aog</span>
-<span class="text" style="left:853.7px;top:697.4px;">BP: bp</span>
-<span class="text" style="left:894.9px;top:697.4px;">Temp: temp&nbsp;</span>
-<span class="text" style="left:853.7px;top:711.1px;">HR: hr</span>
-<span class="text" style="left:897.9px;top:711.1px;">RR: rr&nbsp;</span>
-<span class="text" style="left:853.7px;top:724.5px;">FH: fh</span>
-<span class="text" style="left:896.5px;top:724.5px;">FHT: fht&nbsp;</span>
+<span class="text" style="left:882.2px;top:684.0px;text-decoration:underline">&nbsp;{{ $data['fifth_tri_visit_3rd']->aog }}</span>
+<span class="text" style="left:853.2px;top:697.9px;">BP:</span>
+<span class="text" style="left:873.2px;top:697.9px;">{{ $data['fifth_tri_visit_3rd']->bp }}</span>
+<span class="text" style="left:894.1px;top:697.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:925.1px;top:697.9px;">{{ $data['fifth_tri_visit_3rd']->temp }}&nbsp;</span>
+<span class="text" style="left:853.2px;top:711.4px;">HR:</span>
+<span class="text" style="left:873.2px;top:711.4px;">{{ $data['fifth_tri_visit_3rd']->hr }}</span>
+<span class="text" style="left:897.3px;top:711.4px;">RR:&nbsp;</span>
+<span class="text" style="left:918.3px;top:711.4px;">{{ $data['fifth_tri_visit_3rd']->rr }}&nbsp;</span>
+<span class="text" style="left:853.2px;top:724.8px;">FH:</span>
+<span class="text" style="left:872.2px;top:724.8px;">{{ $data['fifth_tri_visit_3rd']->fh }}</span>
+<span class="text" style="left:896.9px;top:724.8px;">FHT:&nbsp;</span>
+<span class="text" style="left:922.9px;top:724.8px;">{{ $data['fifth_tri_visit_3rd']->fht }}&nbsp;</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:853.7px;top:738.0px;">Other Physical</span>
 <span class="text" style="left:853.7px;top:749.4px;">Examination:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:853.7px;top:761.3px;">other_physical</span>
+<span class="text" style="left:851.7px;top:761.3px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['fifth_tri_visit_3rd']->other_physical_exam }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:853.7px;top:787.8px;">A</span>
@@ -2863,7 +2978,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:936.0px;top:787.8px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:853.7px;top:805.5px;">Assessment_diag&nbsp;</span>
+<span class="text" style="left:851.7px;top:805.5px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['fifth_tri_visit_3rd']->assessment_diagnosis }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:853.7px;top:832.0px;">P</span>
@@ -2875,17 +2990,25 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:916.5px;top:832.0px;">:&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:853.7px;top:849.6px;">plant_intervention</span>
+<span class="text" style="left:851.7px;top:849.6px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['fifth_tri_visit_3rd']->plan_intervention }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:632.8px;"></span>
+<span class="text" style="left:69.7px;top:632.8px;">@if($data['first_tri_visit_3rd']->severe_nausea == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:632.8px;">Se</span>
 <span class="text" style="left:101.4px;top:632.8px;">vere nausea and vomiting&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:650.8px;"></span>
+<span class="text" style="left:69.7px;top:650.8px;">@if($data['first_tri_visit_3rd']->significant_decline == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:650.8px;">Sig</span>
@@ -2893,13 +3016,21 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:668.1px;">10 in 12 hrs during 2 ½ of pregnancy)&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:686.4px;"></span>
+<span class="text" style="left:69.7px;top:686.4px;">@if($data['first_tri_visit_3rd']->persistent_contractions == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:686.4px;">Persistent contractions</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:704.4px;"></span>
+<span class="text" style="left:69.7px;top:704.4px;">@if($data['first_tri_visit_3rd']->premature_rupture == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:704.4px;">Pre</span>
@@ -2913,14 +3044,22 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:721.9px;">membrane&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:740.0px;"></span>
+<span class="text" style="left:69.7px;top:740.0px;">@if($data['first_tri_visit_3rd']->fetal_pregnancy == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:740.0px;">Mu</span>
 <span class="text" style="left:107.2px;top:740.0px;">lti fetal pregnancy&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:758.1px;"></span>
+<span class="text" style="left:69.7px;top:758.1px;">@if($data['first_tri_visit_3rd']->severe_headache == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:758.1px;">Persistent</span>
@@ -2932,46 +3071,74 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:103.2px;top:775.5px;">ng of vision&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:793.6px;"></span>
+<span class="text" style="left:69.7px;top:793.6px;">@if($data['first_tri_visit_3rd']->abdominal_pain == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:793.6px;">Ab</span>
 <span class="text" style="left:104.6px;top:793.6px;">dominal pain or epigastric pain&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:811.7px;"></span>
+<span class="text" style="left:69.7px;top:811.7px;">@if($data['first_tri_visit_3rd']->edema_hands == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:811.7px;">Edema of the hands, feet or face&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:830.0px;"></span>
+<span class="text" style="left:69.7px;top:830.0px;">@if($data['first_tri_visit_3rd']->fever_pallor == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:830.0px;">Fe</span>
 <span class="text" style="left:101.4px;top:830.0px;">ver or pallor&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:848.0px;"></span>
+<span class="text" style="left:69.7px;top:848.0px;">@if($data['first_tri_visit_3rd']->seizure_consciousness == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:848.0px;">Seizure or loss of consciousness&nbsp;&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:866.3px;"></span>
+<span class="text" style="left:69.7px;top:866.3px;">@if($data['first_tri_visit_3rd']->difficulty_breathing == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:866.3px;">Di</span>
 <span class="text" style="left:101.4px;top:866.3px;">fficulty of breathing&nbsp;&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:884.4px;"></span>
+<span class="text" style="left:69.7px;top:884.4px;">@if($data['first_tri_visit_3rd']->painful_urination == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:884.4px;">Painful urination&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:902.4px;"></span>
+<span class="text" style="left:69.7px;top:902.4px;">@if($data['first_tri_visit_3rd']->elevated_bp == 'yes')
+☑
+@else
+
+@endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:902.4px;">Ele</span>
@@ -3337,7 +3504,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <div class="image" style="left:641.1px;top:1484.0px;"><img width="327" height="37" src="data:image/webp;base64,UklGRioBAABXRUJQVlA4WAoAAAAQAAAAHwIAPQAAQUxQSH0AAAABd6A0kiQ1eEz23KnHiAhAQrQu+iNLDYxq21aCBWARhUUECngAZsydsUMSFhFoYAksAjn+zP8nov+K3LZtpKyue98g/f7LkfD7j27aENcyQHCyHuIWoQxANK8Qd4kVAJLtgbhnpQFQXx/EfScNPQp6bKPHMwT695ADf/+RAABWUDgghgAAAJANAJ0BKiACPgA+kTqaR6WjoqEviCCwEglpbuFzQRtDrrpjLHWMsdYyx1jLHWMsdYyx1jLHWMsdYyx1jLHWMsdYyx1jLG4gnc4U/nsLHm93O5wp/PYWPN7udzhPNtJSdzhT+ewseb3c7nCn89hY83u53JT2gAD+/xoDsKhQMn/xfQY5wAAA"></div>
 <div class="image" style="left:640.5px;top:1505.7px;"><img width="328" height="37" src="data:image/webp;base64,UklGRvoKAABXRUJQVlA4WAoAAAAQAAAAIAIAPQAAQUxQSDsJAAABsDj9/5u2ncXIPIKve8LhLg5cD+ruvXezByHuyuRkHW585HD3QBfqQSshyf57pc/6fqTY/c1EhETZduO2AbJ0yfLeBUVBEvwDU//+yLv+x93ywsoXisVC3lKRRmjcAyAhDXcWg1ShyygZkkvZWsZMWfkD5Wq90ahXywfkLqwClnYQCyhYoErFzC9X4AhY4gkcKBYBsHq1lLtj/lTgoONUI54rIUoyLSr0OZ8G1lBNitkpi3W00nytYzuO3Xlttl45aqHlzvmdeRVJm0caX62VSpV6I87EeuFooiFRncHFkDiCllgCs43GbALBbi+WzO1m4EjGnhnoONFaNTddWmwnlFrTOUaLDjnrKG2TrzBnA9WkQZXlWC5d3sXaCXsw8nzfGw163eOVA/HiB8YZvxf7SNoq0rh2YmbmeNeJM2F9fy3REKvOZy/yldgdYSk33er0MSTH6SUQvGG7KrBrcFzrHz0sfQY6TrhWze3kq+1hTMm93CpZtBZEToM+kYIKMzZQTRyqLDP3pMrbKr+6Ng6i3TijYLLdbT7QatvAOOd3gqUhjePu3Fx3248zYf3yyyuxhu1uvZi9KNZjd9iSVWpddgkCvg8heLaW3dw0RpoWgZmLwwkDHSdYq6dqRXOCtheLDt14FdJaEDkN+kQKKkzbwDXxibKsvPhCqrzz1c4o2sXpr77y8mXXA8ZZv2z6zsKC40MN4e3u8o9BoqWRxWjE7qAlcIS44S6HQNFubvo5jDS1I7jvc9DJjP5ee7VsaRBEq1BEVUEzj9pMHqNx7bOvh/q85Ysu+HG5ezuMzfTmjhSJPDLX80UxRygON4fjKInm4ULRKAt5uqMm2j4jjYlnHNIjBEIyswnzwD1LVwikRimlUsgfmLk0ijjozNuoUy1STC1GAlk9wjihBZFjadEIIHAeNSUrlmmyQHaDn6/94LO85Z2QwmKPxsPNMDGz/tFcg8i5j9YDLqJgu/vsU9SetxPtgH3vpafqDaOsV46Vq0RHncP9iJFG4BmF8MgUQGJa1ulpwtXsG1dvh2YqRc2nVSAw1Spv9H0eOp2e3by3Wif8MhKI6pGYCC2IBUuLQQDPLzxqXL9iXDrBAqHXkjuOIG8OrHYwK2w32lrvOUT21reoIiBZ9vHqva8NOAzBj52vbMcou6fmX2gDZfAqAvX7RhqBZ6OQQGJa1jff7NgY3mAjZFQaAjpRKybXLLVXOwjT8snuRiSCTncFL7Vtyi8tgageaZzQglhIaTmwZ7HKtM2dKCSE2u2l6lLbFiwQbi1h3owb1WCLTfZXuMkS7BWzlaOHZsFGyux7G55vlONBp+sCZegqAvb7RhqBZxRakJiWdX195FHwOJWGgEAnU6ydWkO6vY3fN0MRdK4rcD3KLy1BZhxrwSxYWmwffCC2SW9FIRbquddPXXc9foGIq8O4UQ3thOfRvIUks/ueJCVnzl18FQG6GXON5mFWi7hSainoZPLJheXfEYVUAF3CifTLWU+BlhHx4OfrP1PbWLgZHzJprBynkY2gisIVx7Pr0mWi5YASD7QbaeRCvIxT8S5PBgrfcOzy0CV+MpA6Nv3++b7P+b3DQtpd4V9AHNfsppcSGxiaIAu15T9Trj6mp+RTchiw0LP4JyWb/tqZNT/1A9KzM/EXZiult9Rg8FrZggEqcgdF/uHjv0fmoUNR6YQiYcJCp6v+1+ivFPhLiia2ycfp77y0DkhmuWcgmK2U3lL93uwBJBm2KClG0vRl74MORVHdtn74YSsyDhY6LXv0/SjKwi6qZNO/+ellEf4omJBfIr0NQ8F/tWxlLfCWik+cKJKLBnsjSi/Iy0aN+qT9z8YnBv/Wp5+tB8ZBQE/rg6TP/uHaz0Ls3DkIB34O47xzVrKB74x/7vd/Hu+Y8P7s21GED6NLM8UpzdA5GaAPZMBdZ3Lzzff6fmpB9p8KO/wb9+QgpIx+2Nn4qtnq+YKQbyXslgvO8ClsV9Ho8vH+xHQR/7lcK5A2d8Y/rnZPv/WN5EPkXj9//robGcTq6+/fmpDnS9XQIYm7BirgrhMM3mldcsPUQnErijautkoWiIz+c/T78eqzjmnQRdXYclXOMcH6Z/Fuacr795OPFaYom9Gw81LjyaUVb1f1Azb5/g10jvFWmgemUg/2qCQOOSrArpPsknMvXL4dphUqK42+XSOKtPoN2Q7xzJzjK36byparcY7xVj/91lj9zub1pWMWtIl22KcOH27G+PX/Odq69U3nx4D4at0w3KFZUVSgunl284HnrqTy5tl1EFmVaUhPaGtuzvb07r+k24X5vVfeGQRgfXz9cc9AveA+Zvr4o/HNC7cmxFenFeHmUO3mBFQMRRyaXrq6EemtCnorSuqrvtExHrL05jtzT7XdkL2D2/fpq2+SekKAsiFzZqDKdxYXVzywPt5+xeDaUXIfk91SGf6aJ3X81dqDQHBLjALP7XYGY1+W/JgMM0KUu+e1vq/zeMXb+H2DfgZEPQJSMstAwh7o/VzRu8hW497WZddjngHNXBx69IMZgjqYHCJtiJwZqEoeQcP5tYv1ZNyJSZojcRwgm4RrUC1TjjI3oIeVfbXCEB2aiRsNVtovzJ/qajxjPV7JM0OISQnxjJ1h2svHl8mnyORDZCWzHKTEA/PoFD0k1vEus3UgmXQjnyJDKtyjXQQazB6SNkTODFR1j1fvQROw91TJCUb6yTIb0CbhGlTLlKPQTbzF4a/WHkZGU7Wd15rV8rFKXWlKgxljJqd0jRXXHq5Rcyj0GIqSWQ5S4oEbvkBjJirehbYSCNSYBqLCDYcQoI9W6qQNiTNalcBhAc3QF+gZaHo2hQ1ok3ANqmXKUeyG+mrVt3wBz+WXD4AhKp05L6QYiqDn/M0V59hJNuxTxywLKfHAjm/BQTUV7ya2BFREw2lQEWlD4Eyoipk9I34BTnq6jb1DB4lwrk05it1wX63+pYU8LTf7yrNkMemY2Tuee3ySrS+erc6QG+Kr99UEjSNumCfgtRd7fYDWF3OEr87Iihs3JKa699cAjSNumHvJq7f2euygj1yhOLamc1lxk1wbwteF7LefQeOIG+ZZ8PrPPT9zpWpTm6Piq5HQK8v245e8Ew1zIW/tDyAzyJG8fins5e9Z6M33H44Zrc2/P/Ku/3HX/2BiCgBWUDggmAEAAFAXAJ0BKiECPgA+hT6XR7+kIiE0Xigr8BCJaRFASxFKgX4A7QD8AP0A/gCf2lL3SX8AP0A/DfuAKKMpkZh1pMIVTB8FieBtive3UKcS98bkIo3wJnpBMRrOpKSw59yO+IdFUvt2OXvbUSaecTaADdnnWxLJ2z1ozNT0VW+8DzWSZiQVO1XfWA8Hokm/JrPrTBkAVr+N1B5j4ywkI1b2OCj9mjPMXnNCk2HOd9rSX6Ap1rfPM6/Cx2Q5mMYI7BSuVJCIAAD+vtG2GHtcJo7gim/aXGeQ67Baa1m5/SIdiByBfCbCHJe0RYhmODpv+Pts5uIprNcCvcuCeBLC3+f40Z4VEJGNn5tL8F6cAZtcfmsmqjpbMXU7E2AgoqpbZVRCgABphcBHU16hITPgDakdQ+DWVbUDDYCNFN8NwkxDTt4TDlplRzwr3sjLp3fMpwnb+vc4w3hwSKhAAYuVAjqE17KkgBY2j6wMvxpPUpEj8AurDJR4Le5PpngZjjzDjUAzXm85eqTxh5pJrF5vgJaBf/tsIAAAAAAAAA=="></div>
 <div class="image" style="left:63.0px;top:1529.0px;"><img width="24" height="16" src="data:image/webp;base64,UklGRlgAAABXRUJQVlA4WAoAAAAQAAAAKAAAGgAAQUxQSAkAAAABBxAREYiI/gcAVlA4ICgAAADwAgCdASopABsAPpFGnkslo6KhpWgAsBIJaQAAKUNt8AD++M79KAAA"></div>
-<div class="image" style="left:8.1px;top:1273.3px;"><img width="52" height="33" src="data:image/webp;base64,UklGRv4CAABXRUJQVlA4WAoAAAAQAAAAXwAAPAAAQUxQSOUBAAABgBqBbh3JlYSLq4JD4eJbxM7yo9eKuIswN08rb+b8k2zN4ohwIElq3AAVKGV1y4D0hLRmYkpxmZhFiwpH/evWgsa1FJWABkkG8GDgeMatAKq+e3qacceytVlCiVgAvLUCOZQIkIVmjZDkJqF0leVG/YtSJK2ULCKhtGWyNY7igsLGsyZhqP1YVRgCyLqcgYi/OZFGpyQA7E3FUfk+0hDxnD2LcOcm2zW1MDhhAJ9rp5BkrybRUjFlaeHWK5OhkWjFv/bhpyV1S6S9tR8fMw+DzvcufNUV3jHaIeqXftDP+xDeu5WYcL9Nx/DO/VytyUb8TvhqYciIr2Uj3r32v5cJbyo51HQtasTPSw7CS1eSWAAH/ix8dpblVT344z31X2Bx4o/3meUFtE2Kh5/yJAwEKLQc1L6zMQwYmznuPK4PsPymw+CFaZhshtUnxfF7Apz+AEnUN27qyNzTgbjz/FlWtYt5gLWnA3FTb/PeOXxspLgvWmw9bc1bXhVVvCfQ0NPevIu0V84CzPlzefPGIxczakbnSpz+Suqhi5nLFZq2IPi9o0oKToW/P5nvrd/z3h39Whb93SNJjf5uwwDy1C/Ge3didDwaJOHezWiIUKuoFi2LwyIqn0xvN4TCwYrI/DMyp2/JCQBWUDgg8gAAAJAHAJ0BKmAAPQA+kUacSaWkIyEpW2jwsBIJaQATk053PO0LfWYIUWmqWoG1zH53b0iQixCtOSb6h8lWsuTfSTtFnPJ2kAD+/EPSUQCzm7LxfP6+3UL//XIih1B8P9P6AhMh8dXvhqP/md46+JG+4bzNv0l2chs/XJZFP8jOJYYvU1ChXxZM9JxEgyay6YCtSRsClvLcD/3mxehCp3JVWdEfgFoSFYSoVlyW4/OqlNuvXN1t+5i4T2P8AF+TXBWqluyabS9YE8UIAsly747eAaCRJ1Enk4BetMs6CHGfmo6+YiV0vJdqMxPhmrr7P4JAAAAA"></div>
+<div class="image" style="left:35.1px;top:1240.3px;"><img width="52" height="33" src="data:image/webp;base64,UklGRv4CAABXRUJQVlA4WAoAAAAQAAAAXwAAPAAAQUxQSOUBAAABgBqBbh3JlYSLq4JD4eJbxM7yo9eKuIswN08rb+b8k2zN4ohwIElq3AAVKGV1y4D0hLRmYkpxmZhFiwpH/evWgsa1FJWABkkG8GDgeMatAKq+e3qacceytVlCiVgAvLUCOZQIkIVmjZDkJqF0leVG/YtSJK2ULCKhtGWyNY7igsLGsyZhqP1YVRgCyLqcgYi/OZFGpyQA7E3FUfk+0hDxnD2LcOcm2zW1MDhhAJ9rp5BkrybRUjFlaeHWK5OhkWjFv/bhpyV1S6S9tR8fMw+DzvcufNUV3jHaIeqXftDP+xDeu5WYcL9Nx/DO/VytyUb8TvhqYciIr2Uj3r32v5cJbyo51HQtasTPSw7CS1eSWAAH/ix8dpblVT344z31X2Bx4o/3meUFtE2Kh5/yJAwEKLQc1L6zMQwYmznuPK4PsPymw+CFaZhshtUnxfF7Apz+AEnUN27qyNzTgbjz/FlWtYt5gLWnA3FTb/PeOXxspLgvWmw9bc1bXhVVvCfQ0NPevIu0V84CzPlzefPGIxczakbnSpz+Suqhi5nLFZq2IPi9o0oKToW/P5nvrd/z3h39Whb93SNJjf5uwwDy1C/Ge3didDwaJOHezWiIUKuoFi2LwyIqn0xvN4TCwYrI/DMyp2/JCQBWUDgg8gAAAJAHAJ0BKmAAPQA+kUacSaWkIyEpW2jwsBIJaQATk053PO0LfWYIUWmqWoG1zH53b0iQixCtOSb6h8lWsuTfSTtFnPJ2kAD+/EPSUQCzm7LxfP6+3UL//XIih1B8P9P6AhMh8dXvhqP/md46+JG+4bzNv0l2chs/XJZFP8jOJYYvU1ChXxZM9JxEgyay6YCtSRsClvLcD/3mxehCp3JVWdEfgFoSFYSoVlyW4/OqlNuvXN1t+5i4T2P8AF+TXBWqluyabS9YE8UIAsly747eAaCRJ1Enk4BetMs6CHGfmo6+YiV0vJdqMxPhmrr7P4JAAAAA"></div>
 <div class="vector" style="left:58.0px;top:141.0px;"><img width="911" height="1410" src="data:image/webp;base64,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"></div>
 
 </div>

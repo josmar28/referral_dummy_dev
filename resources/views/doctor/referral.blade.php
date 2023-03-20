@@ -187,7 +187,6 @@ $user = Session::get('auth');
           </div>
         </div>
     </div>
-    @include('modal.pregnant_modal_referredv2')
     @include('modal.feedback')
     @include('modal.caller')
     @include('modal.seen')

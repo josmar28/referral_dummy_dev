@@ -665,7 +665,9 @@ class ReferralCtrl extends Controller
                 'pregnant_formv2.unique_id',
                 'pregnant_formv2.record_no',
                 DB::raw("DATE_FORMAT(pregnant_formv2.referred_date,'%M %d, %Y %h:%i %p') as referred_date"),
+                DB::raw("DATE_FORMAT(pregnant_formv2.referred_date,'%M %d, %Y') as referred_date_name"),
                 DB::raw("DATE_FORMAT(pregnant_formv2.arrival_date,'%M %d, %Y %h:%i %p') as arrival_date"),
+                DB::raw("DATE_FORMAT(pregnant_formv2.arrival_date,'%M %d, %Y') as arrival_date_name"),
                 DB::raw('CONCAT(
                     if(users.level="doctor","Dr. ","")
                 ,users.fname," ",users.mname," ",users.lname) as md_referring'),
@@ -731,7 +733,8 @@ class ReferralCtrl extends Controller
             $sign_symptoms  = SignSymptoms::select('*')->where('sign_and_symptoms.unique_id',$form->unique_id)->where('no_trimester','1st')->first();
             $lab_result = LabResult::select(
                 '*',
-                DB::raw("DATE_FORMAT(date_of_lab,'%M %d, %Y') as date_of_lab"),
+                DB::raw("DATE_FORMAT(date_of_lab,'%M %d, %Y') as date_of_lab_name"),
+                'date_of_lab',
                 )
             ->where('lab_results.unique_id',$form->unique_id)->get();
             $preg_vs = PregVitalSign::select('*')->where('preg_vital_signs.unique_id',$form->unique_id)->first();
@@ -782,6 +785,97 @@ class ReferralCtrl extends Controller
             ->where('sign_and_symptoms.unique_id',$form->unique_id)             
             ->first();
 
+            $first_tri_visit_2nd = SignSymptoms::select(
+                '*',
+                DB::raw("DATE_FORMAT(date_of_visit,'%M %d, %Y') as date_of_visit"),
+            )
+            ->where('no_trimester','2nd')
+            ->where('no_visit','1st')
+            ->where('sign_and_symptoms.unique_id',$form->unique_id)             
+            ->first();
+
+            $second_tri_visit_2nd = SignSymptoms::select(
+                '*',
+                DB::raw("DATE_FORMAT(date_of_visit,'%M %d, %Y') as date_of_visit"),
+            )
+            ->where('no_trimester','2nd')
+            ->where('no_visit','2nd')
+            ->where('sign_and_symptoms.unique_id',$form->unique_id)             
+            ->first();
+
+            $third_tri_visit_2nd = SignSymptoms::select(
+                '*',
+                DB::raw("DATE_FORMAT(date_of_visit,'%M %d, %Y') as date_of_visit"),
+            )
+            ->where('no_trimester','2nd')
+            ->where('no_visit','3rd')
+            ->where('sign_and_symptoms.unique_id',$form->unique_id)             
+            ->first();
+
+            $fourth_tri_visit_2nd = SignSymptoms::select(
+                '*',
+                DB::raw("DATE_FORMAT(date_of_visit,'%M %d, %Y') as date_of_visit"),
+            )
+            ->where('no_trimester','2nd')
+            ->where('no_visit','4th')
+            ->where('sign_and_symptoms.unique_id',$form->unique_id)             
+            ->first();
+
+            $fifth_tri_visit_2nd = SignSymptoms::select(
+                '*',
+                DB::raw("DATE_FORMAT(date_of_visit,'%M %d, %Y') as date_of_visit"),
+            )
+            ->where('no_trimester','2nd')
+            ->where('no_visit','5th')
+            ->where('sign_and_symptoms.unique_id',$form->unique_id)             
+            ->first();
+
+
+            $first_tri_visit_3rd = SignSymptoms::select(
+                '*',
+                DB::raw("DATE_FORMAT(date_of_visit,'%M %d, %Y') as date_of_visit"),
+            )
+            ->where('no_trimester','3rd')
+            ->where('no_visit','1st')
+            ->where('sign_and_symptoms.unique_id',$form->unique_id)             
+            ->first();
+
+            $second_tri_visit_3rd = SignSymptoms::select(
+                '*',
+                DB::raw("DATE_FORMAT(date_of_visit,'%M %d, %Y') as date_of_visit"),
+            )
+            ->where('no_trimester','3rd')
+            ->where('no_visit','2nd')
+            ->where('sign_and_symptoms.unique_id',$form->unique_id)             
+            ->first();
+
+            $third_tri_visit_3rd = SignSymptoms::select(
+                '*',
+                DB::raw("DATE_FORMAT(date_of_visit,'%M %d, %Y') as date_of_visit"),
+            )
+            ->where('no_trimester','3rd')
+            ->where('no_visit','3rd')
+            ->where('sign_and_symptoms.unique_id',$form->unique_id)             
+            ->first();
+
+            $fourth_tri_visit_3rd = SignSymptoms::select(
+                '*',
+                DB::raw("DATE_FORMAT(date_of_visit,'%M %d, %Y') as date_of_visit"),
+            )
+            ->where('no_trimester','3rd')
+            ->where('no_visit','4th')
+            ->where('sign_and_symptoms.unique_id',$form->unique_id)             
+            ->first();
+
+            $fifth_tri_visit_3rd = SignSymptoms::select(
+                '*',
+                DB::raw("DATE_FORMAT(date_of_visit,'%M %d, %Y') as date_of_visit"),
+            )
+            ->where('no_trimester','3rd')
+            ->where('no_visit','5th')
+            ->where('sign_and_symptoms.unique_id',$form->unique_id)
+            ->first();
+
             
         return array(
             'form' => $form,
@@ -795,6 +889,16 @@ class ReferralCtrl extends Controller
             'third_tri_visit' => $third_tri_visit,
             'fourth_tri_visit' => $fourth_tri_visit,
             'fifth_tri_visit' => $fifth_tri_visit,
+            'first_tri_visit_2nd' => $first_tri_visit_2nd,
+            'second_tri_visit_2nd' => $second_tri_visit_2nd,
+            'third_tri_visit_2nd' => $third_tri_visit_2nd,
+            'fourth_tri_visit_2nd' => $fourth_tri_visit_2nd,
+            'fifth_tri_visit_2nd' => $fifth_tri_visit_2nd,
+            'first_tri_visit_3rd' => $first_tri_visit_3rd,
+            'second_tri_visit_3rd' => $second_tri_visit_3rd,
+            'third_tri_visit_3rd' => $third_tri_visit_3rd,
+            'fourth_tri_visit_3rd' => $fourth_tri_visit_3rd,
+            'fifth_tri_visit_3rd' => $fifth_tri_visit_3rd,
         );
     }
 

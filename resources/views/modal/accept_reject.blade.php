@@ -521,7 +521,7 @@
                             </div>
 
                             <div id="menu3" class="tab-pane fade">
-                       
+                                <div id="myDiv">
                                     <table class="table table-striped pre_pregnancy_table" id="table_lab_res_referred">
                                         <tr class="bg-gray">
                                             <th>Date of Lab.</th>
@@ -650,6 +650,7 @@
                                             <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
                                         </tr> -->
                                     </table>
+                                </div>
                             </div>
 
                             <!-- <div id="menu4" class="tab-pane fade">

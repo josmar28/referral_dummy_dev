@@ -205,8 +205,8 @@
 
 {{--Script for Call Button--}}
 <script>
- $('#RefferedpregnantFormModalTrack').on('hidden.bs.modal', function () {
-         $('.pregnant_modal_content').load(document.URL +  ' .pregnant_modal_content');
+  $('#RefferedpregnantFormModalTrack').on('hidden.bs.modal', function () {
+        $('#myDiv').load(' #myDiv')
         })
         
     $('body').on('click','.btn-call',function(){
