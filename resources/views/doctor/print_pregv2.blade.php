@@ -1310,7 +1310,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:378.2px;top:1098.5px;">AOG:</span>
 <span class="text" style="left:406.7px;top:1098.5px;text-decoration:underline">&nbsp;{{ $data['first_tri_visit']->aog }}</span>
 <span class="text" style="left:378.2px;top:1111.9px;">BP:</span>
-<span class="text" style="left:398.2px;top:1111.9px;"></span>
+<span class="text" style="left:398.2px;top:1111.9px;">{{ $data['first_tri_visit']->bp }}</span>
 <span class="text" style="left:422.1px;top:1111.9px;">Temp:&nbsp;</span>
 <span class="text" style="left:453.1px;top:1111.9px;">{{ $data['first_tri_visit']->temp }}&nbsp;</span>
 <span class="text" style="left:378.2px;top:1125.4px;">HR:</span>
