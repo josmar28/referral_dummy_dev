@@ -807,6 +807,8 @@
 
                         $('.final_diagnosis').val(preg_outcome.final_diagnosis);
                     }
+                    var print_url = "{{ url('doctor/print/form/') }}/"+form.tracking_id;
+                    $('.btn-refer-pregnant').attr('href',print_url);
                     $('.loading').hide();
                    
         },
