@@ -618,7 +618,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:869.4px;top:710.5px;">ion&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:69.7px;top:748.0px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][0]->date_of_lab_name }}</span>
+<span class="text" style="left:63.7px;top:748.0px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][0]->date_of_lab_name }}</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:164.3px;top:757.5px;">Hgb</span>
@@ -1310,9 +1310,9 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:378.2px;top:1098.5px;">AOG:</span>
 <span class="text" style="left:406.7px;top:1098.5px;text-decoration:underline">&nbsp;{{ $data['first_tri_visit']->aog }}</span>
 <span class="text" style="left:378.2px;top:1111.9px;">BP:</span>
-<span class="text" style="left:398.2px;top:1111.9px;">{{ $data['first_tri_visit']->bp }}</span>
-<span class="text" style="left:422.1px;top:1111.9px;">Temp:&nbsp;</span>
-<span class="text" style="left:453.1px;top:1111.9px;">{{ $data['first_tri_visit']->temp }}&nbsp;</span>
+<span class="text" style="left:396.2px;top:1113.9px;font-size:10px">{{ $data['first_tri_visit']->bp }}</span>
+<span class="text" style="left:430.1px;top:1111.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:459.1px;top:1112.9px;">{{ $data['first_tri_visit']->temp }}&nbsp;</span>
 <span class="text" style="left:378.2px;top:1125.4px;">HR:</span>
 <span class="text" style="left:400.2px;top:1125.4px;">{{ $data['first_tri_visit']->hr }}</span>
 <span class="text" style="left:422.3px;top:1125.4px;">RR:&nbsp;</span>
@@ -1378,9 +1378,9 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:497.8px;top:1098.5px;">AOG:</span>
 <span class="text" style="left:526.3px;top:1098.5px;text-decoration:underline">&nbsp;{{ $data['second_tri_visit']->aog }}</span>
 <span class="text" style="left:497.2px;top:1111.9px;">BP:</span>
-<span class="text" style="left:515.2px;top:1111.9px;">{{ $data['second_tri_visit']->bp }}</span>
-<span class="text" style="left:539.1px;top:1111.9px;">Temp:&nbsp;</span>
-<span class="text" style="left:570.1px;top:1111.9px;">{{ $data['second_tri_visit']->temp }}&nbsp;</span>
+<span class="text" style="left:515.2px;top:1113.9px;font-size:10px;">{{ $data['second_tri_visit']->bp }}</span>
+<span class="text" style="left:550.1px;top:1111.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:580.1px;top:1112.9px;">{{ $data['second_tri_visit']->temp }}&nbsp;</span>
 <span class="text" style="left:497.2px;top:1125.4px;">HR:</span>
 <span class="text" style="left:518.2px;top:1125.4px;">{{ $data['second_tri_visit']->hr }}</span>
 <span class="text" style="left:542.3px;top:1125.4px;">RR:&nbsp;</span>
@@ -1448,10 +1448,10 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:12px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:616.5px;top:1098.5px;">AOG:</span>
 <span class="text" style="left:645.0px;top:1098.5px;text-decoration:underline">&nbsp;{{ $data['third_tri_visit']->aog }}</span>
-<span class="text" style="left:616.2px;top:1111.9px;">BP:</span>
-<span class="text" style="left:636.2px;top:1111.9px;">{{ $data['third_tri_visit']->bp }}</span>
-<span class="text" style="left:657.1px;top:1111.9px;">Temp:&nbsp;</span>
-<span class="text" style="left:688.1px;top:1111.9px;">{{ $data['third_tri_visit']->temp }}&nbsp;</span>
+<span class="text" style="left:618.2px;top:1111.9px;">BP:</span>
+<span class="text" style="left:636.2px;top:1113.9px;font-size:10px;">{{ $data['third_tri_visit']->bp }}</span>
+<span class="text" style="left:670.1px;top:1111.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:700.1px;top:1111.9px;">{{ $data['third_tri_visit']->temp }}&nbsp;</span>
 <span class="text" style="left:616.2px;top:1125.4px;">HR:</span>
 <span class="text" style="left:636.2px;top:1125.4px;">{{ $data['third_tri_visit']->hr }}</span>
 <span class="text" style="left:660.3px;top:1125.4px;">RR:&nbsp;</span>
@@ -1520,9 +1520,9 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:760.3px;top:1098.5px;">:</span>
 <span class="text" style="left:763.5px;top:1098.5px;text-decoration:underline">&nbsp;{{ $data['fourth_tri_visit']->aog }}</span>
 <span class="text" style="left:735.2px;top:1111.9px;">BP:</span>
-<span class="text" style="left:755.2px;top:1111.9px;">{{ $data['fourth_tri_visit']->bp }}</span>
-<span class="text" style="left:776.1px;top:1111.9px;">Temp:&nbsp;</span>
-<span class="text" style="left:807.1px;top:1111.9px;">{{ $data['fourth_tri_visit']->temp }}&nbsp;</span>
+<span class="text" style="left:753.2px;top:1113.9px;font-size:10px;">{{ $data['fourth_tri_visit']->bp }}</span>
+<span class="text" style="left:787.1px;top:1111.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:817.1px;top:1111.9px;">{{ $data['fourth_tri_visit']->temp }}&nbsp;</span>
 <span class="text" style="left:735.2px;top:1125.4px;">HR:</span>
 <span class="text" style="left:755.2px;top:1125.4px;">{{ $data['fourth_tri_visit']->hr }}</span>
 <span class="text" style="left:779.3px;top:1125.4px;">RR:&nbsp;</span>
@@ -1589,9 +1589,9 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:853.7px;top:1098.5px;">AOG:</span>
 <span class="text" style="left:882.2px;top:1098.5px;text-decoration:underline">&nbsp;{{ $data['fifth_tri_visit']->aog }}</span>
 <span class="text" style="left:853.2px;top:1111.9px;">BP:</span>
-<span class="text" style="left:873.2px;top:1111.9px;">{{ $data['fifth_tri_visit']->bp }}</span>
-<span class="text" style="left:894.1px;top:1111.9px;">Temp:&nbsp;</span>
-<span class="text" style="left:925.1px;top:1111.9px;">{{ $data['fifth_tri_visit']->temp }}&nbsp;</span>
+<span class="text" style="left:871.2px;top:1113.9px;font-size:10px;">{{ $data['fifth_tri_visit']->bp }}</span>
+<span class="text" style="left:905.1px;top:1111.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:935.1px;top:1111.9px;">{{ $data['fifth_tri_visit']->temp }}&nbsp;</span>
 <span class="text" style="left:853.2px;top:1125.4px;">HR:</span>
 <span class="text" style="left:873.2px;top:1125.4px;">{{ $data['fifth_tri_visit']->hr }}</span>
 <span class="text" style="left:897.3px;top:1125.4px;">RR:&nbsp;</span>
@@ -2077,9 +2077,9 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:378.2px;top:291.0px;">AOG:</span>
 <span class="text" style="left:406.7px;top:291.0px;text-decoration:underline">&nbsp;{{ $data['first_tri_visit_2nd']->aog }}</span>
 <span class="text" style="left:378.2px;top:305.9px;">BP:</span>
-<span class="text" style="left:400.2px;top:305.9px;">{{ $data['first_tri_visit_2nd']->bp }}</span>
-<span class="text" style="left:422.1px;top:304.9px;">Temp:&nbsp;</span>
-<span class="text" style="left:453.1px;top:304.9px;">{{ $data['first_tri_visit_2nd']->temp }}&nbsp;</span>
+<span class="text" style="left:395.2px;top:307.9px;font-size:10px;">{{ $data['first_tri_visit_2nd']->bp }}</span>
+<span class="text" style="left:429.1px;top:305.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:459.1px;top:306.9px;">{{ $data['first_tri_visit_2nd']->temp }}&nbsp;</span>
 <span class="text" style="left:378.2px;top:317.4px;">HR:</span>
 <span class="text" style="left:400.2px;top:317.4px;">{{ $data['first_tri_visit_2nd']->hr }}</span>
 <span class="text" style="left:422.3px;top:317.4px;">RR:&nbsp;</span>
@@ -2145,9 +2145,9 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:497.8px;top:291.0px;">AOG:</span>
 <span class="text" style="left:526.3px;top:291.0px;text-decoration:underline">&nbsp;{{ $data['second_tri_visit_2nd']->aog }}</span>
 <span class="text" style="left:497.2px;top:304.9px;">BP:</span>
-<span class="text" style="left:515.2px;top:304.9px;">{{ $data['second_tri_visit_2nd']->bp }}</span>
-<span class="text" style="left:539.1px;top:304.9px;">Temp:&nbsp;</span>
-<span class="text" style="left:570.1px;top:304.9px;">{{ $data['second_tri_visit_2nd']->temp }}&nbsp;</span>
+<span class="text" style="left:515.2px;top:306.9px;font-size:10px;">{{ $data['second_tri_visit_2nd']->bp }}</span>
+<span class="text" style="left:550.1px;top:304.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:580.1px;top:304.9px;">{{ $data['second_tri_visit_2nd']->temp }}&nbsp;</span>
 <span class="text" style="left:497.2px;top:317.4px;">HR:</span>
 <span class="text" style="left:518.2px;top:317.4px;">{{ $data['second_tri_visit_2nd']->hr }}</span>
 <span class="text" style="left:542.3px;top:317.4px;">RR:&nbsp;</span>
@@ -2214,9 +2214,9 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:633.4px;top:291.0px;">G:</span>
 <span class="text" style="left:645.0px;top:291.0px;text-decoration:underline">&nbsp;{{ $data['third_tri_visit_2nd']->aog }}</span>
 <span class="text" style="left:616.2px;top:304.9px;">BP:</span>
-<span class="text" style="left:636.2px;top:304.9px;">{{ $data['third_tri_visit_2nd']->bp }}</span>
-<span class="text" style="left:657.1px;top:304.9px;">Temp:&nbsp;</span>
-<span class="text" style="left:688.1px;top:304.9px;">{{ $data['third_tri_visit_2nd']->temp }}&nbsp;</span>
+<span class="text" style="left:634.2px;top:306.9px;font-size:10px;">{{ $data['third_tri_visit_2nd']->bp }}</span>
+<span class="text" style="left:670.1px;top:304.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:700.1px;top:304.9px;">{{ $data['third_tri_visit_2nd']->temp }}&nbsp;</span>
 <span class="text" style="left:616.2px;top:317.4px;">HR:</span>
 <span class="text" style="left:638.2px;top:317.4px;">{{ $data['third_tri_visit_2nd']->hr }}</span>
 <span class="text" style="left:660.3px;top:317.4px;">RR:&nbsp;</span>
@@ -2284,9 +2284,9 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:735.0px;top:291.0px;">AOG:</span>
 <span class="text" style="left:763.5px;top:291.0px;text-decoration:underline">&nbsp;{{ $data['fourth_tri_visit_2nd']->aog }}</span>
 <span class="text" style="left:735.2px;top:304.9px;">BP:</span>
-<span class="text" style="left:755.2px;top:304.9px;">{{ $data['fourth_tri_visit_2nd']->bp }}</span>
-<span class="text" style="left:776.1px;top:304.9px;">Temp:&nbsp;</span>
-<span class="text" style="left:807.1px;top:304.9px;">{{ $data['fourth_tri_visit_2nd']->temp }}&nbsp;</span>
+<span class="text" style="left:753.2px;top:306.9px;font-size:10px;">{{ $data['fourth_tri_visit_2nd']->bp }}</span>
+<span class="text" style="left:787.1px;top:304.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:817.1px;top:304.9px;">{{ $data['fourth_tri_visit_2nd']->temp }}&nbsp;</span>
 <span class="text" style="left:735.2px;top:317.4px;">HR:</span>
 <span class="text" style="left:755.2px;top:317.4px;">{{ $data['fourth_tri_visit_2nd']->hr }}</span>
 <span class="text" style="left:779.3px;top:317.4px;">RR:&nbsp;</span>
@@ -2352,9 +2352,9 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:853.7px;top:291.0px;">AOG:</span>
 <span class="text" style="left:882.2px;top:291.0px;text-decoration:underline">&nbsp;{{ $data['fifth_tri_visit_2nd']->aog }}</span>
 <span class="text" style="left:853.2px;top:304.9px;">BP:</span>
-<span class="text" style="left:873.2px;top:304.9px;">{{ $data['fifth_tri_visit_2nd']->bp }}</span>
-<span class="text" style="left:894.1px;top:304.9px;">Temp:&nbsp;</span>
-<span class="text" style="left:925.1px;top:304.9px;">{{ $data['fifth_tri_visit_2nd']->temp }}&nbsp;</span>
+<span class="text" style="left:871.2px;top:306.9px;font-size:10px;">{{ $data['fifth_tri_visit_2nd']->bp }}</span>
+<span class="text" style="left:905.1px;top:304.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:935.1px;top:304.9px;">{{ $data['fifth_tri_visit_2nd']->temp }}&nbsp;</span>
 <span class="text" style="left:853.2px;top:317.4px;">HR:</span>
 <span class="text" style="left:873.2px;top:317.4px;">{{ $data['fifth_tri_visit_2nd']->hr }}</span>
 <span class="text" style="left:897.3px;top:317.4px;">RR:&nbsp;</span>
@@ -2676,9 +2676,9 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:378.2px;top:684.0px;">AOG:</span>
 <span class="text" style="left:406.7px;top:684.0px;text-decoration:underline">&nbsp;{{ $data['first_tri_visit_3rd']->aog }}</span>
 <span class="text" style="left:378.2px;top:697.9px;">BP:</span>
-<span class="text" style="left:400.2px;top:697.9px;">{{ $data['first_tri_visit_3rd']->bp }}</span>
-<span class="text" style="left:422.1px;top:697.9px;">Temp:&nbsp;</span>
-<span class="text" style="left:453.1px;top:697.9px;">{{ $data['first_tri_visit_3rd']->temp }}&nbsp;</span>
+<span class="text" style="left:395.2px;top:700.9px;font-size:10px;">{{ $data['first_tri_visit_3rd']->bp }}</span>
+<span class="text" style="left:429.1px;top:697.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:459.1px;top:697.9px;">{{ $data['first_tri_visit_3rd']->temp }}&nbsp;</span>
 <span class="text" style="left:378.2px;top:711.4px;">HR:</span>
 <span class="text" style="left:400.2px;top:711.4px;">{{ $data['first_tri_visit_3rd']->hr }}</span>
 <span class="text" style="left:422.3px;top:711.4px;">RR:&nbsp;</span>
@@ -2744,9 +2744,9 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:497.8px;top:684.0px;">AOG:</span>
 <span class="text" style="left:526.3px;top:684.0px;text-decoration:underline">&nbsp;{{ $data['second_tri_visit_3rd']->aog }}</span>
 <span class="text" style="left:497.2px;top:697.9px;">BP:</span>
-<span class="text" style="left:515.2px;top:697.9px;">{{ $data['second_tri_visit_3rd']->bp }}</span>
-<span class="text" style="left:539.1px;top:697.9px;">Temp:&nbsp;</span>
-<span class="text" style="left:570.1px;top:697.9px;">{{ $data['second_tri_visit_3rd']->temp }}&nbsp;</span>
+<span class="text" style="left:515.2px;top:700.9px;font-size:10px;">{{ $data['second_tri_visit_3rd']->bp }}</span>
+<span class="text" style="left:550.1px;top:697.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:580.1px;top:697.9px;">{{ $data['second_tri_visit_3rd']->temp }}&nbsp;</span>
 <span class="text" style="left:497.2px;top:711.4px;">HR:</span>
 <span class="text" style="left:518.2px;top:711.4px;">{{ $data['second_tri_visit_3rd']->hr }}</span>
 <span class="text" style="left:542.3px;top:711.4px;">RR:&nbsp;</span>
@@ -2812,9 +2812,9 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:616.5px;top:684.0px;">AOG:</span>
 <span class="text" style="left:645.0px;top:684.0px;text-decoration:underline">&nbsp;{{ $data['third_tri_visit_3rd']->aog }}</span>
 <span class="text" style="left:616.2px;top:697.9px;">BP:</span>
-<span class="text" style="left:636.2px;top:697.9px;">{{ $data['third_tri_visit_3rd']->bp }}</span>
-<span class="text" style="left:657.1px;top:697.9px;">Temp:&nbsp;</span>
-<span class="text" style="left:688.1px;top:697.9px;">{{ $data['third_tri_visit_3rd']->temp }}&nbsp;</span>
+<span class="text" style="left:634.2px;top:700.9px;font-size:10px;">{{ $data['third_tri_visit_3rd']->bp }}</span>
+<span class="text" style="left:670.1px;top:697.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:700.1px;top:697.9px;">{{ $data['third_tri_visit_3rd']->temp }}&nbsp;</span>
 <span class="text" style="left:616.2px;top:711.4px;">HR:</span>
 <span class="text" style="left:638.2px;top:711.4px;">{{ $data['third_tri_visit_3rd']->hr }}</span>
 <span class="text" style="left:660.3px;top:711.4px;">RR:&nbsp;</span>
@@ -2882,9 +2882,9 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:735.0px;top:684.0px;">AOG:</span>
 <span class="text" style="left:763.5px;top:684.0px;text-decoration:underline">&nbsp;{{ $data['fourth_tri_visit_3rd']->aog }}</span>
 <span class="text" style="left:735.2px;top:697.9px;">BP:</span>
-<span class="text" style="left:755.2px;top:697.9px;">{{ $data['fourth_tri_visit_3rd']->bp }}</span>
-<span class="text" style="left:776.1px;top:697.9px;">Temp:&nbsp;</span>
-<span class="text" style="left:807.1px;top:697.9px;">{{ $data['fourth_tri_visit_3rd']->temp }}&nbsp;</span>
+<span class="text" style="left:752.2px;top:700.9px;font-size:10px;">{{ $data['fourth_tri_visit_3rd']->bp }}</span>
+<span class="text" style="left:787.1px;top:697.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:817.1px;top:697.9px;">{{ $data['fourth_tri_visit_3rd']->temp }}&nbsp;</span>
 <span class="text" style="left:735.2px;top:711.4px;">HR:</span>
 <span class="text" style="left:755.2px;top:711.4px;">{{ $data['fourth_tri_visit_3rd']->hr }}</span>
 <span class="text" style="left:779.3px;top:711.4px;">RR:&nbsp;</span>
@@ -2949,9 +2949,9 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:853.7px;top:684.0px;">AOG:</span>
 <span class="text" style="left:882.2px;top:684.0px;text-decoration:underline">&nbsp;{{ $data['fifth_tri_visit_3rd']->aog }}</span>
 <span class="text" style="left:853.2px;top:697.9px;">BP:</span>
-<span class="text" style="left:873.2px;top:697.9px;">{{ $data['fifth_tri_visit_3rd']->bp }}</span>
-<span class="text" style="left:894.1px;top:697.9px;">Temp:&nbsp;</span>
-<span class="text" style="left:925.1px;top:697.9px;">{{ $data['fifth_tri_visit_3rd']->temp }}&nbsp;</span>
+<span class="text" style="left:871.2px;top:700.9px;font-size:10px;">{{ $data['fifth_tri_visit_3rd']->bp }}</span>
+<span class="text" style="left:905.1px;top:697.9px;">Temp:&nbsp;</span>
+<span class="text" style="left:935.1px;top:697.9px;">{{ $data['fifth_tri_visit_3rd']->temp }}&nbsp;</span>
 <span class="text" style="left:853.2px;top:711.4px;">HR:</span>
 <span class="text" style="left:873.2px;top:711.4px;">{{ $data['fifth_tri_visit_3rd']->hr }}</span>
 <span class="text" style="left:897.3px;top:711.4px;">RR:&nbsp;</span>
@@ -3370,14 +3370,14 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:619.0px;top:1270.7px;">IPT&nbsp;&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
-<span class="text" style="left:213.9px;top:1294.8px;">(</span>
+<span class="text" style="left:210.9px;top:1294.8px;">(</span>
 </span>
 <span style="color:#FF0000;font-size:15px;font-family:&#39;Times New Roman&#39;;font-style:italic;font-weight:bold;">
 <span class="text" style="left:218.9px;top:1294.8px;">for immediate return to hospital/clinic of Origin by the accompa</span>
 <span class="text" style="left:625.0px;top:1294.8px;">nying hospital/clinic personnel</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
-<span class="text" style="left:808.7px;top:1294.8px;">)&nbsp;</span>
+<span class="text" style="left:818.7px;top:1294.8px;">)&nbsp;</span>
 <span class="text" style="left:667.3px;top:1316.9px;">Date/Time:</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">

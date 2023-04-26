@@ -162,7 +162,7 @@
                             <li><a data-toggle="tab" href="#menu2">Sign and Symptoms</a></li>
                             <li><a data-toggle="tab" href="#menu3">Lab Result</a></li>
                             <!-- <li><a data-toggle="tab" href="#menu4">Vital Signs</a></li> -->
-                            <li><a data-toggle="tab" href="#menu5">Pregnancy Outcome</a></li>
+                            <!-- <li><a data-toggle="tab" href="#menu5">Pregnancy Outcome</a></li> -->
                         </ul>
 
                         <div class="tab-content">
@@ -215,8 +215,8 @@
                                             <td>Religion: <input type="text" class="form-control religion" name="religion" style="width: 100%;" disabled> </td>
                                             <td>Ethnicity: <input type="text" class="form-control ethnicity" name="ethnicity" style="width: 100%;" disabled> </td>
                                             <td>Sibling Rank: 
-                                                <input type="number" class="form-control sibling_rank" name="sibling_rank" style="width: 100%;" disabled> Out of  
-                                                <input type="number" class="form-control out_of" name="out_of" style="width: 100%;" disabled> 
+                                                <input type="text" class="form-control sibling_rank" name="sibling_rank" style="width: 100%;" disabled> Out of  
+                                                <input type="text" class="form-control out_of" name="out_of" style="width: 100%;" disabled> 
                                             </td>
                                         </tr>
                                     </table>
@@ -226,23 +226,23 @@
                                             <th colspan="6">A.II Personnal Data</th>
                                         </tr>
                                         <tr>
-                                            <td>Gravidity: <input type="number" class="form-control" name="gravidity" style="width: 100%;" disabled> </td>
-                                            <td>Parity: <input type="number" class="form-control" name="parity" style="width: 100%;" disabled> </td>
-                                            <td>FTPAL: <input type="number" class="form-control" name="ftpal" style="width: 100%;" disabled> </td>
-                                            <td>BMI: <input type="number"class="form-control" name="bmi" style="width: 100%;" disabled> </td>
-                                            <td>Fundic Height: <input type="number" class="form-control" name="fundic_height" style="width: 100%;" disabled> </td>
-                                            <td>HR: <input type="number" class="form-control" name="hr" style="width: 100%;" disabled></td>
+                                            <td>Gravidity: <input type="text" class="form-control" name="gravidity" style="width: 100%;" disabled> </td>
+                                            <td>Parity: <input type="text" class="form-control" name="parity" style="width: 100%;" disabled> </td>
+                                            <td>FTPAL: <input type="text" class="form-control" name="ftpal" style="width: 100%;" disabled> </td>
+                                            <td>BMI: <input type="text"class="form-control" name="bmi" style="width: 100%;" disabled> </td>
+                                            <td>Fundic Height: <input type="text" class="form-control" name="fundic_height" style="width: 100%;" disabled> </td>
+                                            <td>HR: <input type="text" class="form-control" name="hr" style="width: 100%;" disabled></td>
                                         </tr>
                                         <tr>
                                             <td>LMP: <input type="date" class="form-control lmp_date" name="lmp" style="width: 100%;" disabled>  </td>
                                             <td>EDC/EDD: <input type="date" id="edc_edd" class="form-control" name="edc_edd" style="width: 100%;" disabled> </td>
-                                            <td>Height: <input type="number" class="form-control" name="height" style="width: 100%;" disabled> </td>
-                                            <td>Weigth: <input type="number" class="form-control" name="weigth" style="width: 100%;" disabled></td>
-                                            <td>BP: <input type="number" class="form-control" name="bp" style="width: 100%;" disabled></td>
-                                            <td>TEMP: <input type="number" class="form-control" name="temp" style="width: 100%;" disabled></td>
+                                            <td>Height: <input type="text" class="form-control" name="height" style="width: 100%;" disabled> </td>
+                                            <td>Weigth: <input type="text" class="form-control" name="weigth" style="width: 100%;" disabled></td>
+                                            <td>BP: <input type="text" class="form-control" name="bp" style="width: 100%;" disabled></td>
+                                            <td>TEMP: <input type="text" class="form-control" name="temp" style="width: 100%;" disabled></td>
                                         </tr>
                                         <tr>
-                                            <td>RR: <input type="number" class="form-control" name="rr" style="width: 100%;" disabled></td>
+                                            <td>RR: <input type="text" class="form-control" name="rr" style="width: 100%;" disabled></td>
                                             <td>Td1: <input type="date" class="form-control" name="td1" style="width: 100%;" disabled></td>
                                             <td>Td2: <input type="date" class="form-control" name="td2" style="width: 100%;" disabled> </td>
                                             <td>Td3: <input type="date" class="form-control" name="td3" style="width: 100%;" disabled> </td>
@@ -280,20 +280,20 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <small class="text-info">BP</small><br>
-                                                        <input type="number" class="form-control ante_bp"  name="ante_bp" style="width: 100%;" disabled>
+                                                        <input type="text" class="form-control ante_bp"  name="ante_bp" style="width: 100%;" disabled>
                                                         <small class="text-info">HR</small><br>
-                                                        <input type="number" class="form-control ante_hr"  name="ante_hr" style="width: 100%;" disabled>
+                                                        <input type="text" class="form-control ante_hr"  name="ante_hr" style="width: 100%;" disabled>
                                                         <small class="text-info">FH</small><br>
-                                                        <input type="number" class="form-control ante_fh"  name="ante_fh" style="width: 100%;" disabled>
+                                                        <input type="text" class="form-control ante_fh"  name="ante_fh" style="width: 100%;" disabled>
                                                     </div>
 
                                                     <div class="col-md-6">
                                                         <small class="text-info">TEMP</small><br>
-                                                         <input type="number" class="form-control ante_temp"  name="ante_temp" style="width: 100%;" disabled>
+                                                         <input type="text" class="form-control ante_temp"  name="ante_temp" style="width: 100%;" disabled>
                                                         <small class="text-info">RR</small><br>
-                                                         <input type="number" class="form-control ante_rr"  name="ante_rr" style="width: 100%;" disabled>
+                                                         <input type="text" class="form-control ante_rr"  name="ante_rr" style="width: 100%;" disabled>
                                                         <small class="text-info">FHT</small><br>
-                                                         <input type="number" class="form-control ante_fht"  name="ante_fht" style="width: 100%;"disabled>
+                                                         <input type="text" class="form-control ante_fht"  name="ante_fht" style="width: 100%;"disabled>
                                                     </div>
                                                 </div>
                                                 
@@ -429,20 +429,20 @@
                                                                             <div class="row">
                                                                                 <div class="col-md-6">
                                                                                     <small class="text-info">BP</small><br>
-                                                                                    <input type="number" class="form-control prev_bp"  style="width: 100%;" disabled>
+                                                                                    <input type="text" class="form-control prev_bp"  style="width: 100%;" disabled>
                                                                                     <small class="text-info">HR</small><br>
-                                                                                    <input type="number" class="form-control prev_hr"  style="width: 100%;" disabled>
+                                                                                    <input type="text" class="form-control prev_hr"  style="width: 100%;" disabled>
                                                                                     <small class="text-info">FH</small><br>
-                                                                                    <input type="number" class="form-control prev_fh"  style="width: 100%;" disabled>
+                                                                                    <input type="text" class="form-control prev_fh"  style="width: 100%;" disabled>
                                                                                 </div>
 
                                                                                 <div class="col-md-6">
                                                                                     <small class="text-info">TEMP</small><br>
-                                                                                    <input type="number" class="form-control prev_temp"  style="width: 100%;" disabled>
+                                                                                    <input type="text" class="form-control prev_temp"  style="width: 100%;" disabled>
                                                                                     <small class="text-info">RR</small><br>
-                                                                                    <input type="number" class="form-control prev_rr"  style="width: 100%;" disabled>
+                                                                                    <input type="text" class="form-control prev_rr"  style="width: 100%;" disabled>
                                                                                     <small class="text-info">FHT</small><br>
-                                                                                    <input type="number" class="form-control prev_fht"  style="width: 100%;" disabled>
+                                                                                    <input type="text" class="form-control prev_fht"  style="width: 100%;" disabled>
                                                                                 </div>
                                                                             </div>
                                                                             
@@ -599,14 +599,14 @@
                                                     <select name="hbsag_result" class="form-control hbsag_result" disabled>
                                                         <option value="">Select HBsAg...</option>
                                                         <option value="reactive">Reactive</option>
-                                                        <option value="non_reactine">Non-Reactine</option>
+                                                        <option value="non_reactive">Non-Reactine</option>
                                                     </select> 
                                             </td>
                                             <td rowspan="5" id="vdrl_result"> 
                                                     <select name="vdrl_result" class="form-control vdrl_result" disabled>
                                                         <option value="">Select VDRL...</option>
                                                         <option value="reactive">Reactive</option>
-                                                        <option value="non_reactine">Non-Reactine</option>
+                                                        <option value="non_reactive">Non-Reactine</option>
                                                     </select> 
                                             </td>
                                             <td><textarea name="lab_remarks[]" class="form-control lab_remarks" disabled></textarea> </td>

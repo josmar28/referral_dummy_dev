@@ -702,28 +702,28 @@ class PatientCtrl extends Controller
                     ]);
             }
 
-            foreach ($req->final_diagnosis as $value) {
-                $final_diagnosis .= $value . ", ";
-             }
-             $final_diagnosis = substr($final_diagnosis, 0, -2);
+            // foreach ($req->final_diagnosis as $value) {
+            //     $final_diagnosis .= $value . ", ";
+            //  }
+            //  $final_diagnosis = substr($final_diagnosis, 0, -2);
 
-            $data5 = array(
-                'unique_id' => $unique_id,
-                'patient_woman_id' => $patient_id,
-                'delivery_outcome' => ($req->delivery_outcome) ? $req->delivery_outcome: NULL,
-                'birth_attendant' => ($req->birth_attendant) ? $req->birth_attendant: NULL,
-                'type_of_delivery' => ($req->type_of_delivery) ? $req->type_of_delivery: NULL,
-                'final_diagnosis' => ($final_diagnosis) ? $final_diagnosis: NULL,
-                'status_on_discharge' => ($req->status_on_discharge) ? $req->status_on_discharge: NULL,
-            );
+            // $data5 = array(
+            //     'unique_id' => $unique_id,
+            //     'patient_woman_id' => $patient_id,
+            //     'delivery_outcome' => ($req->delivery_outcome) ? $req->delivery_outcome: NULL,
+            //     'birth_attendant' => ($req->birth_attendant) ? $req->birth_attendant: NULL,
+            //     'type_of_delivery' => ($req->type_of_delivery) ? $req->type_of_delivery: NULL,
+            //     'final_diagnosis' => ($final_diagnosis) ? $final_diagnosis: NULL,
+            //     'status_on_discharge' => ($req->status_on_discharge) ? $req->status_on_discharge: NULL,
+            // );
 
-            $pregoutcome = PregOutcome::Create($data5);
-            if($pregoutcome->wasRecentlyCreated){
-                PregOutcome::where('unique_id',$unique_id)
-                    ->update([
-                        'code' => $code
-                    ]);
-            }
+            // $pregoutcome = PregOutcome::Create($data5);
+            // if($pregoutcome->wasRecentlyCreated){
+            //     PregOutcome::where('unique_id',$unique_id)
+            //         ->update([
+            //             'code' => $code
+            //         ]);
+            // }
 
             //  dd($final_diagnosis);
             Session::put("refer_patient",true);
@@ -1136,16 +1136,19 @@ class PatientCtrl extends Controller
             'tracking.type',
             'tracking.code',
             'facility.name',
+            'pregnant_formv2.unique_id',
             DB::raw('CONCAT(patients.fname," ",patients.mname," ",patients.lname) as patient_name'),
             DB::raw("DATE_FORMAT(tracking.date_accepted,'%M %d, %Y %h:%i %p') as date_accepted")
         )
             ->join('facility','facility.id','=','tracking.referred_from')
             ->join('patients','patients.id','=','tracking.patient_id')
-            ->where('referred_to',$user->facility_id)
+            ->join('pregnant_formv2','pregnant_formv2.id','=','tracking.form_id')
+            ->where('tracking.referred_to',$user->facility_id)
             ->where(function($q){
                 $q->where('tracking.status','accepted')
                     ->orwhere('tracking.status','admitted')
-                    ->orwhere('tracking.status','arrived');
+                    ->orwhere('tracking.status','arrived')
+                    ->orwhere('tracking.status','monitored');
             });
         if($keyword){
             $data1 = $data1->where(function($q) use ($keyword){
@@ -1172,12 +1175,14 @@ class PatientCtrl extends Controller
             'tracking.type',
             'tracking.code',
             'facility.name',
+            'pregnant_formv2.unique_id',
             DB::raw('CONCAT(patients.fname," ",patients.mname," ",patients.lname) as patient_name'),
             DB::raw("DATE_FORMAT(tracking.date_accepted,'%M %d, %Y %h:%i %p') as date_accepted")
         )
             ->join('facility','facility.id','=','tracking.referred_from')
             ->join('patients','patients.id','=','tracking.patient_id')
             ->join('patient_form','patient_form.patient_id','=','tracking.patient_id')
+            ->join('pregnant_formv2','pregnant_formv2.id','=','tracking.form_id')
             ->where('patient_form.referred_md',$user->id)
             ->whereExists(function($query) use($id)
             {

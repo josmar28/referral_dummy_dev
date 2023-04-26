@@ -10,7 +10,7 @@
 <div class="modal fade" role="dialog" id="pregnantFormModalTrack">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
-            <form method="POST" class="form-submit" action="{{ url('doctor/patient/refer/pregnant') }}" novalidate>
+            <form method="POST" class="form-submit" action="{{ url('doctor/patient/refer/pregnant') }}" >
             <div class="jim-content">
                 @include('include.header_form')
                 <div class="title-form">Risk Assessment Check list for Pregnant Women</div>
@@ -54,7 +54,7 @@
                             <li><a data-toggle="tab" href="#menu2">Sign and Symptoms</a></li>
                             <li><a data-toggle="tab" href="#menu3">Lab Result</a></li>
                             <!-- <li><a data-toggle="tab" href="#menu4">Vital Signs</a></li> -->
-                            <li><a data-toggle="tab" href="#menu5">Pregnancy Outcome</a></li>
+                            <!-- <li><a data-toggle="tab" href="#menu5">Pregnancy Outcome</a></li> -->
                         </ul>
 
                         <div class="tab-content">
@@ -108,8 +108,8 @@
                                             <td>Religion: <input type="text" class="form-control" name="religion" style="width: 100%;"> </td>
                                             <td>Ethnicity: <input type="text" class="form-control" name="ethnicity" style="width: 100%;"> </td>
                                             <td>Sibling Rank: 
-                                                <input type="number" class="form-control" name="sibling_rank" style="width: 100%;"> Out of  
-                                                <input type="number" class="form-control" name="out_of" style="width: 100%;"> 
+                                                <input type="text" class="form-control" name="sibling_rank" style="width: 100%;"> Out of  
+                                                <input type="text" class="form-control" name="out_of" style="width: 100%;"> 
                                             </td>
                                         </tr>
                                     </table>
@@ -119,23 +119,23 @@
                                             <th colspan="6">A.II Personnal Data</th>
                                         </tr>
                                         <tr>
-                                            <td>Gravidity: <input type="number" class="form-control" name="gravidity" style="width: 100%;"> </td>
-                                            <td>Parity: <input type="number" class="form-control" name="parity" style="width: 100%;"> </td>
-                                            <td>FTPAL: <input type="number" class="form-control" name="ftpal" style="width: 100%;"> </td>
-                                            <td>BMI: <input type="number"class="form-control" name="bmi" style="width: 100%;"> </td>
-                                            <td>Fundic Height: <input type="number" class="form-control" name="fundic_height" style="width: 100%;"> </td>
-                                            <td>HR: <input type="number" class="form-control" name="hr" style="width: 100%;"></td>
+                                            <td>Gravidity: <input type="text" class="form-control" name="gravidity" style="width: 100%;"> </td>
+                                            <td>Parity: <input type="text" class="form-control" name="parity" style="width: 100%;"> </td>
+                                            <td>FTPAL: <input type="text" class="form-control" name="ftpal" style="width: 100%;"> </td>
+                                            <td>BMI: <input type="text"class="form-control" name="bmi" style="width: 100%;"> </td>
+                                            <td>Fundic Height: <input type="text" class="form-control" name="fundic_height" style="width: 100%;"> </td>
+                                            <td>HR: <input type="text" class="form-control" name="hr" style="width: 100%;"></td>
                                         </tr>
                                         <tr>
                                             <td>LMP: <input type="date" class="form-control lmp_date" name="lmp" style="width: 100%;">  </td>
                                             <td>EDC/EDD: <input type="date" id="edc_edd" class="form-control" name="edc_edd" style="width: 100%;" readonly> </td>
-                                            <td>Height: <input type="number" class="form-control" name="height" style="width: 100%;"> </td>
-                                            <td>Weigth: <input type="number" class="form-control" name="weigth" style="width: 100%;"></td>
-                                            <td>BP: <input type="number" class="form-control" name="bp" style="width: 100%;"></td>
-                                            <td>TEMP: <input type="number" class="form-control" name="temp" style="width: 100%;"></td>
+                                            <td>Height: <input type="text" class="form-control" name="height" style="width: 100%;"> </td>
+                                            <td>Weigth: <input type="text" class="form-control" name="weigth" style="width: 100%;"></td>
+                                            <td>BP: <input type="text" class="form-control" name="bp" style="width: 100%;"></td>
+                                            <td>TEMP: <input type="text" class="form-control" name="temp" style="width: 100%;"></td>
                                         </tr>
                                         <tr>
-                                            <td>RR: <input type="number" class="form-control" name="rr" style="width: 100%;"></td>
+                                            <td>RR: <input type="text" class="form-control" name="rr" style="width: 100%;"></td>
                                             <td>Td1: <input type="date" class="form-control" name="td1" style="width: 100%;"></td>
                                             <td>Td2: <input type="date" class="form-control" name="td2" style="width: 100%;"> </td>
                                             <td>Td3: <input type="date" class="form-control" name="td3" style="width: 100%;"> </td>
@@ -173,20 +173,20 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <small class="text-info">BP</small><br>
-                                                        <input type="number" class="form-control"  name="ante_bp" style="width: 100%;">
+                                                        <input type="text" class="form-control"  name="ante_bp" style="width: 100%;">
                                                         <small class="text-info">HR</small><br>
-                                                        <input type="number" class="form-control"  name="ante_hr" style="width: 100%;">
+                                                        <input type="text" class="form-control"  name="ante_hr" style="width: 100%;">
                                                         <small class="text-info">FH</small><br>
-                                                        <input type="number" class="form-control"  name="ante_fh" style="width: 100%;">
+                                                        <input type="text" class="form-control"  name="ante_fh" style="width: 100%;">
                                                     </div>
 
                                                     <div class="col-md-6">
                                                         <small class="text-info">TEMP</small><br>
-                                                         <input type="number" class="form-control"  name="ante_temp" style="width: 100%;">
+                                                         <input type="text" class="form-control"  name="ante_temp" style="width: 100%;">
                                                         <small class="text-info">RR</small><br>
-                                                         <input type="number" class="form-control"  name="ante_rr" style="width: 100%;">
+                                                         <input type="text" class="form-control"  name="ante_rr" style="width: 100%;">
                                                         <small class="text-info">FHT</small><br>
-                                                         <input type="number" class="form-control"  name="ante_fht" style="width: 100%;">
+                                                         <input type="text" class="form-control"  name="ante_fht" style="width: 100%;">
                                                     </div>
                                                 </div>
                                                 
@@ -321,20 +321,20 @@
                                                                             <div class="row">
                                                                                 <div class="col-md-6">
                                                                                     <small class="text-info">BP</small><br>
-                                                                                    <input type="number" class="form-control"  name="sign_bp" style="width: 100%;">
+                                                                                    <input type="text" class="form-control"  name="sign_bp" style="width: 100%;">
                                                                                     <small class="text-info">HR</small><br>
-                                                                                    <input type="number" class="form-control"  name="sign_hr" style="width: 100%;">
+                                                                                    <input type="text" class="form-control"  name="sign_hr" style="width: 100%;">
                                                                                     <small class="text-info">FH</small><br>
-                                                                                    <input type="number" class="form-control"  name="sign_fh" style="width: 100%;">
+                                                                                    <input type="text" class="form-control"  name="sign_fh" style="width: 100%;">
                                                                                 </div>
 
                                                                                 <div class="col-md-6">
                                                                                     <small class="text-info">TEMP</small><br>
-                                                                                    <input type="number" class="form-control"  name="sign_temp" style="width: 100%;">
+                                                                                    <input type="text" class="form-control"  name="sign_temp" style="width: 100%;">
                                                                                     <small class="text-info">RR</small><br>
-                                                                                    <input type="number" class="form-control"  name="sign_rr" style="width: 100%;">
+                                                                                    <input type="text" class="form-control"  name="sign_rr" style="width: 100%;">
                                                                                     <small class="text-info">FHT</small><br>
-                                                                                    <input type="number" class="form-control"  name="sign_fht" style="width: 100%;">
+                                                                                    <input type="text" class="form-control"  name="sign_fht" style="width: 100%;">
                                                                                 </div>
                                                                             </div>
                                                                             
@@ -494,20 +494,20 @@
                                                                             <div class="row">
                                                                                 <div class="col-md-6">
                                                                                     <small class="text-info">BP</small><br>
-                                                                                    <input type="number" class="form-control prev_bp"  style="width: 100%;" disabled>
+                                                                                    <input type="text" class="form-control prev_bp"  style="width: 100%;" disabled>
                                                                                     <small class="text-info">HR</small><br>
-                                                                                    <input type="number" class="form-control prev_hr"  style="width: 100%;" disabled>
+                                                                                    <input type="text" class="form-control prev_hr"  style="width: 100%;" disabled>
                                                                                     <small class="text-info">FH</small><br>
-                                                                                    <input type="number" class="form-control prev_fh"  style="width: 100%;" disabled>
+                                                                                    <input type="text" class="form-control prev_fh"  style="width: 100%;" disabled>
                                                                                 </div>
 
                                                                                 <div class="col-md-6">
                                                                                     <small class="text-info">TEMP</small><br>
-                                                                                    <input type="number" class="form-control prev_temp"  style="width: 100%;" disabled>
+                                                                                    <input type="text" class="form-control prev_temp"  style="width: 100%;" disabled>
                                                                                     <small class="text-info">RR</small><br>
-                                                                                    <input type="number" class="form-control prev_rr"  style="width: 100%;" disabled>
+                                                                                    <input type="text" class="form-control prev_rr"  style="width: 100%;" disabled>
                                                                                     <small class="text-info">FHT</small><br>
-                                                                                    <input type="number" class="form-control prev_fht"  style="width: 100%;" disabled>
+                                                                                    <input type="text" class="form-control prev_fht"  style="width: 100%;" disabled>
                                                                                 </div>
                                                                             </div>
                                                                             
@@ -821,7 +821,7 @@
                                     </table>
                             </div> -->
 
-                            <div id="menu5" class="tab-pane fade">
+                            <!-- <div id="menu5" class="tab-pane fade">
                                     <table class="table table-striped">
 
                                         <tr>
@@ -870,9 +870,9 @@
                                                 ->get();
                                             ?>      
                                                 <label> Final Diagnosis with ICD 10 code:   </label>   
-                                                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
-                                                    <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
-                                                    <select name="final_diagnosis[]" id="choices-multiple-remove-button" class="form-control" style="width: 100%" required multiple>
+                                                 
+                                                
+                                                    <select name="final_diagnosis[]" id="choices-multiple-remove-button" class="form-control" style="width: 10%" required multiple>
                                                         @foreach($data as $dataa)
                                                             <option defaultValue="{{ $dataa->id }}">{{ $dataa->diagcode }} {{ $dataa->diagdesc}}</option>
                                                         @endforeach
@@ -881,7 +881,7 @@
                                         </tr>
         
                                     </table>
-                            </div>
+                            </div> -->
 
                         </div>
                         

@@ -180,8 +180,14 @@ $user = Session::get('auth');
                             <a href="javascript:void(0)" class="bs-wizard-dot" data-toggle="tooltip" data-placement="top" title=" @if($step==4.5) Didn't Arrive @elseif($step==4.6) Dead on Arrival @else Arrived @endif" @if($step==4.6 || $step ==4.5) style="background-color:#a94442;" @endif></a>
                         </div>
 
-                        <div class="col-xs-2 bs-wizard-step @if($step==5) active @elseif($step>=5) complete @else disabled @endif"><!-- complete -->
-                            <div class="text-center bs-wizard-stepnum">Admitted</div>
+                        <div class="col-xs-2 bs-wizard-step @if($step==5 || $step==5.1 ) active @elseif($step>=5) complete @else disabled @endif"><!-- complete -->
+                            <div class="text-center bs-wizard-stepnum">
+                                @if($step==5.1)
+                                    Monitored as OPD
+                                @else
+                                    Admitted
+                                @endif
+                                </div>
                             <div class="progress"><div class="progress-bar"></div></div>
                             <a href="javascript:void(0)" class="bs-wizard-dot" data-toggle="tooltip" data-placement="top" title="Admitted"></a>
                         </div>
@@ -339,6 +345,14 @@ $user = Session::get('auth');
                                             <td>{{ date('M d, Y h:i A',strtotime($act->date_referred)) }}</td>
                                             <td>
                                                 <span class="txtPatient">{{ $act_name->fname }} {{ $act_name->mname }} {{ $act_name->lname }}</span> admitted at <span class="txtHospital">{{ $new_facility }}</span>.
+                                                <span class="remarks">Remarks: {{ $act->remarks }}</span>
+                                            </td>
+                                        </tr>
+                                    @elseif($act->status=='monitored')
+                                        <tr @if($first==1) class="toggle toggle{{ $row->id }}" @endif>
+                                            <td>{{ date('M d, Y h:i A',strtotime($act->date_referred)) }}</td>
+                                            <td>
+                                                <span class="txtPatient">{{ $act_name->fname }} {{ $act_name->mname }} {{ $act_name->lname }}</span> monitored as OPD at <span class="txtHospital">{{ $new_facility }}</span>.
                                                 <span class="remarks">Remarks: {{ $act->remarks }}</span>
                                             </td>
                                         </tr>

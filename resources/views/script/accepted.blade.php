@@ -7,13 +7,14 @@
     var transferRef = dbRef.ref('Transfer');
     var referred_name = '';
     //initializes variables
-    var current_facility, code, patient_name, track_id, form_type;
+    var current_facility, code, patient_name, track_id, form_type,unique_id;
     current_facility = "{{ \App\Facility::find($user->facility_id)->name }}";
 
     $('body').on('click','.btn-action',function(){
         code = $(this).data('code');
         patient_name = $(this).data('patient_name');
         track_id = $(this).data('track_id');
+        unique_id = $(this).data('unique_id');
     });
 
     $('#deadForm').on('submit',function(e){
@@ -118,6 +119,39 @@
         });
     });
 
+
+    $('#MonOPDForm').on('submit',function(e){
+        $('.loading').show();
+        e.preventDefault();
+        $(this).ajaxSubmit({
+            url: "{{ url('doctor/referral/monitored/opd') }}/" + track_id,
+            type: 'POST',
+            success: function(date){
+                $('.activity_'+code).html('MONITORED AS OPD');
+                var arrive_data = {
+                    code: code,
+                    patient_name: patient_name,
+                    track_id: track_id,
+                    date: date,
+                    current_facility: current_facility
+                };
+                    monitorRef.push(arrive_data);
+                    monitorRef.on('child_added',function(data){
+                    setTimeout(function(){
+                        monitorRef.child(data.key).remove();
+                        var msg = 'Patient monitored as OPD to your facility';
+                        $('.info').removeClass('hide').find('.message').html(msg);
+                        $('#admitModal').modal('hide');
+                        window.location.reload(true);
+                    },500);
+                });
+            },
+            error: function(){
+                $('#serverModal').modal();
+            }
+        });
+    });
+
     $('#admitForm').on('submit',function(e){
         $('.loading').show();
         e.preventDefault();
@@ -149,6 +183,41 @@
             }
         });
     });
+
+
+    $('#dischargeForm2').on('submit',function(e){
+        $('.loading').show();
+        e.preventDefault();
+        var remarks = $(this).find('.remarks').val();
+        $(this).ajaxSubmit({
+            url: "{{ url('doctor/referral/discharge/') }}/" + track_id + "/" + unique_id,
+            type: 'POST',
+            success: function(date){
+                var msg = 'Patient admitted to your facility';
+                $('.info').removeClass('hide').find('.message').html(msg);
+                $('.activity_'+code).html('DISCHARGED');
+                var arrive_data = {
+                    code: code,
+                    patient_name: patient_name,
+                    track_id: track_id,
+                    date: date,
+                    current_facility: current_facility,
+                    remarks: remarks
+                };
+                dischargetRef.push(arrive_data);
+                dischargetRef.on('child_added',function(data){
+                    setTimeout(function(){
+                        dischargetRef.child(data.key).remove();
+                        window.location.reload(false);
+                    },500);
+                });
+            },
+            error: function(){
+                $('#serverModal').modal();
+            }
+        });
+    });
+
 
 
     $('#dischargeForm').on('submit',function(e){

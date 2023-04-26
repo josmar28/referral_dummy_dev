@@ -25,6 +25,7 @@
     <link href="{{ asset('resources/assets/fontawesome/css/fontawesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('resources/assets/fontawesome/css/brands.css') }}" rel="stylesheet">
     <link href="{{ asset('resources/assets/fontawesome/css/solid.css') }}" rel="stylesheet">
+    <link href="{{ asset('resources/assets/fontawesome/css/all.css') }}" rel="stylesheet">
     <link href="{{ asset('resources/assets/css/font-awesome.min.css') }}" rel="stylesheet">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="{{ asset('resources/assets/css/ie10-viewport-bug-workaround.css') }}" rel="stylesheet">
@@ -32,7 +33,8 @@
     <link href="{{ asset('resources/assets/css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('resources/assets/css/AdminLTE.min.css') }}">
     <!-- bootstrap datepicker -->
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+    
     <link href="{{ asset('resources/plugin/datepicker/datepicker3.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('resources/plugin/Lobibox/lobibox.css') }}">
     <!-- bootstrap wysihtml5 - text editor -->
@@ -556,6 +558,7 @@
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
+<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="{{ asset('resources/assets/js/jquery.min.js?v='.date('mdHis')) }}"></script>
 <!-- jQuery UI 1.11.4 -->

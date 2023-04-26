@@ -57,17 +57,84 @@
         diff  = new Date(end - start),
         days  = diff/1000/60/60/24;
         weeks = days / 7;
+
+        n = weeks.toFixed(1);
+        whole = Math.floor(n);      // 1
+        fraction = n - whole; // .25
+
         if(weeks.toFixed(1) > 1)
         {
-            $('.new_aog').val(weeks.toFixed(1)+ " " + "weeks");
+            var gcd = function(a, b) {
+            if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
+
+            return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
+            };
+
+            var fraction = fraction.toFixed(1);
+            var len = fraction.toString().length - 2;
+
+            var denominator = Math.pow(10, len);
+            var numerator = fraction * denominator;
+
+            var divisor = gcd(numerator, denominator);    // Should be 5
+
+            numerator /= divisor;                         // Should be 687
+            denominator /= divisor;                       // Should be 2000
+
+            // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
+
+
+            $('.new_aog').val( whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator)+ " " + "weeks");
             $('.new_aog').change();
         }
-        else{
-            $('.new_aog').val(weeks.toFixed(1)+ " " + "week");
+        else
+        {
+            var gcd = function(a, b) {
+            if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
+
+            return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
+            };
+
+            var fraction = fraction.toFixed(1);
+            var len = fraction.toString().length - 2;
+
+            var denominator = Math.pow(10, len);
+            var numerator = fraction * denominator;
+
+            var divisor = gcd(numerator, denominator);    // Should be 5
+
+            numerator /= divisor;                         // Should be 687
+            denominator /= divisor;                       // Should be 2000
+
+            // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
+
+            $('.new_aog').val(whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator)+ " " + "week");
             $('.new_aog').change();
         }
 
     });
+
+    function NumberBreakdown($number, $returnUnsigned = false)
+    {
+        $negative = 1;
+        if ($number < 0)
+        {
+            $negative = -1;
+            $number *= -1;
+        }
+
+        if ($returnUnsigned){
+            return array(
+                Math.floor($number),
+            ($number - floor($number))
+            );
+        }
+
+        return array(
+            Math.floor($number) * $negative,
+            ($number - floor($number)) * $negative
+        );
+    }
 
     function dateRange(startDate, endDate) {
         var start      = startDate.split('-');

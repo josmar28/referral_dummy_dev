@@ -233,7 +233,7 @@ Route::get('support/chat/sample','support\ChatCtrl@sample');
 Route::get('doctor','doctor\HomeCtrl@index');
 
 Route::get('doctor/referral','doctor\ReferralCtrl@index');
-
+Route::post('doctor/referral/monitored/opd/{track_id}','doctor\ReferralCtrl@monitored');//if patient is monitored as OPD
 Route::get('doctor/referral/seen/{track_id}','doctor\ReferralCtrl@seen');//if the form is seen
 Route::get('doctor/referral/seenBy/{track_id}','doctor\ReferralCtrl@seenBy');//if the form is seen
 Route::get('doctor/referral/seenBy/list/{track_id}','doctor\ReferralCtrl@seenByList');//if the form is seen
@@ -247,6 +247,7 @@ Route::post('doctor/referral/arrive/{track_id}','doctor\ReferralCtrl@arrive');//
 Route::post('doctor/referral/archive/{track_id}','doctor\ReferralCtrl@archive');//if patient is archived
 Route::post('doctor/referral/admit/{track_id}','doctor\ReferralCtrl@admit');//if patient is admitted
 Route::post('doctor/referral/discharge/{track_id}','doctor\ReferralCtrl@discharge');//if patient is discharge
+Route::post('doctor/referral/discharge/{track_id}/{unique_id}','doctor\ReferralCtrl@discharge2');//if patient pregnant is discharge
 Route::post('doctor/referral/transfer/{track_id}','doctor\ReferralCtrl@transfer');//if patient is discharge
 Route::post('doctor/referral/redirect/{activity_id}','doctor\ReferralCtrl@redirect');//if patient is discharge
 
