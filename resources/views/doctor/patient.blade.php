@@ -115,7 +115,7 @@
                                     <a href="#pregnantModal"
                                        data-patient_id = "{{ $row->id }}"
                                        data-toggle="modal"
-                                       class="btn btn-primary btn-xs profile_info hide">
+                                       class="btn btn-primary btn-xs profile_info hide btn_refer_preg">
                                         <i class="fa fa-stethoscope"></i>
                                         Refer
                                     </a>
@@ -144,7 +144,7 @@
                                         Walk-In
                                     </a>
                                 @endif
-                                   <a href="#vital_modal"
+                                   <!-- <a href="#vital_modal"
                                       onclick="VitalBody('<?php echo $row->id ?>')"
                                        data-patient_id = "{{ $row->id }}"
                                        data-backdrop="static"
@@ -152,7 +152,7 @@
                                        class="btn btn-success btn-xs vital_info hide">
                                         <i class="fa fa-plus"></i>
                                         V.S / P.E
-                                    </a>
+                                    </a> -->
                             </td>
                         </tr>
                         @endforeach
@@ -188,8 +188,6 @@
 @include('script.firebase')
 @include('script.datetime')
 @include('script.patient_script')
-@include('script.pregnant_check')
-@include('script.sign_symptoms')
 @include('script.pregnant_modal')
 @endsection
 

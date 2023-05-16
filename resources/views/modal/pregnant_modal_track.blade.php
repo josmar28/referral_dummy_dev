@@ -10,7 +10,7 @@
 <div class="modal fade" role="dialog" id="pregnantFormModalTrack">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
-            <form method="POST" class="form-submit" action="{{ url('doctor/patient/refer/pregnant') }}" >
+            <form method="POST" class="form-submit" action="{{ url('doctor/patient/refer/pregnant') }}" id="pregnant_form">
             <div class="jim-content">
                 @include('include.header_form')
                 <div class="title-form">Risk Assessment Check list for Pregnant Women</div>
@@ -123,19 +123,19 @@
                                             <td>Parity: <input type="text" class="form-control" name="parity" style="width: 100%;"> </td>
                                             <td>FTPAL: <input type="text" class="form-control" name="ftpal" style="width: 100%;"> </td>
                                             <td>BMI: <input type="text"class="form-control" name="bmi" style="width: 100%;"> </td>
-                                            <td>Fundic Height: <input type="text" class="form-control" name="fundic_height" style="width: 100%;"> </td>
-                                            <td>HR: <input type="text" class="form-control" name="hr" style="width: 100%;"></td>
+                                            <td>Fundic Height: <input type="text" class="form-control fh_personnal" name="fundic_height" style="width: 100%;"> </td>
+                                            <td>HR: <input type="text" class="form-control hr_personnal" name="hr" style="width: 100%;"></td>
                                         </tr>
                                         <tr>
                                             <td>LMP: <input type="date" class="form-control lmp_date" name="lmp" style="width: 100%;">  </td>
                                             <td>EDC/EDD: <input type="date" id="edc_edd" class="form-control" name="edc_edd" style="width: 100%;" readonly> </td>
-                                            <td>Height: <input type="text" class="form-control" name="height" style="width: 100%;"> </td>
-                                            <td>Weigth: <input type="text" class="form-control" name="weigth" style="width: 100%;"></td>
-                                            <td>BP: <input type="text" class="form-control" name="bp" style="width: 100%;"></td>
-                                            <td>TEMP: <input type="text" class="form-control" name="temp" style="width: 100%;"></td>
+                                            <td>Height (m): <input type="text" class="form-control" name="height" style="width: 100%;"> </td>
+                                            <td>Weigth (kg): <input type="text" class="form-control" name="weigth" style="width: 100%;"></td>
+                                            <td>BP: <input type="text" class="form-control bp_personnal" name="bp" style="width: 100%;"></td>
+                                            <td>TEMP: <input type="text" class="form-control temp_personnal" name="temp" style="width: 100%;"></td>
                                         </tr>
                                         <tr>
-                                            <td>RR: <input type="text" class="form-control" name="rr" style="width: 100%;"></td>
+                                            <td>RR: <input type="text" class="form-control rr_personnal" name="rr" style="width: 100%;"></td>
                                             <td>Td1: <input type="date" class="form-control" name="td1" style="width: 100%;"></td>
                                             <td>Td2: <input type="date" class="form-control" name="td2" style="width: 100%;"> </td>
                                             <td>Td3: <input type="date" class="form-control" name="td3" style="width: 100%;"> </td>
@@ -173,18 +173,18 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <small class="text-info">BP</small><br>
-                                                        <input type="text" class="form-control"  name="ante_bp" style="width: 100%;">
+                                                        <input type="text" class="form-control bp_antepartum"  name="ante_bp" style="width: 100%;">
                                                         <small class="text-info">HR</small><br>
-                                                        <input type="text" class="form-control"  name="ante_hr" style="width: 100%;">
+                                                        <input type="text" class="form-control hr_antepartum"  name="ante_hr" style="width: 100%;">
                                                         <small class="text-info">FH</small><br>
-                                                        <input type="text" class="form-control"  name="ante_fh" style="width: 100%;">
+                                                        <input type="text" class="form-control fh_antepartum"  name="ante_fh" style="width: 100%;">
                                                     </div>
 
                                                     <div class="col-md-6">
                                                         <small class="text-info">TEMP</small><br>
-                                                         <input type="text" class="form-control"  name="ante_temp" style="width: 100%;">
+                                                         <input type="text" class="form-control temp_antepartum"  name="ante_temp" style="width: 100%;">
                                                         <small class="text-info">RR</small><br>
-                                                         <input type="text" class="form-control"  name="ante_rr" style="width: 100%;">
+                                                         <input type="text" class="form-control rr_antepartum"  name="ante_rr" style="width: 100%;">
                                                         <small class="text-info">FHT</small><br>
                                                          <input type="text" class="form-control"  name="ante_fht" style="width: 100%;">
                                                     </div>
@@ -261,7 +261,7 @@
                                                                     <th> 
                                                                         <span> 
                                                                             <select style="width:50px;" class="new_trimester" name="no_trimester" required readonly>
-                                                                            <option styple="width:150px;" value="">...</option>
+                                                                            <option style="width:150px;" value="">...</option>
                                                                             <option value="1st">1st</option>
                                                                             <option value="2nd">2nd</option>
                                                                             <option value="3rd">3rd</option>
@@ -273,8 +273,8 @@
                                                                     <td> 
                                                                         <span> 
                                                                             <select style="width:50px;" name="no_visit" class="new_visit_no" required>
-                                                                            <option styple="width:150px;" value="">...</option>
-                                                                            <option value="1st">1st</option>
+                                                                            <option style="width:150px;" value="" selected>...</option>
+                                                                            <option value="1st" >1st</option>
                                                                             <option value="2nd">2nd</option>
                                                                             <option value="3rd">3rd</option>
                                                                             <option value="4th">4th</option>
@@ -294,7 +294,7 @@
                                                                     <td> <b>Remarks</b></td>
                                                                 </tr>
                                                                 <tr class="sign_symthoms_table_box">
-                                                                    <td ><input type="checkbox" name="vaginal_spotting" value="yes" stlye="float:left">Vaginal spotting or bleeding</td>
+                                                                    <td ><input type="checkbox" class="vaginal_spotting" name="vaginal_spotting" value="yes" stlye="float:left">Vaginal spotting or bleeding</td>
                                                                     <td rowspan="13">
                                                                         <center>
                                                                             <div class="row">
@@ -321,96 +321,96 @@
                                                                             <div class="row">
                                                                                 <div class="col-md-6">
                                                                                     <small class="text-info">BP</small><br>
-                                                                                    <input type="text" class="form-control"  name="sign_bp" style="width: 100%;">
+                                                                                    <input type="text" class="form-control bp_signsymptoms"  name="sign_bp" style="width: 100%;">
                                                                                     <small class="text-info">HR</small><br>
-                                                                                    <input type="text" class="form-control"  name="sign_hr" style="width: 100%;">
+                                                                                    <input type="text" class="form-control hr_signsymptoms"  name="sign_hr" style="width: 100%;">
                                                                                     <small class="text-info">FH</small><br>
-                                                                                    <input type="text" class="form-control"  name="sign_fh" style="width: 100%;">
+                                                                                    <input type="text" class="form-control fh_signsymptoms"  name="sign_fh" style="width: 100%;">
                                                                                 </div>
 
                                                                                 <div class="col-md-6">
                                                                                     <small class="text-info">TEMP</small><br>
-                                                                                    <input type="text" class="form-control"  name="sign_temp" style="width: 100%;">
+                                                                                    <input type="text" class="form-control temp_signsymptoms"  name="sign_temp" style="width: 100%;">
                                                                                     <small class="text-info">RR</small><br>
-                                                                                    <input type="text" class="form-control"  name="sign_rr" style="width: 100%;">
+                                                                                    <input type="text" class="form-control rr_signsymptoms"  name="sign_rr" style="width: 100%;">
                                                                                     <small class="text-info">FHT</small><br>
-                                                                                    <input type="text" class="form-control"  name="sign_fht" style="width: 100%;">
+                                                                                    <input type="text" class="form-control fht_signsymptoms"  name="sign_fht" style="width: 100%;">
                                                                                 </div>
                                                                             </div>
                                                                             
                                                                             <div class="row">
                                                                                 <div class="col-md-12">
                                                                                     <small class="text-info">Other Physical Examination</small><br>
-                                                                                <textarea class="form-control" name="sign_other_physical_exam" style="resize: none;width: 100%;"> </textarea>
+                                                                                <textarea class="form-control sign_other_physical_exam" id="sign_other_physical_exam" name="sign_other_physical_exam" style="resize: none;width: 100%;"></textarea>
                                                                                 </div>
                                                                             </div> 
 
                                                                             <div class="row">
                                                                                 <div class="col-md-12">
                                                                                     <small class="text-info">Assessment/Diagnosis</small><br>
-                                                                                <textarea class="form-control" name="sign_assessment_diagnosis" style="resize: none;width: 100%;"> </textarea>
+                                                                                <textarea class="form-control sign_assessment_diagnosis" id="sign_assessment_diagnosis" name="sign_assessment_diagnosis" style="resize: none;width: 100%;"></textarea>
                                                                                 </div>
                                                                             </div> 
 
                                                                             <div class="row">
                                                                                 <div class="col-md-12">
                                                                                     <small class="text-info">Plan/Intervention</small><br>
-                                                                                <textarea class="form-control" name="sign_plan_intervention" style="resize: none;width: 100%;"> </textarea>
+                                                                                <textarea class="form-control" name="sign_plan_intervention" style="resize: none;width: 100%;"></textarea>
                                                                                 </div>
                                                                             </div> 
                                                                         </center>
                                                                     </td>
                                                                 </tr>
                                                                 <tr class="sign_symthoms_table_box">
-                                                                    <td ><input type="checkbox" value="yes" name="severe_nausea" stlye="float:left">Severe nausea and vomiting </td>
+                                                                    <td><input type="checkbox" class="severe_nausea" value="yes" name="severe_nausea" stlye="float:left">Severe nausea and vomiting </td>
                                                                    
                                                                 </tr>
                                                                 <tr class="sign_symthoms_table_box">
-                                                                    <td ><input type="checkbox" value="yes" name="significant_decline" stlye="float:left">Significant decline fetal movement (less than 10 in 12 hrs during 2 ½ of pregnancy) </td>
+                                                                    <td ><input type="checkbox" class="significant_decline" value="yes" name="significant_decline" stlye="float:left">Significant decline fetal movement (less than 10 in 12 hrs during 2 ½ of pregnancy) </td>
                                                                  
                                                                 </tr>
                                                                 <tr class="sign_symthoms_table_box">
-                                                                    <td ><input type="checkbox" value="yes" name="persistent_contractions" stlye="float:left">Persistent contractions</td>
+                                                                    <td ><input type="checkbox" class="persistent_contractions" value="yes" name="persistent_contractions" stlye="float:left">Persistent contractions</td>
                                                                  
                                                                 </tr>
                                                                 <tr class="sign_symthoms_table_box">
-                                                                    <td ><input type="checkbox" value="yes" name="premature_rupture" stlye="float:left">Premature rupture of the bag of membrane </td>
+                                                                    <td ><input type="checkbox" class="premature_rupture" value="yes" name="premature_rupture" stlye="float:left">Premature rupture of the bag of membrane </td>
                                                                  
                                                                 </tr>
                                                                 <tr class="sign_symthoms_table_box">
-                                                                    <td ><input type="checkbox" value="yes" name="fetal_pregnancy" stlye="float:left">Multi fetal pregnancy </td>
+                                                                    <td ><input type="checkbox" class="fetal_pregnancy" value="yes" name="fetal_pregnancy" stlye="float:left">Multi fetal pregnancy </td>
                                                                   
                                                                 </tr>
                                                                 <tr class="sign_symthoms_table_box">
-                                                                    <td ><input type="checkbox" value="yes" name="severe_headache" stlye="float:left">Persistent severe headache, dizziness, or blurring of vision </td>
+                                                                    <td ><input type="checkbox" class="severe_headache" value="yes" name="severe_headache" stlye="float:left">Persistent severe headache, dizziness, or blurring of vision </td>
                                                                     
                                                                 </tr>
                                                                 <tr class="sign_symthoms_table_box">
-                                                                    <td ><input type="checkbox" value="yes" name="abdominal_pain" stlye="float:left">Abdominal pain or epigastric pain </td>
+                                                                    <td ><input type="checkbox" class="abdominal_pain" value="yes" name="abdominal_pain" stlye="float:left">Abdominal pain or epigastric pain </td>
                                                                 
                                                                 </tr>
                                                                 <tr class="sign_symthoms_table_box">
-                                                                    <td ><input type="checkbox" value="yes" name="edema_hands" stlye="float:left">Edema of the hands, feet or face </td>
+                                                                    <td ><input type="checkbox" class="edema_hands" value="yes" name="edema_hands" stlye="float:left">Edema of the hands, feet or face </td>
                                                                   
                                                                 </tr>
                                                                 <tr class="sign_symthoms_table_box"> 
-                                                                    <td ><input type="checkbox" value="yes" name="fever_pallor" stlye="float:left">Fever or pallor </td>
+                                                                    <td ><input type="checkbox" class="fever_pallor" value="yes" name="fever_pallor" stlye="float:left">Fever or pallor </td>
                                                                    
                                                                 </tr>
                                                                 <tr class="sign_symthoms_table_box">
-                                                                    <td ><input type="checkbox" value="yes" name="seizure_consciousness" stlye="float:left">Seizure or loss of consciousness </td>
+                                                                    <td ><input type="checkbox" class="seizure_consciousness" value="yes" name="seizure_consciousness" stlye="float:left">Seizure or loss of consciousness </td>
                                                                    
                                                                 </tr>
                                                                 <tr class="sign_symthoms_table_box">
-                                                                    <td ><input type="checkbox" value="yes" name="difficulty_breathing" stlye="float:left">Difficulty of breathing </td>
+                                                                    <td ><input type="checkbox" class="difficulty_breathing" value="yes" name="difficulty_breathing" stlye="float:left">Difficulty of breathing </td>
                                                                    
                                                                 </tr>
                                                                 <tr class="sign_symthoms_table_box">
-                                                                    <td ><input type="checkbox" value="yes" name="painful_urination" stlye="float:left">Painful urination </td>
+                                                                    <td ><input type="checkbox" class="painful_urination" value="yes" name="painful_urination" stlye="float:left">Painful urination </td>
                                                                    
                                                                 </tr>
                                                                 <tr class="sign_symthoms_table_box">
-                                                                    <td ><input type="checkbox" value="yes" name="elevated_bp" stlye="float:left">Elevated blood pressure ≥ 120/90 </td>
+                                                                    <td ><input type="checkbox" class="elevated_bp" value="yes" name="elevated_bp" stlye="float:left">Elevated blood pressure ≥ 120/90 </td>
                                                                     
                                                                 </tr>
                                                         </table>
@@ -902,3 +902,4 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+@include('script.pregnant_modal')

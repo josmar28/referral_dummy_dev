@@ -74,7 +74,8 @@ $user = Session::get('auth');
                         'fac_rejected.name as fac_rejected',
                         'referring_md as referring_md_id',
                         'u.id as user_id',
-                        'activity.action_md as act_md_id'
+                        'activity.action_md as act_md_id',
+                        'code'
                     )
                     ->where('activity.code',$row->code)
                     ->where('activity.id','>=',function($q) use($row,$user){
@@ -357,6 +358,7 @@ $user = Session::get('auth');
                                             </td>
                                         </tr>
                                     @elseif($act->status=='discharged')
+                                        @if($type == 'normal')
                                         <tr @if($first==1) class="toggle toggle{{ $row->id }}" @endif>
                                             <td>{{ date('M d, Y h:i A',strtotime($act->date_referred)) }}</td>
                                             <td>
@@ -371,6 +373,28 @@ $user = Session::get('auth');
                                                 @endif
                                             </td>
                                         </tr>
+                                        @else
+                                            <?php
+                                                $preg = \App\PregOutcome::select('*')
+                                                ->where('preg_outcome.code',$act->code)
+                                                ->first();
+                                            ?>
+                                             <tr @if($first==1) class="toggle toggle{{ $row->id }}" @endif>
+                                            <td>{{ date('M d, Y h:i A',strtotime($act->date_referred)) }}</td>
+                                            <td>
+                                                <span class="txtPatient">{{ $act_name->fname }} {{ $act_name->mname }} {{ $act_name->lname }}</span> discharged from <span class="txtHospital">{{ $new_facility }}</span>.
+                                                <span class="remarks">Discharge Instruction: {{ $preg->discharge_instruction }}</span>
+                                                <span class="remarks">Discharge Diagnosis: {{ $preg->discharge_diagnosis }}</span>
+                                                <?php
+                                                    ($row->type=='normal') ? $covid_discharge = \App\PatientForm::where("code",$act->code)->first() : $covid_discharge = \App\PregnantForm::where("code",$act->code)->first();
+                                                ?>
+                                                @if($covid_discharge->dis_clinical_status or $covid_discharge->dis_sur_category)
+                                                <span class="remarks">Clinical Status: <b>{{ ucfirst($covid_discharge->dis_clinical_status) }}</b></span>
+                                                <span class="remarks">Surveillance Category: <b>{{ ucfirst($covid_discharge->dis_sur_category) }}</b></span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @endif
                                     @elseif($act->status=='archived')
                                         <tr @if($first==1) class="toggle toggle{{ $row->id }}" @endif>
                                             <td>{{ date('M d, Y h:i A',strtotime($act->date_referred)) }}</td>

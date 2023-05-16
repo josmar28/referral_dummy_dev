@@ -174,6 +174,19 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                                                             data-code="{{ $row->code}}">
                                                             <i class="fas fa-search-location"></i>
                                                     </button>
+
+                                                    <button class="btn btn-sm btn-success btn-action patient_return"
+                                                            title="Patient Return"
+                                                            data-toggle="modal"
+                                                            data-toggle="tooltip"
+                                                            data-target="#patientReturnModal"
+                                                            data-track_id="{{ $row->id }}" 
+                                                            data-unique_id = "{{ $row->unique_id }}"
+                                                            data-patient_id = "{{ $row->patient_id }}"
+                                                            data-patient_name="{{ $row->patient_name }}"
+                                                            data-code="{{ $row->code}}">
+                                                            <i class="fas fa-undo"></i>
+                                                    </button>
                                                 @endif
 
                                                 <button class="btn btn-sm btn-warning btn-action"
@@ -199,6 +212,7 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                                                     <i class="fa fa-ambulance"></i>
                                                 </button>
                                                 <a href="#viewupload_modal"
+                                                    title="Patient Uploads"
                                                     data-toggle="modal"
                                                     data-code="{{$row->code}}"
                                                     data-id = "{{ $row->id }}"
@@ -230,6 +244,10 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                             <tr>
                                 <td class="text-right" width="60px"><button class="btn btn-sm btn-primary"><i class="fa fa-wheelchair"></i></button></td>
                                 <td>Patient Arrived</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" width="60px"><button class="btn btn-sm btn-success"><i class="fas fa-undo"></i></button></td>
+                                <td>Patient Return</td>
                             </tr>
                             <tr>
                                 <td class="text-right" width="60px"><button class="btn btn-sm btn-danger"><i class="fa fa-wheelchair"></i></button></td>
@@ -282,7 +300,6 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
     @include('script.accepted')
     @include('script.feedback')
     @include('script.referred')
-    @include('script.patient_script')
     <script>
         $('#daterange').daterangepicker({
             "opens" : "left"

@@ -215,18 +215,23 @@ function VitalBody(patient_id){
             }
         });
     });
-
+    
+    $("#pregnantFormModalTrack").on("hidden.bs.modal", function () {
+        document.getElementById("pregnant_form").reset();
+    });
    
     $('.profile_info').removeClass('hide');
     $('.vital_info').removeClass('hide');
     $('.profile_info').on('click',function(){
-        patient_id = $(this).data('patient_id');
+    var patient_id = $(this).data('patient_id');
+    var unique_id = $(this).data('unique_id');
+        // console.log(unique_id)
         $.ajax({
             url: "{{ url('doctor/patient/info/') }}/"+patient_id,
             type: "GET",
             success: function(data){
                 var sign = data.sign;
-
+               
                 var data = data.data;
                 patient_id = data.id;
                 name = data.patient_name;
@@ -263,36 +268,108 @@ function VitalBody(patient_id){
                 $('.patient_age').html(age);
                 $('.patient_contact').html(contact);
 
-
-                //preg_prev
-                $(".prev_trimester").val(sign.no_trimester);
-                $(".prev_visit").val(sign.no_visit);
-
-                var visit_no = sign.no_visit.slice(0,-2);
-
-
-                var new_visit_no = visit_no++;
-
-                var j = visit_no % 10,
-                    k = visit_no % 100;
-
-                if (j == 1 && k != 11) {
-                    new_visit_no = visit_no + "st";
-                }
-                if (j == 2 && k != 12) {
-                    new_visit_no = visit_no + "nd";
-                }
-                if (j == 3 && k != 13) {
-                    new_visit_no = visit_no + "rd";
-                }
-                new_visit_no = visit_no + "th";
-
-                $(".new_visit_no").val(new_visit_no);
             
-                $('.prev_date').val(sign.date_of_visit);
-                
-                if(sign !=null)
+                //preg_prev
+                if(sign)
                 {
+                    $(".prev_trimester").val(sign.no_trimester);
+                    $(".prev_visit").val(sign.no_visit);
+                
+                        
+                    // var tri_no = sign.no_trimester.slice(0,-2);
+
+                    // var new_tri_no = ++tri_no;
+                    // var val2 ='';
+                    // var j = visit_no % 10,
+                    //     k = visit_no % 100;
+
+                    // if (j == 1 && k != 11) {
+                    //     new_visit_no = visit_no + "st";
+                    // }
+                    // if (j == 2 && k != 12) {
+                    //     new_visit_no = visit_no + "nd";
+                    // }
+                    // if (j == 3 && k != 13) {
+                    //     new_visit_no = visit_no + "rd";
+                    // }
+                    // else
+                    // {
+                    //     new_visit_no = visit_no + "th";
+                    // }
+                    //     var a = new_tri_no % 10,
+                    //     b = new_tri_no % 100;
+
+                    //     if (a == 1 && b != 11) {
+                    //         val2 = new_tri_no + "st";
+                    //     } else if (a == 2 && b != 12) {
+                    //         val2 = new_tri_no + "nd";
+                    //     } else if (a == 3 && b != 13) {
+                    //         val2 = new_tri_no + "rd";
+                    //     } else {
+                    //         val2 = new_tri_no + "th";
+                    //     }
+
+                    //     $(".new_trimester").val(val2);
+                    
+                
+
+                    // var visit_no = sign.no_visit.slice(0,-2);
+
+                    // var new_visit_no = ++visit_no;
+                    // var val ='';
+                    // var j = visit_no % 10,
+                    //     k = visit_no % 100;
+
+                    // if (j == 1 && k != 11) {
+                    //     new_visit_no = visit_no + "st";
+                    // }
+                    // if (j == 2 && k != 12) {
+                    //     new_visit_no = visit_no + "nd";
+                    // }
+                    // if (j == 3 && k != 13) {
+                    //     new_visit_no = visit_no + "rd";
+                    // }
+                    // else
+                    // {
+                    //     new_visit_no = visit_no + "th";
+                    // }
+
+                        // var a = new_visit_no % 10,
+                        // b = new_visit_no % 100;
+
+                        // if (a == 1 && b != 11) {
+                        //     val = new_visit_no + "st";
+                        // } else if (a == 2 && b != 12) {
+                        //     val = new_visit_no + "nd";
+                        // } else if (a == 3 && b != 13) {
+                        //     val = new_visit_no + "rd";
+                        // } else {
+                        //     val = new_visit_no + "th";
+                        // }
+                
+
+                    $(".new_visit_no").val("1st");
+                    
+                
+                    $('.prev_date').val(sign.date_of_visit);
+
+                    $('.prev_subjective').val(sign.subjective); 
+
+                    $('.prev_aog').val(sign.aog);
+
+                    $('.prev_bp').val(sign.bp);
+                    $('.prev_hr').val(sign.hr);
+                    $('.prev_fh').val(sign.fh);
+
+                    $('.prev_temp').val(sign.temp);
+                    $('.prev_rr').val(sign.rr);
+                    $('.prev_fht').val(sign.fht);
+
+                    $('.prev_other_exam').val(sign.other_physical_exam);
+                    $('.prev_assestment_diagnosis').val(sign.assessment_diagnosis);
+                    $('.prev_plan_intervention').val(sign.plan_intervention);
+
+
                     if(sign.vaginal_spotting == 'yes')
                     {
                         $('.prev_viganal_bleeding').prop('checked', true);
@@ -358,23 +435,63 @@ function VitalBody(patient_id){
                         $('.prev_elevated_bp').prop('checked', true);
                     }
                 }
+                else{
+                        val = "1" + "st";
+                        $(".new_visit_no").val(val);
+                    }
+                
+                    if( $( ".new_visit_no" ).val() == "1st" )
+                    {
+                        $(".bp_personnal").keyup(function(){
+                            $(".bp_antepartum").val(this.value);
+                        });
 
-                $('.prev_subjective').val(sign.subjective); 
+                        $(".temp_personnal").keyup(function(){
+                            $(".temp_antepartum").val(this.value);
+                        });
 
-                $('.prev_aog').val(sign.aog);
+                        $(".hr_personnal").keyup(function(){
+                            $(".hr_antepartum").val(this.value);
+                        });
 
-                $('.prev_bp').val(sign.bp);
-                $('.prev_hr').val(sign.hr);
-                $('.prev_fh').val(sign.fh);
+                        $(".rr_personnal").keyup(function(){
+                            $(".rr_antepartum").val(this.value);
+                        });
 
-                $('.prev_temp').val(sign.temp);
-                $('.prev_rr').val(sign.rr);
-                $('.prev_fht').val(sign.fht);
+                        $(".fh_personnal").keyup(function(){
+                            $(".fh_antepartum").val(this.value);
+                        });
+                    //3rd tab
+                        $(".bp_personnal").keyup(function(){
+                            $(".bp_signsymptoms").val(this.value);
+                        });
 
-                $('.prev_other_exam').val(sign.other_physical_exam);
-                $('.prev_assestment_diagnosis').val(sign.assessment_diagnosis);
-                $('.prev_plan_intervention').val(sign.plan_intervention);
+                        $(".temp_personnal").keyup(function(){
+                            $(".temp_signsymptoms").val(this.value);
+                        });
 
+                        $(".hr_personnal").keyup(function(){
+                            $(".hr_signsymptoms").val(this.value);
+                        });
+
+                        $(".rr_personnal").keyup(function(){
+                            $(".rr_signsymptoms").val(this.value);
+                        });
+
+                        $(".fh_personnal").keyup(function(){
+                            $(".fh_signsymptoms").val(this.value);
+                        });
+                    }
+                    else
+                    {
+                        $(".bp_personnal").unbind("keyup");
+                        $(".temp_personnal").unbind("keyup");
+                        $(".hr_personnal").unbind("keyup");
+                        $(".rr_personnal").unbind("keyup");
+                        $(".fh_personnal").unbind("keyup");
+                    }
+
+                 
 
                     $.ajax({
                     url: "{{ url('doctor/patient/caseinfo/') }}/"+patient_id,

@@ -159,8 +159,8 @@
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#home">Personnal Data</a></li>
                             <li><a data-toggle="tab" href="#menu1">Antepartum Conditions</a></li>
-                            <li><a data-toggle="tab" href="#menu2">Sign and Symptoms</a></li>
-                            <li><a data-toggle="tab" href="#menu3">Lab Result</a></li>
+                            <li><a data-toggle="tab" href="#menu2new">Sign and Symptoms</a></li>
+                            <li><a data-toggle="tab" href="#menu3new">Lab Result</a></li>
                             <!-- <li><a data-toggle="tab" href="#menu4">Vital Signs</a></li> -->
                             <!-- <li><a data-toggle="tab" href="#menu5">Pregnancy Outcome</a></li> -->
                         </ul>
@@ -236,8 +236,8 @@
                                         <tr>
                                             <td>LMP: <input type="date" class="form-control lmp_date" name="lmp" style="width: 100%;" disabled>  </td>
                                             <td>EDC/EDD: <input type="date" id="edc_edd" class="form-control" name="edc_edd" style="width: 100%;" disabled> </td>
-                                            <td>Height: <input type="text" class="form-control" name="height" style="width: 100%;" disabled> </td>
-                                            <td>Weigth: <input type="text" class="form-control" name="weigth" style="width: 100%;" disabled></td>
+                                            <td>Height (m): <input type="text" class="form-control" name="height" style="width: 100%;" disabled> </td>
+                                            <td>Weigth (kg): <input type="text" class="form-control" name="weigth" style="width: 100%;" disabled></td>
                                             <td>BP: <input type="text" class="form-control" name="bp" style="width: 100%;" disabled></td>
                                             <td>TEMP: <input type="text" class="form-control" name="temp" style="width: 100%;" disabled></td>
                                         </tr>
@@ -351,7 +351,7 @@
                                     </table>
                             </div>
 
-                            <div id="menu2" class="tab-pane fade">
+                            <div id="menu2new" class="tab-pane fade">
                                                         <table class="table table-striped sign_symthoms_table">
                                                                 <tr class="bg-gray">
                                                                     <th rowspan="4" width="50%"> 
@@ -520,7 +520,7 @@
                                                         </table>
                             </div>
 
-                            <div id="menu3" class="tab-pane fade">
+                            <div id="menu3new" class="tab-pane fade">
                                 <div id="myDiv">
                                     <table class="table table-striped pre_pregnancy_table" id="table_lab_res_referred">
                                         <tr class="bg-gray">

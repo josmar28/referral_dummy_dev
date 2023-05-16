@@ -1137,6 +1137,7 @@ class PatientCtrl extends Controller
             'tracking.code',
             'facility.name',
             'pregnant_formv2.unique_id',
+            'tracking.patient_id',
             DB::raw('CONCAT(patients.fname," ",patients.mname," ",patients.lname) as patient_name'),
             DB::raw("DATE_FORMAT(tracking.date_accepted,'%M %d, %Y %h:%i %p') as date_accepted")
         )
@@ -1176,6 +1177,7 @@ class PatientCtrl extends Controller
             'tracking.code',
             'facility.name',
             'pregnant_formv2.unique_id',
+            'tracking.patient_id',
             DB::raw('CONCAT(patients.fname," ",patients.mname," ",patients.lname) as patient_name'),
             DB::raw("DATE_FORMAT(tracking.date_accepted,'%M %d, %Y %h:%i %p') as date_accepted")
         )

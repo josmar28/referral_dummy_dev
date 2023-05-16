@@ -110,7 +110,6 @@ Route::get('admin/css','doctor\CSSCtrl@index');
 Route::post('doctor/css','doctor\CSSCtrl@css');
 Route::post('doctor/css_add','doctor\CSSCtrl@cssAdd');
 
-
 //doctor affiliation
 Route::get('doctor/affiliated','doctor\AffiliatedCtrl@index');
 Route::post('doctor/affiliated','doctor\AffiliatedCtrl@index');
@@ -265,8 +264,6 @@ Route::post('doctor/referred/cancel/{id}','doctor\ReferralCtrl@cancelReferral');
 Route::post('doctor/referred/transfer/{id}','doctor\ReferralCtrl@transferReferral');
 Route::post('doctor/referred/search','doctor\ReferralCtrl@searchReferred');
 Route::match(["get","post"],'doctor/referred/track','doctor\ReferralCtrl@trackReferral');
-
-
 
 
 Route::get('doctor/patient','doctor\PatientCtrl@index');

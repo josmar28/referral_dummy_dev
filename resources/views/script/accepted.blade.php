@@ -1,4 +1,16 @@
 <script>
+    $(document).ready(function(){
+    
+    var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+       removeItemButton: true,
+       maxItemCount:10,
+       searchResultLimit:10,
+       renderChoiceLimit:10,
+     }); 
+    
+    
+    });
+
     <?php $user = Session::get('auth'); ?>
 
     var arriveRef = dbRef.ref('Arrival');
@@ -16,6 +28,241 @@
         track_id = $(this).data('track_id');
         unique_id = $(this).data('unique_id');
     });
+    
+    $('body').on('click','.patient_return',function(){
+    var patient_id = $(this).data('patient_id');
+    var unique_id = $(this).data('unique_id');
+    var code = $(this).data('code');
+        console.log(code)
+        $.ajax({
+            url: "{{ url('doctor/patient/info/') }}/"+patient_id,
+            type: "GET",
+            success: function(data){
+                var sign = data.sign;
+               
+                var data = data.data;
+                patient_id = data.id;
+                name = data.patient_name;
+                sex = data.sex;
+                age = data.age;
+                civil_status = data.civil_status;
+                phic_status = data.phic_status;
+                phic_id = data.phic_id;
+                address = data.address;
+                contact = data.contact;
+                dob = data.dob;
+
+                $('.patient_id').val(patient_id);
+                $('.unique_id').val(unique_id);
+                $('.code').val(code);
+
+                var now = new Date();
+
+                var day = ("0" + now.getDate()).slice(-2);
+                var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+                var new_date_of_visit = now.getFullYear()+"-"+(month)+"-"+(day) ;
+
+                $('.new_date_of_visit').val(new_date_of_visit);
+
+            
+                //preg_prev
+                if(sign)
+                {
+                    $(".prev_trimester").val(sign.no_trimester);
+                    $(".prev_visit").val(sign.no_visit);
+                
+                        
+                    var tri_no = sign.no_trimester.slice(0,-2);
+
+                    var new_tri_no = ++tri_no;
+                    var val2 ='';
+
+                        var a = new_tri_no % 10,
+                        b = new_tri_no % 100;
+
+                        if (a == 1 && b != 11) {
+                            val2 = new_tri_no + "st";
+                        } else if (a == 2 && b != 12) {
+                            val2 = new_tri_no + "nd";
+                        } else if (a == 3 && b != 13) {
+                            val2 = new_tri_no + "rd";
+                        } else {
+                            val2 = new_tri_no + "th";
+                        }
+
+                        $(".new_trimester").val(val2);
+                    
+                
+
+                    var visit_no = sign.no_visit.slice(0,-2);
+
+                    var new_visit_no = ++visit_no;
+                    var val ='';
+
+                        var a = new_visit_no % 10,
+                        b = new_visit_no % 100;
+
+                        if (a == 1 && b != 11) {
+                            val = new_visit_no + "st";
+                        } else if (a == 2 && b != 12) {
+                            val = new_visit_no + "nd";
+                        } else if (a == 3 && b != 13) {
+                            val = new_visit_no + "rd";
+                        } else {
+                            val = new_visit_no + "th";
+                        }
+
+                    $(".new_visit_no").val(val);
+                    
+                
+                    $('.prev_date').val(sign.date_of_visit);
+
+                    $('.prev_subjective').val(sign.subjective); 
+
+                    $('.prev_aog').val(sign.aog);
+
+                    $('.prev_bp').val(sign.bp);
+                    $('.prev_hr').val(sign.hr);
+                    $('.prev_fh').val(sign.fh);
+
+                    $('.prev_temp').val(sign.temp);
+                    $('.prev_rr').val(sign.rr);
+                    $('.prev_fht').val(sign.fht);
+
+                    $('.prev_other_exam').val(sign.other_physical_exam);
+                    $('.prev_assestment_diagnosis').val(sign.assessment_diagnosis);
+                    $('.prev_plan_intervention').val(sign.plan_intervention);
+
+                    if(sign.vaginal_spotting == 'yes')
+                    {
+                        $('.prev_viganal_bleeding').prop('checked', true);
+                    }
+
+                    if(sign.severe_nausea == 'yes')
+                    {
+                        $('.prev_severe_nausea').prop('checked', true);
+                    }
+
+                    if(sign.significant_decline == 'yes')
+                    {
+                        $('.prev_significant_decline').prop('checked', true);
+                    }
+
+                    if(sign.premature_rupture == 'yes')
+                    {
+                        $('.prev_premature_rupture').prop('checked', true);
+                    }
+
+                    if(sign.fetal_pregnancy == 'yes')
+                    {
+                        $('.prev_multi_pregnancy').prop('checked', true);
+                    }
+
+                    if(sign.severe_headache == 'yes')
+                    {
+                        $('.prev_persistent_severe').prop('checked', true);
+                    }
+
+                    if(sign.abdominal_pain == 'yes')
+                    {
+                        $('.prev_abdominal_pain').prop('checked', true);
+                    }
+
+                    if(sign.edema_hands == 'yes')
+                    {
+                        $('.prev_edema_hands').prop('checked', true);
+                    }
+
+                    if(sign.fever_pallor == 'yes')
+                    {
+                        $('.prev_fever_pallor').prop('checked', true);
+                    }
+
+                    if(sign.seizure_consciousness == 'yes')
+                    {
+                        $('.prev_seiszure_consciousness').prop('checked', true);
+                    }
+
+                    if(sign.difficulty_breathing == 'yes')
+                    {
+                        $('.prev_difficulty_breathing').prop('checked', true);
+                    }
+
+                    if(sign.painful_urination == 'yes')
+                    {
+                        $('.prev_painful_urination').prop('checked', true);
+                    }
+
+                    if(sign.elevated_bp == 'yes')
+                    {
+                        $('.prev_elevated_bp').prop('checked', true);
+                    }
+                }
+                else{
+                        val = "1" + "st";
+                        $(".new_visit_no").val(val);
+                    }
+                
+                    if( $( ".new_visit_no" ).val() == "1st" )
+                    {
+                        $(".bp_personnal").keyup(function(){
+                            $(".bp_antepartum").val(this.value);
+                        });
+
+                        $(".temp_personnal").keyup(function(){
+                            $(".temp_antepartum").val(this.value);
+                        });
+
+                        $(".hr_personnal").keyup(function(){
+                            $(".hr_antepartum").val(this.value);
+                        });
+
+                        $(".rr_personnal").keyup(function(){
+                            $(".rr_antepartum").val(this.value);
+                        });
+
+                        $(".fh_personnal").keyup(function(){
+                            $(".fh_antepartum").val(this.value);
+                        });
+                    //3rd tab
+                        $(".bp_personnal").keyup(function(){
+                            $(".bp_signsymptoms").val(this.value);
+                        });
+
+                        $(".temp_personnal").keyup(function(){
+                            $(".temp_signsymptoms").val(this.value);
+                        });
+
+                        $(".hr_personnal").keyup(function(){
+                            $(".hr_signsymptoms").val(this.value);
+                        });
+
+                        $(".rr_personnal").keyup(function(){
+                            $(".rr_signsymptoms").val(this.value);
+                        });
+
+                        $(".fh_personnal").keyup(function(){
+                            $(".fh_signsymptoms").val(this.value);
+                        });
+                    }
+                    else
+                    {
+                        $(".bp_personnal").unbind("keyup");
+                        $(".temp_personnal").unbind("keyup");
+                        $(".hr_personnal").unbind("keyup");
+                        $(".rr_personnal").unbind("keyup");
+                        $(".fh_personnal").unbind("keyup");
+                    }
+            
+            },
+            error: function(){
+                $('#serverModal').modal();
+            }
+        });
+
+    });
+
 
     $('#deadForm').on('submit',function(e){
         $('.loading').show();
@@ -612,4 +859,5 @@
         Session::put("cssAdd",false);
     ?>
     @endif    
+
 </script>

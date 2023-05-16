@@ -173,8 +173,8 @@
     channel1.bind('pregnant_event', function(data) {
         if(facility == data['referred_to']) {
             play();
-          Lobibox.notify('success', {
-                title: "New Pregnant Referral" ,
+          Lobibox.notify('danger', {
+                title: "High-risk Pregnant Referral" ,
                 msg: "From: "+ data['referring_facility_name'] +" To: "+ data['referred_to_name']  +"<br> Referred by: " + data['referring_md_name'],
                 img: "{{ url('resources/img/dohro12logo2.png') }}",
                 width: 450,

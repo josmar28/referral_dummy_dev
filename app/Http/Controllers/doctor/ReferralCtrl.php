@@ -1434,6 +1434,7 @@ class ReferralCtrl extends Controller
             'unique_id' => $unique_id,
             'code' => $track->code,
             'patient_woman_id' => $track->patient_id,
+            'birth_attendant' => $req->birth_attendant,
             'delivery_outcome' => $req->delivery_outcome,
             'type_of_delivery' => $req->type_of_delivery,
             'final_diagnosis' => $final_diagnosis,
@@ -1722,7 +1723,7 @@ class ReferralCtrl extends Controller
     public function cancelReferral(Request $req, $id)
     {
         $tracking = Tracking::find($id);
-        print_r($tracking);
+        // print_r($tracking);
 
         $user = Session::get('auth');
         $date = date('Y-m-d H:i:s');
