@@ -185,6 +185,27 @@
                 ->where('read', false)
                 ->groupBy('to')
                 ->count();
+                
+                $user = Session::get('auth');
+                $data = \App\PregnantFormv2::select('t3.*','activity.status')
+                ->leftJoin(\DB::raw('(SELECT referred_to, max(id) as maxid, max(code) as maxcode FROM activity B group by code ORDER BY B.id DESC ) AS t3'), function($join) {
+                    $join->on('pregnant_formv2.code', '=', 't3.maxcode');
+                        })
+                ->leftJoin(\DB::raw('(SELECT *, max(id) as maxid, max(aog) as maxaog, max(unique_id) as maxunique_id FROM sign_and_symptoms A group by unique_id) AS t2'), function($join) {
+                    $join->on('pregnant_formv2.unique_id', '=', 't2.maxunique_id');
+                     })
+                ->leftJoin("activity","activity.id","=","t3.maxid")
+                ->whereRaw('ROUND(t2.maxaog, 0) >= 34')
+                ->where('t2.notif','1')
+                ->where('t3.referred_to',$user->facility_id)
+                ->orderBy('t2.maxid','desc')
+                
+                ->get();
+
+
+        $notif = $data->count();
+
+        dd($data);
         ?>
         <div id="navbar" class="navbar-collapse collapse" style="font-size: 13px;">
             <ul class="nav navbar-nav">
@@ -510,6 +531,17 @@
                             ?>
                             <li><a href="{{ url('admin/account/return') }}"><i class="fa fa-user-secret"></i> <?php echo $check_login_as->level == 'admin' ? 'Back as Admin' : 'Back as Agent'; ?></a></li>
                         @endif
+                    </ul>
+                </li>
+                <li class="dropdown" style="float:right!important">
+                    <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-bell"></i> <small class="badge bg-red" style="margin-bottom:5px;">{{ $notif }} </small>  </a>
+                    <ul class="dropdown-menu">
+                        @foreach($data as $dat)
+                         <li><a href="{{ url('admin/pregnancy') }}"><i class="fa fa-building"></i></i>{{ $dat->aog }}</a></li>
+                        @endforeach
+                    <!--
+                <li><a href="{{ url('admin/report/graph/bar_chart') }}"><i class="fa fa-bar-chart-o"></i>Graph</a></li>
+                -->
                     </ul>
                 </li>
             </ul>

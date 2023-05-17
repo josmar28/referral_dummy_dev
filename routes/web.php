@@ -253,7 +253,11 @@ Route::post('doctor/referral/redirect/{activity_id}','doctor\ReferralCtrl@redire
 
 Route::get('doctor/referral/data/normal/{id}','doctor\ReferralCtrl@normalForm');
 Route::get('doctor/referral/data/pregnant/{id}','doctor\ReferralCtrl@pregnantForm');
-Route::get('doctor/referral/data/pregnantv2/{id}','doctor\ReferralCtrl@pregnantFormv2');
+Route::get('doctor/referral/data/pregnantv2/{id}','doctor\ReferralCtrl@pregnantFormv2'); 
+
+//pregnant return
+Route::post('doctor/patient/return/pregnant','doctor\ReferralCtrl@returnPregnant');
+
 
 Route::post('doctor/refer/update','doctor\ReferralCtrl@updateRefer');
 Route::post('doctor/refer/updated','doctor\ReferralCtrl@updatedRefer');

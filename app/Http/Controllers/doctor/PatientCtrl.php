@@ -248,9 +248,13 @@ class PatientCtrl extends Controller
         
         $sign = SignSymptoms::where('patient_woman_id',$id)->orderby('created_at','desc')->first();
 
+        $form = PregnantFormv2::where('patient_woman_id',$id)->orderby('created_at','desc')->first();
+        
+
         return response()->json([
             'data' => $data,
-            'sign' => $sign
+            'sign' => $sign,
+            'form' => $form
         ]);
     }
 

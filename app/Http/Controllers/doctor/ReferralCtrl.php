@@ -731,6 +731,8 @@ class ReferralCtrl extends Controller
 
             $antepartum = Antepartum::select('*')->where('antepartum_conditions.unique_id',$form->unique_id)->orderby('id','desc')->first();
             $sign_symptoms  = SignSymptoms::select('*')->where('sign_and_symptoms.unique_id',$form->unique_id)->orderby('id','desc')->first();
+
+            // dd($sign_symptoms);
             $lab_result = LabResult::select(
                 '*',
                 DB::raw("DATE_FORMAT(date_of_lab,'%M %d, %Y') as date_of_lab_name"),
@@ -739,6 +741,35 @@ class ReferralCtrl extends Controller
             ->where('lab_results.unique_id',$form->unique_id)->get();
             $preg_vs = PregVitalSign::select('*')->where('preg_vital_signs.unique_id',$form->unique_id)->first();
             $preg_outcome = PregOutcome::select('*')->where('preg_outcome.unique_id',$form->unique_id)->orderby('id','desc')->first();
+
+            $first_tri = SignSymptoms::select(
+                '*',
+                DB::raw("DATE_FORMAT(date_of_visit,'%M %d, %Y') as date_of_visit"),
+            )
+            ->where('no_trimester','1st')
+            ->where('sign_and_symptoms.unique_id',$form->unique_id)
+            ->orderby('id','desc')             
+            ->first();
+
+            $second_tri = SignSymptoms::select(
+                '*',
+                DB::raw("DATE_FORMAT(date_of_visit,'%M %d, %Y') as date_of_visit"),
+            )
+            ->where('no_trimester','2nd')
+            ->where('sign_and_symptoms.unique_id',$form->unique_id)
+            ->orderby('id','desc')             
+            ->first();
+
+            $third_tri = SignSymptoms::select(
+                '*',
+                DB::raw("DATE_FORMAT(date_of_visit,'%M %d, %Y') as date_of_visit"),
+            )
+            ->where('no_trimester','3rd')
+            ->where('sign_and_symptoms.unique_id',$form->unique_id)
+            ->orderby('id','desc')             
+            ->first();
+
+
 
             $first_tri_visit = SignSymptoms::select(
                 '*',
@@ -914,7 +945,102 @@ class ReferralCtrl extends Controller
             'third_tri_visit_3rd' => $third_tri_visit_3rd,
             'fourth_tri_visit_3rd' => $fourth_tri_visit_3rd,
             'fifth_tri_visit_3rd' => $fifth_tri_visit_3rd,
+            'first_tri' => $first_tri,
+            'second_tri' => $second_tri,
+            'third_tri' => $third_tri,
         );
+    }
+
+    public function returnPregnant(Request $req)
+    {
+        // dd($req->all());
+
+        $data2 = array(
+            'unique_id' => ($req->unique_id) ? $req->unique_id: NULL,
+            'patient_woman_id' => ($req->patient_woman_id) ? $req->patient_woman_id: NULL,
+            'code' => ($req->code) ? $req->code: NULL,
+            'no_trimester' => ($req->no_trimester) ? $req->no_trimester: NULL,
+            'no_visit' => ($req->no_visit) ? $req->no_visit: NULL,
+            'date_of_visit' => ($req->date_of_visit) ? $req->date_of_visit: NULL,
+            'vaginal_spotting' => ($req->vaginal_spotting) ? $req->vaginal_spotting: NULL,
+            'severe_nausea' => ($req->severe_nausea) ? $req->severe_nausea: NULL,
+            'significant_decline' => ($req->significant_decline) ? $req->significant_decline:NULL,
+            'persistent_contractions' => ($req->persistent_contractions) ? $req->persistent_contractions:NULL,
+            'premature_rupture' => ($req->premature_rupture) ? $req->premature_rupture:NULL,
+            'fetal_pregnancy' => ($req->fetal_pregnancy) ? $req->fetal_pregnancy: NULL,
+            'severe_headache' => ($req->severe_headache) ? $req->severe_headache: NULL,
+            'abdominal_pain' => ($req->abdominal_pain) ? $req->abdominal_pain: NULL,
+            'edema_hands' => ($req->edema_hands) ? $req->edema_hands: NULL,
+            'fever_pallor' => ($req->fever_pallor) ? $req->fever_pallor: NULL,
+            'seizure_consciousness' => ($req->seizure_consciousness) ? $req->seizure_consciousness: NULL,
+            'difficulty_breathing' => ($req->difficulty_breathing) ? $req->difficulty_breathing: NULL,
+            'painful_urination' => ($req->painful_urination) ? $req->painful_urination: NULL,
+            'subjective' => ($req->sign_subjective) ? $req->sign_subjective: NULL,
+            'bp' => ($req->sign_bp) ? $req->sign_bp: NULL,
+            'temp' => ($req->sign_temp) ? $req->sign_temp: NULL,
+            'hr' => ($req->sign_hr) ? $req->sign_hr: NULL,
+            'rr' => ($req->sign_rr) ? $req->sign_rr: NULL,
+            'fh' => ($req->sign_fh) ? $req->sign_fh: NULL,
+            'fht' => ($req->sign_fht) ? $req->sign_fht: NULL,
+            'other_physical_exam' => ($req->sign_other_physical_exam) ? $req->sign_other_physical_exam: NULL,
+            'assessment_diagnosis' => ($req->sign_assessment_diagnosis) ? $req->sign_assessment_diagnosis: NULL,
+            'elevated_bp' => ($req->elevated_bp) ? $req->elevated_bp: NULL,
+            'plan_intervention' => ($req->sign_plan_intervention) ? $req->sign_plan_intervention: NULL,
+            'aog' => ($req->sign_aog) ? $req->sign_aog: NULL,
+        );
+
+        $signsymptoms = SignSymptoms::Create($data2);
+
+            SignSymptoms::where('unique_id',$unique_id)
+                ->update([
+                    'code' => ($req->code) ? $req->code: NULL,
+                ]);
+        
+
+        if($req->date_of_lab)
+        {
+            foreach ($req->date_of_lab as $key => $lab)
+            {
+                if($lab != null)
+                {
+                    $data3 = array(
+                        'unique_id' => ($req->unique_id) ? $req->unique_id: NULL,
+                        'code' => ($req->code) ? $req->code: NULL,
+                        'patient_woman_id' => ($req->patient_woman_id) ? $req->patient_woman_id: NULL,
+                        'date_of_lab' => ($lab) ? $lab: NULL,
+                        'cbc_hgb' => ($req->cbc_hgb[$key]) ? $req->cbc_hgb[$key]: NULL,
+                        'cbc_wbc' => ($req->cbc_wbc[$key]) ? $req->cbc_wbc[$key]: NULL,
+                        'cbc_rbc' => ($req->cbc_rbc[$key]) ? $req->cbc_rbc[$key]: NULL,
+                        'cbc_platelet' => ($req->cbc_platelet[$key]) ? $req->cbc_platelet[$key]: NULL,
+                        'cbc_hct' => ($req->cbc_hct[$key]) ? $req->cbc_hct[$key]: NULL,
+                        'ua_pus' => ($req->ua_pus[$key]) ? $req->ua_pus[$key]: NULL,
+                        'ua_rbc' => ($req->ua_rbc[$key]) ? $req->ua_rbc[$key]: NULL,
+                        'ua_sugar' => ($req->ua_sugar[$key]) ? $req->ua_sugar[$key]: NULL,
+                        'ua_gravity' => ($req->ua_gravity[$key]) ? $req->ua_gravity[$key]: NULL,
+                        'ua_albumin' => ($req->ua_albumin[$key]) ? $req->ua_albumin[$key]: NULL,
+                        'utz' => ($req->utz[$key]) ? $req->utz[$key]: NULL,
+                        'blood_type' => ($req->blood_type) ? $req->blood_type: NULL,
+                        'hbsag_result' => ($req->hbsag_result) ? $req->hbsag_result:NULL,
+                        'vdrl_result' => ($req->vdrl_result) ? $req->vdrl_result:NULL,
+                        'lab_remarks' => ($req->lab_remarks[$key]) ? $req->lab_remarks[$key]: NULL,
+                    );
+
+                    $lab_result = LabResult::Create($data3);
+
+                        LabResult::where('unique_id',$unique_id)
+                            ->update([
+                                 'code' => ($req->code) ? $req->code: NULL,
+                            ]);
+                    
+                }else{
+                    continue;
+                }
+            }
+        }
+
+        Session::put('return_pregnant',true);
+
+        return redirect()->back();
     }
 
     public function referred2()
@@ -1303,7 +1429,7 @@ class ReferralCtrl extends Controller
             'patient_id' => $track->patient_id,
             'date_referred' => $date,
             'referred_from' => $track->referred_to,
-            'referred_to' => 0,
+            'referred_to' => $user->facility_id,
             'action_md' => $user->id,
             'remarks' => $req->remarks,
             'status' => 'arrived'
@@ -1367,7 +1493,7 @@ class ReferralCtrl extends Controller
             'patient_id' => $track->patient_id,
             'date_referred' => $date,
             'referred_from' => $track->referred_to,
-            'referred_to' => 0,
+            'referred_to' => $user->facility_id,
             'action_md' => $user->id,
             'remarks' => 'monitored as OPD',
             'status' => 'monitored'
@@ -1396,7 +1522,7 @@ class ReferralCtrl extends Controller
             'patient_id' => $track->patient_id,
             'date_referred' => $date,
             'referred_from' => $track->referred_to,
-            'referred_to' => 0,
+            'referred_to' => $user->facility_id,
             'action_md' => $user->id,
             'remarks' => 'admitted',
             'status' => 'admitted'
@@ -1495,7 +1621,7 @@ class ReferralCtrl extends Controller
             'patient_id' => $track->patient_id,
             'date_referred' => $date,
             'referred_from' => $track->referred_to,
-            'referred_to' => 0,
+            'referred_to' => $user->facility_id,
             'action_md' => $user->id,
             'remarks' => $req->remarks,
             'status' => 'discharged'

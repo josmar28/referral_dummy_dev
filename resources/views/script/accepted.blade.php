@@ -22,11 +22,80 @@
     var current_facility, code, patient_name, track_id, form_type,unique_id;
     current_facility = "{{ \App\Facility::find($user->facility_id)->name }}";
 
+    var lmp_date = '';
+
     $('body').on('click','.btn-action',function(){
         code = $(this).data('code');
         patient_name = $(this).data('patient_name');
         track_id = $(this).data('track_id');
         unique_id = $(this).data('unique_id');
+    });
+
+    $('body').on('change','.new_date_of_visit',function(){
+        var start = new Date(lmp_date),
+        end   = new Date($(this).val()),
+        diff  = new Date(end - start),
+        days  = diff/1000/60/60/24;
+        weeks = days / 7;
+
+        n = weeks.toFixed(1);
+        whole = Math.floor(n);      // 1
+        fraction = n - whole; // .25
+
+        if(weeks.toFixed(1) > 1)
+        {
+            var gcd = function(a, b) {
+            if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
+
+            return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
+            };
+
+            var fraction = fraction.toFixed(1);
+            var len = fraction.toString().length - 2;
+
+            var denominator = Math.pow(10, len);
+            var numerator = fraction * denominator;
+
+            var divisor = gcd(numerator, denominator);    // Should be 5
+
+            numerator /= divisor;                         // Should be 687
+            denominator /= divisor;                       // Should be 2000
+
+            // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
+
+
+            $('.new_aog').val( whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator)+ " " + "weeks");
+            $('.new_aog').change();
+        }
+        else
+        {
+            var gcd = function(a, b) {
+            if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
+
+            return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
+            };
+
+            var fraction = fraction.toFixed(1);
+            var len = fraction.toString().length - 2;
+
+            var denominator = Math.pow(10, len);
+            var numerator = fraction * denominator;
+
+            var divisor = gcd(numerator, denominator);    // Should be 5
+
+            numerator /= divisor;                         // Should be 687
+            denominator /= divisor;                       // Should be 2000
+
+            // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
+
+            $('.new_aog').val(whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator)+ " " + "week");
+            $('.new_aog').change();
+        }
+    });
+
+    
+    $("#patientReturnModal").on("hidden.bs.modal", function () {
+        document.getElementById("pregnant_form_return").reset();
     });
     
     $('body').on('click','.patient_return',function(){
@@ -39,7 +108,8 @@
             type: "GET",
             success: function(data){
                 var sign = data.sign;
-               
+                var form = data.form
+                lmp_date = form.lmp;
                 var data = data.data;
                 patient_id = data.id;
                 name = data.patient_name;
@@ -52,7 +122,7 @@
                 contact = data.contact;
                 dob = data.dob;
 
-                $('.patient_id').val(patient_id);
+                $('.patient_woman_id').val(patient_id);
                 $('.unique_id').val(unique_id);
                 $('.code').val(code);
 
@@ -65,56 +135,126 @@
 
                 $('.new_date_of_visit').val(new_date_of_visit);
 
+                function dateRange(startDate, endDate) {
+                    var start      = startDate.split('-');
+                    var end        = endDate.split('-');
+                    var startYear  = parseInt(start[0]);
+                    var endYear    = parseInt(end[0]);
+                    var dates      = [];
+
+                for(var i = startYear; i <= endYear; i++) {
+                    var endMonth = i != endYear ? 11 : parseInt(end[1]) - 1;
+                    var startMon = i === startYear ? parseInt(start[1])-1 : 0;
+                    for(var j = startMon; j <= endMonth; j = j > 12 ? j % 12 || 11 : j+1) {
+                    var month = j+1;
+                    // var displayMonth = month < 10 ? '0'+month : month;
+                    // dates.push([i, displayMonth, '01'].join('-'));
+                    var displayMonth = month < 10 ? month : month;
+                    dates.push(displayMonth);
+                    }
+                }
+                return dates;
+                }
             
                 //preg_prev
                 if(sign)
                 {
+
+                    if(form){
+
+                    var months = dateRange(form.lmp, form.edc_edd)
+
+                    var d = new Date(),
+
+                    n = d.getMonth() + 1,
+
+                    y = d.getFullYear();
+
+                    
+                for(var i = 1; i <= months.length; i++) {
+                        if(n == months[0] || n == months[1] || n == months[2] || n == months[3])
+                        {
+                            $(".new_trimester").val('1st');
+                        }
+                        else if(n == months[4] || n == months[5] || n == months[6])
+                        {
+                            $(".new_trimester").val('2nd');
+                        }
+                        else if(n == months[7] || n == months[8] || n == months[9])
+                        {
+                            $(".new_trimester").val('3rd');
+                        }
+                        else
+                        {
+                            $(".new_trimester").val('3rd');
+                        }
+                    }
+
+
+                    var start = new Date(form.lmp),
+                    end   = new Date($('.new_date_of_visit').val()),
+                    diff  = new Date(end - start),
+                    days  = diff/1000/60/60/24;
+                    weeks = days / 7;
+
+                    n = weeks.toFixed(1);
+                    whole = Math.floor(n);      // 1
+                    fraction = n - whole; // .25
+
+                    if(weeks.toFixed(1) > 1)
+                    {
+                        var gcd = function(a, b) {
+                        if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
+
+                        return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
+                        };
+
+                        var fraction = fraction.toFixed(1);
+                        var len = fraction.toString().length - 2;
+
+                        var denominator = Math.pow(10, len);
+                        var numerator = fraction * denominator;
+
+                        var divisor = gcd(numerator, denominator);    // Should be 5
+
+                        numerator /= divisor;                         // Should be 687
+                        denominator /= divisor;                       // Should be 2000
+
+                        // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
+
+
+                        $('.new_aog').val( whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator));
+                        $('.new_aog').change();
+                    }
+                    else
+                    {
+                        var gcd = function(a, b) {
+                        if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
+
+                        return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
+                        };
+
+                        var fraction = fraction.toFixed(1);
+                        var len = fraction.toString().length - 2;
+
+                        var denominator = Math.pow(10, len);
+                        var numerator = fraction * denominator;
+
+                        var divisor = gcd(numerator, denominator);    // Should be 5
+
+                        numerator /= divisor;                         // Should be 687
+                        denominator /= divisor;                       // Should be 2000
+
+                        // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
+
+                        $('.new_aog').val(whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator));
+                        $('.new_aog').change();
+                    }
+                    }
+
+                    
                     $(".prev_trimester").val(sign.no_trimester);
                     $(".prev_visit").val(sign.no_visit);
-                
-                        
-                    var tri_no = sign.no_trimester.slice(0,-2);
-
-                    var new_tri_no = ++tri_no;
-                    var val2 ='';
-
-                        var a = new_tri_no % 10,
-                        b = new_tri_no % 100;
-
-                        if (a == 1 && b != 11) {
-                            val2 = new_tri_no + "st";
-                        } else if (a == 2 && b != 12) {
-                            val2 = new_tri_no + "nd";
-                        } else if (a == 3 && b != 13) {
-                            val2 = new_tri_no + "rd";
-                        } else {
-                            val2 = new_tri_no + "th";
-                        }
-
-                        $(".new_trimester").val(val2);
-                    
-                
-
-                    var visit_no = sign.no_visit.slice(0,-2);
-
-                    var new_visit_no = ++visit_no;
-                    var val ='';
-
-                        var a = new_visit_no % 10,
-                        b = new_visit_no % 100;
-
-                        if (a == 1 && b != 11) {
-                            val = new_visit_no + "st";
-                        } else if (a == 2 && b != 12) {
-                            val = new_visit_no + "nd";
-                        } else if (a == 3 && b != 13) {
-                            val = new_visit_no + "rd";
-                        } else {
-                            val = new_visit_no + "th";
-                        }
-
-                    $(".new_visit_no").val(val);
-                    
                 
                     $('.prev_date').val(sign.date_of_visit);
 
@@ -200,60 +340,10 @@
                     }
                 }
                 else{
-                        val = "1" + "st";
+                        val = "1st";
                         $(".new_visit_no").val(val);
                     }
                 
-                    if( $( ".new_visit_no" ).val() == "1st" )
-                    {
-                        $(".bp_personnal").keyup(function(){
-                            $(".bp_antepartum").val(this.value);
-                        });
-
-                        $(".temp_personnal").keyup(function(){
-                            $(".temp_antepartum").val(this.value);
-                        });
-
-                        $(".hr_personnal").keyup(function(){
-                            $(".hr_antepartum").val(this.value);
-                        });
-
-                        $(".rr_personnal").keyup(function(){
-                            $(".rr_antepartum").val(this.value);
-                        });
-
-                        $(".fh_personnal").keyup(function(){
-                            $(".fh_antepartum").val(this.value);
-                        });
-                    //3rd tab
-                        $(".bp_personnal").keyup(function(){
-                            $(".bp_signsymptoms").val(this.value);
-                        });
-
-                        $(".temp_personnal").keyup(function(){
-                            $(".temp_signsymptoms").val(this.value);
-                        });
-
-                        $(".hr_personnal").keyup(function(){
-                            $(".hr_signsymptoms").val(this.value);
-                        });
-
-                        $(".rr_personnal").keyup(function(){
-                            $(".rr_signsymptoms").val(this.value);
-                        });
-
-                        $(".fh_personnal").keyup(function(){
-                            $(".fh_signsymptoms").val(this.value);
-                        });
-                    }
-                    else
-                    {
-                        $(".bp_personnal").unbind("keyup");
-                        $(".temp_personnal").unbind("keyup");
-                        $(".hr_personnal").unbind("keyup");
-                        $(".rr_personnal").unbind("keyup");
-                        $(".fh_personnal").unbind("keyup");
-                    }
             
             },
             error: function(){
@@ -261,6 +351,259 @@
             }
         });
 
+    });
+
+    $('input.vaginal_spotting').click(function(){
+        if($(this).prop('checked') == true)
+            {
+            if($(".sign_assessment_diagnosis").val().length > 0)
+                {
+                    $(".sign_assessment_diagnosis").val( $(".sign_assessment_diagnosis").val() + ", Vaginal spotting or bleeding" );
+                }
+                else
+                {
+                    $(".sign_assessment_diagnosis").val("Vaginal spotting or bleeding");
+                }
+            }
+        if($(this).prop('checked') == false){
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Vaginal spotting or bleeding, ',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( ', Vaginal spotting or bleeding',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Vaginal spotting or bleeding',  '' ) );
+            }
+    });
+
+    $('input.severe_nausea').click(function(){
+        if($(this).prop('checked') == true){
+            if($(".sign_assessment_diagnosis").val().length > 0)
+                {
+                    $(".sign_assessment_diagnosis").val( $(".sign_assessment_diagnosis").val() + ", Severe nausea and vomiting" );
+                }
+                else
+                {
+                    $(".sign_assessment_diagnosis").val("Severe nausea and vomiting");
+                }
+            }
+        if($(this).prop('checked') == false){
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Severe nausea and vomiting, ',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( ', Severe nausea and vomiting',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Severe nausea and vomiting',  '' ) );
+            }
+    });
+
+    $('input.significant_decline').click(function(){
+        if($(this).prop('checked') == true){
+            if($(".sign_assessment_diagnosis").val().length > 0)
+                {
+                    $(".sign_assessment_diagnosis").val( $(".sign_assessment_diagnosis").val() + ", Significant decline fetal movement (less than 10 in 12 hrs during 2 ½ of pregnancy)" );
+                }
+                else
+                {
+                    $(".sign_assessment_diagnosis").val("Significant decline fetal movement (less than 10 in 12 hrs during 2 ½ of pregnancy)");
+                }
+            }
+        if($(this).prop('checked') == false){
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Significant decline fetal movement (less than 10 in 12 hrs during 2 ½ of pregnancy), ',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( ', Significant decline fetal movement (less than 10 in 12 hrs during 2 ½ of pregnancy)',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Significant decline fetal movement (less than 10 in 12 hrs during 2 ½ of pregnancy)',  '' ) );
+            }
+    });
+
+    $('input.persistent_contractions').click(function(){
+        if($(this).prop('checked') == true){
+            if($(".sign_assessment_diagnosis").val().length > 0)
+                {
+                    $(".sign_assessment_diagnosis").val( $(".sign_assessment_diagnosis").val() + ", Persistent contractions" );
+                }
+                else
+                {
+                    $(".sign_assessment_diagnosis").val("Persistent contractions");
+                }
+            }
+        if($(this).prop('checked') == false){
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Persistent contractions, ',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( ', Persistent contractions',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Persistent contractions',  '' ) );
+            }
+    });
+
+    $('input.premature_rupture').click(function(){
+        if($(this).prop('checked') == true){
+            if($(".sign_assessment_diagnosis").val().length > 0)
+                {
+                    $(".sign_assessment_diagnosis").val( $(".sign_assessment_diagnosis").val() + ", Premature rupture of the bag of membrane" );
+                }
+                else
+                {
+                    $(".sign_assessment_diagnosis").val("Premature rupture of the bag of membrane");
+                }
+            }
+        if($(this).prop('checked') == false){
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Premature rupture of the bag of membrane, ',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( ', Premature rupture of the bag of membrane',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Premature rupture of the bag of membrane',  '' ) );
+            }
+    });
+
+    $('input.fetal_pregnancy').click(function(){
+        if($(this).prop('checked') == true){
+            if($(".sign_assessment_diagnosis").val().length > 0)
+                {
+                    $(".sign_assessment_diagnosis").val( $(".sign_assessment_diagnosis").val() + ", Multi fetal pregnancy" );
+                }
+                else
+                {
+                    $(".sign_assessment_diagnosis").val("Multi fetal pregnancy");
+                }
+            }
+        if($(this).prop('checked') == false){
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Multi fetal pregnancy, ',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( ', Multi fetal pregnancy',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Multi fetal pregnancy',  '' ) );
+            }
+    });
+
+    $('input.severe_headache').click(function(){
+        if($(this).prop('checked') == true){
+            if($(".sign_assessment_diagnosis").val().length > 0)
+                {
+                    $(".sign_assessment_diagnosis").val( $(".sign_assessment_diagnosis").val() + ", Persistent severe headache, dizziness, or blurring of vision" );
+                }
+                else
+                {
+                    $(".sign_assessment_diagnosis").val("Persistent severe headache, dizziness, or blurring of vision");
+                }
+            }
+        if($(this).prop('checked') == false){
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Persistent severe headache, dizziness, or blurring of vision, ',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( ', Persistent severe headache, dizziness, or blurring of vision',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Persistent severe headache, dizziness, or blurring of vision',  '' ) );
+            }
+    });
+
+    $('input.abdominal_pain').click(function(){
+        if($(this).prop('checked') == true){
+            if($(".sign_assessment_diagnosis").val().length > 0)
+                {
+                    $(".sign_assessment_diagnosis").val( $(".sign_assessment_diagnosis").val() + ", Abdominal pain or epigastric pain" );
+                }
+                else
+                {
+                    $(".sign_assessment_diagnosis").val("Abdominal pain or epigastric pain");
+                }
+            }
+        if($(this).prop('checked') == false){
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Abdominal pain or epigastric pain, ',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( ', Abdominal pain or epigastric pain',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Abdominal pain or epigastric pain',  '' ) );
+            }
+    });
+
+    $('input.edema_hands').click(function(){
+        if($(this).prop('checked') == true){
+            if($(".sign_assessment_diagnosis").val().length > 0)
+                {
+                    $(".sign_assessment_diagnosis").val( $(".sign_assessment_diagnosis").val() + ", Edema of the hands, feet or face" );
+                }
+                else
+                {
+                    $(".sign_assessment_diagnosis").val("Edema of the hands, feet or face");
+                }
+            }
+        if($(this).prop('checked') == false){
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Edema of the hands, feet or face, ',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( ', Edema of the hands, feet or face',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Edema of the hands, feet or face',  '' ) );
+            }
+    });
+
+    $('input.fever_pallor').click(function(){
+        if($(this).prop('checked') == true){
+            if($(".sign_assessment_diagnosis").val().length > 0)
+                {
+                    $(".sign_assessment_diagnosis").val( $(".sign_assessment_diagnosis").val() + ", Fever or pallor" );
+                }
+                else
+                {
+                    $(".sign_assessment_diagnosis").val("Fever or pallor");
+                }
+            }
+        if($(this).prop('checked') == false){
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Fever or pallor, ',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( ', Fever or pallor',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Fever or pallor',  '' ) );
+            }
+    });
+
+    $('input.seizure_consciousness').click(function(){
+        if($(this).prop('checked') == true){
+            if($(".sign_assessment_diagnosis").val().length > 0)
+                {
+                    $(".sign_assessment_diagnosis").val( $(".sign_assessment_diagnosis").val() + ", Seizure or loss of consciousness" );
+                }
+                else
+                {
+                    $(".sign_assessment_diagnosis").val("Seizure or loss of consciousness");
+                }
+            }
+        if($(this).prop('checked') == false){
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Seizure or loss of consciousness, ',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( ', Seizure or loss of consciousness',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Seizure or loss of consciousness',  '' ) );
+            }
+    });
+
+    $('input.difficulty_breathing').click(function(){
+        if($(this).prop('checked') == true){
+            if($(".sign_assessment_diagnosis").val().length > 0)
+                {
+                    $(".sign_assessment_diagnosis").val( $(".sign_assessment_diagnosis").val() + ", Difficulty of breathing" );
+                }
+                else
+                {
+                    $(".sign_assessment_diagnosis").val("Difficulty of breathing");
+                }
+            }
+        if($(this).prop('checked') == false){
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Difficulty of breathing, ',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( ', Difficulty of breathing',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Difficulty of breathing',  '' ) );
+            }
+    });
+
+    $('input.painful_urination').click(function(){
+        if($(this).prop('checked') == true){
+            if($(".sign_assessment_diagnosis").val().length > 0)
+                {
+                    $(".sign_assessment_diagnosis").val( $(".sign_assessment_diagnosis").val() + ", Painful urination" );
+                }
+                else
+                {
+                    $(".sign_assessment_diagnosis").val("Painful urination");
+                }
+            }
+        if($(this).prop('checked') == false){
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Painful urination, ',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( ', Painful urination',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Painful urination',  '' ) );
+            }
+    });
+
+    $('input.elevated_bp').click(function(){
+        if($(this).prop('checked') == true){
+            if($(".sign_assessment_diagnosis").val().length > 0)
+                {
+                    $(".sign_assessment_diagnosis").val( $(".sign_assessment_diagnosis").val() + ", Elevated blood pressure ≥ 120/90" );
+                }
+                else
+                {
+                    $(".sign_assessment_diagnosis").val("Elevated blood pressure ≥ 120/90");
+                }
+            }
+        if($(this).prop('checked') == false){
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Elevated blood pressure ≥ 120/90, ',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( ', Elevated blood pressure ≥ 120/90',  '' ) );
+            $( '#sign_assessment_diagnosis' ).val( $('#sign_assessment_diagnosis').val().replace( 'Elevated blood pressure ≥ 120/90',  '' ) );
+            }
     });
 
 
@@ -859,5 +1202,19 @@
         Session::put("cssAdd",false);
     ?>
     @endif    
+
+
+    @if(Session::get('return_pregnant'))
+        Lobibox.notify('success', {
+            title: "",
+            msg: "Successfully Added Information",
+            size: 'mini',
+            rounded: true
+        });
+
+    <?php
+        Session::put("return_pregnant",false);
+    ?>
+    @endif   
 
 </script>

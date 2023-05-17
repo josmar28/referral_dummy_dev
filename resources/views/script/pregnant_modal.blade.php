@@ -89,7 +89,7 @@
             // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
 
 
-            $('.new_aog').val( whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator)+ " " + "weeks");
+            $('.new_aog').val( whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator));
             $('.new_aog').change();
         }
         else
@@ -113,7 +113,7 @@
 
             // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
 
-            $('.new_aog').val(whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator)+ " " + "week");
+            $('.new_aog').val(whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator));
             $('.new_aog').change();
         }
 

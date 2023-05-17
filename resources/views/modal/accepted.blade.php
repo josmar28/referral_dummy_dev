@@ -286,12 +286,12 @@
 <div class="modal fade" role="dialog" id="patientReturnModal">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
-            <form method="POST" class="form-submit" action="{{ url('doctor/patient/return/pregnant') }}" id="pregnant_form_return">
+            <form method="POST" class="form-submit" action="{{ url('doctor/patient/return/pregnant') }}" id="pregnant_form_return" novalidate>
             <div class="jim-content">
                 @include('include.header_form')
                 <div class="title-form">Risk Assessment Check list for Pregnant Women</div>
                 {{ csrf_field() }}
-                <input type="hidden" name="patient_id" class="patient_id"/>
+                <input type="hidden" name="patient_woman_id" class="patient_woman_id"/>
                     <input type="hidden" name="unique_id" class="unique_id"/>
                     <input type="hidden" name="code" class="code"/>
                     <!-- <input type="hidden" name="patient_id" class="patient_id" value="" />

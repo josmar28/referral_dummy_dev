@@ -829,7 +829,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:800.7px;top:746.0px;white-space:normal; width: 160px; word-wrap:break-word">{{ $data['lab_result'][1]->lab_remarks }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:69.7px;top:782.6px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][1]->date_of_lab_name }}</span>
+<span class="text" style="left:63.7px;top:782.6px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][1]->date_of_lab_name }}</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:164.3px;top:794.0px;">Hgb</span>
@@ -913,7 +913,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:800.7px;top:782.6px;white-space:normal; width: 160px; word-wrap:break-word">{{ $data['lab_result'][1]->lab_remarks }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:69.7px;top:818.5px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][2]->date_of_lab_name }}&nbsp;</span>
+<span class="text" style="left:63.7px;top:818.5px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][2]->date_of_lab_name }}&nbsp;</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:164.3px;top:830.0px;">Hgb</span>
@@ -997,7 +997,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:800.7px;top:818.5px;white-space:normal; width: 160px; word-wrap:break-word">{{ $data['lab_result'][2]->lab_remarks }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:69.7px;top:853.7px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][3]->date_of_lab_name }}</span>
+<span class="text" style="left:63.7px;top:853.7px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][3]->date_of_lab_name }}</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:164.3px;top:865.1px;">Hgb</span>
@@ -1081,7 +1081,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:800.7px;top:853.7px;white-space:normal; width: 160px; word-wrap:break-word">{{ $data['lab_result'][3]->lab_remarks }}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:69.7px;top:889.2px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][4]->date_of_lab_name }}</span>
+<span class="text" style="left:63.7px;top:889.2px;white-space:normal; width: 90px; word-wrap:break-word">{{ $data['lab_result'][4]->date_of_lab_name }}</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:164.3px;top:900.6px;">Hgb</span>
@@ -1275,7 +1275,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:871.6px;top:1008.7px;">Remarks&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1028.9px;">@if($data['first_tri_visit']->vaginal_spotting == 'yes')
+<span class="text" style="left:69.7px;top:1028.9px;">@if($data['first_tri']->vaginal_spotting == 'yes')
 ☑
 @else
 
@@ -1635,7 +1635,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:853.7px;top:1264.1px;normal; width: 110px; word-wrap:break-word">{{ $data['fifth_tri_visit']->plan_intervention }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1047.1px;">@if($data['first_tri_visit']->severe_nausea == 'yes')
+<span class="text" style="left:69.7px;top:1047.1px;">@if($data['first_tri']->severe_nausea == 'yes')
 ☑
 @else
 
@@ -1646,7 +1646,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:101.4px;top:1047.1px;">vere nausea and vomiting&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1065.1px;">@if($data['first_tri_visit']->significant_decline == 'yes')
+<span class="text" style="left:69.7px;top:1065.1px;">@if($data['first_tri']->significant_decline == 'yes')
 ☑
 @else
 
@@ -1660,7 +1660,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:104.0px;top:1082.6px;">12 hrs during 2 ½ of pregnancy)&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1100.7px;">@if($data['first_tri_visit']->persistent_contractions == 'yes')
+<span class="text" style="left:69.7px;top:1100.7px;">@if($data['first_tri']->persistent_contractions == 'yes')
 ☑
 @else
 
@@ -1671,7 +1671,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:101.4px;top:1100.7px;">rsistent contractions&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1118.7px;">@if($data['first_tri_visit']->premature_rupture == 'yes')
+<span class="text" style="left:69.7px;top:1118.7px;">@if($data['first_tri']->premature_rupture == 'yes')
 ☑
 @else
 
@@ -1688,7 +1688,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:1136.2px;">membrane&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1154.3px;">@if($data['first_tri_visit']->fetal_pregnancy == 'yes')
+<span class="text" style="left:69.7px;top:1154.3px;">@if($data['first_tri']->fetal_pregnancy == 'yes')
 ☑
 @else
 
@@ -1698,7 +1698,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:86.3px;top:1154.3px;">Multi fetal pregnancy&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1172.5px;">@if($data['first_tri_visit']->severe_headache == 'yes')
+<span class="text" style="left:69.7px;top:1172.5px;">@if($data['first_tri']->severe_headache == 'yes')
 ☑
 @else
 
@@ -1717,7 +1717,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:103.2px;top:1189.8px;">ng of vision</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1207.9px;">@if($data['first_tri_visit']->abdominal_pain == 'yes')
+<span class="text" style="left:69.7px;top:1207.9px;">@if($data['first_tri']->abdominal_pain == 'yes')
 ☑
 @else
 
@@ -1729,7 +1729,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:265.9px;top:1207.9px;">pain&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1226.2px;">@if($data['first_tri_visit']->edema_hands == 'yes')
+<span class="text" style="left:69.7px;top:1226.2px;">@if($data['first_tri']->edema_hands == 'yes')
 ☑
 @else
 
@@ -1741,7 +1741,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:260.7px;top:1226.2px;">ace&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1244.2px;">@if($data['first_tri_visit']->fever_pallor == 'yes')
+<span class="text" style="left:69.7px;top:1244.2px;">@if($data['first_tri']->fever_pallor == 'yes')
 ☑
 @else
 
@@ -1751,7 +1751,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:86.3px;top:1244.2px;">Fever or pallor&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1262.3px;">@if($data['first_tri_visit']->seizure_consciousness == 'yes')
+<span class="text" style="left:69.7px;top:1262.3px;">@if($data['first_tri']->seizure_consciousness == 'yes')
 ☑
 @else
 
@@ -1763,7 +1763,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:261.9px;top:1262.3px;">ess&nbsp;&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1280.6px;">@if($data['first_tri_visit']->difficulty_breathing == 'yes')
+<span class="text" style="left:69.7px;top:1280.6px;">@if($data['first_tri']->difficulty_breathing == 'yes')
 ☑
 @else
 
@@ -1774,7 +1774,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:101.4px;top:1280.6px;">fficulty of breathing&nbsp;&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1298.6px;">@if($data['first_tri_visit']->painful_urination == 'yes')
+<span class="text" style="left:69.7px;top:1298.6px;">@if($data['first_tri']->painful_urination == 'yes')
 ☑
 @else
 
@@ -1784,7 +1784,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:86.3px;top:1298.6px;">Painful urination&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:1316.9px;">@if($data['first_tri_visit']->elevated_bp == 'yes')
+<span class="text" style="left:69.7px;top:1316.9px;">@if($data['first_tri']->elevated_bp == 'yes')
 ☑
 @else
 
@@ -1809,7 +1809,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:564.0px;top:1409.7px;">accompanying hospital/clinic personnel</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
-<span class="text" style="left:803.7px;top:1409.7px;">)</span>
+<span class="text" style="left:812.7px;top:1409.7px;">)</span>
 <span class="text" style="left:662.3px;top:1431.8px;">Date/Time:</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -2043,7 +2043,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:871.6px;top:201.4px;">Remarks&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:221.5px;">@if($data['first_tri_visit_2nd']->vaginal_spotting == 'yes')
+<span class="text" style="left:69.7px;top:221.5px;">@if($data['second_tri']->vaginal_spotting == 'yes')
 ☑
 @else
 
@@ -2396,7 +2396,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:851.7px;top:456.7px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['fifth_tri_visit_2nd']->plan_intervention }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:239.6px;">@if($data['first_tri_visit_2nd']->severe_nausea == 'yes')
+<span class="text" style="left:69.7px;top:239.6px;">@if($data['second_tri']->severe_nausea == 'yes')
 ☑
 @else
 
@@ -2408,7 +2408,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:120.6px;top:239.6px;">re nausea and vomiting&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:257.8px;">@if($data['first_tri_visit_2nd']->significant_decline == 'yes')
+<span class="text" style="left:69.7px;top:257.8px;">@if($data['second_tri']->significant_decline == 'yes')
 ☑
 @else
 
@@ -2422,7 +2422,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:122.8px;top:275.1px;">hrs during 2 ½ of pregnancy)&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:293.4px;">@if($data['first_tri_visit_2nd']->persistent_contractions == 'yes')
+<span class="text" style="left:69.7px;top:293.4px;">@if($data['second_tri']->persistent_contractions == 'yes')
 ☑
 @else
 
@@ -2433,7 +2433,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:106.4px;top:293.4px;">sistent contractions&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:311.4px;">@if($data['first_tri_visit_2nd']->premature_rupture == 'yes')
+<span class="text" style="left:69.7px;top:311.4px;">@if($data['second_tri']->premature_rupture == 'yes')
 ☑
 @else
 
@@ -2453,7 +2453,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:107.2px;top:328.7px;">rane&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:347.0px;">@if($data['first_tri_visit_2nd']->fetal_pregnancy == 'yes')
+<span class="text" style="left:69.7px;top:347.0px;">@if($data['second_tri']->fetal_pregnancy == 'yes')
 ☑
 @else
 
@@ -2464,7 +2464,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:107.2px;top:347.0px;">lti fetal pregnancy&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:365.1px;">@if($data['first_tri_visit_2nd']->severe_headache == 'yes')
+<span class="text" style="left:69.7px;top:365.1px;">@if($data['second_tri']->severe_headache == 'yes')
 ☑
 @else
 
@@ -2480,7 +2480,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:103.2px;top:382.3px;">ng of vision&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:400.6px;">@if($data['first_tri_visit_2nd']->abdominal_pain == 'yes')
+<span class="text" style="left:69.7px;top:400.6px;">@if($data['second_tri']->abdominal_pain == 'yes')
 ☑
 @else
 
@@ -2490,7 +2490,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:86.3px;top:400.6px;">Abdominal pain or epigastric pain&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:418.7px;">@if($data['first_tri_visit_2nd']->edema_hands == 'yes')
+<span class="text" style="left:69.7px;top:418.7px;">@if($data['second_tri']->edema_hands == 'yes')
 ☑
 @else
 
@@ -2500,7 +2500,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:86.3px;top:418.7px;">Edema of the hands, feet or face&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:436.8px;">@if($data['first_tri_visit_2nd']->fever_pallor == 'yes')
+<span class="text" style="left:69.7px;top:436.8px;">@if($data['second_tri']->fever_pallor == 'yes')
 ☑
 @else
 
@@ -2511,7 +2511,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:101.4px;top:436.8px;">ver or pallor&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:455.1px;">@if($data['first_tri_visit_2nd']->seizure_consciousness == 'yes')
+<span class="text" style="left:69.7px;top:455.1px;">@if($data['second_tri']->seizure_consciousness == 'yes')
 ☑
 @else
 
@@ -2522,7 +2522,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:101.4px;top:455.1px;">izure or loss of consciousness&nbsp;&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:473.1px;">@if($data['first_tri_visit_2nd']->difficulty_breathing == 'yes')
+<span class="text" style="left:69.7px;top:473.1px;">@if($data['second_tri']->difficulty_breathing == 'yes')
 ☑
 @else
 
@@ -2533,7 +2533,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:101.4px;top:473.1px;">fficulty of breathing&nbsp;&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:491.4px;">@if($data['first_tri_visit_2nd']->painful_urination == 'yes')
+<span class="text" style="left:69.7px;top:491.4px;">@if($data['second_tri']->painful_urination == 'yes')
 ☑
 @else
 
@@ -2543,7 +2543,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:86.3px;top:491.4px;">Painful urination</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:509.5px;">@if($data['first_tri_visit_2nd']->elevated_bp == 'yes')
+<span class="text" style="left:69.7px;top:509.5px;">@if($data['second_tri']->elevated_bp == 'yes')
 ☑
 @else
 
@@ -2641,7 +2641,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:871.6px;top:594.4px;">Remarks&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:614.5px;">@if($data['first_tri_visit_3rd']->vaginal_spotting == 'yes')
+<span class="text" style="left:69.7px;top:614.5px;">@if($data['third_tri']->vaginal_spotting == 'yes')
 ☑
 @else
 
@@ -2993,7 +2993,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:851.7px;top:849.6px;white-space:normal; width: 110px; word-wrap:break-word">{{ $data['fifth_tri_visit_3rd']->plan_intervention }}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:632.8px;">@if($data['first_tri_visit_3rd']->severe_nausea == 'yes')
+<span class="text" style="left:69.7px;top:632.8px;">@if($data['third_tri']->severe_nausea == 'yes')
 ☑
 @else
 
@@ -3004,7 +3004,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:101.4px;top:632.8px;">vere nausea and vomiting&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:650.8px;">@if($data['first_tri_visit_3rd']->significant_decline == 'yes')
+<span class="text" style="left:69.7px;top:650.8px;">@if($data['third_tri']->significant_decline == 'yes')
 ☑
 @else
 
@@ -3016,7 +3016,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:668.1px;">10 in 12 hrs during 2 ½ of pregnancy)&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:686.4px;">@if($data['first_tri_visit_3rd']->persistent_contractions == 'yes')
+<span class="text" style="left:69.7px;top:686.4px;">@if($data['third_tri']->persistent_contractions == 'yes')
 ☑
 @else
 
@@ -3026,7 +3026,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:86.3px;top:686.4px;">Persistent contractions</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:704.4px;">@if($data['first_tri_visit_3rd']->premature_rupture == 'yes')
+<span class="text" style="left:69.7px;top:704.4px;">@if($data['third_tri']->premature_rupture == 'yes')
 ☑
 @else
 
@@ -3044,7 +3044,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:721.9px;">membrane&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:740.0px;">@if($data['first_tri_visit_3rd']->fetal_pregnancy == 'yes')
+<span class="text" style="left:69.7px;top:740.0px;">@if($data['third_tri']->fetal_pregnancy == 'yes')
 ☑
 @else
 
@@ -3055,7 +3055,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:107.2px;top:740.0px;">lti fetal pregnancy&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:758.1px;">@if($data['first_tri_visit_3rd']->severe_headache == 'yes')
+<span class="text" style="left:69.7px;top:758.1px;">@if($data['third_tri']->severe_headache == 'yes')
 ☑
 @else
 
@@ -3071,7 +3071,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:103.2px;top:775.5px;">ng of vision&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:793.6px;">@if($data['first_tri_visit_3rd']->abdominal_pain == 'yes')
+<span class="text" style="left:69.7px;top:793.6px;">@if($data['third_tri']->abdominal_pain == 'yes')
 ☑
 @else
 
@@ -3082,7 +3082,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:104.6px;top:793.6px;">dominal pain or epigastric pain&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:811.7px;">@if($data['first_tri_visit_3rd']->edema_hands == 'yes')
+<span class="text" style="left:69.7px;top:811.7px;">@if($data['third_tri']->edema_hands == 'yes')
 ☑
 @else
 
@@ -3092,7 +3092,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:86.3px;top:811.7px;">Edema of the hands, feet or face&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:830.0px;">@if($data['first_tri_visit_3rd']->fever_pallor == 'yes')
+<span class="text" style="left:69.7px;top:830.0px;">@if($data['third_tri']->fever_pallor == 'yes')
 ☑
 @else
 
@@ -3103,7 +3103,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:101.4px;top:830.0px;">ver or pallor&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:848.0px;">@if($data['first_tri_visit_3rd']->seizure_consciousness == 'yes')
+<span class="text" style="left:69.7px;top:848.0px;">@if($data['third_tri']->seizure_consciousness == 'yes')
 ☑
 @else
 
@@ -3113,7 +3113,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:86.3px;top:848.0px;">Seizure or loss of consciousness&nbsp;&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:866.3px;">@if($data['first_tri_visit_3rd']->difficulty_breathing == 'yes')
+<span class="text" style="left:69.7px;top:866.3px;">@if($data['third_tri']->difficulty_breathing == 'yes')
 ☑
 @else
 
@@ -3124,7 +3124,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:101.4px;top:866.3px;">fficulty of breathing&nbsp;&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:884.4px;">@if($data['first_tri_visit_3rd']->painful_urination == 'yes')
+<span class="text" style="left:69.7px;top:884.4px;">@if($data['third_tri']->painful_urination == 'yes')
 ☑
 @else
 
@@ -3134,7 +3134,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:86.3px;top:884.4px;">Painful urination&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:902.4px;">@if($data['first_tri_visit_3rd']->elevated_bp == 'yes')
+<span class="text" style="left:69.7px;top:902.4px;">@if($data['third_tri']->elevated_bp == 'yes')
 ☑
 @else
 
