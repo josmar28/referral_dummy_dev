@@ -46,7 +46,7 @@
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:69.7px;top:177.7px;">Name of Facility: {{$data['form']->referring_facility_name}} &nbsp;</span>
-<span class="text" style="left:626.8px;top:177.7px;">Address of Facility: facility_address&nbsp;</span>
+<span class="text" style="left:626.8px;top:177.7px;">Address of Facility: {{$facility_address}}&nbsp;</span>
 <span class="text" style="left:69.7px;top:196.0px;">Name of Patient: {{$data['form']->woman_name}}&nbsp;</span>
 <span class="text" style="left:626.8px;top:196.0px;">Age/Sex: {{$data['form']->woman_age}} / {{$data['form']->sex}} &nbsp;</span>
 <span class="text" style="left:69.7px;top:214.1px;">
@@ -81,7 +81,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:348.6px;top:270.1px;">@if($data['form']->family_income == 'rich')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -91,7 +91,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:523.1px;top:270.1px;">@if($data['form']->family_income == 'high')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -101,7 +101,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:261.3px;top:287.8px;">@if($data['form']->family_income == 'upper_middle')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -111,7 +111,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:427.0px;top:287.8px;">@if($data['form']->family_income == 'middle')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -122,7 +122,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:255.6px;top:305.0px;">@if($data['form']->family_income == 'lower_middle')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -132,7 +132,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:412.7px;top:305.0px;">@if($data['form']->family_income == 'low')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -142,7 +142,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:536.4px;top:305.0px;">@if($data['form']->family_income == 'poor')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:17px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -155,7 +155,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:779.8px;top:270.1px;">@if($data['form']->woman_status == 'Single')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -165,7 +165,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:850.3px;top:270.1px;">@if($data['form']->woman_status == 'Married')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -175,7 +175,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:938.2px;top:270.1px;">@if($data['form']->woman_status == 'Divorced')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -185,17 +185,17 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:685.6px;top:287.8px;">@if($data['form']->woman_status == 'Widowed')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:713.3px;top:287.8px;">Legally Separated</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:822.4px;top:287.8px;">@if($data['form']->woman_status == 'Legally_Separated')
+<span class="text" style="left:822.4px;top:287.8px;">@if($data['form']->woman_status == 'Separated')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:17px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -208,7 +208,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:333.4px;top:323.3px;">@if($data['form']->educ_attainment == 'elementary')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:17px;font-family:&#39;Times New Roman&#39;;">
@@ -218,7 +218,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:445.6px;top:323.3px;">@if($data['form']->educ_attainment == 'highschool')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:17px;font-family:&#39;Times New Roman&#39;;">
@@ -228,7 +228,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:541.0px;top:323.3px;">@if($data['form']->educ_attainment == 'college')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:17px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -251,32 +251,32 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:485.4px;top:345.4px;">{{$data['form']->patient_lmp}}</span>
 <span class="text" style="left:610.9px;top:345.4px;">EDC/EDD:</span>
 <span class="text" style="left:681.8px;top:345.4px;">{{$data['form']->patient_edc_edd}}&nbsp;</span>
-<span class="text" style="left:231.3px;top:363.1px;">Height:</span>
-<span class="text" style="left:274.9px;top:363.1px;">{{$data['form']->height}}&nbsp;</span>
-<span class="text" style="left:311.9px;top:363.1px;">Weight:</span>
-<span class="text" style="left:358.3px;top:363.1px;">{{$data['form']->weigth}}&nbsp;</span>
-<span class="text" style="left:388.0px;top:363.1px;">BMI:</span>
-<span class="text" style="left:417.0px;top:363.1px;">&nbsp;{{$data['form']->bmi}}&nbsp;</span>
-<span class="text" style="left:444.7px;top:363.1px;">Fundic Height:</span>
-<span class="text" style="left:528.8px;top:363.1px;">{{$data['form']->fundic_height}}&nbsp;</span>
-<span class="text" style="left:560.7px;top:363.1px;">BP:</span>
-<span class="text" style="left:585.2px;top:363.1px;">{{$data['form']->bp}}&nbsp;</span>
+<span class="text" style="left:215.3px;top:363.1px;">Height:</span>
+<span class="text" style="left:255.9px;top:363.1px;">{{$data['form']->height}}&nbsp;</span>
+<span class="text" style="left:290.9px;top:363.1px;">Weight:</span>
+<span class="text" style="left:335.3px;top:363.1px;">{{$data['form']->weigth}}&nbsp;</span>
+<span class="text" style="left:365.0px;top:363.1px;">BMI:</span>
+<span class="text" style="left:390.0px;top:363.1px;">&nbsp;{{$data['form']->bmi}}&nbsp;</span>
+<span class="text" style="left:430.7px;top:363.1px;">Fundic Height:</span>
+<span class="text" style="left:510.8px;top:363.1px;">{{$data['form']->fundic_height}}&nbsp;</span>
+<span class="text" style="left:550.7px;top:363.1px;">BP:</span>
+<span class="text" style="left:570.2px;top:363.1px;">{{$data['form']->bp}}&nbsp;</span>
 <span class="text" style="left:615.0px;top:363.1px;">HR:</span>
 <span class="text" style="left:640.5px;top:363.1px;">{{$data['form']->hr}}&nbsp;</span>
 <span class="text" style="left:670.2px;top:363.1px;">RR:</span>
 <span class="text" style="left:695.1px;top:363.1px;">{{$data['form']->rr}}&nbsp;</span>
 <span class="text" style="left:724.3px;top:363.1px;">Temp.:</span>
 <span class="text" style="left:762.7px;top:363.1px;">&nbsp;{{$data['form']->temp}}&nbsp;</span>
-<span class="text" style="left:180.6px;top:380.9px;">Td1:</span>
-<span class="text" style="left:205.1px;top:380.9px;">&nbsp;{{$data['form']->patient_td1}}&nbsp;</span>
-<span class="text" style="left:300.8px;top:380.9px;">Td2:</span>
-<span class="text" style="left:325.1px;top:380.9px;">&nbsp;{{$data['form']->patient_td1}}</span>
-<span class="text" style="left:420.2px;top:380.9px;">Td3:</span>
-<span class="text" style="left:445.7px;top:380.9px;">&nbsp;{{$data['form']->patient_td1}}</span>
-<span class="text" style="left:550.2px;top:380.9px;">Td4:</span>
-<span class="text" style="left:575.7px;top:380.9px;">&nbsp;{{$data['form']->patient_td1}}</span>
-<span class="text" style="left:680.6px;top:380.9px;">Td5:</span>
-<span class="text" style="left:710.1px;top:380.9px;">&nbsp;{{$data['form']->patient_td1}}&nbsp;</span>
+<span class="text" style="left:160.6px;top:380.9px;">Td1:</span>
+<span class="text" style="left:182.1px;top:380.9px;">&nbsp;{{$data['form']->patient_td1}}&nbsp;</span>
+<span class="text" style="left:295.8px;top:380.9px;">Td2:</span>
+<span class="text" style="left:320.1px;top:380.9px;">&nbsp;{{$data['form']->patient_td2}}</span>
+<span class="text" style="left:440.2px;top:380.9px;">Td3:</span>
+<span class="text" style="left:465.7px;top:380.9px;">&nbsp;{{$data['form']->patient_td3}}</span>
+<span class="text" style="left:570.2px;top:380.9px;">Td4:</span>
+<span class="text" style="left:595.7px;top:380.9px;">&nbsp;{{$data['form']->patient_td4}}</span>
+<span class="text" style="left:700.6px;top:380.9px;">Td5:</span>
+<span class="text" style="left:720.1px;top:380.9px;">&nbsp;{{$data['form']->patient_td5}}&nbsp;</span>
 </span>
 <span style="font-size:17px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:90.4px;top:398.4px;">B</span>
@@ -305,7 +305,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:69.7px;top:436.6px;">@if($data['antepartum']->hypertension == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:436.6px;">Hypertension&nbsp;&nbsp;</span>
@@ -313,7 +313,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:211.5px;top:436.6px;">@if($data['antepartum']->anemia == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:228.1px;top:436.6px;">Anemia&nbsp;</span>
@@ -321,7 +321,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:329.6px;top:436.6px;">@if($data['antepartum']->malaria == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:346.2px;top:436.6px;">Malaria&nbsp;</span>
@@ -329,7 +329,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:459.9px;top:436.6px;">@if($data['antepartum']->cancer == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:476.5px;top:436.6px;">Cancer&nbsp;</span>
@@ -337,7 +337,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:609.7px;top:436.6px;">@if($data['antepartum']->allergies == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:626.4px;top:436.6px;">Allergies&nbsp;</span>
@@ -401,7 +401,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:69.7px;top:454.9px;">@if($data['antepartum']->renal_disease == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:454.9px;">Re</span>
@@ -410,7 +410,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:211.5px;top:454.9px;">@if($data['antepartum']->typhoid_disorders == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:228.1px;top:454.9px;">Typhoid</span>
@@ -419,7 +419,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:329.6px;top:454.9px;">@if($data['antepartum']->hypo_hyper == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:346.2px;top:454.9px;">Hypo/Hyper</span>
@@ -428,7 +428,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:459.9px;top:454.9px;">@if($data['antepartum']->tuberculosis == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:476.5px;top:454.9px;">Tuberculosis&nbsp;</span>
@@ -436,7 +436,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:609.7px;top:454.9px;">@if($data['antepartum']->diabetes_mellitus == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:626.4px;top:454.9px;">Diabetes Mellitus&nbsp;</span>
@@ -444,7 +444,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:69.7px;top:490.2px;">@if($data['antepartum']->hepatatis_b == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:490.2px;">He</span>
@@ -455,7 +455,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:211.5px;top:490.2px;">@if($data['antepartum']->hiv_sti == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:228.1px;top:490.2px;">HIV-AIDs/</span>
@@ -464,7 +464,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:329.6px;top:490.2px;">@if($data['antepartum']->seizure_disorder == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:346.2px;top:490.2px;">Seizure</span>
@@ -473,7 +473,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:459.9px;top:490.2px;">@if($data['antepartum']->cardiovascular_disease == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:476.5px;top:490.2px;">Cardiovascular</span>
@@ -482,7 +482,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:609.7px;top:490.2px;">@if($data['antepartum']->malnutrition == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:626.4px;top:490.2px;">Malnutrition &lt;18.5</span>
@@ -491,7 +491,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:69.7px;top:525.7px;">@if($data['antepartum']->hemotilgic_disorder == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:525.7px;">He</span>
@@ -502,7 +502,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:211.5px;top:525.7px;">@if($data['antepartum']->substance_abuse == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:228.1px;top:525.7px;">Alcohol/</span>
@@ -512,7 +512,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:329.6px;top:525.7px;">@if($data['antepartum']->anti_phospholipid == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:346.2px;top:525.7px;">Patient w/ anti-</span>
@@ -522,7 +522,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:459.9px;top:525.7px;">@if($data['antepartum']->restrictive_pulmonary == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:476.5px;top:525.7px;">Obstructive or</span>
@@ -532,7 +532,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:609.7px;top:525.7px;">@if($data['antepartum']->mental_retardation == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:626.4px;top:525.7px;">Patients w/</span>
@@ -542,7 +542,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:69.7px;top:578.5px;">@if($data['antepartum']->habitual_abortion == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:578.5px;">Habitual abortion</span>
@@ -554,7 +554,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:211.5px;top:578.5px;">@if($data['antepartum']->fetus_congenital == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:228.1px;top:578.5px;">Birth of fetus</span>
@@ -564,7 +564,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:329.6px;top:578.5px;">@if($data['antepartum']->previous_caesarean == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:346.2px;top:578.5px;">Previous</span>
@@ -573,7 +573,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:459.9px;top:578.5px;">@if($data['antepartum']->preterm_delivery == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:476.5px;top:578.5px;">Preterm Delivery</span>
@@ -583,7 +583,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:609.7px;top:578.5px;">@if($data['antepartum']->others == 'yes')
 ☑
-@else  @endif</span>
+@else ☐ @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:630.2px;top:578.5px;">Others</span>
@@ -695,14 +695,14 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:466.5px;top:759.7px;">{{ $data['lab_result'][0]->ua_albumin }}&nbsp;</span>
 </span>
-<span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
+<span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:515.1px;top:746.0px;white-space:normal; width: 85px; word-wrap:break-word">{{ $data['lab_result'][0]->utz }}&nbsp;</span>
 </span>
 <span style="font-size:13px;font-family:&#39;Times&#39;;">
 <span class="text" style="left:609.3px;top:812.1px;">@if($data['lab_result'][0]->blood_type == 'a+')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -712,7 +712,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:639.4px;top:812.1px;">@if($data['lab_result'][0]->blood_type == 'a-')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -722,7 +722,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:609.7px;top:826.1px;">@if($data['lab_result'][0]->blood_type == 'b+')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -732,7 +732,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:639.2px;top:826.1px;">@if($data['lab_result'][0]->blood_type == 'b-')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -742,7 +742,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:607.7px;top:840.8px;">@if($data['lab_result'][0]->blood_type == 'ab+')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -752,7 +752,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:639.0px;top:840.8px;">@if($data['lab_result'][0]->blood_type == 'ab-')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -762,7 +762,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:608.9px;top:852.6px;">@if($data['lab_result'][0]->blood_type == 'o+')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -772,7 +772,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:639.6px;top:852.6px;">@if($data['lab_result'][0]->blood_type == 'o-')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -785,7 +785,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:699.2px;top:814.7px;">@if($data['lab_result'][0]->hbsag_result == 'reactive')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -795,7 +795,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:688.8px;top:840.4px;">@if($data['lab_result'][0]->hbsag_result == 'non_reactive')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -806,7 +806,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:758.7px;top:814.7px;">@if($data['lab_result'][0]->vdrl_result == 'reactive')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -817,7 +817,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:748.2px;top:840.4px;">@if($data['lab_result'][0]->vdrl_result == 'non_reactive')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:8px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -906,7 +906,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:466.5px;top:796.0px;">{{ $data['lab_result'][1]->ua_albumin }}</span>
 </span>
-<span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
+<span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:515.1px;top:782.6px;white-space:normal; width: 85px; word-wrap:break-word">{{ $data['lab_result'][1]->utz }}</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
@@ -990,7 +990,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:466.5px;top:832.0px;">{{ $data['lab_result'][2]->ua_albumin }}</span>
 </span>
-<span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
+<span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:515.1px;top:818.5px;white-space:normal; width: 85px; word-wrap:break-word">{{ $data['lab_result'][2]->utz }}&nbsp;</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
@@ -1074,7 +1074,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:466.5px;top:867.3px;">{{ $data['lab_result'][3]->ua_albumin }}</span>
 </span>
-<span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
+<span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:515.1px;top:853.7px;white-space:normal; width: 85px; word-wrap:break-word">{{ $data['lab_result'][3]->utz }}</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
@@ -1158,7 +1158,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:466.5px;top:902.8px;">{{ $data['lab_result'][4]->ua_albumin }}</span>
 </span>
-<span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
+<span style="font-size:8px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:515.1px;top:889.2px;white-space:normal; width: 85px; word-wrap:break-word">{{ $data['lab_result'][4]->utz }}</span>
 </span>
 <span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
@@ -1278,7 +1278,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:1028.9px;">@if($data['first_tri']->vaginal_spotting == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -1312,7 +1312,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:378.2px;top:1111.9px;">BP:</span>
 <span class="text" style="left:396.2px;top:1113.9px;font-size:10px">{{ $data['first_tri_visit']->bp }}</span>
 <span class="text" style="left:430.1px;top:1111.9px;">Temp:&nbsp;</span>
-<span class="text" style="left:459.1px;top:1112.9px;">{{ $data['first_tri_visit']->temp }}&nbsp;</span>
+<span class="text" style="left:460.1px;top:1112.9px;">{{ $data['first_tri_visit']->temp }}&nbsp;</span>
 <span class="text" style="left:378.2px;top:1125.4px;">HR:</span>
 <span class="text" style="left:400.2px;top:1125.4px;">{{ $data['first_tri_visit']->hr }}</span>
 <span class="text" style="left:422.3px;top:1125.4px;">RR:&nbsp;</span>
@@ -1638,7 +1638,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:1047.1px;">@if($data['first_tri']->severe_nausea == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -1649,7 +1649,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:1065.1px;">@if($data['first_tri']->significant_decline == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -1663,7 +1663,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:1100.7px;">@if($data['first_tri']->persistent_contractions == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -1674,7 +1674,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:1118.7px;">@if($data['first_tri']->premature_rupture == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -1691,7 +1691,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:1154.3px;">@if($data['first_tri']->fetal_pregnancy == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -1701,7 +1701,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:1172.5px;">@if($data['first_tri']->severe_headache == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -1720,7 +1720,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:1207.9px;">@if($data['first_tri']->abdominal_pain == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -1732,7 +1732,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:1226.2px;">@if($data['first_tri']->edema_hands == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -1744,7 +1744,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:1244.2px;">@if($data['first_tri']->fever_pallor == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -1754,7 +1754,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:1262.3px;">@if($data['first_tri']->seizure_consciousness == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -1766,7 +1766,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:1280.6px;">@if($data['first_tri']->difficulty_breathing == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -1777,7 +1777,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:1298.6px;">@if($data['first_tri']->painful_urination == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -1787,7 +1787,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:1316.9px;">@if($data['first_tri']->elevated_bp == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -1810,39 +1810,38 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:812.7px;top:1409.7px;">)</span>
-<span class="text" style="left:662.3px;top:1431.8px;">Date/Time:</span>
+<span class="text" style="left:662.3px;top:1431.8px;">Date/Time:&nbsp;{{date("F j, Y, g:i a")}} </span>
 </span>
-<span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
+<!-- <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:735.2px;top:1431.8px;">&nbsp;________________</span>
 <span class="text" style="left:859.5px;top:1431.8px;">____________&nbsp;</span>
-</span>
+</span> -->
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:67.7px;top:1453.9px;">Name</span>
 <span class="text" style="left:109.2px;top:1453.9px;">of Patient:</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:176.5px;top:1453.9px;">&nbsp;___________</span>
-<span class="text" style="left:263.0px;top:1453.9px;">_______________________________________</span>
-<span class="text" style="left:557.0px;top:1453.9px;">_&nbsp;&nbsp;</span>
+<span class="text" style="left:176.5px;top:1453.9px;">&nbsp;{{$data['form']->woman_name}}</span>
+<span class="text" style="left:263.0px;top:1453.9px;"></span>
+<span class="text" style="left:557.0px;top:1453.9px;">&nbsp;&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:572.2px;top:1453.9px;">Age</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:597.0px;top:1453.9px;">: _______</span>
+<span class="text" style="left:597.0px;top:1453.9px;">: {{$data['form']->woman_age}}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:665.3px;top:1453.9px;">Contact No:</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:743.4px;top:1453.9px;">&nbsp;_______________</span>
-<span class="text" style="left:860.1px;top:1453.9px;">___________&nbsp;</span>
+<span class="text" style="left:743.4px;top:1453.9px;">&nbsp;{{$data['form']->contact}}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:67.7px;top:1475.8px;">Address:</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:125.3px;top:1475.8px;">&nbsp;____________________________________________________________________________________________________________&nbsp;</span>
+<span class="text" style="left:125.3px;top:1475.8px;">&nbsp;{{$data['form']->patient_brgy}} {{$data['form']->patient_muncity}} {{$data['form']->patient_province}}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:67.7px;top:1497.9px;">Refer</span>
@@ -1850,15 +1849,13 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:259.4px;top:1497.9px;">y):</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:284.7px;top:1497.9px;">_____________________________________</span>
-<span class="text" style="left:563.5px;top:1497.9px;">_______________________</span>
+<span class="text" style="left:284.7px;top:1497.9px;">{{$data['activity']->name}}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:748.0px;top:1497.9px;">Contact No:</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:826.4px;top:1497.9px;">&nbsp;____</span>
-<span class="text" style="left:860.1px;top:1497.9px;">___________&nbsp;</span>
+<span class="text" style="left:826.4px;top:1497.9px;">&nbsp;{{$data['activity']->contact}}</span>
 <span class="text" style="left:67.7px;top:1519.7px;">S</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -1867,9 +1864,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:260.0px;top:1519.7px;">t at ER:</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:318.7px;top:1519.7px;">________________________________</span>
-<span class="text" style="left:559.9px;top:1519.7px;">________________________________________</span>
-<span class="text" style="left:860.8px;top:1519.7px;">___________</span>
+<span class="text" style="left:318.7px;top:1519.7px;">{{$data['status_on_er']->status_on_er}}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:67.7px;top:1541.8px;">Action Taken:</span>
@@ -1878,25 +1873,43 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:198.0px;top:1541.8px;">Admitted</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:258.4px;top:1541.8px;"></span>
+<span class="text" style="left:258.4px;top:1541.8px;">
+@if($data['activity']->status == 'admitted')
+☑
+@else
+☐
+@endif
+</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:309.0px;top:1541.8px;">&nbsp;Referred to other facility</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:465.7px;top:1541.8px;"></span>
+<span class="text" style="left:465.7px;top:1541.8px;">
+@if($data['activity']->status == 'transferred')
+☑
+@else
+☐
+@endif
+</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:512.5px;top:1541.8px;">Treated/Managed as OPD</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:672.5px;top:1541.8px;"></span>
+<span class="text" style="left:672.5px;top:1541.8px;">
+@if($data['activity']->status == 'monitored')
+☑
+@else
+☐
+@endif
+</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:67.7px;top:1563.7px;">Remarks:</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:131.4px;top:1563.7px;">&nbsp;___________________________________________________________________________________________________________&nbsp;</span>
+<span class="text" style="left:131.4px;top:1563.7px;">&nbsp;{{$data['activity']->remarks}}&nbsp;</span>
 <span class="text" style="left:648.4px;top:1596.2px;">________________________________________&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -1904,7 +1917,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 </span>
 <div class="image" style="left:130.7px;top:22.5px;"><img width="108" height="106" src="data:image/webp;base64,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"></div>
 <div class="image" style="left:722.8px;top:28.9px;"><img width="92" height="94" src="data:image/webp;base64,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"></div>
-<div class="image" style="left:829.2px;top:28.9px;"><img width="94" height="94" src="data:image/webp;base64,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"></div>
+<!-- <div class="image" style="left:829.2px;top:28.9px;"><img width="94" height="94" src="data:image/webp;base64,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"></div> -->
 <div class="image" style="left:362.6px;top:1382.2px;"><img width="305" height="36" src="data:image/webp;base64,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"></div>
 <div class="image" style="left:196.6px;top:1402.7px;"><img width="29" height="37" src="data:image/webp;base64,UklGRlYBAABXRUJQVlA4WAoAAAAQAAAAMAAAPQAAQUxQSOwAAAABgGNr2xrl93FdgFYzuJTJHqgjHe7VyAJwJ/qtF+cNThMRagOgaUixOwFHsP+S4FJpJTkQotLuT/VbJY6r+pKzu7+90pK4Wl49vg+ut/sa9aKytHoaEwX7Uyjonnf8UHS/i2q8Zg0DIkrOvLbEQLa9s4SIgqFVAz0z03v3T0a/B1vbk4iIoold4+D14YxBve7v3hNhf53aD740ZHElg48+KGGYmTkMnlESfjC0mwJ14BzHj8PF+lKFo4S+fpEQUXzsoIQomvYwIKjUme65R2ECpQCvLLrDM6hdMVHpWR7WEBlXtWeWm4Gp/0MFA1ZQOCBEAAAA0AMAnQEqMQA+AD6RQpxIpaQjISwI0LASCWkAAFzH9/UvCvW5s7VAAP74z3mpef+7JmM0bUDoXbGQEO73A8gRAAVAAAA="></div>
 <div class="image" style="left:201.6px;top:1402.9px;"><img width="614" height="37" src="data:image/webp;base64,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"></div>
@@ -2046,7 +2059,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:221.5px;">@if($data['second_tri']->vaginal_spotting == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -2399,7 +2412,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:239.6px;">@if($data['second_tri']->severe_nausea == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -2411,7 +2424,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:257.8px;">@if($data['second_tri']->significant_decline == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -2425,7 +2438,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:293.4px;">@if($data['second_tri']->persistent_contractions == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -2436,7 +2449,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:311.4px;">@if($data['second_tri']->premature_rupture == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -2456,7 +2469,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:347.0px;">@if($data['second_tri']->fetal_pregnancy == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -2467,7 +2480,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:365.1px;">@if($data['second_tri']->severe_headache == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -2483,7 +2496,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:400.6px;">@if($data['second_tri']->abdominal_pain == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -2493,7 +2506,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:418.7px;">@if($data['second_tri']->edema_hands == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -2503,7 +2516,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:436.8px;">@if($data['second_tri']->fever_pallor == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -2514,7 +2527,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:455.1px;">@if($data['second_tri']->seizure_consciousness == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -2522,11 +2535,13 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:101.4px;top:455.1px;">izure or loss of consciousness&nbsp;&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:69.7px;top:473.1px;">@if($data['second_tri']->difficulty_breathing == 'yes')
+<span class="text" style="left:69.7px;top:473.1px;">
+@if($data['second_tri']->difficulty_breathing == 'yes')
 ☑
 @else
-
-@endif</span>
+☐
+@endif
+</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:86.3px;top:473.1px;">Di</span>
@@ -2536,7 +2551,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:491.4px;">@if($data['second_tri']->painful_urination == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -2546,7 +2561,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:509.5px;">@if($data['second_tri']->elevated_bp == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -2644,7 +2659,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:614.5px;">@if($data['third_tri']->vaginal_spotting == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -2996,7 +3011,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:632.8px;">@if($data['third_tri']->severe_nausea == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3007,7 +3022,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:650.8px;">@if($data['third_tri']->significant_decline == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3019,7 +3034,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:686.4px;">@if($data['third_tri']->persistent_contractions == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3029,7 +3044,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:704.4px;">@if($data['third_tri']->premature_rupture == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3047,7 +3062,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:740.0px;">@if($data['third_tri']->fetal_pregnancy == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3058,7 +3073,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:758.1px;">@if($data['third_tri']->severe_headache == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3074,7 +3089,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:793.6px;">@if($data['third_tri']->abdominal_pain == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3085,7 +3100,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:811.7px;">@if($data['third_tri']->edema_hands == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3095,7 +3110,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:830.0px;">@if($data['third_tri']->fever_pallor == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3106,7 +3121,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:848.0px;">@if($data['third_tri']->seizure_consciousness == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3116,7 +3131,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:866.3px;">@if($data['third_tri']->difficulty_breathing == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3127,7 +3142,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:884.4px;">@if($data['third_tri']->painful_urination == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3137,7 +3152,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:69.7px;top:902.4px;">@if($data['third_tri']->elevated_bp == 'yes')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3204,7 +3219,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:247.2px;top:1124.6px;">@if($data['preg_outcome']->delivery_outcome == 'fullterm')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3214,7 +3229,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:314.9px;top:1124.6px;">@if($data['preg_outcome']->delivery_outcome == 'preterm')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3224,7 +3239,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:389.0px;top:1124.6px;">@if($data['preg_outcome']->delivery_outcome == 'stillbirth')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3234,7 +3249,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:463.5px;top:1124.6px;">@if($data['preg_outcome']->delivery_outcome == 'abortion')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -3248,7 +3263,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:672.7px;top:1124.6px;">@if($data['preg_outcome']->birth_attendant == 'md')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3258,7 +3273,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:713.9px;top:1124.6px;">@if($data['preg_outcome']->birth_attendant == 'rn')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3268,7 +3283,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:757.5px;top:1124.6px;">@if($data['preg_outcome']->birth_attendant == 'rm')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -3281,7 +3296,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:254.4px;top:1142.6px;">@if($data['preg_outcome']->status_on_discharge == 'expired')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3291,7 +3306,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:337.0px;top:1142.6px;">@if($data['preg_outcome']->status_on_discharge == 'improved')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
@@ -3301,7 +3316,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:403.3px;top:1142.6px;">@if($data['preg_outcome']->status_on_discharge == 'hama')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
@@ -3314,7 +3329,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:904.1px;top:1144.2px;">@if($data['preg_outcome']->type_of_delivery == 'nsvd')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:13px;font-family:&#39;Times New Roman&#39;;">
@@ -3324,7 +3339,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:585.2px;top:1160.1px;">@if($data['preg_outcome']->type_of_delivery == 'caesarean')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:13px;font-family:&#39;Times New Roman&#39;;">
@@ -3335,7 +3350,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:760.5px;top:1160.1px;">@if($data['preg_outcome']->type_of_delivery == 'vaginal_after_caesarean')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
 <span style="font-size:13px;font-family:&#39;Times New Roman&#39;;">
@@ -3346,22 +3361,18 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:923.2px;top:1160.1px;">@if($data['preg_outcome']->type_of_delivery == 'assisted_vaginal_delivery')
 ☑
 @else
-
+☐
 @endif</span>
 </span>
-<span style="font-size:13px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
+<span style="font-size:13px;font-family:&#39;Times New Roman&#39;">
 <span class="text" style="left:60.7px;top:1176.4px;white-space:normal; width: 900px; word-wrap:break-word">Final Diagnosis with ICD 10 code: {{$data['preg_outcome']->final_diagnosis}}&nbsp;</span>
 </span>
-<span style="font-size:10px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:167.3px;top:1217.7px;">_</span>
-</span>
 <span style="font-size:12px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:172.3px;top:1216.1px;">____________________________________________________________________________</span>
+<span class="text" style="left:172.3px;top:1216.1px;">_____________________________________________________________________________</span>
 <span class="text" style="left:617.3px;top:1216.1px;">_</span>
 </span>
 <span style="font-size:18px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:709.5px;top:1209.3px;">____________</span>
-<span class="text" style="left:820.1px;top:1209.3px;">____</span>
+<span class="text" style="left:709.5px;top:1209.3px;">________________</span>
 </span>
 <span style="font-size:17px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:180.7px;top:1231.0px;">Name and Signature of Referring Health Care Provider</span>
@@ -3381,57 +3392,51 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:667.3px;top:1316.9px;">Date/Time:</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:740.2px;top:1316.9px;">&nbsp;____________________________&nbsp;</span>
+<span class="text" style="left:740.2px;top:1316.9px;">&nbsp;{{date("F j, Y, g:i a")}}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:72.7px;top:1338.8px;">Nam</span>
 <span class="text" style="left:103.8px;top:1338.8px;">e of Patient:</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:181.5px;top:1338.8px;">&nbsp;___________________________________________________&nbsp;&nbsp;</span>
+<span class="text" style="left:181.5px;top:1338.8px;">&nbsp;{{$data['form']->woman_name}}&nbsp;&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:577.2px;top:1338.8px;">Age</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:602.1px;top:1338.8px;">: _</span>
-<span class="text" style="left:617.5px;top:1338.8px;">______</span>
+<span class="text" style="left:602.1px;top:1338.8px;">: {{$data['form']->woman_age}} </span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:670.3px;top:1338.8px;">Contact No:</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:748.4px;top:1338.8px;">&nbsp;_________</span>
-<span class="text" style="left:819.9px;top:1338.8px;">_________________&nbsp;</span>
+<span class="text" style="left:748.4px;top:1338.8px;">&nbsp;{{$data['form']->contact}}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:72.7px;top:1360.9px;">Addr</span>
 <span class="text" style="left:107.0px;top:1360.9px;">ess:</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:130.3px;top:1360.9px;">&nbsp;_________________________________________________________________</span>
-<span class="text" style="left:623.8px;top:1360.9px;">__________________________</span>
-<span class="text" style="left:819.6px;top:1360.9px;">_________________&nbsp;</span>
+<span class="text" style="left:130.3px;top:1360.9px;">&nbsp;{{$data['form']->patient_brgy}} {{$data['form']->patient_muncity}} {{$data['form']->patient_province}}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:72.7px;top:1383.0px;">Referred to (Accepting Facility):</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:289.8px;top:1383.0px;">____________________________________________________________</span>
+<span class="text" style="left:289.8px;top:1383.0px;">{{$data['activity']->name}}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:753.1px;top:1383.0px;">Contact No:</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:831.4px;top:1383.0px;">&nbsp;_______________&nbsp;</span>
-<span class="text" style="left:72.7px;top:1404.9px;">S</span>
+<span class="text" style="left:831.4px;top:1383.0px;">&nbsp;{{$data['activity']->contact}}&nbsp;</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
-<span class="text" style="left:81.1px;top:1404.9px;">tatus/Condition upon Receipt at ER:</span>
+<span class="text" style="left:72.1px;top:1404.9px;">Status/Condition upon Receipt at ER:</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:323.7px;top:1404.9px;">______________________</span>
-<span class="text" style="left:489.6px;top:1404.9px;">_____________________________________________________________</span>
+<span class="text" style="left:323.7px;top:1404.9px;">{{$data['activity']->status_on_er}}</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:72.7px;top:1427.0px;">Actio</span>
@@ -3441,26 +3446,44 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:203.0px;top:1427.0px;">Admitted</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:263.5px;top:1427.0px;"></span>
+<span class="text" style="left:263.5px;top:1427.0px;">
+@if($data['activity']->status == 'admitted')
+☑
+@else
+☐
+@endif
+</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:314.1px;top:1427.0px;">&nbsp;Referred to other facility</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:470.7px;top:1427.0px;"></span>
+<span class="text" style="left:470.7px;top:1427.0px;">
+@if($data['activity']->status == 'transferred')
+☑
+@else
+☐
+@endif
+</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
 <span class="text" style="left:517.5px;top:1427.0px;">Treated/Managed</span>
-<span class="text" style="left:627.5px;top:1427.0px;">as OPD</span>
+<span class="text" style="left:635.5px;top:1427.0px;">as OPD</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:677.6px;top:1427.0px;"></span>
+<span class="text" style="left:685.6px;top:1427.0px;">
+@if($data['activity']->status == 'monitored')
+☑
+@else
+☐
+@endif
+</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;font-weight:bold;">
 <span class="text" style="left:72.7px;top:1448.9px;">Remarks:</span>
 </span>
 <span style="font-size:15px;font-family:&#39;Times New Roman&#39;;">
-<span class="text" style="left:136.4px;top:1448.9px;">&nbsp;___________________________________________________________________________________________________________&nbsp;</span>
+<span class="text" style="left:136.4px;top:1448.9px;">&nbsp;{{$data['activity']->remarks}}&nbsp;</span>
 <span class="text" style="left:653.5px;top:1490.6px;">______________________</span>
 <span class="text" style="left:819.3px;top:1490.6px;">__________________&nbsp;</span>
 </span>
@@ -3470,7 +3493,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 </span>
 <div class="image" style="left:130.7px;top:22.5px;"><img width="108" height="106" src="data:image/webp;base64,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"></div>
 <div class="image" style="left:722.8px;top:28.9px;"><img width="92" height="94" src="data:image/webp;base64,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"></div>
-<div class="image" style="left:829.2px;top:28.9px;"><img width="94" height="94" src="data:image/webp;base64,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"></div>
+<!-- <div class="image" style="left:829.2px;top:28.9px;"><img width="94" height="94" src="data:image/webp;base64,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"></div> -->
 <div class="image" style="left:367.6px;top:1267.4px;"><img width="305" height="36" src="data:image/webp;base64,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"></div>
 <div class="image" style="left:201.6px;top:1287.8px;"><img width="29" height="37" src="data:image/webp;base64,UklGRlYBAABXRUJQVlA4WAoAAAAQAAAAMAAAPQAAQUxQSOwAAAABgGNr2xrl93FdgFYzuJTJHqgjHe7VyAJwJ/qtF+cNThMRagOgaUixOwFHsP+S4FJpJTkQotLuT/VbJY6r+pKzu7+90pK4Wl49vg+ut/sa9aKytHoaEwX7Uyjonnf8UHS/i2q8Zg0DIkrOvLbEQLa9s4SIgqFVAz0z03v3T0a/B1vbk4iIoold4+D14YxBve7v3hNhf53aD740ZHElg48+KGGYmTkMnlESfjC0mwJ14BzHj8PF+lKFo4S+fpEQUXzsoIQomvYwIKjUme65R2ECpQCvLLrDM6hdMVHpWR7WEBlXtWeWm4Gp/0MFA1ZQOCBEAAAA0AMAnQEqMQA+AD6RQpxIpaQjISwI0LASCWkAAFzH9/UvCvW5s7VAAP74z3mpef+7JmM0bUDoXbGQEO73A8gRAAVAAAA="></div>
 <div class="image" style="left:206.6px;top:1288.0px;"><img width="614" height="37" src="data:image/webp;base64,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"></div>

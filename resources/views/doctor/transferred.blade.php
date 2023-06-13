@@ -48,7 +48,7 @@ use App\Http\Controllers\doctor\CSSCtrl as CSSCtrl;
                                 <tr>
                                     <th>Referring Facility</th>
                                     <th>Patient Name/Code</th>
-                                    <th>Date Discharged</th>
+                                    <th>Date Transferred</th>
                                     <th>Status</th>
                                     <th>Record</th>
                                 </tr>
@@ -87,7 +87,7 @@ use App\Http\Controllers\doctor\CSSCtrl as CSSCtrl;
                                             </a>
                                         </td>
                                         <?php
-                                            $status = \App\Http\Controllers\doctor\PatientCtrl::getDischargeDate('discharged',$row->code);
+                                            $status = \App\Http\Controllers\doctor\PatientCtrl::getDischargeDate('transferred',$row->code);
                                         ?>
                                         <td>{{ $status }}</td>
                                         <td>{{ strtoupper($row->status) }}</td>

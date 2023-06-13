@@ -70,7 +70,7 @@ $status = session::get('status');
                             </tr>
                             <tr class="has-group">
                                 <td>Birth Date :</td>
-                                <td><input type="date" name="dob" id="dob" class="form-control" min="1910-05-11" max="{{ date('Y-m-d') }}" required /> </td>
+                                <td><input type="text" placeholder="mm/dd/yyyy" name="dob" id="dob" class="form-control dob" min="1910-05-11" max="{{ date('Y-m-d') }}" required /> </td>
                             </tr>
                             <tr>
                                 <td>Sex :</td>
@@ -158,6 +158,9 @@ $status = session::get('status');
 @section('js')
 @include('script.filterMuncity')
 <script>
+    $(".dob").inputmask("mm/dd/yyyy");
+
+
     $(".select2").select2({ width: '100%' });
     $('.select_phic').on('change',function(){
         var status = $(this).val();

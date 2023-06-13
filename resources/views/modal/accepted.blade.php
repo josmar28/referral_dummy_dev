@@ -286,7 +286,7 @@
 <div class="modal fade" role="dialog" id="patientReturnModal">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
-            <form method="POST" class="form-submit" action="{{ url('doctor/patient/return/pregnant') }}" id="pregnant_form_return" novalidate>
+            <form method="POST" class="form-submit" action="{{ url('doctor/patient/return/pregnant') }}" id="pregnant_form_return">
             <div class="jim-content">
                 @include('include.header_form')
                 <div class="title-form">Risk Assessment Check list for Pregnant Women</div>
@@ -311,7 +311,7 @@
                             <div id="menu2" class="tab-pane fade in active">
                                     <ul class="nav nav-tabs">
                                         <li class="active"><a data-toggle="tab" href="#previous">New Data</a></li>
-                                        <li><a data-toggle="tab" href="#current">Previous Data</a></li>
+                                        <!-- <li><a data-toggle="tab" href="#current">Previous Data</a></li> -->
                                     </ul>
 
                                     <div class="tab-content">
@@ -350,7 +350,7 @@
                                                                 <tr>
                                                                     <td> 
                                                                         <center>
-                                                                            <span> Date: <input  class="form-control new_date_of_visit"  type="date" name="date_of_visit">  <br>
+                                                                            <span> Date: <input  class="form-control new_date_of_visit"  type="text" name="date_of_visit">  <br>
                                                                         </center>
                                                                     </td>
                                                                 </tr>

@@ -250,6 +250,10 @@ Route::post('doctor/referral/discharge/{track_id}/{unique_id}','doctor\ReferralC
 Route::post('doctor/referral/transfer/{track_id}','doctor\ReferralCtrl@transfer');//if patient is discharge
 Route::post('doctor/referral/redirect/{activity_id}','doctor\ReferralCtrl@redirect');//if patient is discharge
 
+//AOG 
+Route::get('doctor/aog/weeks/{notif_id}','doctor\ReferralCtrl@week34');
+Route::post('doctor/aog/weeks/{notif_id}','doctor\ReferralCtrl@week34');
+
 
 Route::get('doctor/referral/data/normal/{id}','doctor\ReferralCtrl@normalForm');
 Route::get('doctor/referral/data/pregnant/{id}','doctor\ReferralCtrl@pregnantForm');
@@ -258,6 +262,9 @@ Route::get('doctor/referral/data/pregnantv2/{id}','doctor\ReferralCtrl@pregnantF
 //pregnant return
 Route::post('doctor/patient/return/pregnant','doctor\ReferralCtrl@returnPregnant');
 
+
+//Pregnant Add info 
+Route::post('doctor/pregnant/add/info','doctor\PreganantCtrl@addInfo');
 
 Route::post('doctor/refer/update','doctor\ReferralCtrl@updateRefer');
 Route::post('doctor/refer/updated','doctor\ReferralCtrl@updatedRefer');
@@ -301,6 +308,9 @@ Route::post('doctor/accepted','doctor\PatientCtrl@searchAccepted');
 
 Route::get('doctor/discharge','doctor\PatientCtrl@discharge');
 Route::post('doctor/discharge','doctor\PatientCtrl@searchDischarged');
+
+Route::get('doctor/transferred','doctor\PatientCtrl@transferred');
+Route::post('doctor/transferred','doctor\PatientCtrl@searchTransferred');
 
 Route::get('doctor/cancelled','doctor\PatientCtrl@cancel');
 Route::post('doctor/cancelled','doctor\PatientCtrl@searchCancelled');

@@ -8,7 +8,9 @@
        renderChoiceLimit:10,
      }); 
     
-    
+     $(".lmp_date").inputmask("mm/dd/yyyy");
+     $(".edc_edd").inputmask("mm/dd/yyyy"); 
+     $(".new_date_of_visit").inputmask("mm/dd/yyyy");
     });
 
     <?php $user = Session::get('auth'); ?>
@@ -31,7 +33,8 @@
         unique_id = $(this).data('unique_id');
     });
 
-    $('body').on('change','.new_date_of_visit',function(){
+    $('body').on('change','.new_date_of_visit',function()
+    {
         var start = new Date(lmp_date),
         end   = new Date($(this).val()),
         diff  = new Date(end - start),
@@ -131,7 +134,7 @@
                 var day = ("0" + now.getDate()).slice(-2);
                 var month = ("0" + (now.getMonth() + 1)).slice(-2);
 
-                var new_date_of_visit = now.getFullYear()+"-"+(month)+"-"+(day) ;
+                var new_date_of_visit = (month)+"-"+(day)+"-"+now.getFullYear() ;
 
                 $('.new_date_of_visit').val(new_date_of_visit);
 
@@ -160,7 +163,8 @@
                 if(sign)
                 {
 
-                    if(form){
+                    if(form)
+                    {
 
                     var months = dateRange(form.lmp, form.edc_edd)
 
@@ -892,7 +896,12 @@
             type: 'POST',
             success: function(data){
                 console.log(data);
-                transferRef.push({
+                if(data.patient_type == 'pregnant')
+                {
+                    window.location.reload(false);
+                }else
+                {
+                    transferRef.push({
                     date: data.date,
                     item: track_id,
                     new_facility: new_facility,
@@ -957,6 +966,8 @@
                         console.info(data);
                     }
                 });
+                }
+
             },
             error: function(){
                 $('#serverModal').modal();

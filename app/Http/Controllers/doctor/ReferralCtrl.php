@@ -19,6 +19,7 @@ use App\SignSymptoms;
 use App\LabResult;
 use App\PregVitalSign;
 use App\PregOutcome;
+use App\Events\PregnantNotif;
 use App\Seen;
 use App\Tracking;
 use App\User;
@@ -664,6 +665,7 @@ class ReferralCtrl extends Controller
                 'pregnant_formv2.code',
                 'pregnant_formv2.unique_id',
                 'pregnant_formv2.record_no',
+                'pregnant_formv2.lmp',
                 DB::raw("DATE_FORMAT(pregnant_formv2.referred_date,'%M %d, %Y %h:%i %p') as referred_date"),
                 DB::raw("DATE_FORMAT(pregnant_formv2.referred_date,'%M %d, %Y') as referred_date_name"),
                 DB::raw("DATE_FORMAT(pregnant_formv2.arrival_date,'%M %d, %Y %h:%i %p') as arrival_date"),
@@ -729,8 +731,26 @@ class ReferralCtrl extends Controller
             ->where('tracking.id',$id)
             ->first();
 
+
+            $activity = Activity::select('activity.*','facility.name','facility.contact')->where('activity.code',$form->code)
+                        ->leftJoin('facility','facility.id','=','activity.referred_to')
+                        ->where('activity.status','!=','referred')
+                        ->orderby('activity.id','desc')
+                        ->first();
+
+            $status_on_er = Activity::select('activity.status_on_er')->where('activity.code',$form->code)
+                        ->leftJoin('facility','facility.id','=','activity.referred_to')
+                        ->where('activity.status','accepted')
+                        ->orderby('activity.id','desc')
+                        ->first();
+
+
+            // dd($status_on_er);
+
             $antepartum = Antepartum::select('*')->where('antepartum_conditions.unique_id',$form->unique_id)->orderby('id','desc')->first();
             $sign_symptoms  = SignSymptoms::select('*')->where('sign_and_symptoms.unique_id',$form->unique_id)->orderby('id','desc')->first();
+
+            $lab = LabResult::select('*')->where('unique_id',$form->unique_id)->wherenotnull('blood_type')->latest()->first();
 
             // dd($sign_symptoms);
             $lab_result = LabResult::select(
@@ -738,7 +758,7 @@ class ReferralCtrl extends Controller
                 DB::raw("DATE_FORMAT(date_of_lab,'%M %d, %Y') as date_of_lab_name"),
                 'date_of_lab',
                 )
-            ->where('lab_results.unique_id',$form->unique_id)->get();
+            ->where('lab_results.unique_id',$form->unique_id)->latest()->take(5)->get();
             $preg_vs = PregVitalSign::select('*')->where('preg_vital_signs.unique_id',$form->unique_id)->first();
             $preg_outcome = PregOutcome::select('*')->where('preg_outcome.unique_id',$form->unique_id)->orderby('id','desc')->first();
 
@@ -925,6 +945,8 @@ class ReferralCtrl extends Controller
             
         return array(
             'form' => $form,
+            'activity' => $activity,
+            'status_on_er' => $status_on_er,
             'antepartum' => $antepartum,
             'sign_symptoms' => $sign_symptoms,
             'lab_result' => $lab_result,
@@ -948,20 +970,21 @@ class ReferralCtrl extends Controller
             'first_tri' => $first_tri,
             'second_tri' => $second_tri,
             'third_tri' => $third_tri,
+            'lab' => $lab,
         );
     }
 
     public function returnPregnant(Request $req)
     {
         // dd($req->all());
-
+        $date_of_visit = date('Y-m-d', strtotime($req->date_of_visit));
         $data2 = array(
             'unique_id' => ($req->unique_id) ? $req->unique_id: NULL,
             'patient_woman_id' => ($req->patient_woman_id) ? $req->patient_woman_id: NULL,
             'code' => ($req->code) ? $req->code: NULL,
             'no_trimester' => ($req->no_trimester) ? $req->no_trimester: NULL,
             'no_visit' => ($req->no_visit) ? $req->no_visit: NULL,
-            'date_of_visit' => ($req->date_of_visit) ? $req->date_of_visit: NULL,
+            'date_of_visit' => ($date_of_visit) ? $date_of_visit: NULL,
             'vaginal_spotting' => ($req->vaginal_spotting) ? $req->vaginal_spotting: NULL,
             'severe_nausea' => ($req->severe_nausea) ? $req->severe_nausea: NULL,
             'significant_decline' => ($req->significant_decline) ? $req->significant_decline:NULL,
@@ -1003,11 +1026,12 @@ class ReferralCtrl extends Controller
             {
                 if($lab != null)
                 {
+                    $date_of_lab = date('Ymd', strtotime($lab));
                     $data3 = array(
                         'unique_id' => ($req->unique_id) ? $req->unique_id: NULL,
                         'code' => ($req->code) ? $req->code: NULL,
                         'patient_woman_id' => ($req->patient_woman_id) ? $req->patient_woman_id: NULL,
-                        'date_of_lab' => ($lab) ? $lab: NULL,
+                        'date_of_lab' => ($date_of_lab) ? $date_of_lab: NULL,
                         'cbc_hgb' => ($req->cbc_hgb[$key]) ? $req->cbc_hgb[$key]: NULL,
                         'cbc_wbc' => ($req->cbc_wbc[$key]) ? $req->cbc_wbc[$key]: NULL,
                         'cbc_rbc' => ($req->cbc_rbc[$key]) ? $req->cbc_rbc[$key]: NULL,
@@ -1360,6 +1384,7 @@ class ReferralCtrl extends Controller
             'referring_md' => $track->referring_md,
             'action_md' => $user->id,
             'remarks' => isset($req->remarks) ? $req->remarks : "",
+            'status_on_er' => isset($req->status_on_er) ? $req->status_on_er : "",
             'status' => $track->status
         );
         Activity::create($data);
@@ -1640,7 +1665,8 @@ class ReferralCtrl extends Controller
         $date = date('Y-m-d H:i:s');
 
         $track = Tracking::where('id',$track_id)->first();
-        $data = array(
+
+        $data2 = array(
             'code' => $track->code,
             'patient_id' => $track->patient_id,
             'date_referred' => $date,
@@ -1651,7 +1677,7 @@ class ReferralCtrl extends Controller
             'remarks' => $req->remarks,
             'status' => "transferred"
         );
-        $activity = Activity::create($data);
+        $activity = Activity::create($data2);
 
         $new_data = array(
             'code' => $track->code,
@@ -1666,7 +1692,8 @@ class ReferralCtrl extends Controller
             'referring_md' => $user->id,
             'status' => 'transferred',
             'type' => $track->type,
-            'form_id' => $track->form_id
+            'form_id' => $track->form_id,
+            'pregnant_status' => ($req->pregnant_status) ? $req->pregnant_status: NULL
         );
         $track->update($new_data);
 
@@ -1683,6 +1710,18 @@ class ReferralCtrl extends Controller
         $form_type = '#normalFormModal';
         if($track->type=='pregnant'){
             $form_type = '#pregnantFormModal';
+
+            $data = array(
+                'referring_facility' => $track->referred_to,
+                'referred_to' => $req->facility,
+            );
+
+            $fac = Facility::find($user->facility_id);
+            $referring_md = User::find($user->id);
+            $fac_to = Facility::find($req->facility);
+            $status = $req->pregnant_status;
+
+            event(new PregnantNotif($data,$fac,$referring_md,$fac_to,$status));
         }
 
         /*$hosp = Facility::find($user->facility_id)->name;
@@ -1695,6 +1734,7 @@ class ReferralCtrl extends Controller
             'date' => date('M d, Y h:i A',strtotime($date)),
             'age' => $patient->age,
             'sex' => $patient->sex,
+            'patient_type' => $track->type,
             'action_md' => "$user_md->fname $user_md->mname $user_md->lname",
             'form_type' => $form_type,
             'track_id' => $track->id,
@@ -2067,4 +2107,79 @@ class ReferralCtrl extends Controller
         return 0;
     }
 
+    public function week34(Request $req, $notif_id)
+    {
+       
+        $user = Session::get('auth');
+
+        $data = \App\PregnantFormv2::selectRaw(
+        't2.maxid as notif_id , ROUND(DATEDIFF(CURDATE(),pregnant_formv2.lmp) / 7, 2) as now, pregnant_formv2.lmp,
+         t2.maxaog,CONCAT(patients.fname," ",patients.mname," ",patients.lname) as woman_name, tracking.id as id, tracking.*, tracking.code as patient_code, CONCAT(action.fname," ",action.mname," ",action.lname) as action_md'
+         )
+        // ->leftJoin(\DB::raw('(SELECT referred_to, max(id) as maxid, max(code) as maxcode FROM activity B group by code ORDER BY B.id DESC ) AS t3'), function($join) {
+        //     $join->on('pregnant_formv2.code', '=', 't3.maxcode');
+        //         })
+        ->leftJoin(\DB::raw('(SELECT *, max(id) as maxid, max(aog) as maxaog, max(unique_id) as maxunique_id FROM sign_and_symptoms A group by unique_id) AS t2'), function($join) {
+            $join->on('pregnant_formv2.unique_id', '=', 't2.maxunique_id');
+            })
+        ->join('tracking','pregnant_formv2.code','=','tracking.code')
+        // ->leftJoin("activity","activity.id","=","t3.maxid")
+        ->leftJoin('patients','patients.id','=','pregnant_formv2.patient_woman_id')
+        ->leftJoin('users as action','action.id','=','tracking.action_md')
+        ->whereRaw('ROUND(t2.maxaog, 0) >= 34')
+        ->where('tracking.referred_to',$user->facility_id)
+        ->where('tracking.status','!=','referred')
+        // ->where('tracking.status','!=','discharged')
+        ->orderBy('t2.maxid','desc')
+        ->distinct();
+      
+        if($req->search)
+        {
+            $keyword = $req->search;
+            $data = $data->where(function($q) use ($keyword){
+                $q->where('patients.lname',"like","%$keyword%")
+                    ->orwhere('patients.fname',"like","%$keyword%")
+                    ->orwhere('tracking.code',"like","%$keyword%");
+            });
+        }
+
+        if($notif_id > 0)
+        {
+           $find = Tracking::select('*')->where('code',$notif_id);
+
+            if($find)
+            {
+                $find->update([
+                    'notif' => 0,
+                    'un_notif' => date("Y/m/d h:i:sa")
+                ]);
+            }
+               
+            // $keyword = $notif_id;
+            $data = $data->where('tracking.code',$notif_id);
+        }
+
+        if($req->date_range)
+        {
+            $date = $req->date_range;
+            $range = explode('-',str_replace(' ', '', $date));
+            $start = $range[0];
+            $end = $range[1];
+        }else
+        {
+        $start = Carbon::now()->startOfYear()->format('m/d/Y');
+        $end = Carbon::now()->endOfYear()->format('m/d/Y');
+        }
+
+        $data = $data->paginate(15);
+
+        // dd($data);
+
+        return view('doctor.aogweeks',[
+            "data" => $data,
+            'keyword' => $keyword,
+            'start' => $start,
+            'end' => $end
+        ]);
+    }
 }

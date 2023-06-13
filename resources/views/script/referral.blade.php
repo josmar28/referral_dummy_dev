@@ -127,7 +127,7 @@ function getPregnantFormv2()
             console.log(data);
            
                 var form = data.form;
-               
+                var lab = data.lab;
                 var antepartum = data.antepartum;
                 var sign_symptoms = data.sign_symptoms;
                 var lab_result  = data.lab_result;
@@ -476,18 +476,8 @@ function getPregnantFormv2()
                 $('.fht_60').val(preg_vs.fht_60);
                 $('.fht_remarks').val(preg_vs.fht_remarks);
 
-                
-
-                    // $.each( lab_result, function( key, value ) {
-                    
-                    // var index = key + 1;
-                    // console.log(lab_result[1].date_of_lab);
-                    //     if(key > 0){
-                    //         var markup = '<tr><td><input type="date" class="form-control" value="" name="date_of_lab[]"></td><td><input type="text" class="form-control" name="cbc_result[]"> </td><td><input type="text" class="form-control" name="ua_result[]"> </td><td><input type="text" class="form-control" name="utz[]"> </td><td><textarea name="lab_remarks[]" class="form-control"></textarea> </td></tr>';
-                    //     $('#table_lab_res tr:last').after(markup);
-                    //     }
-                    // });
-                    console.log(lab_result);
+            
+                    console.log(lab);
                     if(lab_result.length)
                     {
                         $('.date_of_lab').val(lab_result[0].date_of_lab);
@@ -505,9 +495,9 @@ function getPregnantFormv2()
                         $('.ua_albumin').val(lab_result[0].ua_albumin);
 
                         $('.utz').val(lab_result[0].utz);
-                        $('.blood_type').val(lab_result[0].blood_type);
-                        $('.hbsag_result').val(lab_result[0].hbsag_result);
-                        $('.vdrl_result').val(lab_result[0].vdrl_result);
+                        $('.blood_type').val(lab.blood_type);
+                        $('.hbsag_result').val(lab.hbsag_result);
+                        $('.vdrl_result').val(lab.vdrl_result);
                         $('.lab_remarks').val(lab_result[0].lab_remarks);
                         for (let i = 1; i < lab_result.length; i++) 
                         {
@@ -536,7 +526,7 @@ function getPregnantFormv2()
 
                 var print_url = "{{ url('doctor/print/form/') }}/"+form.tracking_id;
                 $('.btn-refer-pregnant').attr('href',print_url);
-                   
+             
         },
         error: function(){
             $('#serverModal').modal();

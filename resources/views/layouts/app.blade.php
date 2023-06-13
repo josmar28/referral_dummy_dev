@@ -98,6 +98,12 @@
         {
             text-align:left;
         }
+        .dropdown-left-manual {
+        right: 0;
+        left: auto;
+        padding-left: 1px;
+        padding-right: 1px;
+        }
     </style>
 </head>
 
@@ -186,26 +192,60 @@
                 ->groupBy('to')
                 ->count();
                 
-                $user = Session::get('auth');
-                $data = \App\PregnantFormv2::select('t3.*','activity.status')
-                ->leftJoin(\DB::raw('(SELECT referred_to, max(id) as maxid, max(code) as maxcode FROM activity B group by code ORDER BY B.id DESC ) AS t3'), function($join) {
-                    $join->on('pregnant_formv2.code', '=', 't3.maxcode');
-                        })
-                ->leftJoin(\DB::raw('(SELECT *, max(id) as maxid, max(aog) as maxaog, max(unique_id) as maxunique_id FROM sign_and_symptoms A group by unique_id) AS t2'), function($join) {
-                    $join->on('pregnant_formv2.unique_id', '=', 't2.maxunique_id');
-                     })
-                ->leftJoin("activity","activity.id","=","t3.maxid")
-                ->whereRaw('ROUND(t2.maxaog, 0) >= 34')
-                ->where('t2.notif','1')
-                ->where('t3.referred_to',$user->facility_id)
-                ->orderBy('t2.maxid','desc')
-                
-                ->get();
+            $user = Session::get('auth');
+            
+            $data = \App\PregnantFormv2::selectRaw('t2.maxid as notif_id, ROUND(DATEDIFF(CURDATE(),pregnant_formv2.lmp) / 7, 2) as now, pregnant_formv2.lmp, 
+            t2.maxaog,CONCAT(patients.fname," ",patients.mname," ",patients.lname) as woman_name, tracking.code as patient_code, tracking.notif as notif')
+            // ->leftJoin(\DB::raw('(SELECT referred_to, max(id) as maxid, max(code) as maxcode FROM activity B group by code ORDER BY B.id DESC ) AS t3'), function($join) {
+            //     $join->on('pregnant_formv2.code', '=', 't3.maxcode');
+            //         })
+            ->leftJoin(\DB::raw('(SELECT *, max(id) as maxid, max(aog) as maxaog, max(unique_id) as maxunique_id FROM sign_and_symptoms A group by unique_id) AS t2'), function($join) {
+                $join->on('pregnant_formv2.unique_id', '=', 't2.maxunique_id');
+                })
+            // ->leftJoin("activity","activity.id","=","t3.maxid")
+            ->join('tracking','pregnant_formv2.code','=','tracking.code')
+            ->leftJoin('patients','patients.id','=','pregnant_formv2.patient_woman_id')
+            ->whereRaw('ROUND(t2.maxaog, 0) >= 34')
+            // ->where('tracking.notif','1')
+            ->where('tracking.status','!=','referred')
+            // ->where('tracking.status','!=','discharged')
+            ->where('tracking.referred_to',$user->facility_id)
+            ->orderBy('t2.maxid','desc')
+            ->distinct()
+            ->get();
 
 
-        $notif = $data->count();
+            $datacount = \App\PregnantFormv2::selectRaw('t2.maxid as notif_id, ROUND(DATEDIFF(CURDATE(),pregnant_formv2.lmp) / 7, 0) as now, pregnant_formv2.lmp, 
+            t2.maxaog,CONCAT(patients.fname," ",patients.mname," ",patients.lname) as woman_name, tracking.code as patient_code, tracking.notif as notif')
+            // ->leftJoin(\DB::raw('(SELECT referred_to, max(id) as maxid, max(code) as maxcode FROM activity B group by code ORDER BY B.id DESC ) AS t3'), function($join) {
+            //     $join->on('pregnant_formv2.code', '=', 't3.maxcode');
+            //         })
+            ->leftJoin(\DB::raw('(SELECT *, max(id) as maxid, max(aog) as maxaog, max(unique_id) as maxunique_id FROM sign_and_symptoms A group by unique_id) AS t2'), function($join) {
+                $join->on('pregnant_formv2.unique_id', '=', 't2.maxunique_id');
+                })
+            // ->leftJoin("activity","activity.id","=","t3.maxid")
+            ->join('tracking','pregnant_formv2.code','=','tracking.code')
+            ->leftJoin('patients','patients.id','=','pregnant_formv2.patient_woman_id')
+            ->whereRaw('ROUND(t2.maxaog, 0) >= 34')
+            ->where('tracking.notif','1')
+            ->where('tracking.status','!=','referred')
+            // ->where('tracking.status','!=','discharged')
+            ->where('tracking.referred_to',$user->facility_id)
+            ->orderBy('t2.maxid','desc')
+            ->distinct()
+            ->get();
 
-        dd($data);
+            $notif = 0;
+            foreach($datacount as $dats)
+            {
+                if($dats->now  >= '34')
+                {
+                    $notif++;
+                }
+            }
+            $link = 0;
+
+            // dd($data);
         ?>
         <div id="navbar" class="navbar-collapse collapse" style="font-size: 13px;">
             <ul class="nav navbar-nav">
@@ -218,7 +258,8 @@
                             <li class="divider"></li>
                             <li><a href="{{ url('doctor/accepted') }}"><i class="fa fa-user-plus"></i> Accepted Patients</a></li>
                             <!-- <li><a href="{{ url('doctor/affiliated/accepted') }}"><i class="fa fa-user-plus"></i> Accepted Affiliated Patients</a></li> -->
-                            <li><a href="{{ url('doctor/discharge') }}"><i class="fa fa-ambulance"></i> Discharged/Transfered Patients</a></li>
+                            <li><a href="{{ url('doctor/discharge') }}"><i class="fa fa-ambulance"></i> Discharged Patients</a></li>
+                            <li><a href="{{ url('doctor/transferred') }}"><i class="fa fa-ambulance"></i> Transfered Patients</a></li>
                             <li><a href="{{ url('doctor/cancelled') }}"><i class="fa fa-user-times"></i> Cancelled Patients</a></li>
                             <li><a href="{{ url('doctor/archived') }}"><i class="fa fa-archive"></i> Archived Patients</a></li>
                             <li class="divider"></li>
@@ -262,6 +303,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-print"></i> Report <span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            <li><a href="{{ url('doctor/aog/weeks/'.$link) }}"><i class="fas fa-baby"></i> 34 Weeks above</a></li>
                             <li><a href="{{ url('admin/report/online') }}"><i class="fa fa-users"></i>Online Users</a></li>
                             <li><a href="{{ url('doctor/report/incidentIndex') }}"><i class="fa fa-table"></i>Incident Logs</a></li>
                             <li><a href="{{ url('online/facility') }}"><i class="fa fa-hospital-o"></i>Online Facility</a></li>
@@ -324,6 +366,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-print"></i> Report <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        
                         <li><a href="{{ url('admin/report/online') }}"><i class="fa fa-users"></i>Online Users</a></li>
                         <li><a href="{{ url('online/facility') }}"><i class="fa fa-hospital-o"></i>Online Facility</a></li>
                         <li><a href="{{ url('offline/facility') }}"><i class="fa fa-times-circle-o"></i>Offline Facility</a></li>
@@ -360,6 +403,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-print"></i> Report <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        
                         <li><a href="{{ url('admin/report/online') }}"><i class="fa fa-users"></i>Online Users</a></li>
                         <li><a href="{{ url('online/facility') }}"><i class="fa fa-hospital-o"></i>Online Facility</a></li>
                         <li><a href="{{ url('offline/facility') }}"><i class="fa fa-times-circle-o"></i>Offline Facility</a></li>
@@ -533,16 +577,31 @@
                         @endif
                     </ul>
                 </li>
-                <li class="dropdown" style="float:right!important">
+                
+                <li class="dropdown" style="float:right">
                     <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-bell"></i> <small class="badge bg-red" style="margin-bottom:5px;">{{ $notif }} </small>  </a>
-                    <ul class="dropdown-menu">
-                        @foreach($data as $dat)
-                         <li><a href="{{ url('admin/pregnancy') }}"><i class="fa fa-building"></i></i>{{ $dat->aog }}</a></li>
-                        @endforeach
-                    <!--
-                <li><a href="{{ url('admin/report/graph/bar_chart') }}"><i class="fa fa-bar-chart-o"></i>Graph</a></li>
-                -->
-                    </ul>
+                        <ul class="dropdown-menu dropdown-left-manual">
+                                @foreach($data as $dat)
+                                    @if($dat->now >= "34")
+                                        @if($dat->notif == 1)
+                                        <li>
+                                            <a href="{{ url('doctor/aog/weeks/'.$dat->patient_code) }}" style="color: white;background-color: green;"><i class="fas fa-baby"></i> {{ $dat->woman_name }}
+                                                <br><span> Current AOG {{$dat->now}} </span>
+                                            </a>
+                                        </li>
+                                        @else
+                                        <li>
+                                            <a href="{{ url('doctor/aog/weeks/'.$dat->patient_code) }}" ><i class="fas fa-baby"></i> {{ $dat->woman_name }}
+                                                <br><span> Current AOG {{$dat->now}} </span>
+                                            </a>
+                                        </li>
+                                        @endif
+                                    @endif
+                                @endforeach
+                            <!--
+                        <li><a href="{{ url('admin/report/graph/bar_chart') }}"><i class="fa fa-bar-chart-o"></i>Graph</a></li>
+                        -->
+                        </ul>
                 </li>
             </ul>
         </div><!--/.nav-collapse -->
@@ -590,6 +649,7 @@
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
+
 <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="{{ asset('resources/assets/js/jquery.min.js?v='.date('mdHis')) }}"></script>
@@ -619,6 +679,7 @@
 <script src="{{ asset('resources/plugin/table-fixed-header/table-fixed-header.js') }}"></script>
 <!-- PUSHER -->
 <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
 <script>
     $(".select2").select2({ width: '100%' });
 
