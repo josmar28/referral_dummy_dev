@@ -206,7 +206,7 @@
             ->join('tracking','pregnant_formv2.code','=','tracking.code')
             ->leftJoin('patients','patients.id','=','pregnant_formv2.patient_woman_id')
             ->whereRaw('ROUND(t2.maxaog, 0) >= 34')
-            // ->where('tracking.notif','1')
+            ->where('tracking.notif','1')
             ->where('tracking.status','!=','referred')
             // ->where('tracking.status','!=','discharged')
             ->where('tracking.referred_to',$user->facility_id)
@@ -324,6 +324,31 @@
                             <li><a href="{{ url('admin/css') }}"><i class="fa fa-certificate"></i>CSS</a></li>
                         </ul>
                     </li>
+                    <li class="dropdown" style="float:right">
+                    <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-bell"></i> <small class="badge bg-red" style="margin-bottom:5px;">{{ $notif }} </small>  </a>
+                        <ul class="dropdown-menu dropdown-left-manual">
+                                @foreach($data as $dat)
+                                    @if($dat->now >= "34")
+                                        @if($dat->notif == 1)
+                                        <li>
+                                            <a href="{{ url('doctor/aog/weeks/'.$dat->patient_code) }}" style="color: white;background-color: green;"><i class="fas fa-baby"></i> {{ $dat->woman_name }}
+                                                <br><span> Current AOG {{$dat->now}} </span>
+                                            </a>
+                                        </li>
+                                        @else
+                                        <li>
+                                            <a href="{{ url('doctor/aog/weeks/'.$dat->patient_code) }}" ><i class="fas fa-baby"></i> {{ $dat->woman_name }}
+                                                <br><span> Current AOG {{$dat->now}} </span>
+                                            </a>
+                                        </li>
+                                        @endif
+                                    @endif
+                                @endforeach
+                            <!--
+                        <li><a href="{{ url('admin/report/graph/bar_chart') }}"><i class="fa fa-bar-chart-o"></i>Graph</a></li>
+                        -->
+                        </ul>
+                </li>
                 @elseif($user->level=='billing')
                 <li><a href="{{ url('billing/') }}"><i class="fa fa-home"></i> Dashboard</a></li>
                 <li><a href="{{ url('doctor/accepted') }}"><i class="fa fa-user-plus"></i> Accepted Patients</a></li>
@@ -471,7 +496,8 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-print"></i> Report <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                    <li><a href="{{ url('admin/pregnancy') }}"><i class="fa fa-building"></i></i>Facility Pregnancy</a></li>
+                        <li><a href="{{ url('admin/aog/weeks/report') }}"><i class="fas fa-baby"></i> 34 Weeks above</a></li>
+                        <li><a href="{{ url('admin/pregnancy') }}"><i class="fa fa-building"></i></i>Facility Pregnancy</a></li>
                         <li><a href="{{ url('admin/report/online') }}"><i class="fa fa-users"></i>Online Users</a></li>
                         <li><a href="{{ url('online/facility') }}"><i class="fa fa-hospital-o"></i>Online Facility</a></li>
                         <li><a href="{{ url('offline/facility') }}"><i class="fa fa-times-circle-o"></i>Offline Facility</a></li>
@@ -578,31 +604,7 @@
                     </ul>
                 </li>
                 
-                <li class="dropdown" style="float:right">
-                    <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-bell"></i> <small class="badge bg-red" style="margin-bottom:5px;">{{ $notif }} </small>  </a>
-                        <ul class="dropdown-menu dropdown-left-manual">
-                                @foreach($data as $dat)
-                                    @if($dat->now >= "34")
-                                        @if($dat->notif == 1)
-                                        <li>
-                                            <a href="{{ url('doctor/aog/weeks/'.$dat->patient_code) }}" style="color: white;background-color: green;"><i class="fas fa-baby"></i> {{ $dat->woman_name }}
-                                                <br><span> Current AOG {{$dat->now}} </span>
-                                            </a>
-                                        </li>
-                                        @else
-                                        <li>
-                                            <a href="{{ url('doctor/aog/weeks/'.$dat->patient_code) }}" ><i class="fas fa-baby"></i> {{ $dat->woman_name }}
-                                                <br><span> Current AOG {{$dat->now}} </span>
-                                            </a>
-                                        </li>
-                                        @endif
-                                    @endif
-                                @endforeach
-                            <!--
-                        <li><a href="{{ url('admin/report/graph/bar_chart') }}"><i class="fa fa-bar-chart-o"></i>Graph</a></li>
-                        -->
-                        </ul>
-                </li>
+               
             </ul>
         </div><!--/.nav-collapse -->
     </div>

@@ -105,6 +105,10 @@ Route::get('monitoring/list','monitor\OnlineCtrl@index');
 Route::post('monitoring/list','monitor\OnlineCtrl@searchDoctor');
 Route::get('monitor/no_action/{facility_id}/{date_start}/{date_end}/{type}','monitor\HomeCtrl@NoAction');
 
+//34 weeks
+Route::get('admin/aog/weeks/report','admin\PregnantCtrl@index');
+Route::post('admin/aog/weeks/report','admin\PregnantCtrl@index');
+
 //CSS
 Route::get('admin/css','doctor\CSSCtrl@index');
 Route::post('doctor/css','doctor\CSSCtrl@css');

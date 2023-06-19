@@ -160,6 +160,7 @@
 
         setTimeout(function(){
             audioElement.pause();
+            audioElement1.currentTime = 0;
         },5300);
     }
 
@@ -175,12 +176,13 @@
 
         setTimeout(function(){
             audioElement1.pause();
-        },6300);
+            audioElement1.currentTime = 0;
+        },5300);
     }
 
-    var level = "{{Session::get('auth')->level}}";
     var facility = "{{Session::get('auth')->facility_id}}";
     var user_id = "{{Session::get('auth')->id}}";
+    var user_level = "{{Session::get('auth')->level}}";
     var pusher = new Pusher('fa8c2f7f55cee399dd62', {
       cluster: 'ap1'
     });
@@ -204,44 +206,84 @@
 
     var channel1 = pusher.subscribe('pregnant_channel');
     channel1.bind('pregnant_event', function(data) {
-        if(facility == data['referred_to']) {
-        if(data['status'] == 'highrisk')
+        if(facility == data['referred_to']) 
         {
-            Lobibox.notify('error', {
-                title: "High-risk Pregnant Referral" ,
-                msg: "From: "+ data['referring_facility_name'] +" To: "+ data['referred_to_name']  +"<br> Referred by: " + data['referring_md_name'],
-                img: "{{ url('resources/img/dohro12logo2.png') }}",
-                width: 450,
-                sound:true,
-                delay: false
-            });
-            play1();
-        }
-        else if(data['status'] == 'moderate')
-        {
-            Lobibox.notify('warning', {
-                title: "Moderate Pregnant Referral" ,
-                msg: "From: "+ data['referring_facility_name'] +" To: "+ data['referred_to_name']  +"<br> Referred by: " + data['referring_md_name'],
-                img: "{{ url('resources/img/dohro12logo2.png') }}",
-                width: 450,
-                sound:true,
-                delay: false
-            });
-            play();
-        }
-        else
-        {
-            Lobibox.notify('success', {
-                title: "New Referral" ,
-                msg: "From: "+ data['referring_facility_name'] +" To: "+ data['referred_to_name']  +"<br> Referred by: " + data['referring_md_name'],
-                img: "{{ url('resources/img/dohro12logo2.png') }}",
-                width: 450,
-                sound:true,
-                delay: false
-            });
-            play();
-        }
+            if(data['status'] == 'highrisk')
+            {
+                Lobibox.notify('error', {
+                    title: "High-risk Pregnant Referral" ,
+                    msg: "From: "+ data['referring_facility_name'] +" To: "+ data['referred_to_name']  +"<br> Referred by: " + data['referring_md_name'],
+                    img: "{{ url('resources/img/dohro12logo2.png') }}",
+                    width: 450,
+                    sound:true,
+                    delay: false
+                });
+                play1();
+            }
+            else if(data['status'] == 'moderate')
+            {
+                Lobibox.notify('warning', {
+                    title: "Moderate Pregnant Referral" ,
+                    msg: "From: "+ data['referring_facility_name'] +" To: "+ data['referred_to_name']  +"<br> Referred by: " + data['referring_md_name'],
+                    img: "{{ url('resources/img/dohro12logo2.png') }}",
+                    width: 450,
+                    sound:true,
+                    delay: false
+                });
+                play();
+            }
+            else
+            {
+                Lobibox.notify('success', {
+                    title: "New Referral" ,
+                    msg: "From: "+ data['referring_facility_name'] +" To: "+ data['referred_to_name']  +"<br> Referred by: " + data['referring_md_name'],
+                    img: "{{ url('resources/img/dohro12logo2.png') }}",
+                    width: 450,
+                    sound:true,
+                    delay: false
+                });
+                play();
+            }
           
+      }
+      if(user_level == 'admin')
+      {
+            if(data['status'] == 'highrisk')
+            {
+                Lobibox.notify('error', {
+                    title: "High-risk Pregnant Referral" ,
+                    msg: "From: "+ data['referring_facility_name'] +" To: "+ data['referred_to_name']  +"<br> Referred by: " + data['referring_md_name'],
+                    img: "{{ url('resources/img/dohro12logo2.png') }}",
+                    width: 450,
+                    sound:true,
+                    delay: false
+                });
+                play1();
+            }
+            else if(data['status'] == 'moderate')
+            {
+                Lobibox.notify('warning', {
+                    title: "Moderate Pregnant Referral" ,
+                    msg: "From: "+ data['referring_facility_name'] +" To: "+ data['referred_to_name']  +"<br> Referred by: " + data['referring_md_name'],
+                    img: "{{ url('resources/img/dohro12logo2.png') }}",
+                    width: 450,
+                    sound:true,
+                    delay: false
+                });
+                play();
+            }
+            else
+            {
+                Lobibox.notify('success', {
+                    title: "New Referral" ,
+                    msg: "From: "+ data['referring_facility_name'] +" To: "+ data['referred_to_name']  +"<br> Referred by: " + data['referring_md_name'],
+                    img: "{{ url('resources/img/dohro12logo2.png') }}",
+                    width: 450,
+                    sound:true,
+                    delay: false
+                });
+                play();
+            }
       }
     });
 
