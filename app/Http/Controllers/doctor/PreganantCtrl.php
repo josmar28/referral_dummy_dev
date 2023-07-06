@@ -93,11 +93,11 @@ class PreganantCtrl extends Controller
               'bp' => ($req->bp) ? $req->bp: NULL,
               'temp' => ($req->temp) ? $req->temp: NULL,
               'rr' => ($req->rr) ? $req->rr: NULL,
-              'td1' => ($td1) ? $td1: NULL,
-              'td2' => ($td2) ? $td2: NULL,
-              'td3' => ($td3) ? $td3: NULL,
-              'td4' => ($td4) ? $td4: NULL,
-              'td5' => ($td5) ? $td5: NULL,
+              'td1' => ($td1 != '19700101') ? $td1: NULL,
+              'td2' => ($td2 != '19700101') ? $td2: NULL,
+              'td3' => ($td3 != '19700101') ? $td3: NULL,
+              'td4' => ($td4 != '19700101') ? $td4: NULL,
+              'td5' => ($td5 != '19700101') ? $td5: NULL,
               'status' => 1,
               'educ_attainment' => ($req->educ_attainment) ? $req->educ_attainment: NULL,
               'family_income' => ($req->family_income) ? $req->family_income: NULL,
@@ -108,6 +108,7 @@ class PreganantCtrl extends Controller
               
           );
 
+
           $fac = Facility::find($user->facility_id);
           $referring_md = User::find($user->id);
           $fac_to = Facility::find($req->referred_facility);
@@ -115,7 +116,8 @@ class PreganantCtrl extends Controller
         
           
           $form = PregnantFormv2::Create($data);
-          if($form->wasRecentlyCreated){
+          if($form->wasRecentlyCreated)
+          {
               PregnantFormv2::where('unique_id',$unique_id)
                   ->update([
                       'code' => $code
@@ -305,7 +307,7 @@ class PreganantCtrl extends Controller
             'patient_id' => $patient_id,
             'date_referred' => date('Y-m-d H:i:s'),
             'referred_from' => ($status=='walkin') ? $req->referring_facility_walkin : $user->facility_id,
-            'referred_to' => ($status=='walkin') ? $user->facility_id : (($req->referred_facility) ? $req->referred_facility: 0),
+            'referred_to' => ($status=='walkin') ? $user->facility_id : (($user->facility_id) ? $user->facility_id: 0),
             'department_id' => ($req->referred_department) ? $req->referred_department: 0 ,
             'referring_md' => ($status=='walkin') ? 0 : $user->id,
             'action_md' => '',
@@ -316,6 +318,8 @@ class PreganantCtrl extends Controller
             'walkin' => 'no',
             'pregnant_status' => ($req->pregnant_status) ? $req->pregnant_status: NULL
         );
+
+
 
         if($status=='walkin'){
             $track['date_seen'] = date('Y-m-d H:i:s');

@@ -518,8 +518,6 @@ $('.view_form').on('click',function()
 
                     if(sign_symptoms !=null)
                     {
-
-                        
                         $(".prev_trimester").val(sign_symptoms.no_trimester);
                         $(".prev_visit").val(sign_symptoms.no_visit);
 
@@ -1086,40 +1084,50 @@ function VitalBody(patient_id)
                         $('.weigth').val(form.weigth); 
 
 
+
+                        var td1 = form.td1 ? new Date(form.td1) : '';
+                        var td2 = form.td2 ? new Date(form.td2) : '';
+                        var td3 = form.td3 ? new Date(form.td3) : '';
+                        var td4 = form.td4 ? new Date(form.td4) : '';
+                        var td5 = form.td5 ? new Date(form.td5) : '';
+
+
                         $('.rr_personnal').val(form.gravidity);
-                        $('.td1').val(form.td1);
-                        $('.td2').val(form.td2);
-                        $('.td3').val(form.td3);
-                        $('.td4').val(form.td4);
-                        $('.td5').val(form.td5); 
+                        (td1 != '') ? $('.td1').val( ((td1.getMonth() > 8) ? (td1.getMonth() + 1) : ('0' + (td1.getMonth() + 1))) + '/' + ((td1.getDate() > 9) ? td1.getDate() : ('0' + td1.getDate())) + '/' + td1.getFullYear() ) : '';
+                        (td2 != '') ? $('.td2').val( ((td2.getMonth() > 8) ? (td2.getMonth() + 1) : ('0' + (td2.getMonth() + 1))) + '/' + ((td2.getDate() > 9) ? td2.getDate() : ('0' + td2.getDate())) + '/' + td2.getFullYear() ) : '';
+                        (td3 != '') ? $('.td3').val( ((td3.getMonth() > 8) ? (td3.getMonth() + 1) : ('0' + (td3.getMonth() + 1))) + '/' + ((td3.getDate() > 9) ? td3.getDate() : ('0' + td3.getDate())) + '/' + td3.getFullYear() ) : '';
+                        (td4 != '') ? $('.td4').val( ((td4.getMonth() > 8) ? (td4.getMonth() + 1) : ('0' + (td4.getMonth() + 1))) + '/' + ((td4.getDate() > 9) ? td4.getDate() : ('0' + td4.getDate())) + '/' + td4.getFullYear() ) : '';
+                        (td5 != '') ? $('.td5').val( ((td5.getMonth() > 8) ? (td5.getMonth() + 1) : ('0' + (td5.getMonth() + 1))) + '/' + ((td5.getDate() > 9) ? td5.getDate() : ('0' + td5.getDate())) + '/' + td5.getFullYear() ) : ''; 
+
+                        // console.log(form.td1)
                         
-                        var months = dateRange(form.lmp, form.edc_edd)
+                        // var months = dateRange(form.lmp, form.edc_edd)
 
-                        var d = new Date(),
+                        // var d = new Date(),
 
-                        n = d.getMonth() + 1,
+                        // n = d.getMonth() + 1,
 
-                        y = d.getFullYear();
+                        // y = d.getFullYear();
 
                         
-                        for(var i = 1; i <= months.length; i++) {
-                            if(n == months[0] || n == months[1] || n == months[2] || n == months[3])
-                            {
-                                $(".new_trimester").val('1st');
-                            }
-                            else if(n == months[4] || n == months[5] || n == months[6])
-                            {
-                                $(".new_trimester").val('2nd');
-                            }
-                            else if(n == months[7] || n == months[8] || n == months[9])
-                            {
-                                $(".new_trimester").val('3rd');
-                            }
-                            else
-                            {
-                                $(".new_trimester").val('3rd');
-                            }
-                        }
+                        // for(var i = 1; i <= months.length; i++) {
+                        //     if(n == months[0] || n == months[1] || n == months[2] || n == months[3])
+                        //     {
+                        //         $(".new_trimester").val('1st');
+                        //     }
+                        //     else if(n == months[4] || n == months[5] || n == months[6])
+                        //     {
+                        //         $(".new_trimester").val('2nd');
+                        //     }
+                        //     else if(n == months[7] || n == months[8] || n == months[9])
+                        //     {
+                        //         $(".new_trimester").val('3rd');
+                        //     }
+                        //     else
+                        //     {
+                        //         $(".new_trimester").val('3rd');
+                        //     }
+                        // }
 
 
                         var start = new Date(form.lmp),
@@ -1131,9 +1139,6 @@ function VitalBody(patient_id)
                         n = weeks.toFixed(1);
                         whole = Math.floor(n);      // 1
                         fraction = n - whole; // .25
-
-                        if(weeks.toFixed(1) > 1)
-                        {
                             var gcd = function(a, b) {
                             if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
 
@@ -1143,44 +1148,37 @@ function VitalBody(patient_id)
                             var fraction = fraction.toFixed(1);
                             var len = fraction.toString().length - 2;
 
-                            var denominator = Math.pow(10, len);
+                            var denominator = Math.pow(7, len);
                             var numerator = fraction * denominator;
 
-                            var divisor = gcd(numerator, denominator);    // Should be 5
+                            // var divisor = gcd(numerator, denominator);    // Should be 5
 
-                            numerator /= divisor;                         // Should be 687
-                            denominator /= divisor;                       // Should be 2000
+                            // numerator /= divisor;                         // Should be 687
+                            // denominator /= divisor;                       // Should be 2000
 
                             // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
 
 
-                            $('.new_aog').val( whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator));
+                            $('.new_aog').val( whole+ ' '+ Math.floor(numerator.toFixed()) + '/' + Math.floor(denominator.toFixed()));
                             $('.new_aog').change();
-                        }
-                        else
-                        {
-                            var gcd = function(a, b) {
-                            if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
 
-                            return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
-                            };
 
-                            var fraction = fraction.toFixed(1);
-                            var len = fraction.toString().length - 2;
-
-                            var denominator = Math.pow(10, len);
-                            var numerator = fraction * denominator;
-
-                            var divisor = gcd(numerator, denominator);    // Should be 5
-
-                            numerator /= divisor;                         // Should be 687
-                            denominator /= divisor;                       // Should be 2000
-
-                            // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
-
-                            $('.new_aog').val(whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator));
-                            $('.new_aog').change();
-                        }
+                            if( whole <= '12' )
+                            {
+                                $(".new_trimester").val('1st');
+                            }
+                            else if( whole <= '28' )
+                            {
+                                $(".new_trimester").val('2nd');
+                            }
+                            else if( whole <= '40' )
+                            {
+                                $(".new_trimester").val('3rd');
+                            }
+                            else
+                            {
+                                $(".new_trimester").val('3rd');
+                            }
                     }
             
 
@@ -1326,7 +1324,6 @@ function VitalBody(patient_id)
 
                 if(lab)
                 {
-                    console.log(lab);
                     $('.new_blood_type').val(lab.blood_type).trigger('change');
                     $('.new_hbsag_result').val(lab.hbsag_result).trigger('change');
                     $('.new_vdrl_result').val(lab.vdrl_result).trigger('change');

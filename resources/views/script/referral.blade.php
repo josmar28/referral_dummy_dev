@@ -22,9 +22,11 @@
 </script>
 
 <script>
-     $('#RefferedpregnantFormModalTrack').on('hidden.bs.modal', function () {
-        $('#myDiv').load(' #myDiv')
-        })
+
+    $("#RefferedpregnantFormModalTrack").on("hidden.bs.modal", function () {
+        document.getElementById("view_pregnant_form_new").reset();
+    });
+
         
     var action_md = "{{ $user->fname }} {{ $user->mname }} {{ $user->lname }}";
     var content = '';
@@ -68,6 +70,22 @@
 
 {{--Normal and Pregnant Form--}}
 <script>
+$(document).ready(function()
+{
+     $(".lmp_date").inputmask("mm/dd/yyyy");
+     $(".edc_edd").inputmask("mm/dd/yyyy");
+
+     $(".prev_date").inputmask("mm/dd/yyyy");
+
+     $(".td1").inputmask("mm/dd/yyyy");  
+     $(".td2").inputmask("mm/dd/yyyy");  
+     $(".td3").inputmask("mm/dd/yyyy");  
+     $(".td4").inputmask("mm/dd/yyyy");  
+     $(".td5").inputmask("mm/dd/yyyy");  
+
+     $(".date_of_lab").inputmask("mm/dd/yyyy");  
+});
+
 
 $('body').on('click','.btn-refer',function () {
     $('.loading').show();
@@ -143,6 +161,7 @@ function getPregnantFormv2()
 
                 patient_id = form.id;
                 name = form.woman_name;
+                patient_name = form.woman_name;
                 sex = form.sex;
                 age = form.woman_age;
                 civil_status = form.woman_status;
@@ -169,19 +188,43 @@ function getPregnantFormv2()
                 $("input[name='fundic_height']").val(form.fundic_height);
                 $("input[name='hr']").val(form.hr);
 
-                $("input[name='lmp']").val(form.lmp);
-                $("input[name='edc_edd']").val(form.edc_edd);
+
+                var date = new Date(form.lmp);
+                var day = ("0" + date.getDate()).slice(-2);
+                var month = ("0" + (date.getMonth() + 1)).slice(-2);
+
+                var lmp_new = (month)+"/"+(day)+"/"+date.getFullYear() ;
+
+                var date2 = new Date(form.edc_edd);
+                var day2 = ("0" + date2.getDate()).slice(-2);
+                var month2 = ("0" + (date2.getMonth() + 1)).slice(-2);
+
+                var edc_edd = (month2)+"/"+(day2)+"/"+date2.getFullYear() ;
+
+                $("input[name='lmp']").val(lmp_new);
+                $("input[name='edc_edd']").val(edc_edd);
                 $("input[name='height']").val(form.height);
                 $("input[name='weigth']").val(form.weigth);
                 $("input[name='bp']").val(form.bp);
                 $("input[name='temp']").val(form.temp);
 
                 $("input[name='rr']").val(form.rr);
-                $("input[name='td1']").val(form.td1);
-                $("input[name='td2']").val(form.td2);
-                $("input[name='td3']").val(form.td3);
-                $("input[name='td4']").val(form.td4);
-                $("input[name='td5']").val(form.td5);
+                var td1 = form.td1 ? new Date(form.td1) : '';
+                var td2 = form.td2 ? new Date(form.td2) : '';
+                var td3 = form.td3 ? new Date(form.td3) : '';
+                var td4 = form.td4 ? new Date(form.td4) : '';
+                var td5 = form.td5 ? new Date(form.td5) : '';
+
+                (td1 != '') ? $('.td1').val( ((td1.getMonth() > 8) ? (td1.getMonth() + 1) : ('0' + (td1.getMonth() + 1))) + '/' + ((td1.getDate() > 9) ? td1.getDate() : ('0' + td1.getDate())) + '/' + td1.getFullYear() ) : '';
+                (td2 != '') ? $('.td2').val( ((td2.getMonth() > 8) ? (td2.getMonth() + 1) : ('0' + (td2.getMonth() + 1))) + '/' + ((td2.getDate() > 9) ? td2.getDate() : ('0' + td2.getDate())) + '/' + td2.getFullYear() ) : '';
+                (td3 != '') ? $('.td3').val( ((td3.getMonth() > 8) ? (td3.getMonth() + 1) : ('0' + (td3.getMonth() + 1))) + '/' + ((td3.getDate() > 9) ? td3.getDate() : ('0' + td3.getDate())) + '/' + td3.getFullYear() ) : '';
+                (td4 != '') ? $('.td4').val( ((td4.getMonth() > 8) ? (td4.getMonth() + 1) : ('0' + (td4.getMonth() + 1))) + '/' + ((td4.getDate() > 9) ? td4.getDate() : ('0' + td4.getDate())) + '/' + td4.getFullYear() ) : '';
+                (td5 != '') ? $('.td5').val( ((td5.getMonth() > 8) ? (td5.getMonth() + 1) : ('0' + (td5.getMonth() + 1))) + '/' + ((td5.getDate() > 9) ? td5.getDate() : ('0' + td5.getDate())) + '/' + td5.getFullYear() ) : ''; 
+                // $("input[name='td1']").val(form.td1);
+                // $("input[name='td2']").val(form.td2);
+                // $("input[name='td3']").val(form.td3);
+                // $("input[name='td4']").val(form.td4);
+                // $("input[name='td5']").val(form.td5);
 
                 $('.religion').val(religion);   
                 $('.ethnicity').val(ethnicity);   
@@ -205,13 +248,21 @@ function getPregnantFormv2()
                 $('.patient_age').html(age);
                 $('.patient_contact').html(contact);
 
+                var now = new Date(sign_symptoms.date_of_visit);
+
+                var day = ("0" + now.getDate()).slice(-2);
+                var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+                var new_prev_date= (month)+"/"+(day)+"/"+now.getFullYear() ;
+
+                $('.prev_date').val(new_prev_date);
 
                 $(".prev_trimester").val(sign_symptoms.no_trimester);
                 $(".prev_visit").val(sign_symptoms.no_visit);
 
                 $(".new_visit_no").val(sign_symptoms.new_visit_no);
             
-                $('.prev_date').val(sign_symptoms.date_of_visit);
+             
                 
                 if(sign_symptoms !=null)
                 {
@@ -476,11 +527,16 @@ function getPregnantFormv2()
                 $('.fht_60').val(preg_vs.fht_60);
                 $('.fht_remarks').val(preg_vs.fht_remarks);
 
-            
-                    console.log(lab);
                     if(lab_result.length)
                     {
-                        $('.date_of_lab').val(lab_result[0].date_of_lab);
+                        var now = new Date(lab_result[0].date_of_lab);
+
+                        var day = ("0" + now.getDate()).slice(-2);
+                        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+                        var new_date_of_lab = (month)+"/"+(day)+"/"+now.getFullYear() ;
+
+                        $('.date_of_lab').val(new_date_of_lab);
 
                         $('.cbc_hgb').val(lab_result[0].cbc_hgb);
                         $('.cbc_wbc').val(lab_result[0].cbc_wbc);
@@ -501,10 +557,15 @@ function getPregnantFormv2()
                         $('.lab_remarks').val(lab_result[0].lab_remarks);
                         for (let i = 1; i < lab_result.length; i++) 
                         {
-                        
-                            console.log(lab_result[i].date_of_lab);
+                            
+                            var now = new Date(lab_result[i].date_of_lab);
+
+                            var day = ("0" + now.getDate()).slice(-2);
+                            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+                            var new_date_of_lab = (month)+"/"+(day)+"/"+now.getFullYear() ;
                             //var markup = '<tr><td><input type="date" class="form-control" value="' + lab_result[i].date_of_lab + '" name="date_of_lab[]" disabled></td><td><input type="text" value="' + lab_result[i].cbc_result + '" class="form-control" name="cbc_result[]" disabled> </td><td><input type="text" value="' + lab_result[i].ua_result + '" class="form-control" name="ua_result[]" disabled> </td><td><input type="text" value="' + lab_result[i].utz + '" class="form-control" name="utz[]" disabled> </td><td><textarea name="lab_remarks[]" class="form-control" disabled> ' + lab_result[i].lab_remarks + ' </textarea> </td></tr>';
-                            var markup = '<tr><td> <input type="date" class="form-control" value="' + lab_result[i].date_of_lab + '" name="date_of_lab[]" disabled></td><td><div class="row"><div class="col-md-6">Hgb: <input type="text" class="form-control" name="cbc_hgb[]" value="' + lab_result[i].cbc_hgb + '" disabled> </div><div class="col-md-6">WBC: <input type="text" class="form-control" name="cbc_wbc[]" value="' + lab_result[i].cbc_wbc + '" disabled></div></div><div class="row"><div class="col-md-6">RBC: <input type="text" class="form-control" name="cbc_rbc[]" value="' + lab_result[i].cbc_rbc + '" disabled> </div><div class="col-md-6">Platelet: <input type="text" class="form-control" value="' + lab_result[i].cbc_platelet + '" name="cbc_platelet[]" disabled></div></div><div class="row"><div class="col-md-12">Hct: <input type="text" class="form-control" value="' + lab_result[i].cbc_hct + '" name="cbc_hct[]" disabled></div></div></td><td><div class="row"><div class="col-md-6">Pus: <input type="text" class="form-control" value="' + lab_result[i].ua_pus + '" name="ua_pus[]" disabled> </div><div class="col-md-6">RBC: <input type="text" class="form-control" value="' + lab_result[i].ua_rbc + '" name="ua_rbc[]" disabled></div></div><div class="row"><div class="col-md-6">Sugar: <input type="text" class="form-control" value="' + lab_result[i].ua_sugar + '" name="ua_sugar[]" disabled> </div><div class="col-md-6">Specific Gravity: <input type="text" class="form-control" value="' + lab_result[i].ua_gravity + '" name="ua_gravity[]" disabled></div></div><div class="row"><div class="col-md-12">Albumin: <input type="text" class="form-control" value="' + lab_result[i].ua_albumin + '" name="ua_albumin[]" disabled></div></div></td><td> <textarea name="utz[]" class="form-control" disabled>' + lab_result[i].utz + '</textarea> </td><td><textarea name="lab_remarks[]" class="form-control" disabled>' + lab_result[i].lab_remarks + '</textarea> </td></tr>';
+                            var markup = '<tr><td> <input type="text" class="form-control date_of_lab" placeholder="mm/dd/yyyy" value="' + new_date_of_lab + '" name="date_of_lab[]" disabled></td><td><div class="row"><div class="col-md-6">Hgb: <input type="text" class="form-control" name="cbc_hgb[]" value="' + lab_result[i].cbc_hgb + '" disabled> </div><div class="col-md-6">WBC: <input type="text" class="form-control" name="cbc_wbc[]" value="' + lab_result[i].cbc_wbc + '" disabled></div></div><div class="row"><div class="col-md-6">RBC: <input type="text" class="form-control" name="cbc_rbc[]" value="' + lab_result[i].cbc_rbc + '" disabled> </div><div class="col-md-6">Platelet: <input type="text" class="form-control" value="' + lab_result[i].cbc_platelet + '" name="cbc_platelet[]" disabled></div></div><div class="row"><div class="col-md-12">Hct: <input type="text" class="form-control" value="' + lab_result[i].cbc_hct + '" name="cbc_hct[]" disabled></div></div></td><td><div class="row"><div class="col-md-6">Pus: <input type="text" class="form-control" value="' + lab_result[i].ua_pus + '" name="ua_pus[]" disabled> </div><div class="col-md-6">RBC: <input type="text" class="form-control" value="' + lab_result[i].ua_rbc + '" name="ua_rbc[]" disabled></div></div><div class="row"><div class="col-md-6">Sugar: <input type="text" class="form-control" value="' + lab_result[i].ua_sugar + '" name="ua_sugar[]" disabled> </div><div class="col-md-6">Specific Gravity: <input type="text" class="form-control" value="' + lab_result[i].ua_gravity + '" name="ua_gravity[]" disabled></div></div><div class="row"><div class="col-md-12">Albumin: <input type="text" class="form-control" value="' + lab_result[i].ua_albumin + '" name="ua_albumin[]" disabled></div></div></td><td> <textarea name="utz[]" class="form-control" disabled>' + lab_result[i].utz + '</textarea> </td><td><textarea name="lab_remarks[]" class="form-control" disabled>' + lab_result[i].lab_remarks + '</textarea> </td></tr>';
                             
                             $('#table_lab_res_referred tr:last').after(markup);
 

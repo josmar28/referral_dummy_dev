@@ -518,7 +518,7 @@ $user = Session::get('auth');
                             @endif
                         </a>
                     @endif
-                    @if(!$checkForCancellation && $act->referred_from == $user->facility_id)
+                    <!-- @if(!$checkForCancellation && $act->referred_from == $user->facility_id)
                          <a href="#legitModal"
                                        data-toggle="modal"
                                        data-id = "{{ $row->id }}"
@@ -527,7 +527,7 @@ $user = Session::get('auth');
                                        <i class="fa fa-edit"></i>
                                         Edit
                                     </a>
-                    @endif
+                    @endif -->
                     @if(!$checkForCancellation)
                         <a href="#cancelModal" data-toggle="modal"
                            data-id="{{ $row->id }}" class="btn btn-xs btn-default btn-cancel"><i class="fa fa-times"></i> Cancel</a>
@@ -549,16 +549,15 @@ $user = Session::get('auth');
         @endif
     </div>
     </div>
-    @include('modal.pregnant_modal_referredv2')
-    @include('modal.cancel')
-    @include('modal.feedback')
-    @include('modal.legitmodal')
-    @include('modal.seen')
     @include('modal.refer')
+    @include('modal.seen')
+    @include('modal.feedback')
+    @include('modal.transfer')
+    @include('modal.legitmodal')
     @include('modal.accept_reject')
+    @include('modal.cancel')
     @include('modal.accept')
     @include('modal.caller')
-    @include('modal.transfer')
     @include('modal.reject')
     @include('modal.contact')
 @endsection

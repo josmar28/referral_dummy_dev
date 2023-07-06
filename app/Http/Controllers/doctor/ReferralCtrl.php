@@ -1801,12 +1801,26 @@ class ReferralCtrl extends Controller
         $form_type = '#normalFormModal';
         if($track->type=='pregnant'){
             $form_type = '#pregnantFormModal';
+            $status = 'pregnant';
         }
+
+        $fac = Facility::find($user->facility_id);
+        $referring_md = User::find($user->id);
+        $fac_to = Facility::find($req->facility);
+        $status = $req->pregnant_status;
+
+        $data = array(
+            'referring_facility' => $track->referred_to,
+            'referred_to' => $req->facility,
+        );
+
+        event(new PregnantNotif($data,$fac,$referring_md,$fac_to,$status));
 
         return array(
             'code' => $track->code,
             'date' => date('M d, Y h:i A',strtotime($date)),
             'patient_name' => $patient->patient_name,
+            'status' => $status,
             'age' => $patient->age,
             'sex' => $patient->sex,
             'action_md' => "$user_md->fname $user_md->mname $user_md->lname",

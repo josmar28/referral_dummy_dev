@@ -737,14 +737,14 @@
                                                     <select name="hbsag_result" class="form-control-select select2" required>
                                                         <option value="">Select HBsAg...</option>
                                                         <option value="reactive">Reactive</option>
-                                                        <option value="non_reactive">Non-Reactine</option>
+                                                        <option value="non_reactive">Non-Reactive</option>
                                                     </select> 
                                             </td>
                                             <td rowspan="5" id="vdrl_result"> 
                                                     <select name="vdrl_result" class="form-control-select select2" required>
                                                         <option value="">Select VDRL...</option>
                                                         <option value="reactive">Reactive</option>
-                                                        <option value="non_reactive">Non-Reactine</option>
+                                                        <option value="non_reactive">Non-Reactive</option>
                                                     </select> 
                                             </td>
                                             <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>

@@ -7,6 +7,23 @@
 
      $(".date_of_lab").inputmask("mm/dd/yyyy");  
      
+    //  $('.new_trimester').change(function() 
+    // {
+    //     alert($('.code').val())
+    //     $.ajax({
+    //         url: "{{ url('doctor/patient/info/') }}/",
+    //         type: "POST",
+    //         success: function(data){
+
+            
+    //         },
+    //         error: function(){
+    //             $('#serverModal').modal();
+    //         }
+    //     });
+    // });
+
+
     $('.add_lmp_date').change(function() 
     {
             var date = $(this).val();
@@ -34,36 +51,6 @@
             var edc_edd = (month)+"/"+(day)+"/"+now.getFullYear() ;
 
             $('.edc_edd').val(edc_edd);
-            $('.edc_edd').change();
-
-            var months = dateRange($(this).val(), edc_edd)
-
-            var d = new Date(),
-
-            n = d.getMonth() + 1,
-
-            y = d.getFullYear();
-
-            
-            for(var i = 1; i <= months.length; i++) {
-                    if(n == months[0] || n == months[1] || n == months[2] || n == months[3])
-                    {
-                        $(".new_trimester").val('1st');
-                    }
-                    else if(n == months[4] || n == months[5] || n == months[6])
-                    {
-                        $(".new_trimester").val('2nd');
-                    }
-                    else if(n == months[7] || n == months[8] || n == months[9])
-                    {
-                        $(".new_trimester").val('3rd');
-                    }
-                    else
-                    {
-                        $(".new_trimester").val('3rd');
-                    }
-                }
-
 
                 var start = new Date($(this).val() ),
                 end   = new Date($('.add_date_of_visit').val()),
@@ -71,60 +58,48 @@
                 days  = diff/1000/60/60/24;
                 weeks = days / 7;
 
-                n = weeks.toFixed(1);
+                n = weeks.toFixed(3);
                 whole = Math.floor(n);      // 1
                 fraction = n - whole; // .25
 
-                if(weeks.toFixed(1) > 1)
+                var gcd = function(a, b) {
+                if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
+
+                return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
+                };
+
+
+                var fraction = fraction.toFixed(7);
+                var len = fraction.toString().length - 8;
+
+                var denominator = Math.pow(7, len);
+                var numerator = fraction * denominator;
+
+                // var divisor = gcd(numerator, denominator);    // Should be 5
+
+                // numerator /= divisor;                         // Should be 687
+                // denominator /= divisor;                       // Should be 2000
+
+                $('.new_aog').val( whole+ ' '+ Math.floor(numerator.toFixed()) + '/' + Math.floor(denominator.toFixed()));
+                $('.new_aog').change();
+
+
+                if( whole <= '12' )
                 {
-                    var gcd = function(a, b) {
-                    if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
-
-                    return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
-                    };
-
-                    var fraction = fraction.toFixed(1);
-                    var len = fraction.toString().length - 2;
-
-                    var denominator = Math.pow(10, len);
-                    var numerator = fraction * denominator;
-
-                    var divisor = gcd(numerator, denominator);    // Should be 5
-
-                    numerator /= divisor;                         // Should be 687
-                    denominator /= divisor;                       // Should be 2000
-
-                    // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
-
-
-                    $('.new_aog').val( whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator));
-                    $('.new_aog').change();
+                    $(".new_trimester").val('1st');
+                }
+                else if( whole <= '28' )
+                {
+                    $(".new_trimester").val('2nd');
+                }
+                else if( whole <= '40' )
+                {
+                    $(".new_trimester").val('3rd');
                 }
                 else
                 {
-                    var gcd = function(a, b) {
-                    if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
-
-                    return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
-                    };
-
-                    var fraction = fraction.toFixed(1);
-                    var len = fraction.toString().length - 2;
-
-                    var denominator = Math.pow(10, len);
-                    var numerator = fraction * denominator;
-
-                    var divisor = gcd(numerator, denominator);    // Should be 5
-
-                    numerator /= divisor;                         // Should be 687
-                    denominator /= divisor;                       // Should be 2000
-
-                    // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
-
-                    $('.new_aog').val(whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator));
-                    $('.new_aog').change();
+                    $(".new_trimester").val('3rd');
                 }
-
     });
 
     $('.lmp_date_return').change(function() 
@@ -154,35 +129,6 @@
             var edc_edd = (month)+"/"+(day)+"/"+now.getFullYear() ;
 
             $('.edc_edd').val(edc_edd);
-            $('.edc_edd').change();
-
-            var months = dateRange($(this).val(), edc_edd)
-
-            var d = new Date(),
-
-            n = d.getMonth() + 1,
-
-            y = d.getFullYear();
-
-            
-            for(var i = 1; i <= months.length; i++) {
-                    if(n == months[0] || n == months[1] || n == months[2] || n == months[3])
-                    {
-                        $(".new_trimester").val('1st');
-                    }
-                    else if(n == months[4] || n == months[5] || n == months[6])
-                    {
-                        $(".new_trimester").val('2nd');
-                    }
-                    else if(n == months[7] || n == months[8] || n == months[9])
-                    {
-                        $(".new_trimester").val('3rd');
-                    }
-                    else
-                    {
-                        $(".new_trimester").val('3rd');
-                    }
-                }
 
 
                 var start = new Date($(this).val() ),
@@ -191,12 +137,10 @@
                 days  = diff/1000/60/60/24;
                 weeks = days / 7;
 
-                n = weeks.toFixed(1);
+                n = weeks.toFixed(3);
                 whole = Math.floor(n);      // 1
                 fraction = n - whole; // .25
 
-                if(weeks.toFixed(1) > 1)
-                {
                     var gcd = function(a, b) {
                     if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
 
@@ -206,45 +150,36 @@
                     var fraction = fraction.toFixed(1);
                     var len = fraction.toString().length - 2;
 
-                    var denominator = Math.pow(10, len);
+                    var denominator = Math.pow(7, len);
                     var numerator = fraction * denominator;
 
                     var divisor = gcd(numerator, denominator);    // Should be 5
 
-                    numerator /= divisor;                         // Should be 687
-                    denominator /= divisor;                       // Should be 2000
+                    // numerator /= divisor;                         // Should be 687
+                    // denominator /= divisor;                       // Should be 2000
 
                     // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
 
-
-                    $('.new_aog').val( whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator));
+                    $('.new_aog').val( whole+ ' '+ Math.floor(numerator.toFixed()) + '/' + Math.floor(denominator.toFixed()));
                     $('.new_aog').change();
-                }
-                else
-                {
-                    var gcd = function(a, b) {
-                    if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
 
-                    return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
-                    };
 
-                    var fraction = fraction.toFixed(1);
-                    var len = fraction.toString().length - 2;
-
-                    var denominator = Math.pow(10, len);
-                    var numerator = fraction * denominator;
-
-                    var divisor = gcd(numerator, denominator);    // Should be 5
-
-                    numerator /= divisor;                         // Should be 687
-                    denominator /= divisor;                       // Should be 2000
-
-                    // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
-
-                    $('.new_aog').val(whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator));
-                    $('.new_aog').change();
-                }
-
+                    if( whole <= '12' )
+                    {
+                        $(".new_trimester").val('1st');
+                    }
+                    else if( whole <= '28' )
+                    {
+                        $(".new_trimester").val('2nd');
+                    }
+                    else if( whole <= '40' )
+                    {
+                        $(".new_trimester").val('3rd');
+                    }
+                    else
+                    {
+                        $(".new_trimester").val('3rd');
+                    }
     });
 
     $('.new_refer_lmp_date').change(function() 
@@ -274,35 +209,35 @@
             var edc_edd = (month)+"/"+(day)+"/"+now.getFullYear() ;
 
             $('.edc_edd').val(edc_edd);
-            $('.edc_edd').change();
 
-            var months = dateRange($(this).val(), edc_edd)
+            // var months = dateRange( $(this).val(), edc_edd )
 
-            var d = new Date(),
+            // var d = new Date(),
 
-            n = d.getMonth() + 1,
+            // n = d.getMonth() + 1,
 
-            y = d.getFullYear();
+            // y = d.getFullYear();
 
+            // console.log(months);
             
-            for(var i = 1; i <= months.length; i++) {
-                    if(n == months[0] || n == months[1] || n == months[2] || n == months[3])
-                    {
-                        $(".new_trimester").val('1st');
-                    }
-                    else if(n == months[4] || n == months[5] || n == months[6])
-                    {
-                        $(".new_trimester").val('2nd');
-                    }
-                    else if(n == months[7] || n == months[8] || n == months[9])
-                    {
-                        $(".new_trimester").val('3rd');
-                    }
-                    else
-                    {
-                        $(".new_trimester").val('3rd');
-                    }
-                }
+            // for(var i = 1; i <= months.length; i++) {
+            //         if(n == months[0] || n == months[1] || n == months[2] || n == months[3])
+            //         {
+            //             $(".new_trimester").val('1st');
+            //         }
+            //         else if(n == months[4] || n == months[5] || n == months[6])
+            //         {
+            //             $(".new_trimester").val('2nd');
+            //         }
+            //         else if(n == months[7] || n == months[8] || n == months[9])
+            //         {
+            //             $(".new_trimester").val('3rd');
+            //         }
+            //         else
+            //         {
+            //             $(".new_trimester").val('3rd');
+            //         }
+            //     }
 
 
                 var start = new Date($(this).val() ),
@@ -315,21 +250,15 @@
                 whole = Math.floor(n);      // 1
                 fraction = n - whole; // .25
 
-                // alert(days);
-
-                if(weeks.toFixed(1) > 1)
-                {
                     var gcd = function(a, b) {
                     if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
 
                     return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
                     };
 
-                    var fraction = fraction.toFixed(3);
-                    var len = fraction.toString().length - 4;
+                    var fraction = fraction.toFixed(1);
+                    var len = fraction.toString().length - 2;
 
-                   
-                    
                     var denominator = Math.pow(7, len);
                     var numerator = fraction * denominator;
                     // alert(numerator.toFixed());
@@ -343,31 +272,24 @@
 
                     $('.new_aog').val( whole+ ' '+ Math.floor(numerator.toFixed()) + '/' + Math.floor(denominator.toFixed()));
                     $('.new_aog').change();
-                }
-                else
-                {
-                    var gcd = function(a, b) {
-                    if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
 
-                    return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
-                    };
 
-                    var fraction = fraction.toFixed(1);
-                    var len = fraction.toString().length - 2;
-
-                    var denominator = Math.pow(10, len);
-                    var numerator = fraction * denominator;
-
-                    var divisor = gcd(numerator, denominator);    // Should be 5
-
-                    numerator /= divisor;                         // Should be 687
-                    denominator /= divisor;                       // Should be 2000
-
-                    // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
-
-                    $('.new_aog').val(whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator));
-                    $('.new_aog').change();
-                }
+                  if( whole <= '12' )
+                    {
+                        $(".new_trimester").val('1st');
+                    }
+                    else if( whole <= '28' )
+                    {
+                        $(".new_trimester").val('2nd');
+                    }
+                    else if( whole <= '40' )
+                    {
+                        $(".new_trimester").val('3rd');
+                    }
+                    else
+                    {
+                        $(".new_trimester").val('3rd');
+                    }
 
     });
 

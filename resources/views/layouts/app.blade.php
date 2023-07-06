@@ -110,7 +110,7 @@
 <body>
 
 <!-- Fixed navbar -->
-
+<div id="app_div">
 <nav class="navbar navbar-default fixed-top" >
     <div class="header" style="background-color:#2F4054;padding:10px;">
         <div>
@@ -610,28 +610,30 @@
     </div>
 </nav>
 
-@if(isset(Request::segments()[3]))
-    <div class="{{ in_array(Request::segments()[0].'/'.Request::segments()[1].'/'.Request::segments()[2].'/'.Request::segments()[3], array('admin/report/patient/incoming','admin/report/patient/outgoing','admin/report/consolidated/incoming','admin/report/graph/incoming','admin/report/consolidated/incomingv2','admin/report/graph/bar_chart'), true)
-        ? 'container-fluid' : 'container' }}" >
-        <div class="loading"></div>
-        @yield('content')
-        <div class="clearfix"></div>
-    </div> <!-- /container -->
-@elseif(isset(Request::segments()[2]))
-    <div class="{{ in_array(Request::segments()[0].'/'.Request::segments()[1].'/'.Request::segments()[2], array('vaccine/vaccineview/1','vaccine/vaccineview/2','vaccine/vaccineview/3','vaccine/vaccineview/4','vaccine/facility/cebu','vaccine/facility/mandaue','vaccine/facility/lapu'), true) ? 'container-fluid' : 'container' }}" >
-        <div class="loading"></div>
-        @yield('content')
-        <div class="clearfix"></div>
-    </div> <!-- /container -->
-@else
-    <div class="{{ in_array(Request::segments()[0], array('vaccine'), true) ? 'container-fluid' : 'container' }}" id="container">
-        <div class="loading"></div>
-        <div class="row">
+
+    @if(isset(Request::segments()[3]))
+        <div class="{{ in_array(Request::segments()[0].'/'.Request::segments()[1].'/'.Request::segments()[2].'/'.Request::segments()[3], array('admin/report/patient/incoming','admin/report/patient/outgoing','admin/report/consolidated/incoming','admin/report/graph/incoming','admin/report/consolidated/incomingv2','admin/report/graph/bar_chart'), true)
+            ? 'container-fluid' : 'container' }}" >
+            <div class="loading"></div>
             @yield('content')
-        </div>
-        <div class="clearfix"></div>
-    </div> <!-- /container -->
-@endif
+            <div class="clearfix"></div>
+        </div> <!-- /container -->
+    @elseif(isset(Request::segments()[2]))
+        <div class="{{ in_array(Request::segments()[0].'/'.Request::segments()[1].'/'.Request::segments()[2], array('vaccine/vaccineview/1','vaccine/vaccineview/2','vaccine/vaccineview/3','vaccine/vaccineview/4','vaccine/facility/cebu','vaccine/facility/mandaue','vaccine/facility/lapu'), true) ? 'container-fluid' : 'container' }}" >
+            <div class="loading"></div>
+            @yield('content')
+            <div class="clearfix"></div>
+        </div> <!-- /container -->
+    @else
+        <div class="{{ in_array(Request::segments()[0], array('vaccine'), true) ? 'container-fluid' : 'container' }}" id="container">
+            <div class="loading"></div>
+            <div class="row">
+                @yield('content')
+            </div>
+            <div class="clearfix"></div>
+        </div> <!-- /container -->
+    @endif
+</div>
 
 @include('modal.server')
 @include('modal.password')
