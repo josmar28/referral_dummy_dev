@@ -699,7 +699,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:515.1px;top:746.0px;white-space:normal; width: 85px; word-wrap:break-word">{{ $data['lab_result'][0]->utz }}&nbsp;</span>
 </span>
 <span style="font-size:13px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:609.3px;top:812.1px;">@if($data['lab_result'][0]->blood_type == 'a+')
+<span class="text" style="left:609.3px;top:812.1px;">@if($data['lab_result_old'][0]->blood_type == 'a+')
 ☑
 @else
 ☐
@@ -709,7 +709,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:624.2px;top:815.5px;">A+</span>
 </span>
 <span style="font-size:13px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:639.4px;top:812.1px;">@if($data['lab_result'][0]->blood_type == 'a-')
+<span class="text" style="left:639.4px;top:812.1px;">@if($data['lab_result_old'][0]->blood_type == 'a-')
 ☑
 @else
 ☐
@@ -719,7 +719,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:654.5px;top:815.5px;">A-</span>
 </span>
 <span style="font-size:13px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:609.7px;top:826.1px;">@if($data['lab_result'][0]->blood_type == 'b+')
+<span class="text" style="left:609.7px;top:826.1px;">@if($data['lab_result_old'][0]->blood_type == 'b+')
 ☑
 @else
 ☐
@@ -729,7 +729,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:624.8px;top:829.6px;">B+</span>
 </span>
 <span style="font-size:13px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:639.2px;top:826.1px;">@if($data['lab_result'][0]->blood_type == 'b-')
+<span class="text" style="left:639.2px;top:826.1px;">@if($data['lab_result_old'][0]->blood_type == 'b-')
 ☑
 @else
 ☐
@@ -739,7 +739,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:654.3px;top:829.6px;">B-&nbsp;</span>
 </span>
 <span style="font-size:12px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:607.7px;top:840.8px;">@if($data['lab_result'][0]->blood_type == 'ab+')
+<span class="text" style="left:607.7px;top:840.8px;">@if($data['lab_result_old'][0]->blood_type == 'ab+')
 ☑
 @else
 ☐
@@ -749,7 +749,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:620.7px;top:844.0px;">AB+</span>
 </span>
 <span style="font-size:12px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:639.0px;top:840.8px;">@if($data['lab_result'][0]->blood_type == 'ab-')
+<span class="text" style="left:639.0px;top:840.8px;">@if($data['lab_result_old'][0]->blood_type == 'ab-')
 ☑
 @else
 ☐
@@ -759,7 +759,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:652.1px;top:844.0px;">AB-</span>
 </span>
 <span style="font-size:13px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:608.9px;top:852.6px;">@if($data['lab_result'][0]->blood_type == 'o+')
+<span class="text" style="left:608.9px;top:852.6px;">@if($data['lab_result_old'][0]->blood_type == 'o+')
 ☑
 @else
 ☐
@@ -769,7 +769,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:623.8px;top:856.1px;">O+</span>
 </span>
 <span style="font-size:13px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:639.6px;top:852.6px;">@if($data['lab_result'][0]->blood_type == 'o-')
+<span class="text" style="left:639.6px;top:852.6px;">@if($data['lab_result_old'][0]->blood_type == 'o-')
 ☑
 @else
 ☐
@@ -782,7 +782,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:662.3px;top:857.7px;">-</span>
 </span>
 <span style="font-size:13px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:699.2px;top:814.7px;">@if($data['lab_result'][0]->hbsag_result == 'reactive')
+<span class="text" style="left:699.2px;top:814.7px;">@if($data['lab_result_old'][0]->hbsag_result == 'reactive')
 ☑
 @else
 ☐
@@ -792,7 +792,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:688.2px;top:830.4px;">Reactive</span>
 </span>
 <span style="font-size:13px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:688.8px;top:840.4px;">@if($data['lab_result'][0]->hbsag_result == 'non_reactive')
+<span class="text" style="left:688.8px;top:840.4px;">@if($data['lab_result_old'][0]->hbsag_result == 'non_reactive')
 ☑
 @else
 ☐
@@ -803,7 +803,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:691.2px;top:856.1px;">Reactive</span>
 </span>
 <span style="font-size:13px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:758.7px;top:814.7px;">@if($data['lab_result'][0]->vdrl_result == 'reactive')
+<span class="text" style="left:758.7px;top:814.7px;">@if($data['lab_result_old'][0]->vdrl_result == 'reactive')
 ☑
 @else
 ☐
@@ -814,7 +814,7 @@ Address of Patient: <span class="text" style="font-size:12px; margin-top:3px">{{
 <span class="text" style="left:754.9px;top:830.4px;">eactive</span>
 </span>
 <span style="font-size:13px;font-family:&#39;Times&#39;;">
-<span class="text" style="left:748.2px;top:840.4px;">@if($data['lab_result'][0]->vdrl_result == 'non_reactive')
+<span class="text" style="left:748.2px;top:840.4px;">@if($data['lab_result_old'][0]->vdrl_result == 'non_reactive')
 ☑
 @else
 ☐

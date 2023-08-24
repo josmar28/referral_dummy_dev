@@ -119,18 +119,19 @@ class PatientCtrl extends Controller
             //     Patients::updateOrCreate($match,$data);
             // }
             $facility_id = $user->facility_id;
+            $user = Session::get('auth');
 
             $data = Patients::orderBy('lname','asc');
             if(!empty($brgy)){
                 $data = $data->where('brgy',$brgy);
             }
-            if(!empty($mun) && $mun!='others'){
-                $data = $data->where('muncity',$mun);
-            }
+            // if(!empty($mun) && $mun!='others'){
+            //     $data = $data->where('muncity',$mun);
+            // }
             if(!empty($others)){
                 $data = $data->where('address','like',"%$others%");
             }
-
+            // $data = $data->where('muncity',$user->muncity)
             $data = $data->where('facility_id',$facility_id)
             ->where(function($q) use($keyword){     
                 $q->where('lname',"like","%$keyword%")
@@ -423,7 +424,9 @@ class PatientCtrl extends Controller
         $user = Session::get('auth');
         $patient_id = $req->patient_id;
         $user_code = str_pad($user->facility_id,3,0,STR_PAD_LEFT);
-        $code = date('ymd').'-'.$user_code.'-'.date('His');
+
+        $code = $req->code ? $req->code : date('ymd').'-'.$user_code.'-'.date('His');
+    
         $tracking_id = 0;
         $case_summary = implode(" , ",$req->case_summary); 
 
@@ -438,7 +441,9 @@ class PatientCtrl extends Controller
             $patient_id = self::importTsekap($req->patient_id,$req->patient_status,$req->phic_id,$req->phic_status);
         }
 
-        $unique_id = "$patient_id-$user->facility_id-".date('ymdH');
+
+        $unique_id = $req->unique_id ? $req->unique_id : "$patient_id-$user->facility_id-".date('ymdH');
+        
         $match = array(
             'unique_id' => $unique_id
         );

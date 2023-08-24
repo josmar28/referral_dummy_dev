@@ -17,7 +17,8 @@
                     {{ csrf_field() }}
                         <input type="hidden" name="patient_id" class="patient_id" value="" />
                         <input type="hidden" name="date_referred" class="date_referred" value="{{ date('Y-m-d H:i:s') }}" />
-                        <input type="hidden" name="code" value="" />
+                        <input type="hidden" name="unique_id" class="unique_id" value="" />
+                        <input type="hidden" name="code" class="code" value="" />
                         <input type="hidden" name="source" value="{{ $source }}" />
                         <input type="hidden" name="referring_name" value="{{ $myfacility->name }}" />
                         <input type="hidden" name="referring_facility" value="{{ $myfacility->id }}" />

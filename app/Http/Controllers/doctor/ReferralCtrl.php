@@ -759,6 +759,15 @@ class ReferralCtrl extends Controller
                 'date_of_lab',
                 )
             ->where('lab_results.unique_id',$form->unique_id)->latest()->take(5)->get();
+
+            $lab_result_old = LabResult::select(
+                '*',
+                DB::raw("DATE_FORMAT(date_of_lab,'%M %d, %Y') as date_of_lab_name"),
+                'date_of_lab',
+                )
+            ->where('lab_results.unique_id',$form->unique_id)->oldest()->take(1)->get();
+
+
             $preg_vs = PregVitalSign::select('*')->where('preg_vital_signs.unique_id',$form->unique_id)->first();
             $preg_outcome = PregOutcome::select('*')->where('preg_outcome.unique_id',$form->unique_id)->orderby('id','desc')->first();
 
@@ -948,7 +957,8 @@ class ReferralCtrl extends Controller
             'activity' => $activity,
             'status_on_er' => $status_on_er,
             'antepartum' => $antepartum,
-            'sign_symptoms' => $sign_symptoms,
+            'sign_symptoms' => $sign_symptoms, 
+            'lab_result_old' => $lab_result_old,
             'lab_result' => $lab_result,
             'preg_vs' => $preg_vs,
             'preg_outcome' => $preg_outcome,

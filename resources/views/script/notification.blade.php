@@ -165,7 +165,8 @@
     }
 
     var audioElement1 = document.createElement('audio');
-    audioElement1.setAttribute('src', "{{ url('public/Emergency.mp3') }}");
+    // audioElement1.setAttribute('src', "{{ url('public/Emergency.mp3') }}");
+    audioElement1.setAttribute('src', "{{ url('public/dingdong.mp3') }}");
     audioElement1.addEventListener('ended', function() {
         this.play1();
     }, false);

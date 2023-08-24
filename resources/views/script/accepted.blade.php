@@ -33,6 +33,17 @@
         unique_id = $(this).data('unique_id');
     });
 
+    // $("#RefferedpregnantFormModalTrack").on("hidden.bs.modal", function () {
+    //     // document.getElementById("view_pregnant_form_new").reset();
+    //     $(this).find('view_pregnant_form_new').trigger('reset');
+    // });
+
+    $('#RefferedpregnantFormModalTrack').on('hidden.bs.modal', function () {
+        //  $('.view_pregnant_form_new').load(document.URL +  ' .view_pregnant_form_new');
+        //  $('#view_pregnant_accept').load(document.URL +  ' #view_pregnant_accept');
+         $('#view_pregnant_accept').remove();
+        })
+
     $('body').on('change','.new_date_of_visit',function()
     {
         var start = new Date(lmp_date),
@@ -105,13 +116,14 @@
     var patient_id = $(this).data('patient_id');
     var unique_id = $(this).data('unique_id');
     var code = $(this).data('code');
-        console.log(code)
+        
         $.ajax({
             url: "{{ url('doctor/patient/info/') }}/"+patient_id,
             type: "GET",
             success: function(data){
                 var sign = data.sign;
                 var form = data.form
+                var lab = data.lab;
                 lmp_date = form.lmp;
                 var data = data.data;
                 patient_id = data.id;
@@ -158,6 +170,13 @@
                 }
                 return dates;
                 }
+
+                if(lab)
+                    {
+                        $('.return_blood_type').val(lab.blood_type).trigger('change');
+                        $('.return_hbsag_result').val(lab.hbsag_result).trigger('change');
+                        $('.return_vdrl_result').val(lab.vdrl_result).trigger('change');
+                    }
             
                 //preg_prev
                 if(sign)
@@ -166,95 +185,96 @@
                     if(form)
                     {
 
-                    var months = dateRange(form.lmp, form.edc_edd)
+                                var months = dateRange(form.lmp, form.edc_edd)
 
-                    var d = new Date(),
+                                var d = new Date(),
 
-                    n = d.getMonth() + 1,
+                                n = d.getMonth() + 1,
 
-                    y = d.getFullYear();
+                                y = d.getFullYear();
 
-                    
-                for(var i = 1; i <= months.length; i++) {
-                        if(n == months[0] || n == months[1] || n == months[2] || n == months[3])
-                        {
-                            $(".new_trimester").val('1st');
-                        }
-                        else if(n == months[4] || n == months[5] || n == months[6])
-                        {
-                            $(".new_trimester").val('2nd');
-                        }
-                        else if(n == months[7] || n == months[8] || n == months[9])
-                        {
-                            $(".new_trimester").val('3rd');
-                        }
-                        else
-                        {
-                            $(".new_trimester").val('3rd');
-                        }
+                                
+                                for(var i = 1; i <= months.length; i++) {
+                                        if(n == months[0] || n == months[1] || n == months[2] || n == months[3])
+                                        {
+                                            $(".new_trimester").val('1st');
+                                        }
+                                        else if(n == months[4] || n == months[5] || n == months[6])
+                                        {
+                                            $(".new_trimester").val('2nd');
+                                        }
+                                        else if(n == months[7] || n == months[8] || n == months[9])
+                                        {
+                                            $(".new_trimester").val('3rd');
+                                        }
+                                        else
+                                        {
+                                            $(".new_trimester").val('3rd');
+                                        }
+                                    }
+
+
+                                var start = new Date(form.lmp),
+                                end   = new Date($('.new_date_of_visit').val()),
+                                diff  = new Date(end - start),
+                                days  = diff/1000/60/60/24;
+                                weeks = days / 7;
+
+                                n = weeks.toFixed(1);
+                                whole = Math.floor(n);      // 1
+                                fraction = n - whole; // .25
+
+                                if(weeks.toFixed(1) > 1)
+                                {
+                                    var gcd = function(a, b) {
+                                    if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
+
+                                    return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
+                                    };
+
+                                    var fraction = fraction.toFixed(1);
+                                    var len = fraction.toString().length - 2;
+
+                                    var denominator = Math.pow(10, len);
+                                    var numerator = fraction * denominator;
+
+                                    var divisor = gcd(numerator, denominator);    // Should be 5
+
+                                    numerator /= divisor;                         // Should be 687
+                                    denominator /= divisor;                       // Should be 2000
+
+                                    // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
+
+
+                                    $('.new_aog').val( whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator));
+                                    $('.new_aog').change();
+                                }
+                                else
+                                {
+                                    var gcd = function(a, b) {
+                                    if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
+
+                                    return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
+                                    };
+
+                                    var fraction = fraction.toFixed(1);
+                                    var len = fraction.toString().length - 2;
+
+                                    var denominator = Math.pow(10, len);
+                                    var numerator = fraction * denominator;
+
+                                    var divisor = gcd(numerator, denominator);    // Should be 5
+
+                                    numerator /= divisor;                         // Should be 687
+                                    denominator /= divisor;                       // Should be 2000
+
+                                    // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
+
+                                    $('.new_aog').val(whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator));
+                                    $('.new_aog').change();
+                                }
                     }
-
-
-                    var start = new Date(form.lmp),
-                    end   = new Date($('.new_date_of_visit').val()),
-                    diff  = new Date(end - start),
-                    days  = diff/1000/60/60/24;
-                    weeks = days / 7;
-
-                    n = weeks.toFixed(1);
-                    whole = Math.floor(n);      // 1
-                    fraction = n - whole; // .25
-
-                    if(weeks.toFixed(1) > 1)
-                    {
-                        var gcd = function(a, b) {
-                        if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
-
-                        return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
-                        };
-
-                        var fraction = fraction.toFixed(1);
-                        var len = fraction.toString().length - 2;
-
-                        var denominator = Math.pow(10, len);
-                        var numerator = fraction * denominator;
-
-                        var divisor = gcd(numerator, denominator);    // Should be 5
-
-                        numerator /= divisor;                         // Should be 687
-                        denominator /= divisor;                       // Should be 2000
-
-                        // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
-
-
-                        $('.new_aog').val( whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator));
-                        $('.new_aog').change();
-                    }
-                    else
-                    {
-                        var gcd = function(a, b) {
-                        if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
-
-                        return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
-                        };
-
-                        var fraction = fraction.toFixed(1);
-                        var len = fraction.toString().length - 2;
-
-                        var denominator = Math.pow(10, len);
-                        var numerator = fraction * denominator;
-
-                        var divisor = gcd(numerator, denominator);    // Should be 5
-
-                        numerator /= divisor;                         // Should be 687
-                        denominator /= divisor;                       // Should be 2000
-
-                        // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
-
-                        $('.new_aog').val(whole+ ' '+ Math.floor(numerator) + '/' + Math.floor(denominator));
-                        $('.new_aog').change();
-                    }
-                    }
+                   
 
                     
                     $(".prev_trimester").val(sign.no_trimester);

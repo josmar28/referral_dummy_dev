@@ -245,6 +245,7 @@
                             <option value="assisted_vaginal_delivery">Assisted Vaginal Delivery</option>
                         </select>
                     </div>
+
                     <div class="form-group">
                     <?php
                         $data = App\Diagnosis::where('void',0)
@@ -270,6 +271,11 @@
                         <label style="padding: 0px">Enter Discharged Diagnosis:</label>
                         <br />
                         <textarea name="discharge_diagnosis" class="discharge_diagnosis form-control" rows="5" style="resize: none" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label style="padding: 0px">Remarks: </label>
+                        <br />
+                        <textarea name="remarks" class="remarks form-control" rows="5" style="resize: none" required></textarea>
                     </div>
                     <hr />
                     <div class="form-fotter pull-right">
@@ -721,7 +727,7 @@
                                             </td>
                                             <td> <textarea name="utz[]" class="form-control"></textarea> </td>
                                             <td rowspan="5" id="blood_type">
-                                                    <select name="blood_type" class="form-control-select select2" required>
+                                                    <select id="" name="blood_type" class="form-control-select select2 return_blood_type" required>
                                                         <option value="">Select type...</option>
                                                         <option value="a+">A+</option>
                                                         <option value="a-">A-</option>
@@ -734,14 +740,14 @@
                                                     </select> 
                                             </td>
                                             <td rowspan="5" id="hbsag_result">
-                                                    <select name="hbsag_result" class="form-control-select select2" required>
+                                                    <select id="" name="hbsag_result" class="form-control-select select2 return_hbsag_result" required>
                                                         <option value="">Select HBsAg...</option>
                                                         <option value="reactive">Reactive</option>
                                                         <option value="non_reactive">Non-Reactive</option>
                                                     </select> 
                                             </td>
                                             <td rowspan="5" id="vdrl_result"> 
-                                                    <select name="vdrl_result" class="form-control-select select2" required>
+                                                    <select id="" name="vdrl_result" class="form-control-select select2 return_vdrl_result" required>
                                                         <option value="">Select VDRL...</option>
                                                         <option value="reactive">Reactive</option>
                                                         <option value="non_reactive">Non-Reactive</option>

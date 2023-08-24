@@ -997,18 +997,17 @@ function VitalBody(patient_id)
     $('.btn_refer_preg').on('click',function(){
     var patient_id = $(this).data('patient_id');
     var unique_id = $(this).data('unique_id');
-        // console.log(unique_id)
+        console.log(unique_id)
         $.ajax({
             url: "{{ url('doctor/patient/info/') }}/"+patient_id,
             type: "GET",
             success: function(data){
+                console.log(data);
                 var sign = data.sign;
                 var form = data.form;
                 var ante = data.ante;
                 var lab = data.lab;
                 var data = data.data;
-             
-               
               
                 patient_id = data.id;
                 name = data.patient_name;
@@ -1034,6 +1033,9 @@ function VitalBody(patient_id)
                 $('.phic_id').html(phic_id);    
                 $('.civil_status').val( data.civil_status);    
                 $('.preg_civil_status').html( data.civil_status);
+
+                $('.unique_id').val(form.unique_id);
+                $('.code').val(form.code);
                 
                 $('.patient_id').val(patient_id);
                 $('.patient_name').html(name);

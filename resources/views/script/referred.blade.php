@@ -205,9 +205,6 @@
 
 {{--Script for Call Button--}}
 <script>
-  $("#RefferedpregnantFormModalTrack").on("hidden.bs.modal", function () {
-        document.getElementById("view_pregnant_form_new").reset();
-    });
         
     $('body').on('click','.btn-call',function(){
         $('.loading').show();
@@ -431,7 +428,7 @@
 
                 if(form)
                 {
-                    patient_address += (form.patient_brgy) ? form.patient_brgy+', ': '';
+                patient_address += (form.patient_brgy) ? form.patient_brgy+', ': '';
                 patient_address += (form.patient_muncity) ? form.patient_muncity+', ': '';
                 patient_address += (form.patient_province) ? form.patient_province: '';
                 referring_facility_name = data.referring_facility_name;
@@ -798,6 +795,7 @@
                     // });
                     if(lab_result.length > 0)
                     {
+                        console.log(lab_result);
                         var now = new Date(lab_result[0].date_of_lab);
 
                         var day = ("0" + now.getDate()).slice(-2);
@@ -823,6 +821,7 @@
                         $('.hbsag_result').val(lab_result[0].hbsag_result);
                         $('.vdrl_result').val(lab_result[0].vdrl_result);
                         $('.lab_remarks').val(lab_result[0].lab_remarks);
+
                         for (let i = 1; i < lab_result.length; i++) 
                         {
                             var now = new Date(lab_result[i].date_of_lab);
@@ -837,6 +836,8 @@
                             $('#blood_type_referred').attr('rowspan', function(i, rs) { return rs + 1; })
                             $('#hbsag_result_referred').attr('rowspan', function(i, rs) { return rs + 1; })
                             $('#vdrl_result_referred').attr('rowspan', function(i, rs) { return rs + 1; })
+
+                            $('#table_lab_res_referred tr:last').after(markup);
                         }
                     }
                     
