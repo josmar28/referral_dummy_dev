@@ -23,8 +23,8 @@
                 <td>
                      <select name="file_type[]" class="form-control" required>
                      <option value ="">Select...</option>
-                    @foreach($type as $row)
-                      <option value="{{ $row->id }}">{{ $row->description }}</option>
+                        @foreach($type as $row)
+                         <option value="{{ $row->id }}">{{ $row->description }}</option>
                         @endforeach
                     </select>
                 </td>

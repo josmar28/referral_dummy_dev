@@ -6,15 +6,17 @@ $status = session::get('status');
 
 @section('content')
     <style>
-        .table-input tr td:first-child {
-            background: #f5f5f5;
+        /* .table-input tr td:first-child {
             text-align: right;
             vertical-align: middle;
             font-weight: bold;
             padding: 3px;
             width:30%;
-        }
+        } */
         .table-input tr td {
+            border:1px solid #bbb !important;
+        }
+        .table-input th {
             border:1px solid #bbb !important;
         }
         label {
@@ -52,6 +54,55 @@ $status = session::get('status');
                                 <td>PhilHealth ID :<br/> <small class="text-info"><em>(If applicable)</em></small></td>
                                 <td><input type="text" name="phicID" class="phicID form-control" disabled value="" /></td>
                             </tr>
+                            <tr>
+                                <td>Covid 19 Vaccine :</td>
+                                <td>
+                                    <table class="table table-input table-bordered table-hover" width="100%">
+                                        <tr>
+                                            <th>Dosage</th>
+                                            <th>Date</th>
+                                            <th>Brand</th>
+                                            <th>Vaccinator</th>
+                                            <th>Lot No.</th>
+                                        </tr>
+                                        <tr>
+                                            <td>1st Dose</td>
+                                            <td><input type="text" placeholder="mm/dd/yyyy" name="date_dose[]" id="date_dose" class="form-control date_dose" /></td>
+                                            <td><input type="text" name="fname" class="fname form-control" /></td>
+                                            <td><input type="text" name="fname" class="fname form-control" /></td>
+                                            <td><input type="text" name="fname" class="fname form-control" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2nd Dose</td>
+                                            <td><input type="text" placeholder="mm/dd/yyyy" name="date_dose[]" id="date_dose" class="form-control date_dose" /></td>
+                                            <td><input type="text" name="fname" class="fname form-control" /></td>
+                                            <td><input type="text" name="fname" class="fname form-control" /></td>
+                                            <td><input type="text" name="fname" class="fname form-control" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>1st Booster</td>
+                                            <td><input type="text" placeholder="mm/dd/yyyy" name="date_dose[]" id="date_dose" class="form-control date_dose" /></td>
+                                            <td><input type="text" name="fname" class="fname form-control" /></td>
+                                            <td><input type="text" name="fname" class="fname form-control" /></td>
+                                            <td><input type="text" name="fname" class="fname form-control" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2nd Booster</td>
+                                            <td><input type="text" placeholder="mm/dd/yyyy" name="date_dose[]" id="date_dose" class="form-control date_dose" /></td>
+                                            <td><input type="text" name="fname" class="fname form-control" /></td>
+                                            <td><input type="text" name="fname" class="fname form-control" /></td>
+                                            <td><input type="text" name="fname" class="fname form-control" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3rd Booster</td>
+                                            <td><input type="text" placeholder="mm/dd/yyyy" name="date_dose[]" id="date_dose" class="form-control date_dose" /></td>
+                                            <td><input type="text" name="fname" class="fname form-control" /></td>
+                                            <td><input type="text" name="fname" class="fname form-control" /></td>
+                                            <td><input type="text" name="fname" class="fname form-control" /></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
                             <tr class="has-group">
                                 <td>First Name :</td>
                                 <td><input type="text" name="fname" class="fname form-control" required /> </td>
@@ -70,14 +121,14 @@ $status = session::get('status');
                             </tr>
                             <tr class="has-group">
                                 <td>Birth Date :</td>
-                                <td><input type="text" placeholder="mm/dd/yyyy" name="dob" id="dob" class="form-control dob" min="1910-05-11" max="{{ date('Y-m-d') }}" required /> </td>
+                                <td><input type="text" placeholder="mm/dd/yyyy" name="dob" id="dob" class="form-control dob" required /> </td>
                             </tr>
                             <tr>
                                 <td>Sex :</td>
                                 <td class="has-group">
-                                    <label style="cursor: pointer;"><input type="radio" name="sex" class="sex" value="Male" required style="display:inline;"> Male</label>
-                                    &nbsp;&nbsp;&nbsp;<br />
-                                    <label style="cursor: pointer;"><input type="radio" name="sex" class="sex" value="Female" required> Female</label>
+                                    <!-- <label style="cursor: pointer;"><input type="radio" name="sex" class="sex" value="Male" required style="display:inline;"> Male</label>
+                                    &nbsp;&nbsp;&nbsp;<br /> -->
+                                    <label style="cursor: pointer;"><input type="radio" name="sex" class="sex" value="Female" checked="checked"  required> Female</label>
                                     <span class="span"></span>
                                 </td>
                             </tr>
@@ -159,7 +210,7 @@ $status = session::get('status');
 @include('script.filterMuncity')
 <script>
     $(".dob").inputmask("mm/dd/yyyy");
-
+    $(".date_dose").inputmask("mm/dd/yyyy");
 
     $(".select2").select2({ width: '100%' });
     $('.select_phic').on('change',function(){

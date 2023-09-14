@@ -186,7 +186,12 @@ class PatientCtrl extends Controller
             'address' => ($req->others) ? $req->others: ''
         );
 
-        Patients::updateOrCreate($match,$data);
+        $create = Patients::updateOrCreate($match,$data);
+            
+        if($create->wasRecentlyCreated)
+        {
+            Session::put('cssAdd',true);
+        }
 
         $data = array(
             'keyword' => $req->fname.' '.$req->lname,

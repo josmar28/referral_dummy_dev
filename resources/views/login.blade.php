@@ -69,9 +69,9 @@ $dateNow = date('Y-m-d');
     <script src="{{ asset('resources/assets/js/jquery.min.js') }}"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="{{ asset('resources/assets/js/bootstrap.min.js') }}"></script>
-       @if(!Session::has("error"))
+       <!-- @if(!Session::has("error"))
            @include('modal.announcement')
-       @endif
+       @endif -->
     <script>
         $('.btn-submit').on('click',function(){
             $(this).html('<i class="fa fa-spinner fa-spin"></i> Validating...');
