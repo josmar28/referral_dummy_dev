@@ -134,7 +134,7 @@
 </div><!-- /.modal -->
 
 <div class="modal fade" role="dialog" id="viewupload_modal" >
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
          <div class="modal-body view_upload">
              

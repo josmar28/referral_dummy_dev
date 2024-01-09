@@ -54,7 +54,7 @@ $status = session::get('status');
                                 <td>PhilHealth ID :<br/> <small class="text-info"><em>(If applicable)</em></small></td>
                                 <td><input type="text" name="phicID" class="phicID form-control" disabled value="" /></td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>Covid 19 Vaccine :</td>
                                 <td>
                                     <table class="table table-input table-bordered table-hover" width="100%">
@@ -102,7 +102,7 @@ $status = session::get('status');
                                         </tr>
                                     </table>
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr class="has-group">
                                 <td>First Name :</td>
                                 <td><input type="text" name="fname" class="fname form-control" required /> </td>

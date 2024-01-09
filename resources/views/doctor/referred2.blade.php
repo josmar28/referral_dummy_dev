@@ -679,7 +679,6 @@ $user = Session::get('auth');
         var code = "<?php echo Session::get("unique_referral_code"); ?>"
         var url = "<?php echo asset('doctor/upload_body'); ?>"
 
-        alert(code);
         var json = {
             "code" : code,
             "_token" : "<?php echo csrf_token(); ?>"

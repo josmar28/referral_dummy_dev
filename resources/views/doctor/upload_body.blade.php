@@ -44,6 +44,7 @@
                             <th>Name</th>
                             <th>File Type</th>
                             <th>Uploaded By</th>
+                            <th>Facility Uploaded</th>
                             <th>Date Uploaded</th>
                         </tr>   
                  
@@ -56,18 +57,23 @@
                                        <i class="fa fa-file"></i>
                                        {{$row->name}}
                                     </a>
+                            @if($row->facility_uploaded == $facility_id)
                                     <a href="{{ url('doctor/fileDelete/'.$row->id) }}"
                                        data-toggle="modal"
                                        class="btn btn-danger btn-xs">
                                        <i class="fa fa-remove"></i>
                                        Delete
                                     </a>
+                            @endif
                             </td>
                             <td>
                                 {{$row->file_type}}
                             </td>
                             <td>
                                 {{$row->fname}} {{$row->mname}} {{$row->lname}}
+                            </td>
+                            <td>
+                                {{$row->facility_name}}
                             </td>
                             <td>
                                 {{$row->uploaded_date}}

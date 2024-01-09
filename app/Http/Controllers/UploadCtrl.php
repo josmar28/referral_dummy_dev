@@ -76,8 +76,6 @@ class UploadCtrl extends Controller
                     return Redirect::back();
                 }
                 
-
-
                 $filename = $file->getClientOriginalName();
                 $file->move(base_path('public/uploads/'.$refer_code), $filename);
                 $data = array(

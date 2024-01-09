@@ -134,15 +134,9 @@
                                         <i class="fa fa-ambulance"></i>
                                         Walk-In
                                     </a> -->
-                                    <a href="#pregnantFormModalTrack"
-                                       data-patient_id = "{{ $row->id }}"
-                                       data-toggle="modal"
-                                       class="btn btn-primary btn-xs btn_refer_preg hide">
-                                        <i class="fa fa-stethoscope"></i>
-                                        Refer
-                                    </a>
 
                                     @if($pregv2 && $tracking->status != 'discharged')
+                                 
                                         <button class="btn btn-xs btn-success btn-action profile_info hide"
                                                 title="Patient Return"
                                                 data-toggle="modal"
@@ -159,12 +153,18 @@
                                          
                                         </div>
                                     @else
-                           
+                                    <a href="#pregnantFormModalTrack"
+                                       data-patient_id = "{{ $row->id }}"
+                                       data-toggle="modal"
+                                       class="btn btn-primary btn-xs profile_info hide">
+                                        <i class="fa fa-stethoscope"></i>
+                                        Refer
+                                    </a>
 
                                         <a href="#pregnantAddData"
                                         data-patient_id = "{{ $row->id }}"
                                         data-toggle="modal"
-                                        class="btn btn-success btn-xs profile_info hide btn_refer_preg">
+                                        class="btn btn-success btn-xs profile_info hide">
                                         <i class="fa fa-plus"></i>
                                             Add
                                         </a>

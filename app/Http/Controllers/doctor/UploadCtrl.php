@@ -18,41 +18,53 @@ class UploadCtrl extends Controller
 {
     public function uploadBody(Request $req)
     {
+        $user = Session::get('auth');
+        $facility_id = $user->facility_id;
         $code = $req->code;
         $data = Uploads::select("uploads.*",
         "filetypes.description as file_type",
         "users.fname",
         "users.mname",
-        "users.lname"
+        "users.lname",
+        "facility.name as facility_name",
+        DB::raw("DATE_FORMAT(uploads.uploaded_date,'%M %d, %Y %h:%i %p') as uploaded_date"),
     ) ->leftjoin("filetypes","filetypes.id","=","uploads.type_id")
     ->leftjoin("users","users.id","=","uploads.uploaded_by")
+    ->leftjoin("facility","facility.id","=","uploads.facility_uploaded")
      ->where('uploads.referral_code',$code)
      ->get();
         
         
         return view('doctor.upload_body',[
             'code' => $code,
-            'data' => $data
+            'data' => $data,
+            'facility_id' => $facility_id
         ]);
     }
     
     public function ViewuploadBody(Request $req)
     {
+        $user = Session::get('auth');
+        $facility_id = $user->facility_id;
         $code = $req->code;
         $data = Uploads::select("uploads.*",
         "filetypes.description as file_type",
         "users.fname",
         "users.mname",
-        "users.lname"
+        "users.lname",
+        "facility.name as facility_name",
+        DB::raw("DATE_FORMAT(uploads.uploaded_date,'%M %d, %Y %h:%i %p') as uploaded_date"),
     ) ->leftjoin("filetypes","filetypes.id","=","uploads.type_id")
     ->leftjoin("users","users.id","=","uploads.uploaded_by")
+    ->leftjoin("facility","facility.id","=","uploads.facility_uploaded")
      ->where('uploads.referral_code',$code)
      ->get();
         
         
-        return view('doctor.view_upload',[
+        return view('doctor.upload_body',[
             'code' => $code,
-            'data' => $data
+            'data' => $data,
+            'facility_id' => $facility_id
         ]);
     }
 
@@ -85,6 +97,7 @@ class UploadCtrl extends Controller
                     'path' => "app/uploads/".$refer_code,
                     'uploaded_date' => date('Y-m-d H:i:s'),
                     'uploaded_by' => $user->id,
+                    'facility_uploaded' => $user->facility_id,
                     'type_id' => $req->file_type[$num],
                     'referral_code' => $refer_code
                 );

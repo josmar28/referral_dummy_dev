@@ -18,7 +18,7 @@
                             <li class="active"><a data-toggle="tab" href="#home">Personnal Data</a></li>
                             <li><a data-toggle="tab" href="#menu1">Antepartum Conditions</a></li>
                             <li><a data-toggle="tab" href="#menu2">Sign and Symptoms</a></li>
-                            <li><a data-toggle="tab" href="#menu3">Lab Result</a></li>
+                            <!-- <li><a data-toggle="tab" href="#menu3">Lab Result</a></li> -->
                             <!-- <li><a data-toggle="tab" href="#menu4">Vital Signs</a></li> -->
                             <li><a data-toggle="tab" href="#menu5">Pregnancy Outcome</a></li>
                         </ul>
@@ -382,7 +382,7 @@
                                                         </table>
                             </div>
 
-                            <div id="menu3" class="tab-pane fade">
+                            <!-- <div id="menu3" class="tab-pane fade">
                                     <div id="myDiv">
                                         <table class="table table-striped pre_pregnancy_table" id="table_lab_res_referred">
                                             <tr class="bg-gray">
@@ -474,7 +474,7 @@
                                                 </td>
                                                 <td><textarea name="lab_remarks[]" class="form-control lab_remarks" disabled></textarea> </td>
                                             </tr>
-                                            <!-- <tr>
+                                            <tr>
                                                 <td><input type="date" class="form-control date_of_lab" name="date_of_lab[]" disabled></td>
                                                 <td> <input type="text" class="form-control cbc_result" name="cbc_result[]" disabled> </td>
                                                 <td> <input type="text" class="form-control ua_result" name="ua_result[]" disabled> </td>
@@ -483,13 +483,6 @@
                                                 <td rowspan="1" id="hbsag_result_referred"> <textarea name="hbsag_result" class="form-control hbsag_result" disabled></textarea> </td>
                                                 <td rowspan="1" id="vdrl_result_referred"> <textarea name="vdrl_result" class="form-control vdrl_result" disabled></textarea></td>
                                                 <td><textarea name="lab_remarks[]" class="form-control lab_remarks"  disabled></textarea> </td>
-                                            </tr> -->
-                                            <!-- <tr>
-                                                <td><input type="date" class="form-control" name="date_of_lab[]"></td>
-                                                <td><input type="text" class="form-control" name="cbc_result[]"> </td>
-                                                <td><input type="text" class="form-control" name="ua_result[]"> </td>
-                                                <td><input type="text" class="form-control" name="utz[]"> </td>
-                                                <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
                                             </tr>
                                             <tr>
                                                 <td><input type="date" class="form-control" name="date_of_lab[]"></td>
@@ -511,10 +504,17 @@
                                                 <td><input type="text" class="form-control" name="ua_result[]"> </td>
                                                 <td><input type="text" class="form-control" name="utz[]"> </td>
                                                 <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
-                                            </tr> -->
+                                            </tr>
+                                            <tr>
+                                                <td><input type="date" class="form-control" name="date_of_lab[]"></td>
+                                                <td><input type="text" class="form-control" name="cbc_result[]"> </td>
+                                                <td><input type="text" class="form-control" name="ua_result[]"> </td>
+                                                <td><input type="text" class="form-control" name="utz[]"> </td>
+                                                <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
+                                            </tr>
                                         </table>
                                     </div>
-                            </div>
+                            </div> -->
 
                             <!-- <div id="menu4" class="tab-pane fade">
                                     <table class="table table-striped pre_pregnancy_table">

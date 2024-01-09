@@ -130,6 +130,17 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                                                     <i class="fa fa-file"></i>
                                                         
                                                 </a>
+
+                                                <button class="btn btn-sm btn-success btn-action btn-transfer"
+                                                        title="Transfer Patient"
+                                                        data-toggle="modal"
+                                                        data-toggle="tooltip"
+                                                        data-target="#referAcceptFormModal"
+                                                        data-track_id="{{ $row->id }}"
+                                                        data-patient_name="{{ $row->patient_name }}"
+                                                        data-code="{{ $row->code}}">
+                                                    <i class="fa fa-ambulance"></i>
+                                                </button>
                                             @elseif( ($status=='ACCEPTED' || $status == 'TRAVEL') && $diff >= 4)
                                                 <button class="btn btn-sm btn-danger btn-action"
                                                         title="Patient Didn't Arrive"
@@ -317,6 +328,33 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
         });
        
     });
+
+    @if(Session::get('upload_file'))
+        Lobibox.notify('success', {
+            title: "",
+            msg: "<?php echo Session::get("upload_file_message"); ?>",
+            size: 'mini',
+            rounded: true
+        });
+
+        $('#upload_modal').modal('show');
+
+        var code = "<?php echo Session::get("unique_referral_code"); ?>"
+        var url = "<?php echo asset('doctor/upload_body'); ?>"
+
+        var json = {
+            "code" : code,
+            "_token" : "<?php echo csrf_token(); ?>"
+        };
+        $.post(url,json,function(result){
+            $(".upload_body").html(result);
+        });
+
+    <?php
+        Session::put("upload_file",false);
+        Session::put("upload_file_message",false)
+    ?>
+    @endif
     </script>
 @endsection
 

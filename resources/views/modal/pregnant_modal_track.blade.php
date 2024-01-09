@@ -10,7 +10,7 @@
 <div class="modal fade" role="dialog" id="pregnantFormModalTrack">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
-            <form method="POST" class="form-submit" action="{{ url('doctor/patient/refer/pregnant') }}" id="pregnant_form_new" >
+            <form method="POST" class="form-submit" action="{{ url('doctor/patient/refer/pregnant') }}" id="pregnant_form_new" novalidate>
                 <div class="jim-content">
                     @include('include.header_form')
                     <div class="title-form">Risk Assessment Check list for Pregnant Women</div>
@@ -67,7 +67,7 @@
                                 <li class="active"><a data-toggle="tab" href="#home">Personnal Data</a></li>
                                 <li><a data-toggle="tab" href="#menu1">Antepartum Conditions</a></li>
                                 <li><a data-toggle="tab" href="#menu2">Sign and Symptoms</a></li>
-                                <li><a data-toggle="tab" href="#menu3">Lab Result</a></li>
+                                <!-- <li><a data-toggle="tab" href="#menu3">Lab Result</a></li> -->
                                 <!-- <li><a data-toggle="tab" href="#menu4">Vital Signs</a></li> -->
                                 <!-- <li><a data-toggle="tab" href="#menu5">Pregnancy Outcome</a></li> -->
                             </ul>
@@ -610,7 +610,7 @@
                                     
                                 </div>
 
-                                <div id="menu3" class="tab-pane fade">
+                                <!-- <div id="menu3" class="tab-pane fade">
                                     <button class="btn btn-info btn-flat new_btn_add_lab"><i class="fa fa-plus"></i> Add Row</button>
                                     <button class="btn btn-danger btn-flat new_btn_delete_lab"><i class="fa fa-minus"></i> Delete</button>
                                         <table class="table table-striped pre_pregnancy_table" id="new_table_lab_res">
@@ -703,7 +703,7 @@
                                                 </td>
                                                 <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
                                             </tr>
-                                            <!-- <tr>
+                                            <tr>
                                             <td> <input type="date" class="form-control" name="date_of_lab[]"></td>
                                                 <td>
                                                     <div class="row">
@@ -774,9 +774,9 @@
                                                 <td><input type="text" class="form-control" name="ua_result[]"> </td>
                                                 <td><input type="text" class="form-control" name="utz[]"> </td>
                                                 <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
-                                            </tr> -->
+                                            </tr>
                                         </table>
-                                </div>
+                                </div> -->
 
                                 <!-- <div id="menu4" class="tab-pane fade">
                                         <table class="table table-striped pre_pregnancy_table">
@@ -925,7 +925,7 @@
 <div class="modal fade" role="dialog" id="pregnantAddData">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
-            <form method="POST" class="form-submit" action="{{ url('doctor/pregnant/add/info') }}" id="pregnant_add_form">
+            <form method="POST" class="form-submit" action="{{ url('doctor/pregnant/add/info') }}" id="pregnant_add_form" novalidate>
             <div class="jim-content">
                 @include('include.header_form')
                 <div class="title-form">Risk Assessment Check list for Pregnant Women</div>
@@ -943,7 +943,7 @@
                             <li class="active"><a data-toggle="tab" href="#personnal">Personnal Data</a></li>
                             <li><a data-toggle="tab" href="#antepartum">Antepartum Conditions</a></li>
                             <li><a data-toggle="tab" href="#sign">Sign and Symptoms</a></li>
-                            <li><a data-toggle="tab" href="#lab">Lab Result</a></li>
+                            <!-- <li><a data-toggle="tab" href="#lab">Lab Result</a></li> -->
                             <!-- <li><a data-toggle="tab" href="#menu4">Vital Signs</a></li> -->
                             <!-- <li><a data-toggle="tab" href="#menu5">Pregnancy Outcome</a></li> -->
                         </ul>
@@ -1486,7 +1486,7 @@
                                  
                             </div>
 
-                            <div id="lab" class="tab-pane fade">
+                            <!-- <div id="lab" class="tab-pane fade">
                                 <button class="btn btn-info btn-flat add_btn_add_lab"><i class="fa fa-plus"></i> Add Row</button>
                                 <button class="btn btn-danger btn-flat add_btn_delete_lab"><i class="fa fa-minus"></i> Delete</button>
                                     <table class="table table-striped pre_pregnancy_table" id="add_table_lab_res">
@@ -1580,7 +1580,7 @@
                                             </td>
                                             <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
                                         </tr>
-                                        <!-- <tr>
+                                        <tr>
                                            <td> <input type="date" class="form-control" name="date_of_lab[]"></td>
                                             <td>
                                                 <div class="row">
@@ -1651,11 +1651,11 @@
                                             <td><input type="text" class="form-control" name="ua_result[]"> </td>
                                             <td><input type="text" class="form-control" name="utz[]"> </td>
                                             <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
-                                        </tr> -->
+                                        </tr>
                                     </table>
-                            </div>
+                            </div> -->
 
-                            <!-- <div id="menu4" class="tab-pane fade">
+                            <div id="menu4" class="tab-pane fade">
                                     <table class="table table-striped pre_pregnancy_table">
                                         <tr class="bg-gray">
                                             <th>Monitoring</th>
@@ -1714,9 +1714,9 @@
                                             <td> <textarea name="fht_remarks" class="form-control"></textarea> </td>
                                         </tr>
                                     </table>
-                            </div> -->
+                            </div>
 
-                            <!-- <div id="menu5" class="tab-pane fade">
+                            <div id="menu5" class="tab-pane fade">
                                     <table class="table table-striped">
 
                                         <tr>
@@ -1776,7 +1776,7 @@
                                         </tr>
         
                                     </table>
-                            </div> -->
+                            </div>
 
                         </div>
                         
@@ -1802,7 +1802,7 @@
 <div class="modal fade" role="dialog" id="patientReturnModal">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
-            <form method="POST" class="form-submit" action="{{ url('doctor/patient/return/pregnant') }}" id="pregnant_form_return">
+            <form method="POST" class="form-submit" action="{{ url('doctor/patient/return/pregnant') }}" id="pregnant_form_return" novalidate>
             <div class="jim-content">
                 @include('include.header_form')
                 <div class="title-form">Risk Assessment Check list for Pregnant Women</div>
@@ -1820,7 +1820,7 @@
                         <h2>Patients Information</h2>
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#sign2">Sign and Symptoms</a></li>
-                            <li><a data-toggle="tab" href="#lab2">Lab Result</a></li>
+                            <!-- <li><a data-toggle="tab" href="#lab2">Lab Result</a></li> -->
                         </ul>
                         <div class="tab-content">
 
@@ -1996,7 +1996,7 @@
                                                                 </tr>
                                                         </table>
                                                     </div>
-<!-- 
+
                                                     <div id="current" class="tab-pane fade">
                                                         <table class="table table-striped sign_symthoms_table">
                                                                 <tr class="bg-gray">
@@ -2168,11 +2168,11 @@
                                                                     
                                                                 </tr>
                                                         </table>
-                                                    </div> -->
+                                                    </div>
                                     </div>
                                  
                             </div>
-
+                        <!-- 
                             <div id="lab2" class="tab-pane fade">
                                 <button class="btn btn-info btn-flat return_btn_add_lab"><i class="fa fa-plus"></i> Add Row</button>
                                 <button class="btn btn-danger btn-flat return_btn_delete_lab"><i class="fa fa-minus"></i> Delete</button>
@@ -2238,7 +2238,7 @@
 
                                             <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
                                         </tr>
-                                        <!-- <tr>
+                                        <tr>
                                            <td> <input type="date" class="form-control" name="date_of_lab[]"></td>
                                             <td>
                                                 <div class="row">
@@ -2309,9 +2309,9 @@
                                             <td><input type="text" class="form-control" name="ua_result[]"> </td>
                                             <td><input type="text" class="form-control" name="utz[]"> </td>
                                             <td><textarea name="lab_remarks[]" class="form-control"></textarea> </td>
-                                        </tr> -->
+                                        </tr>
                                     </table>
-                            </div>
+                            </div> -->
 
                         </div>
                         

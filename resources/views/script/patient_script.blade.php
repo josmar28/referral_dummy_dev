@@ -1002,14 +1002,13 @@ function VitalBody(patient_id)
             url: "{{ url('doctor/patient/info/') }}/"+patient_id,
             type: "GET",
             success: function(data){
-                console.log(data);
+                console.log(patient_id);
                 var sign = data.sign;
                 var form = data.form;
                 var ante = data.ante;
                 var lab = data.lab;
                 var data = data.data;
               
-                patient_id = data.id;
                 name = data.patient_name;
                 sex = data.sex;
                 age = data.age;

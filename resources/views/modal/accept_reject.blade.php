@@ -160,7 +160,7 @@
                                     <li class="active"><a data-toggle="tab" href="#home">Personnal Data</a></li>
                                     <li><a data-toggle="tab" href="#menu1">Antepartum Conditions</a></li>
                                     <li><a data-toggle="tab" href="#menu2new">Sign and Symptoms</a></li>
-                                    <li><a data-toggle="tab" href="#menu3new">Lab Result</a></li>
+                                    <!-- <li><a data-toggle="tab" href="#menu3new">Lab Result</a></li> -->
                                     <!-- <li><a data-toggle="tab" href="#menu4">Vital Signs</a></li> -->
                                     <!-- <li><a data-toggle="tab" href="#menu5">Pregnancy Outcome</a></li> -->
                                 </ul>
@@ -520,7 +520,7 @@
                                         </table>
                                     </div>
 
-                                    <div id="menu3new" class="tab-pane fade">
+                                    <!-- <div id="menu3new" class="tab-pane fade">
                                         <div id="myDiv">
                                             <table class="table table-striped pre_pregnancy_table" id="table_lab_res_referred">
                                                 <tr class="bg-gray">
@@ -613,9 +613,9 @@
                                                 </tr>
                                             </table>
                                         </div>
-                                    </div>
+                                    </div> -->
 
-                                    <!-- <div id="menu4" class="tab-pane fade">
+                                    <div id="menu4" class="tab-pane fade">
                                             <table class="table table-striped pre_pregnancy_table">
                                                 <tr class="bg-gray">
                                                     <th>Monitoring</th>
@@ -674,7 +674,7 @@
                                                     <td> <textarea name="fht_remarks" class="form-control fht_remarks" disabled></textarea> </td>
                                                 </tr>
                                             </table>
-                                    </div> -->
+                                    </div>
 
                                     <div id="menu5" class="tab-pane fade">
                                             <table class="table table-striped">
