@@ -1,4 +1,86 @@
 <script>
+// $('#munisearchForm').on('submit',function(e){
+//         $('.loading').show();
+//         e.preventDefault();
+//         var url = "{{ url('doctor/patient/request/') }}";
+//         $(this).ajaxSubmit({
+//             url: url,
+//             type: 'POST',
+//             success: function(data){
+//                     // setTimeout(function(){
+//                     //     window.location.reload(true);
+//                     // },500);
+//             },
+//             error: function(){
+//                 $('#serverModal').modal();
+//             }
+//         });
+//     });
+
+$('body').on('click','.upload_code',function(){
+       var code = $(this).data('code');
+        var url = "<?php echo asset('doctor/upload_body'); ?>";
+        var json = {
+            "code" : code,
+            "_token" : "<?php echo csrf_token(); ?>"
+        };
+        $.post(url,json,function(result){
+            $(".upload_body").html(result);
+        });
+       
+    });
+    $('body').on('click','.btn-action',function(){
+        code = $(this).data('code');
+        patient_name = $(this).data('patient_name');
+        track_id = $(this).data('track_id');
+        unique_id = $(this).data('unique_id');
+    });
+
+    $('#dischargeForm2').on('submit',function(e){
+        $('.loading').show();
+        e.preventDefault();
+        var remarks = $(this).find('.remarks').val();
+        $(this).ajaxSubmit({
+            url: "{{ url('doctor/referral/discharge/') }}/" + track_id + "/" + unique_id,
+            type: 'POST',
+            success: function(data){
+
+                    setTimeout(function(){
+                        window.location.reload(false);
+                    },500);
+            },
+            error: function(){
+                $('#serverModal').modal();
+            }
+        });
+    });
+
+@if(Session::get('upload_file'))
+    Lobibox.notify('success', {
+        title: "",
+        msg: "<?php echo Session::get("upload_file_message"); ?>",
+        size: 'mini',
+        rounded: true
+    });
+
+    $('#upload_modal').modal('show');
+
+    var code = "<?php echo Session::get("unique_referral_code"); ?>"
+    var url = "<?php echo asset('doctor/upload_body'); ?>"
+
+    var json = {
+        "code" : code,
+        "_token" : "<?php echo csrf_token(); ?>"
+    };
+    $.post(url,json,function(result){
+        $(".upload_body").html(result);
+    });
+
+<?php
+    Session::put("upload_file",false);
+    Session::put("upload_file_message",false)
+?>
+@endif
 
 $(document).ready(function()
 {

@@ -45,25 +45,20 @@ $user = Session::get('auth');
             .bs-wizard-stepnum { visibility: hidden; }
             .tracking table td:first-child { color: #959595; letter-spacing: normal; white-space: normal;}
         }
-        .modal-xl {
-        width: 90%;
-        margin: auto;
-        }
     </style>
     <div class="col-md-3">
         @if($referredCode)
-            @include('sidebar.track_referred')
+            @include('sidebar.track_monitor')
         @else
-            @include('sidebar.search_referred')
+            @include('sidebar.monitor_filter')
         @endif
-        @include('sidebar.quick')
     </div>
     <div class="col-md-9">
         @if(count($data) > 0)
             @foreach($data as $row)
             <?php
                 $type = ($row->type=='normal') ? 'success':'danger';
-                $modal = ($row->type=='normal') ? '#normalFormModal' : '#RefferedpregnantFormModalTrack';
+                $modal = ($row->type=='normal') ? '#normalFormModal' : '#pregnantFormModal';
                 $date = ($row->status=='referred') ? date('M d, Y h:i A',strtotime($row->date_referred)) : date('M d, Y h:i A',strtotime($row->date_seen));
 
                 $activities = \App\Activity::select(
@@ -73,9 +68,7 @@ $user = Session::get('auth');
                         'users.contact',
                         'fac_rejected.name as fac_rejected',
                         'referring_md as referring_md_id',
-                        'u.id as user_id',
-                        'activity.action_md as act_md_id',
-                        'code'
+                        'u.id as user_id'
                     )
                     ->where('activity.code',$row->code)
                     ->where('activity.id','>=',function($q) use($row,$user){
@@ -122,10 +115,10 @@ $user = Session::get('auth');
                 <div class="panel-heading">
                     <span class="txtTitle"><i class="fa fa-wheelchair"></i> {{ ucwords(strtolower($row->patient_name)) }} <small class="txtSub">[ {{ $row->sex }}, {{ $row->age }} ] from {{ $patient_address }}. </small></span>
                     <br />
-                    @if($row->contact)
+                    <!-- @if($row->contact)
                         Patient Contact Number: <strong class="text-primary">{{ $row->contact }}</strong>
                         <br />
-                    @endif
+                    @endif -->
                     Referred by:
                     <span class="txtDoctor" href="#">
                         <?php
@@ -138,7 +131,7 @@ $user = Session::get('auth');
                         {{ $referring_md }}
                     </span>
                     <br />
-                    Patient Code: <span class="txtCode">{{ $row->code }}</span>
+                    <!-- Patient Code: <span class="txtCode">{{ $row->code }}</span> -->
                 </div>
                 <div class="panel-body">
                     <div class="row bs-wizard" style="border-bottom:0;">
@@ -167,38 +160,27 @@ $user = Session::get('auth');
                             <a href="javascript:void(0)" class="bs-wizard-dot" data-toggle="tooltip" data-placement="top" title="Accepted"></a>
                         </div>
 
-                        <div class="col-xs-2 bs-wizard-step @if($step==4 || $step==4.5 || $step==4.6) active @elseif($step>=4) complete @else disabled @endif"><!-- complete -->
+                        <div class="col-xs-2 bs-wizard-step @if($step==4 || $step==4.5) active @elseif($step>=4) complete @else disabled @endif"><!-- complete -->
                             <div class="text-center bs-wizard-stepnum">
                                 @if($step==4.5)
                                     <span class="text-danger">Didn't Arrive</span>
-                                @elseif($step==4.6)
-                                    <span class="text-danger">Dead on Arrival</span>
                                 @else
                                     Arrived
                                 @endif
                             </div>
                             <div class="progress"><div class="progress-bar"></div></div>
-                            <a href="javascript:void(0)" class="bs-wizard-dot" data-toggle="tooltip" data-placement="top" title=" @if($step==4.5) Didn't Arrive @elseif($step==4.6) Dead on Arrival @else Arrived @endif" @if($step==4.6 || $step ==4.5) style="background-color:#a94442;" @endif></a>
+                            <a href="javascript:void(0)" class="bs-wizard-dot" data-toggle="tooltip" data-placement="top" title="@if($step==4.5) Didn't Arrive @else Arrived @endif" @if($step==4.5) style="background-color:#a94442;" @endif></a>
                         </div>
-
-                        <div class="col-xs-2 bs-wizard-step @if($step==5 || $step==5.1 ) active @elseif($step>=5) complete @else disabled @endif"><!-- complete -->
-                            <div class="text-center bs-wizard-stepnum">
-                                @if($step==5.1)
-                                    Monitored as OPD
-                                @else
-                                    Admitted
-                                @endif
-                                </div>
+                        <div class="col-xs-2 bs-wizard-step @if($step==5) active @elseif($step>=5) complete @else disabled @endif"><!-- complete -->
+                            <div class="text-center bs-wizard-stepnum">Admitted</div>
                             <div class="progress"><div class="progress-bar"></div></div>
                             <a href="javascript:void(0)" class="bs-wizard-dot" data-toggle="tooltip" data-placement="top" title="Admitted"></a>
                         </div>
-
                         <div class="col-xs-2 bs-wizard-step @if($step==6) active @elseif($step>=6) complete @else disabled @endif"><!-- complete -->
                             <div class="text-center bs-wizard-stepnum">Discharged</div>
                             <div class="progress"><div class="progress-bar"></div></div>
                             <a href="javascript:void(0)" class="bs-wizard-dot" data-toggle="tooltip" data-placement="top" title="Discharged/Transferred"></a>
                         </div>
-
                     </div>
                     @if(count($activities) > 0)
                         <?php $first = 0; ?>
@@ -208,7 +190,6 @@ $user = Session::get('auth');
                                 @foreach($activities as $act)
                                     <?php
                                         $act_name = \App\Patients::find($act->patient_id);
-                                        $acc_level = \App\User::where('id',$act->act_md_id)->orderBy('id', 'DESC')->pluck('level')->first();
                                         $level = \App\User::where('id',$act->user_id)->orderBy('id', 'DESC')->pluck('level')->first();
                                         $old_facility_data = \App\Facility::find($act->referred_from);
                                         $old_facility = $old_facility_data->name;
@@ -275,15 +256,7 @@ $user = Session::get('auth');
                                         <tr @if($first==1) class="toggle toggle{{ $row->id }}" @endif>
                                             <td>{{ date('M d, Y h:i A',strtotime($act->date_referred)) }}</td>
                                             <td>
-                                                <span class="txtPatient">{{ $act_name->fname }} {{ $act_name->mname }} {{ $act_name->lname }}</span>  was transferred by <span class="txtDoctor">Dr. {{ $act->md_name }}</span> of <span class="txtHospital">{{ $old_facility }}</span> to <span class="txtHospital">{{ $new_facility }}.</span>
-                                                <span class="remarks">Remarks: {{ $act->remarks }}</span>
-                                            </td>
-                                        </tr>
-                                    @elseif($act->status=='dead')
-                                          <tr @if($first==1) class="toggle toggle{{ $row->id }}" @endif>
-                                            <td>{{ date('M d, Y h:i A',strtotime($act->date_referred)) }}</td>
-                                            <td>
-                                                <span class="txtPatient">{{ $act_name->fname }} {{ $act_name->mname }} {{ $act_name->lname }}</span> dead on arrival to <span class="txtHospital">{{ $new_facility }}</span>.
+                                                <span class="txtPatient">{{ $act_name->fname }} {{ $act_name->mname }} {{ $act_name->lname }}</span>  was {{ $row->status }} by <span class="txtDoctor">Dr. {{ $act->md_name }}</span> of <span class="txtHospital">{{ $old_facility }}</span> to <span class="txtHospital">{{ $new_facility }}.</span>
                                                 <span class="remarks">Remarks: {{ $act->remarks }}</span>
                                             </td>
                                         </tr>
@@ -307,30 +280,9 @@ $user = Session::get('auth');
                                     @elseif($act->status=='accepted')
                                         <tr @if($first==1) class="toggle toggle{{ $row->id }}" @endif>
                                             <td>{{ date('M d, Y h:i A',strtotime($act->date_referred)) }}</td>
-                                           
                                             <td>
-                                            @if($act->act_md_id!=0)
-                                                    <?php
-                                                        if($acc_level != 'doctor' && $acc_level != 'nurse'&& $acc_level != 'midwife'){
-                                                            $act_md_name = $act->md_name;
-                                                        }
-                                                        elseif($acc_level == 'nurse'){
-                                                            $act_md_name = 'Nurse '.$act->md_name;
-                                                        } 
-                                                        elseif($acc_level == 'midwife'){
-                                                            $act_md_name = 'Midwife '.$act->md_name;
-                                                        }
-                                                        else {
-                                                            $act_md_name = 'Dr. '.$act->md_name;
-                                                        }
-                                                    ?>
-                                                <span class="txtPatient">{{ $act_name->fname }} {{ $act_name->mname }} {{ $act_name->lname }}</span>  was accepted by <span class="txtDoctor">{{ $act_md_name }}</span> of <span class="txtHospital">{{ $new_facility }}</span>.
+                                                <span class="txtPatient">{{ $act_name->fname }} {{ $act_name->mname }} {{ $act_name->lname }}</span>  was accepted by <span class="txtDoctor">Dr. {{ $act->md_name }}</span> of <span class="txtHospital">{{ $new_facility }}</span>.
                                                 <span class="remarks">Remarks: {{ $act->remarks }}</span>
-                                                
-                                                @else
-                                                <span class="txtPatient">{{ $act_name->fname }} {{ $act_name->mname }} {{ $act_name->lname }}</span>  was accepted by <span class="txtDoctor">{{ $act_md_name }}</span> of <span class="txtHospital">{{ $new_facility }}</span>.
-                                                <span class="remarks">Remarks: {{ $act->remarks }}</span>
-                                                @endif
                                             </td>
                                         </tr>
                                     @elseif($act->status=='arrived')
@@ -349,16 +301,7 @@ $user = Session::get('auth');
                                                 <span class="remarks">Remarks: {{ $act->remarks }}</span>
                                             </td>
                                         </tr>
-                                    @elseif($act->status=='monitored')
-                                        <tr @if($first==1) class="toggle toggle{{ $row->id }}" @endif>
-                                            <td>{{ date('M d, Y h:i A',strtotime($act->date_referred)) }}</td>
-                                            <td>
-                                                <span class="txtPatient">{{ $act_name->fname }} {{ $act_name->mname }} {{ $act_name->lname }}</span> monitored as OPD at <span class="txtHospital">{{ $new_facility }}</span>.
-                                                <span class="remarks">Remarks: {{ $act->remarks }}</span>
-                                            </td>
-                                        </tr>
                                     @elseif($act->status=='discharged')
-                                        @if($type == 'normal')
                                         <tr @if($first==1) class="toggle toggle{{ $row->id }}" @endif>
                                             <td>{{ date('M d, Y h:i A',strtotime($act->date_referred)) }}</td>
                                             <td>
@@ -373,28 +316,6 @@ $user = Session::get('auth');
                                                 @endif
                                             </td>
                                         </tr>
-                                        @else
-                                            <?php
-                                                $preg = \App\PregOutcome::select('*')
-                                                ->where('preg_outcome.code',$act->code)
-                                                ->first();
-                                            ?>
-                                             <tr @if($first==1) class="toggle toggle{{ $row->id }}" @endif>
-                                            <td>{{ date('M d, Y h:i A',strtotime($act->date_referred)) }}</td>
-                                            <td>
-                                                <span class="txtPatient">{{ $act_name->fname }} {{ $act_name->mname }} {{ $act_name->lname }}</span> discharged from <span class="txtHospital">{{ $new_facility }}</span>.
-                                                <span class="remarks">Discharge Instruction: {{ $preg->discharge_instruction }}</span>
-                                                <span class="remarks">Discharge Diagnosis: {{ $preg->discharge_diagnosis }}</span>
-                                                <?php
-                                                    ($row->type=='normal') ? $covid_discharge = \App\PatientForm::where("code",$act->code)->first() : $covid_discharge = \App\PregnantForm::where("code",$act->code)->first();
-                                                ?>
-                                                @if($covid_discharge->dis_clinical_status or $covid_discharge->dis_sur_category)
-                                                <span class="remarks">Clinical Status: <b>{{ ucfirst($covid_discharge->dis_clinical_status) }}</b></span>
-                                                <span class="remarks">Surveillance Category: <b>{{ ucfirst($covid_discharge->dis_sur_category) }}</b></span>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                        @endif
                                     @elseif($act->status=='archived')
                                         <tr @if($first==1) class="toggle toggle{{ $row->id }}" @endif>
                                             <td>{{ date('M d, Y h:i A',strtotime($act->date_referred)) }}</td>
@@ -445,95 +366,7 @@ $user = Session::get('auth');
                         </div>
                     @endif
                 </div>
-                <div class="panel-footer">
-                    <button data-target="{{ $modal }}" data-toggle="modal"
-                       data-type="{{ $row->type }}"
-                       data-id="{{ $row->id }}"
-                       data-code="{{ $row->code }}"
-                       class="view_form btn btn-warning btn-xs"><i class="fa fa-folder"></i> View Form</button>
-                    @if($seen>0)
-                    <a href="#seenModal" data-toggle="modal"
-                            data-id="{{ $row->id }}"
-                            class="btn btn-seen btn-xs btn-success"><i class="fa fa-user-md"></i> Seen
-                        @if($seen>0)
-                            <small class="badge bg-green-active">{{ $seen }}</small>
-                        @endif
-                    </a>
-                    @endif
-                    @if($caller_md > 0)
-                        <a href="#callerModal" data-toggle="modal"
-                           data-id="{{ $row->id }}"
-                           class="btn btn-primary btn-xs btn-caller"><i class="fa fa-phone"></i> Caller
-                            @if($caller_md>0)
-                                <small class="badge bg-blue-active">{{ $caller_md }}</small>
-                            @endif
-                        </a>
-                    @endif
-                    @if($step==3 && empty(\App\Activity::where("code",$row->code)->where("status","travel")->first()))
-                        <a href="#transferModal" data-toggle="modal"
-                           data-id="{{ $row->id }}" class="btn btn-xs btn-success btn-transfer"><i class="fa fa-ambulance"></i> Travel</a>
-                    @endif
-                    <button class="btn btn-xs btn-info btn-feedback" data-toggle="modal"
-                            data-target="#feedbackModal"
-                            data-code="{{ $row->code }}">
-                        <i class="fa fa-comments"></i> ReCo
-                        @if($feedback>0)
-                            <span class="badge bg-blue">{{ $feedback }}</span>
-                        @endif
-                    </button>
-                    <a href="#upload_modal"
-                                       data-toggle="modal"
-                                       data-code="{{$row->code}}"
-                                       data-id = "{{ $row->id }}"
-                                       class="btn btn-info btn-xs btn-edit upload_code">
-                                       <i class="fa fa-file"></i>
-                                        Upload {{$row->code}}
-                                    </a>
-                    <?php $issue_and_concern = \App\Issue::where("tracking_id","=",$row->id)->count(); ?>
-                    <button class="btn btn-xs btn-danger btn-issue-referred" data-toggle="modal"
-                            data-target="#IssueAndConcern"
-                            data-code="{{ $row->code }}"
-                            data-referred_from="{{ $row->referred_from }}"
-                            data-tracking_id="{{ $row->id }}">
-                        <i class="fa fa fa-exclamation-triangle"></i> Issue and Concern
-                        @if($issue_and_concern>0)
-                        <span class="badge bg-red">{{ $issue_and_concern }}</span>
-                        @endif
-                    </button>
-                    <?php $doh_remarks = \App\Monitoring::where("code","=",$row->code)->count(); ?>
-                    @if($doh_remarks>0)
-                        <button class="btn btn-xs btn-doh" data-toggle="modal" style="background-color: #dd7556;color: white"
-                                data-target="#feedbackDOH"
-                                data-code="{{ $row->code }}">
-                        
-                            <span class="badge bg-green">{{ $doh_remarks }}</span>
-                        </button>
-                    @endif
-                    @if($redirected > 0)
-                        <a href="#" data-toggle="modal"
-                           data-id="{{ $row->id }}"
-                           class="btn btn-danger btn-xs btn-caller"><i class="fa fa-chevron-circle-right"></i> Redirected
-                            @if($redirected>0)
-                                <small class="badge bg-red-active">{{ $redirected }}</small>
-                            @endif
-                        </a>
-                    @endif
-                    <!-- @if(!$checkForCancellation && $act->referred_from == $user->facility_id)
-                         <a href="#legitModal"
-                                       data-toggle="modal"
-                                       data-id = "{{ $row->id }}"
-                                       onclick="PatientBody('<?php echo $row->id ?>')"
-                                       class="btn btn-success btn-xs btn-edit">
-                                       <i class="fa fa-edit"></i>
-                                        Edit
-                                    </a>
-                    @endif -->
-                    @if(!$checkForCancellation)
-                        <a href="#cancelModal" data-toggle="modal"
-                           data-id="{{ $row->id }}" class="btn btn-xs btn-default btn-cancel"><i class="fa fa-times"></i> Cancel</a>
-                    @endif
-                 
-                </div>
+               
             </div>
             @endforeach
 
@@ -548,16 +381,17 @@ $user = Session::get('auth');
             </div>
         @endif
     </div>
-    </div>
+
+
+    @include('modal.accept_reject')
+    @include('modal.legitmodal')
     @include('modal.refer')
+    @include('modal.accept')
     @include('modal.seen')
+    @include('modal.caller')
+    @include('modal.cancel')
     @include('modal.feedback')
     @include('modal.transfer')
-    @include('modal.legitmodal')
-    @include('modal.accept_reject')
-    @include('modal.cancel')
-    @include('modal.accept')
-    @include('modal.caller')
     @include('modal.reject')
     @include('modal.contact')
 @endsection
@@ -639,33 +473,6 @@ $user = Session::get('auth');
     ?>
     @endif
 
-    @if(Session::get('validated'))
-        Lobibox.notify('warning', {
-            title: "",
-            msg: "File size should be 5MB below and PDF file only",
-            size: 'mini',
-            rounded: true
-        });
-
-        $('#upload_modal').modal('show');
-
-        var code = "<?php echo Session::get("unique_referral_code"); ?>"
-        var url = "<?php echo asset('doctor/upload_body'); ?>"
-
-        // alert(code);
-        var json = {
-            "code" : code,
-            "_token" : "<?php echo csrf_token(); ?>"
-        };
-        $.post(url,json,function(result){
-            $(".upload_body").html(result);
-        });
-
-    <?php
-        Session::put("validated",false);
-    ?>
-    @endif
-
     @if(Session::get('upload_file'))
         Lobibox.notify('success', {
             title: "",
@@ -679,6 +486,7 @@ $user = Session::get('auth');
         var code = "<?php echo Session::get("unique_referral_code"); ?>"
         var url = "<?php echo asset('doctor/upload_body'); ?>"
 
+        alert(code);
         var json = {
             "code" : code,
             "_token" : "<?php echo csrf_token(); ?>"

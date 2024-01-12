@@ -281,6 +281,10 @@ Route::post('doctor/referred/search','doctor\ReferralCtrl@searchReferred');
 Route::match(["get","post"],'doctor/referred/track','doctor\ReferralCtrl@trackReferral');
 
 
+//Municipality Patient Search
+Route::post('patient/search','doctor\PatientCtrl@munipatientSearch'); 
+Route::post('doctor/patient/request/','doctor\PatientCtrl@addPatientRequest');
+
 Route::get('doctor/patient','doctor\PatientCtrl@index');
 Route::post('doctor/patient','doctor\PatientCtrl@searchProfile');
 

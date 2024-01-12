@@ -1578,9 +1578,10 @@ class ReferralCtrl extends Controller
 
     public function discharge2 (Request $req, $track_id, $unique_id)
     {
-
+      
         $user = Session::get('auth');
         $date = date('Y-m-d H:i:s',strtotime($req->date_time));
+
         $track = Tracking::find($track_id);
         $track->update([
             'status' => 'discharged'

@@ -121,7 +121,8 @@ class PatientCtrl extends Controller
             $facility_id = $user->facility_id;
             $user = Session::get('auth');
 
-            $data = Patients::orderBy('lname','asc');
+            $data = Patients::select('patients.*','patients.id as patient_id','facility.*')->leftjoin('facility','facility.id','=','patients.facility_id')
+            ->orderBy('patients.lname','asc');
             if(!empty($brgy)){
                 $data = $data->where('brgy',$brgy);
             }
@@ -132,7 +133,8 @@ class PatientCtrl extends Controller
                 $data = $data->where('address','like',"%$others%");
             }
             // $data = $data->where('muncity',$user->muncity)
-            $data = $data->where('facility_id',$facility_id)
+            // $data = $data->where('facility_id',$facility_id)
+            $data = $data->where('patients.province',$user->province)
             ->where(function($q) use($keyword){     
                 $q->where('lname',"like","%$keyword%")
                     ->orWhere('fname','like',"%$keyword%")
@@ -1644,6 +1646,43 @@ class PatientCtrl extends Controller
             "date_start" => $date_start,
             "date_end" => $date_end
         ]);
+    }
+
+    public function munipatientSearch(Request $request)
+    {
+        // dd($request->all());
+        $user = Session::get('auth');
+        $muncity = Muncity::where('province_id',$user->province)->orderby('description','asc')->get();
+
+        $source='referral';
+        $keyword = $request->patient_keyword;
+        $data = array();
+
+            $facility_id = $user->facility_id;
+            $user = Session::get('auth');
+
+            $data = Patients::select('patients.*','patients.id as patient_id','facility.*')->leftjoin('facility','facility.id','=','patients.facility_id')
+            ->orderBy('patients.lname','asc');
+
+            $data = $data->where('patients.province',$user->province)
+                ->where(function($q) use($keyword){     
+                $q->where('patients.lname',"like","%$keyword%")
+                    ->orWhere('patients.fname','like',"%$keyword%")
+                    ->orwhere(DB::raw('concat(patients.fname," ",patients.lname)'),"like","%$keyword%");
+            });
+
+            $data = $data->paginate(20);
+
+            // dd($data);
+
+            return view("doctor.munipatient_search",[
+                "data" => $data
+            ]);
+    }
+
+    public function addPatientRequest (Request $request)
+    {
+        dd($request->all());
     }
 
 }
