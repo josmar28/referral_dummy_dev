@@ -304,6 +304,15 @@ $user = Session::get('auth');
                                                         </div>
                                                     </a>
                                                 </div>
+                                            @elseif($act->status=='monitored')
+                                                <div class="timeline-item read-section">
+                                                    <span class="time"><i class="fas fa-search-location"></i> {{ date('M d, Y h:i A',strtotime($act->date_referred)) }}</span>
+                                                    <a href="#">
+                                                        <div class="timeline-header no-border">
+                                                            {{ $act_name->fname }} {{ $act_name->mname }} {{ $act_name->lname }} monitored as OPD at <span class="facility">{{ $new_facility }}</span>.
+                                                        </div>
+                                                    </a>
+                                                </div>
                                             @elseif($act->status=='discharged')
                                                 <div class="timeline-item read-section">
                                                     <span class="time"><i class="fa fa-stethoscope"></i> {{ date('M d, Y h:i A',strtotime($act->date_referred)) }}</span>

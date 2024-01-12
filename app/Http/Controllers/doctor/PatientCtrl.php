@@ -12,6 +12,8 @@ use App\Http\Controllers\DeviceTokenCtrl;
 use App\Http\Controllers\ParamCtrl;
 use App\Icd10;
 use App\Events\PreferredNotif;
+use App\Events\PregnantNotif;
+use App\Events\MyEvent;
 use App\Muncity;
 use App\PatientForm;
 use App\Patients;
@@ -88,7 +90,7 @@ class PatientCtrl extends Controller
             //         $q->where('lname',"like","%$keyword%")
             //             ->orWhere('fname','like',"%$keyword%")
             //             ->orwhere(DB::raw('concat(fname," ",lname)'),"like","%$keyword%");
-            //     })
+            //           })
             //     ->get();
 
             // foreach($tsekap as $req){
@@ -117,19 +119,22 @@ class PatientCtrl extends Controller
             //     Patients::updateOrCreate($match,$data);
             // }
             $facility_id = $user->facility_id;
+            $user = Session::get('auth');
 
-            $data = Patients::orderBy('lname','asc');
+            $data = Patients::select('patients.*','patients.id as patient_id','facility.*')->leftjoin('facility','facility.id','=','patients.facility_id')
+            ->orderBy('patients.lname','asc');
             if(!empty($brgy)){
                 $data = $data->where('brgy',$brgy);
             }
-            if(!empty($mun) && $mun!='others'){
-                $data = $data->where('muncity',$mun);
-            }
+            // if(!empty($mun) && $mun!='others'){
+            //     $data = $data->where('muncity',$mun);
+            // }
             if(!empty($others)){
                 $data = $data->where('address','like',"%$others%");
             }
-
-            $data = $data->where('facility_id',$facility_id)
+            // $data = $data->where('muncity',$user->muncity)
+            // $data = $data->where('facility_id',$facility_id)
+            $data = $data->where('patients.province',$user->province)
             ->where(function($q) use($keyword){     
                 $q->where('lname',"like","%$keyword%")
                     ->orWhere('fname','like',"%$keyword%")
@@ -154,13 +159,13 @@ class PatientCtrl extends Controller
     {
         $user = Session::get('auth');
         $facility_id = $user->facility_id;
+        $dob = date('Ymd',strtotime($req->dob));
         $unique = array(
             $req->fname,
             $req->mname,
             $req->lname,
             date('Ymd',strtotime($req->dob)),
             $req->brgy
-
             
         );
         $unique = implode($unique);
@@ -173,7 +178,7 @@ class PatientCtrl extends Controller
             'mname' => $req->mname,
             'lname' => $req->lname,
             'contact' => $req->contact,
-            'dob' => $req->dob,
+            'dob' => $dob,
             'sex' => $req->sex,
             'civil_status' => $req->civil_status,
             'facility_id' => $facility_id,
@@ -183,7 +188,12 @@ class PatientCtrl extends Controller
             'address' => ($req->others) ? $req->others: ''
         );
 
-        Patients::updateOrCreate($match,$data);
+        $create = Patients::updateOrCreate($match,$data);
+            
+        if($create->wasRecentlyCreated)
+        {
+            Session::put('cssAdd',true);
+        }
 
         $data = array(
             'keyword' => $req->fname.' '.$req->lname,
@@ -244,11 +254,21 @@ class PatientCtrl extends Controller
         $data->patient_name = "$data->fname $data->mname $data->lname";
         $data->age = ParamCtrl::getAge($data->dob);
         
-        $sign = SignSymptoms::where('patient_woman_id',$id)->orderby('created_at','desc')->first();
+        $sign = SignSymptoms::select('*')->where('patient_woman_id',$id)->orderby('created_at','desc')->first();
+
+        $form = PregnantFormv2::select('*')->where('patient_woman_id',$id)->orderby('created_at','desc')->first();
+        
+        $ante = Antepartum::select('*')->where('patient_woman_id',$id)->latest()->first();
+
+        $lab = LabResult::select('*')->where('patient_woman_id',$id)->wherenotnull('blood_type')->latest()->first();
+
 
         return response()->json([
             'data' => $data,
-            'sign' => $sign
+            'sign' => $sign,
+            'form' => $form,
+            'ante' => $ante,
+            'lab' => $lab,
         ]);
     }
 
@@ -364,7 +384,8 @@ class PatientCtrl extends Controller
             'form_id' => $form_id,
             'remarks' => ($req->reason) ? $req->reason: '',
             'status' => ($status=='walkin') ? 'accepted' : 'referred',
-            'walkin' => 'no'
+            'walkin' => 'no',
+            'pregnant_status' => ($req->pregnant_status) ? $req->pregnant_status: NULL,
         );
 
         if($status=='walkin'){
@@ -410,7 +431,9 @@ class PatientCtrl extends Controller
         $user = Session::get('auth');
         $patient_id = $req->patient_id;
         $user_code = str_pad($user->facility_id,3,0,STR_PAD_LEFT);
-        $code = date('ymd').'-'.$user_code.'-'.date('His');
+
+        $code = $req->code ? $req->code : date('ymd').'-'.$user_code.'-'.date('His');
+    
         $tracking_id = 0;
         $case_summary = implode(" , ",$req->case_summary); 
 
@@ -425,7 +448,9 @@ class PatientCtrl extends Controller
             $patient_id = self::importTsekap($req->patient_id,$req->patient_status,$req->phic_id,$req->phic_status);
         }
 
-        $unique_id = "$patient_id-$user->facility_id-".date('ymdH');
+
+        $unique_id = $req->unique_id ? $req->unique_id : "$patient_id-$user->facility_id-".date('ymdH');
+        
         $match = array(
             'unique_id' => $unique_id
         );
@@ -464,7 +489,8 @@ class PatientCtrl extends Controller
             
             // event(new PreferredNotif($data,$fac,$referring_md,$fac_to));
             $form = PatientForm::updateOrCreate($match,$data);
-            if($form->wasRecentlyCreated){
+            if($form->wasRecentlyCreated)
+            {
                 PatientForm::where('unique_id',$unique_id)
                     ->update([
                         'code' => $code
@@ -474,7 +500,14 @@ class PatientCtrl extends Controller
         }
         else if($type==='pregnant')
         {
-            
+          $lmp = date('Ymd', strtotime($req->lmp));
+          $edc_edd = date('Ymd', strtotime($req->edc_edd));
+
+          $td1 = ($req->td1) ? date('Ymd', strtotime($req->td1)) : NULL;
+          $td2 = ($req->td2) ? date('Ymd', strtotime($req->td1)) : NULL;
+          $td3 = ($req->td3) ? date('Ymd', strtotime($req->td1)) : NULL;
+          $td4 = ($req->td4) ? date('Ymd', strtotime($req->td1)) : NULL;
+          $td5 = ($req->td5) ? date('Ymd', strtotime($req->td1)) : NULL;
             // dd($req->delivery_outcome,$req->birth_attendant,$req->status_on_discharge,$req->type_of_delivery,$req->final_diagnosis);
             $data = array(
                 'unique_id' => $unique_id,
@@ -493,18 +526,18 @@ class PatientCtrl extends Controller
                 'bmi' => ($req->bmi) ? $req->bmi: NULL,
                 'fundic_height' => ($req->fundic_height) ? $req->fundic_height: NULL,
                 'hr' => ($req->hr) ? $req->hr: NULL,
-                'lmp' => ($req->lmp) ? $req->lmp: NULL,
-                'edc_edd' => ($req->edc_edd) ? $req->edc_edd: NULL,
+                'lmp' => ($lmp) ? $lmp: NULL,
+                'edc_edd' => ($edc_edd) ? $edc_edd: NULL,
                 'height' => ($req->height) ? $req->height: NULL,
                 'weigth' => ($req->weigth) ? $req->weigth: NULL,
                 'bp' => ($req->bp) ? $req->bp: NULL,
                 'temp' => ($req->temp) ? $req->temp: NULL,
                 'rr' => ($req->rr) ? $req->rr: NULL,
-                'td1' => ($req->td1) ? $req->td1: NULL,
-                'td2' => ($req->td2) ? $req->td2: NULL,
-                'td4' => ($req->td4) ? $req->td4: NULL,
-                'td3' => ($req->td3) ? $req->td3: NULL,
-                'td5' => ($req->td5) ? $req->td5: NULL,
+                'td1' => ($td1) ? $td1: NULL,
+                'td2' => ($td2) ? $td2: NULL,
+                'td3' => ($td3) ? $td3: NULL,
+                'td4' => ($td4) ? $td4: NULL,
+                'td5' => ($td5) ? $td5: NULL,
                 'status' => 1,
                 'educ_attainment' => ($req->educ_attainment) ? $req->educ_attainment: NULL,
                 'family_income' => ($req->family_income) ? $req->family_income: NULL,
@@ -512,7 +545,17 @@ class PatientCtrl extends Controller
                 'ethnicity' => ($req->ethnicity) ? $req->ethnicity: NULL,
                 'sibling_rank' => ($req->sibling_rank) ? $req->sibling_rank: NULL,
                 'out_of' => ($req->out_of) ? $req->out_of: NULL,
+               
             );
+
+            $fac = Facility::find($user->facility_id);
+            $referring_md = User::find($user->id);
+            $fac_to = Facility::find($req->referred_facility);
+            $status = $req->pregnant_status;
+            
+            
+
+            
             $form = PregnantFormv2::Create($data);
             if($form->wasRecentlyCreated){
                 PregnantFormv2::where('unique_id',$unique_id)
@@ -556,6 +599,7 @@ class PatientCtrl extends Controller
                 'rr' => ($req->ante_rr) ? $req->ante_rr: NULL,
                 'fh' => ($req->ante_fh) ? $req->ante_fh: NULL,
                 'fht' => ($req->ante_fht) ? $req->ante_fht: NULL,
+                'others' => ($req->others) ? $req->others: NULL,
                 'other_physical_exam' => ($req->ante_other_physical_exam) ? $req->ante_other_physical_exam: NULL,
                 'assessment_diagnosis' => ($req->ante_assessment_diagnosis) ? $req->ante_assessment_diagnosis: NULL,
                 'plan_intervention' => ($req->ante_plan_intervention) ? $req->ante_plan_intervention: NULL,
@@ -567,16 +611,17 @@ class PatientCtrl extends Controller
                         'code' => $code
                     ]);
             }
-
+            $date_of_visit = date('Y-m-d', strtotime($req->date_of_visit));
             $data2 = array(
                 'unique_id' => $unique_id,
                 'patient_woman_id' => $patient_id,
                 'no_trimester' => ($req->no_trimester) ? $req->no_trimester: NULL,
                 'no_visit' => ($req->no_visit) ? $req->no_visit: NULL,
-                'date_of_visit' => ($req->date_of_visit) ? $req->date_of_visit: NULL,
+                'date_of_visit' => ($date_of_visit) ? $date_of_visit: NULL,
                 'vaginal_spotting' => ($req->vaginal_spotting) ? $req->vaginal_spotting: NULL,
                 'severe_nausea' => ($req->severe_nausea) ? $req->severe_nausea: NULL,
                 'significant_decline' => ($req->significant_decline) ? $req->significant_decline:NULL,
+                'persistent_contractions' => ($req->persistent_contractions) ? $req->persistent_contractions:NULL,
                 'premature_rupture' => ($req->premature_rupture) ? $req->premature_rupture:NULL,
                 'fetal_pregnancy' => ($req->fetal_pregnancy) ? $req->fetal_pregnancy: NULL,
                 'severe_headache' => ($req->severe_headache) ? $req->severe_headache: NULL,
@@ -611,12 +656,21 @@ class PatientCtrl extends Controller
             {
                 if($lab != null)
                 {
+                    $date_of_lab = date('Ymd', strtotime($lab));
                     $data3 = array(
                         'unique_id' => $unique_id,
                         'patient_woman_id' => $patient_id,
-                        'date_of_lab' => ($lab) ? $lab: NULL,
-                        'cbc_result' => ($req->cbc_result[$key]) ? $req->cbc_result[$key]: NULL,
-                        'ua_result' => ($req->ua_result[$key]) ? $req->ua_result[$key]: NULL,
+                        'date_of_lab' => ($date_of_lab) ? $date_of_lab: NULL,
+                        'cbc_hgb' => ($req->cbc_hgb[$key]) ? $req->cbc_hgb[$key]: NULL,
+                        'cbc_wbc' => ($req->cbc_wbc[$key]) ? $req->cbc_wbc[$key]: NULL,
+                        'cbc_rbc' => ($req->cbc_rbc[$key]) ? $req->cbc_rbc[$key]: NULL,
+                        'cbc_platelet' => ($req->cbc_platelet[$key]) ? $req->cbc_platelet[$key]: NULL,
+                        'cbc_hct' => ($req->cbc_hct[$key]) ? $req->cbc_hct[$key]: NULL,
+                        'ua_pus' => ($req->ua_pus[$key]) ? $req->ua_pus[$key]: NULL,
+                        'ua_rbc' => ($req->ua_rbc[$key]) ? $req->ua_rbc[$key]: NULL,
+                        'ua_sugar' => ($req->ua_sugar[$key]) ? $req->ua_sugar[$key]: NULL,
+                        'ua_gravity' => ($req->ua_gravity[$key]) ? $req->ua_gravity[$key]: NULL,
+                        'ua_albumin' => ($req->ua_albumin[$key]) ? $req->ua_albumin[$key]: NULL,
                         'utz' => ($req->utz[$key]) ? $req->utz[$key]: NULL,
                         'blood_type' => ($req->blood_type) ? $req->blood_type: NULL,
                         'hbsag_result' => ($req->hbsag_result) ? $req->hbsag_result:NULL,
@@ -679,30 +733,32 @@ class PatientCtrl extends Controller
                     ]);
             }
 
-            foreach ($req->final_diagnosis as $value) {
-                $final_diagnosis .= $value . ", ";
-             }
-             $final_diagnosis = substr($final_diagnosis, 0, -2);
+            // foreach ($req->final_diagnosis as $value) {
+            //     $final_diagnosis .= $value . ", ";
+            //  }
+            //  $final_diagnosis = substr($final_diagnosis, 0, -2);
 
-            $data5 = array(
-                'unique_id' => $unique_id,
-                'patient_woman_id' => $patient_id,
-                'delivery_outcome' => ($req->delivery_outcome) ? $req->delivery_outcome: NULL,
-                'birth_attendant' => ($req->birth_attendant) ? $req->birth_attendant: NULL,
-                'type_of_delivery' => ($req->type_of_delivery) ? $req->type_of_delivery: NULL,
-                'final_diagnosis' => ($final_diagnosis) ? $final_diagnosis: NULL,
-                'status_on_discharge' => ($req->status_on_discharge) ? $req->status_on_discharge: NULL,
-            );
+            // $data5 = array(
+            //     'unique_id' => $unique_id,
+            //     'patient_woman_id' => $patient_id,
+            //     'delivery_outcome' => ($req->delivery_outcome) ? $req->delivery_outcome: NULL,
+            //     'birth_attendant' => ($req->birth_attendant) ? $req->birth_attendant: NULL,
+            //     'type_of_delivery' => ($req->type_of_delivery) ? $req->type_of_delivery: NULL,
+            //     'final_diagnosis' => ($final_diagnosis) ? $final_diagnosis: NULL,
+            //     'status_on_discharge' => ($req->status_on_discharge) ? $req->status_on_discharge: NULL,
+            // );
 
-            $pregoutcome = PregOutcome::Create($data5);
-            if($pregoutcome->wasRecentlyCreated){
-                PregOutcome::where('unique_id',$unique_id)
-                    ->update([
-                        'code' => $code
-                    ]);
-            }
+            // $pregoutcome = PregOutcome::Create($data5);
+            // if($pregoutcome->wasRecentlyCreated){
+            //     PregOutcome::where('unique_id',$unique_id)
+            //         ->update([
+            //             'code' => $code
+            //         ]);
+            // }
 
             //  dd($final_diagnosis);
+            event(new PregnantNotif($data,$fac,$referring_md,$fac_to,$status));
+            
             Session::put("refer_patient",true);
 
             return Redirect::back();
@@ -1113,16 +1169,20 @@ class PatientCtrl extends Controller
             'tracking.type',
             'tracking.code',
             'facility.name',
+            'pregnant_formv2.unique_id',
+            'tracking.patient_id',
             DB::raw('CONCAT(patients.fname," ",patients.mname," ",patients.lname) as patient_name'),
             DB::raw("DATE_FORMAT(tracking.date_accepted,'%M %d, %Y %h:%i %p') as date_accepted")
         )
             ->join('facility','facility.id','=','tracking.referred_from')
             ->join('patients','patients.id','=','tracking.patient_id')
-            ->where('referred_to',$user->facility_id)
+            ->join('pregnant_formv2','pregnant_formv2.id','=','tracking.form_id')
+            ->where('tracking.referred_to',$user->facility_id)
             ->where(function($q){
                 $q->where('tracking.status','accepted')
                     ->orwhere('tracking.status','admitted')
-                    ->orwhere('tracking.status','arrived');
+                    ->orwhere('tracking.status','arrived')
+                    ->orwhere('tracking.status','monitored');
             });
         if($keyword){
             $data1 = $data1->where(function($q) use ($keyword){
@@ -1149,12 +1209,15 @@ class PatientCtrl extends Controller
             'tracking.type',
             'tracking.code',
             'facility.name',
+            'pregnant_formv2.unique_id',
+            'tracking.patient_id',
             DB::raw('CONCAT(patients.fname," ",patients.mname," ",patients.lname) as patient_name'),
             DB::raw("DATE_FORMAT(tracking.date_accepted,'%M %d, %Y %h:%i %p') as date_accepted")
         )
             ->join('facility','facility.id','=','tracking.referred_from')
             ->join('patients','patients.id','=','tracking.patient_id')
             ->join('patient_form','patient_form.patient_id','=','tracking.patient_id')
+            ->join('pregnant_formv2','pregnant_formv2.id','=','tracking.form_id')
             ->where('patient_form.referred_md',$user->id)
             ->whereExists(function($query) use($id)
             {
@@ -1332,7 +1395,7 @@ class PatientCtrl extends Controller
                 ->paginate(15);
 
         return view('doctor.discharge',[
-            'title' => 'Discharged/Transferred Patients',
+            'title' => 'Discharged',
             'data' => $data
         ]);
     }
@@ -1352,6 +1415,67 @@ class PatientCtrl extends Controller
 
         return redirect('/doctor/discharge');
     }
+
+
+    function transferred()
+    {
+        $keyword = Session::get('keywordDischarged');
+        $start = Session::get('startDischargedDate');
+        $end = Session::get('endDischargedDate');
+
+        $user = Session::get('auth');
+        $data = Activity::select(
+                    'tracking.id',
+                    'tracking.type',
+                    'activity.code',
+                    'facility.name',
+                    'activity.status',
+                    DB::raw('CONCAT(patients.fname," ",patients.mname," ",patients.lname) as patient_name'),
+                    DB::raw("DATE_FORMAT(tracking.updated_at,'%M %d, %Y %h:%i %p') as date_accepted")
+                )
+                ->leftJoin('tracking','activity.code','=','tracking.code')
+                ->join('facility','facility.id','=','activity.referred_from')
+                ->join('patients','patients.id','=','activity.patient_id')
+                ->where('activity.status','transferred')
+                ->where('activity.referred_from',$user->facility_id)
+                ->distinct();
+
+        if($keyword){
+            $data = $data->where(function($q) use ($keyword){
+                $q->where('patients.fname','like',"%$keyword%")
+                    ->orwhere('patients.mname','like',"%$keyword%")
+                    ->orwhere('patients.lname','like',"%$keyword%")
+                    ->orwhere('tracking.code','like',"%$keyword%");
+            });
+        }
+
+
+        $data = $data->orderBy('activity.updated_at','desc')
+                ->paginate(15);
+
+        return view('doctor.transferred',[
+            'title' => 'Transferred Patients',
+            'data' => $data
+        ]);
+    }
+
+
+    public function searchTransferred(Request $req)
+    {
+        $range = explode('-',str_replace(' ', '', $req->daterange));
+        $tmp1 = explode('/',$range[0]);
+        $tmp2 = explode('/',$range[1]);
+
+        $start = $tmp1[2].'-'.$tmp1[0].'-'.$tmp1[1];
+        $end = $tmp2[2].'-'.$tmp2[0].'-'.$tmp2[1];
+
+        Session::put('startDischargedDate',$start);
+        Session::put('endDischargedDate',$end);
+        Session::put('keywordDischarged',$req->keyword);
+
+        return redirect('/doctor/transferred');
+    }
+    
 
     function cancel()
     {
@@ -1522,6 +1646,43 @@ class PatientCtrl extends Controller
             "date_start" => $date_start,
             "date_end" => $date_end
         ]);
+    }
+
+    public function munipatientSearch(Request $request)
+    {
+        // dd($request->all());
+        $user = Session::get('auth');
+        $muncity = Muncity::where('province_id',$user->province)->orderby('description','asc')->get();
+
+        $source='referral';
+        $keyword = $request->patient_keyword;
+        $data = array();
+
+            $facility_id = $user->facility_id;
+            $user = Session::get('auth');
+
+            $data = Patients::select('patients.*','patients.id as patient_id','facility.*')->leftjoin('facility','facility.id','=','patients.facility_id')
+            ->orderBy('patients.lname','asc');
+
+            $data = $data->where('patients.province',$user->province)
+                ->where(function($q) use($keyword){     
+                $q->where('patients.lname',"like","%$keyword%")
+                    ->orWhere('patients.fname','like',"%$keyword%")
+                    ->orwhere(DB::raw('concat(patients.fname," ",patients.lname)'),"like","%$keyword%");
+            });
+
+            $data = $data->paginate(20);
+
+            // dd($data);
+
+            return view("doctor.munipatient_search",[
+                "data" => $data
+            ]);
+    }
+
+    public function addPatientRequest (Request $request)
+    {
+        dd($request->all());
     }
 
 }

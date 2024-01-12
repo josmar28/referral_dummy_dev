@@ -74,7 +74,8 @@ $user = Session::get('auth');
                         'fac_rejected.name as fac_rejected',
                         'referring_md as referring_md_id',
                         'u.id as user_id',
-                        'activity.action_md as act_md_id'
+                        'activity.action_md as act_md_id',
+                        'code'
                     )
                     ->where('activity.code',$row->code)
                     ->where('activity.id','>=',function($q) use($row,$user){
@@ -180,8 +181,14 @@ $user = Session::get('auth');
                             <a href="javascript:void(0)" class="bs-wizard-dot" data-toggle="tooltip" data-placement="top" title=" @if($step==4.5) Didn't Arrive @elseif($step==4.6) Dead on Arrival @else Arrived @endif" @if($step==4.6 || $step ==4.5) style="background-color:#a94442;" @endif></a>
                         </div>
 
-                        <div class="col-xs-2 bs-wizard-step @if($step==5) active @elseif($step>=5) complete @else disabled @endif"><!-- complete -->
-                            <div class="text-center bs-wizard-stepnum">Admitted</div>
+                        <div class="col-xs-2 bs-wizard-step @if($step==5 || $step==5.1 ) active @elseif($step>=5) complete @else disabled @endif"><!-- complete -->
+                            <div class="text-center bs-wizard-stepnum">
+                                @if($step==5.1)
+                                    Monitored as OPD
+                                @else
+                                    Admitted
+                                @endif
+                                </div>
                             <div class="progress"><div class="progress-bar"></div></div>
                             <a href="javascript:void(0)" class="bs-wizard-dot" data-toggle="tooltip" data-placement="top" title="Admitted"></a>
                         </div>
@@ -268,7 +275,7 @@ $user = Session::get('auth');
                                         <tr @if($first==1) class="toggle toggle{{ $row->id }}" @endif>
                                             <td>{{ date('M d, Y h:i A',strtotime($act->date_referred)) }}</td>
                                             <td>
-                                                <span class="txtPatient">{{ $act_name->fname }} {{ $act_name->mname }} {{ $act_name->lname }}</span>  was {{ $row->status }} by <span class="txtDoctor">Dr. {{ $act->md_name }}</span> of <span class="txtHospital">{{ $old_facility }}</span> to <span class="txtHospital">{{ $new_facility }}.</span>
+                                                <span class="txtPatient">{{ $act_name->fname }} {{ $act_name->mname }} {{ $act_name->lname }}</span>  was transferred by <span class="txtDoctor">Dr. {{ $act->md_name }}</span> of <span class="txtHospital">{{ $old_facility }}</span> to <span class="txtHospital">{{ $new_facility }}.</span>
                                                 <span class="remarks">Remarks: {{ $act->remarks }}</span>
                                             </td>
                                         </tr>
@@ -342,7 +349,16 @@ $user = Session::get('auth');
                                                 <span class="remarks">Remarks: {{ $act->remarks }}</span>
                                             </td>
                                         </tr>
+                                    @elseif($act->status=='monitored')
+                                        <tr @if($first==1) class="toggle toggle{{ $row->id }}" @endif>
+                                            <td>{{ date('M d, Y h:i A',strtotime($act->date_referred)) }}</td>
+                                            <td>
+                                                <span class="txtPatient">{{ $act_name->fname }} {{ $act_name->mname }} {{ $act_name->lname }}</span> monitored as OPD at <span class="txtHospital">{{ $new_facility }}</span>.
+                                                <span class="remarks">Remarks: {{ $act->remarks }}</span>
+                                            </td>
+                                        </tr>
                                     @elseif($act->status=='discharged')
+                                        @if($type == 'normal')
                                         <tr @if($first==1) class="toggle toggle{{ $row->id }}" @endif>
                                             <td>{{ date('M d, Y h:i A',strtotime($act->date_referred)) }}</td>
                                             <td>
@@ -357,6 +373,28 @@ $user = Session::get('auth');
                                                 @endif
                                             </td>
                                         </tr>
+                                        @else
+                                            <?php
+                                                $preg = \App\PregOutcome::select('*')
+                                                ->where('preg_outcome.code',$act->code)
+                                                ->first();
+                                            ?>
+                                             <tr @if($first==1) class="toggle toggle{{ $row->id }}" @endif>
+                                            <td>{{ date('M d, Y h:i A',strtotime($act->date_referred)) }}</td>
+                                            <td>
+                                                <span class="txtPatient">{{ $act_name->fname }} {{ $act_name->mname }} {{ $act_name->lname }}</span> discharged from <span class="txtHospital">{{ $new_facility }}</span>.
+                                                <span class="remarks">Discharge Instruction: {{ $preg->discharge_instruction }}</span>
+                                                <span class="remarks">Discharge Diagnosis: {{ $preg->discharge_diagnosis }}</span>
+                                                <?php
+                                                    ($row->type=='normal') ? $covid_discharge = \App\PatientForm::where("code",$act->code)->first() : $covid_discharge = \App\PregnantForm::where("code",$act->code)->first();
+                                                ?>
+                                                @if($covid_discharge->dis_clinical_status or $covid_discharge->dis_sur_category)
+                                                <span class="remarks">Clinical Status: <b>{{ ucfirst($covid_discharge->dis_clinical_status) }}</b></span>
+                                                <span class="remarks">Surveillance Category: <b>{{ ucfirst($covid_discharge->dis_sur_category) }}</b></span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @endif
                                     @elseif($act->status=='archived')
                                         <tr @if($first==1) class="toggle toggle{{ $row->id }}" @endif>
                                             <td>{{ date('M d, Y h:i A',strtotime($act->date_referred)) }}</td>
@@ -449,7 +487,7 @@ $user = Session::get('auth');
                                        data-id = "{{ $row->id }}"
                                        class="btn btn-info btn-xs btn-edit upload_code">
                                        <i class="fa fa-file"></i>
-                                        Upload
+                                        Upload {{$row->code}}
                                     </a>
                     <?php $issue_and_concern = \App\Issue::where("tracking_id","=",$row->id)->count(); ?>
                     <button class="btn btn-xs btn-danger btn-issue-referred" data-toggle="modal"
@@ -480,7 +518,7 @@ $user = Session::get('auth');
                             @endif
                         </a>
                     @endif
-                    @if(!$checkForCancellation && $act->referred_from == $user->facility_id)
+                    <!-- @if(!$checkForCancellation && $act->referred_from == $user->facility_id)
                          <a href="#legitModal"
                                        data-toggle="modal"
                                        data-id = "{{ $row->id }}"
@@ -489,7 +527,7 @@ $user = Session::get('auth');
                                        <i class="fa fa-edit"></i>
                                         Edit
                                     </a>
-                    @endif
+                    @endif -->
                     @if(!$checkForCancellation)
                         <a href="#cancelModal" data-toggle="modal"
                            data-id="{{ $row->id }}" class="btn btn-xs btn-default btn-cancel"><i class="fa fa-times"></i> Cancel</a>
@@ -511,16 +549,15 @@ $user = Session::get('auth');
         @endif
     </div>
     </div>
-    @include('modal.pregnant_modal_referredv2')
-    @include('modal.cancel')
-    @include('modal.feedback')
-    @include('modal.legitmodal')
-    @include('modal.seen')
     @include('modal.refer')
+    @include('modal.seen')
+    @include('modal.feedback')
+    @include('modal.transfer')
+    @include('modal.legitmodal')
     @include('modal.accept_reject')
+    @include('modal.cancel')
     @include('modal.accept')
     @include('modal.caller')
-    @include('modal.transfer')
     @include('modal.reject')
     @include('modal.contact')
 @endsection
@@ -603,7 +640,7 @@ $user = Session::get('auth');
     @endif
 
     @if(Session::get('validated'))
-        Lobibox.notify('success', {
+        Lobibox.notify('warning', {
             title: "",
             msg: "File size should be 5MB below and PDF file only",
             size: 'mini',
@@ -642,7 +679,6 @@ $user = Session::get('auth');
         var code = "<?php echo Session::get("unique_referral_code"); ?>"
         var url = "<?php echo asset('doctor/upload_body'); ?>"
 
-        alert(code);
         var json = {
             "code" : code,
             "_token" : "<?php echo csrf_token(); ?>"

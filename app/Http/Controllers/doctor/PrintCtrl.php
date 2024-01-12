@@ -47,10 +47,11 @@ class PrintCtrl extends Controller
     public function printPregnantv2($record)
     {
        
-        $display = view("doctor.print_pregv2");
-        $pdf = App::make('dompdf.wrapper');
-        $pdf->loadHTML($display);
-        return $pdf->stream();
+        // $display = view("doctor.print_pregv2");
+        // $pdf = App::make('dompdf.wrapper');
+        // $pdf->loadHTML($display);
+        // return $pdf->stream();
+        return view('doctor.print_pregv2',['data' => $record]);
     }
 
     public function printPregnant($record)

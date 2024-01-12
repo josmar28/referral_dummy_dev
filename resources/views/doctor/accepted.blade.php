@@ -24,7 +24,7 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                         <input type="text" class="form-control" placeholder="Code,Firstname,Lastname" value="{{ \Illuminate\Support\Facades\Session::get('keywordAccepted') }}" name="keyword">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-sm" id="daterange" value="{{ date("m/d/Y",strtotime($start)).' - '.date("m/d/Y",strtotime($end)) }}" max="{{ date('Y-m-d') }}" name="daterange">
+                        <input type="text" class="form-control form-control-sm" id="daterange" value="{{ date('m/d/Y',strtotime($start)).' - '.date('m/d/Y',strtotime($end)) }}" max="{{ date('Y-m-d') }}" name="daterange">
                     </div>
                     <button type="submit" class="btn btn-md btn-success" style="padding: 8px 15px;"><i class="fa fa-search"></i></button>
                 </form>
@@ -55,6 +55,7 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                                 @foreach($data as $row)
                                     <?php
                                     $modal = ($row->type=='normal') ? '#normalFormModal' : '#RefferedpregnantFormModalTrack';
+                                    $dismodal = ($row->type=='normal') ? '#dischargeModal' : '#pregnantDisModal';
                                     $type = ($row->type=='normal') ? 'Non-Pregnant' : 'Pregnant';
                                     //$step = \App\Http\Controllers\doctor\ReferralCtrl::step($row->code);
                                     $step = \App\Http\Controllers\doctor\ReferralCtrl::step_v2($row->status);
@@ -119,7 +120,7 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                                                         data-track_id="{{ $row->id }}"
                                                         data-patient_name="{{ $row->patient_name }}"
                                                         data-code="{{ $row->code}}">
-                                                        <i class="fa-solid fa-skull-crossbones"></i>
+                                                        <i class="fas fa-skull-crossbones"></i>
                                                 </button>
                                                 <a href="#viewupload_modal"
                                                     data-toggle="modal"
@@ -129,6 +130,17 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                                                     <i class="fa fa-file"></i>
                                                         
                                                 </a>
+
+                                                <button class="btn btn-sm btn-success btn-action btn-transfer"
+                                                        title="Transfer Patient"
+                                                        data-toggle="modal"
+                                                        data-toggle="tooltip"
+                                                        data-target="#referAcceptFormModal"
+                                                        data-track_id="{{ $row->id }}"
+                                                        data-patient_name="{{ $row->patient_name }}"
+                                                        data-code="{{ $row->code}}">
+                                                    <i class="fa fa-ambulance"></i>
+                                                </button>
                                             @elseif( ($status=='ACCEPTED' || $status == 'TRAVEL') && $diff >= 4)
                                                 <button class="btn btn-sm btn-danger btn-action"
                                                         title="Patient Didn't Arrive"
@@ -150,11 +162,10 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                                                 </a>
                                             @endif
 
-                                            @if($status=='ARRIVED' || $status=='ADMITTED')
-                                                @if($status != 'ADMITTED')
+                                            @if($status=='ARRIVED' || $status=='ADMITTED' || $status=='MONITORED')
+                                                @if( $status != 'MONITORED' && $status != 'ADMITTED')
                                                     <button class="btn btn-sm btn-info btn-action"
                                                             title="Patient Admitted"
-
                                                             data-toggle="modal"
                                                             data-toggle="tooltip"
                                                             data-target="#admitModal"
@@ -163,23 +174,46 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                                                             data-code="{{ $row->code}}">
                                                         <i class="fa fa-stethoscope"></i>
                                                     </button>
+                                    
+                                                    <button class="btn btn-sm btn-primary btn-action"
+                                                            title="Monitored as OPD"
+                                                            data-toggle="modal"
+                                                            data-toggle="tooltip"
+                                                            data-target="#MonOPDModal"
+                                                            data-track_id="{{ $row->id }}"
+                                                            data-patient_name="{{ $row->patient_name }}"
+                                                            data-code="{{ $row->code}}">
+                                                            <i class="fas fa-search-location"></i>
+                                                    </button>
+
+                                                    <button class="btn btn-sm btn-success btn-action patient_return"
+                                                            title="Patient Return"
+                                                            data-toggle="modal"
+                                                            data-toggle="tooltip"
+                                                            data-target="#patientReturnModal"
+                                                            data-track_id="{{ $row->id }}" 
+                                                            data-unique_id = "{{ $row->unique_id }}"
+                                                            data-patient_id = "{{ $row->patient_id }}"
+                                                            data-patient_name="{{ $row->patient_name }}"
+                                                            data-code="{{ $row->code}}">
+                                                            <i class="fas fa-undo"></i>
+                                                    </button>
                                                 @endif
 
                                                 <button class="btn btn-sm btn-warning btn-action"
                                                         title="Patient Discharged"
-
                                                         data-toggle="modal"
                                                         data-toggle="tooltip"
-                                                        data-target="#dischargeModal"
+                                                        data-target="{{ $dismodal }}"
                                                         data-track_id="{{ $row->id }}"
+                                                        data-unique_id="{{ $row->unique_id }}"
                                                         data-patient_name="{{ $row->patient_name }}"
                                                         data-code="{{ $row->code}}">
-                                                        <i class="fa-brands fa-accessible-icon"></i>
+                                                        <i class="fab fa-accessible-icon"></i>
                                                 </button>
 
                                                 <button class="btn btn-sm btn-success btn-action btn-transfer"
                                                         title="Transfer Patient"
-
                                                         data-toggle="modal"
                                                         data-toggle="tooltip"
                                                         data-target="#referAcceptFormModal"
@@ -189,6 +223,7 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                                                     <i class="fa fa-ambulance"></i>
                                                 </button>
                                                 <a href="#viewupload_modal"
+                                                    title="Patient Uploads"
                                                     data-toggle="modal"
                                                     data-code="{{$row->code}}"
                                                     data-id = "{{ $row->id }}"
@@ -222,6 +257,10 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                                 <td>Patient Arrived</td>
                             </tr>
                             <tr>
+                                <td class="text-right" width="60px"><button class="btn btn-sm btn-success"><i class="fas fa-undo"></i></button></td>
+                                <td>Patient Return</td>
+                            </tr>
+                            <tr>
                                 <td class="text-right" width="60px"><button class="btn btn-sm btn-danger"><i class="fa fa-wheelchair"></i></button></td>
                                 <td>Patient Didn't Arrive</td>
                             </tr>
@@ -230,12 +269,12 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                                 <td>Patient Admitted</td>
                             </tr>
                             <tr>
-                                <td class="text-right" width="60px"><button class="btn btn-sm btn-warning"><i class="fa-brands fa-accessible-icon"></i></i> </button></td>
+                                <td class="text-right" width="60px"><button class="btn btn-sm btn-warning"><i class="fab fa-accessible-icon"></i> </button></td>
                                 <td>Patient Discharged</td>
                             </tr>
                             <tr>
-                                <td class="text-right" width="60px"><button class="btn btn-sm btn-primary"><i class="fa-brands fa-accessible-icon"></i></i></button></td>
-                                <td>Patient Move</td>
+                                <td class="text-right" width="60px"><button class="btn btn-sm btn-primary"><i class="fas fa-search-location"></i> </button></td>
+                                <td>Monitored as OPD</td>
                             </tr>
                             <tr>
                                 <td class="text-right" width="60px"><button class="btn btn-sm btn-success"><i class="fa fa-ambulance"></i></button></td>
@@ -272,7 +311,6 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
     @include('script.accepted')
     @include('script.feedback')
     @include('script.referred')
-
     <script>
         $('#daterange').daterangepicker({
             "opens" : "left"
@@ -290,6 +328,33 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
         });
        
     });
+
+    @if(Session::get('upload_file'))
+        Lobibox.notify('success', {
+            title: "",
+            msg: "<?php echo Session::get("upload_file_message"); ?>",
+            size: 'mini',
+            rounded: true
+        });
+
+        $('#upload_modal').modal('show');
+
+        var code = "<?php echo Session::get("unique_referral_code"); ?>"
+        var url = "<?php echo asset('doctor/upload_body'); ?>"
+
+        var json = {
+            "code" : code,
+            "_token" : "<?php echo csrf_token(); ?>"
+        };
+        $.post(url,json,function(result){
+            $(".upload_body").html(result);
+        });
+
+    <?php
+        Session::put("upload_file",false);
+        Session::put("upload_file_message",false)
+    ?>
+    @endif
     </script>
 @endsection
 

@@ -22,6 +22,10 @@
     <link rel="stylesheet" href="{{ asset('resources/plugin/Ionicons/css/ionicons.min.css') }}">
 
     <!-- Font awesome -->
+    <link href="{{ asset('resources/assets/fontawesome/css/fontawesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('resources/assets/fontawesome/css/brands.css') }}" rel="stylesheet">
+    <link href="{{ asset('resources/assets/fontawesome/css/solid.css') }}" rel="stylesheet">
+    <link href="{{ asset('resources/assets/fontawesome/css/all.css') }}" rel="stylesheet">
     <link href="{{ asset('resources/assets/css/font-awesome.min.css') }}" rel="stylesheet">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="{{ asset('resources/assets/css/ie10-viewport-bug-workaround.css') }}" rel="stylesheet">
@@ -29,7 +33,8 @@
     <link href="{{ asset('resources/assets/css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('resources/assets/css/AdminLTE.min.css') }}">
     <!-- bootstrap datepicker -->
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+    
     <link href="{{ asset('resources/plugin/datepicker/datepicker3.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('resources/plugin/Lobibox/lobibox.css') }}">
     <!-- bootstrap wysihtml5 - text editor -->
@@ -93,13 +98,19 @@
         {
             text-align:left;
         }
+        .dropdown-left-manual {
+        right: 0;
+        left: auto;
+        padding-left: 1px;
+        padding-right: 1px;
+        }
     </style>
 </head>
 
 <body>
 
 <!-- Fixed navbar -->
-
+<div id="app_div">
 <nav class="navbar navbar-default fixed-top" >
     <div class="header" style="background-color:#2F4054;padding:10px;">
         <div>
@@ -180,6 +191,61 @@
                 ->where('read', false)
                 ->groupBy('to')
                 ->count();
+                
+            $user = Session::get('auth');
+            
+            $data = \App\PregnantFormv2::selectRaw('t2.maxid as notif_id, ROUND(DATEDIFF(CURDATE(),pregnant_formv2.lmp) / 7, 2) as now, pregnant_formv2.lmp, 
+            t2.maxaog,CONCAT(patients.fname," ",patients.mname," ",patients.lname) as woman_name, tracking.code as patient_code, tracking.notif as notif')
+            // ->leftJoin(\DB::raw('(SELECT referred_to, max(id) as maxid, max(code) as maxcode FROM activity B group by code ORDER BY B.id DESC ) AS t3'), function($join) {
+            //     $join->on('pregnant_formv2.code', '=', 't3.maxcode');
+            //         })
+            ->leftJoin(\DB::raw('(SELECT *, max(id) as maxid, max(aog) as maxaog, max(unique_id) as maxunique_id FROM sign_and_symptoms A group by unique_id) AS t2'), function($join) {
+                $join->on('pregnant_formv2.unique_id', '=', 't2.maxunique_id');
+                })
+            // ->leftJoin("activity","activity.id","=","t3.maxid")
+            ->join('tracking','pregnant_formv2.code','=','tracking.code')
+            ->leftJoin('patients','patients.id','=','pregnant_formv2.patient_woman_id')
+            ->whereRaw('ROUND(t2.maxaog, 0) >= 34')
+            ->where('tracking.notif','1')
+            ->where('tracking.status','!=','referred')
+            // ->where('tracking.status','!=','discharged')
+            ->where('tracking.referred_to',$user->facility_id)
+            ->orderBy('t2.maxid','desc')
+            ->distinct()
+            ->get();
+
+
+            $datacount = \App\PregnantFormv2::selectRaw('t2.maxid as notif_id, ROUND(DATEDIFF(CURDATE(),pregnant_formv2.lmp) / 7, 0) as now, pregnant_formv2.lmp, 
+            t2.maxaog,CONCAT(patients.fname," ",patients.mname," ",patients.lname) as woman_name, tracking.code as patient_code, tracking.notif as notif')
+            // ->leftJoin(\DB::raw('(SELECT referred_to, max(id) as maxid, max(code) as maxcode FROM activity B group by code ORDER BY B.id DESC ) AS t3'), function($join) {
+            //     $join->on('pregnant_formv2.code', '=', 't3.maxcode');
+            //         })
+            ->leftJoin(\DB::raw('(SELECT *, max(id) as maxid, max(aog) as maxaog, max(unique_id) as maxunique_id FROM sign_and_symptoms A group by unique_id) AS t2'), function($join) {
+                $join->on('pregnant_formv2.unique_id', '=', 't2.maxunique_id');
+                })
+            // ->leftJoin("activity","activity.id","=","t3.maxid")
+            ->join('tracking','pregnant_formv2.code','=','tracking.code')
+            ->leftJoin('patients','patients.id','=','pregnant_formv2.patient_woman_id')
+            ->whereRaw('ROUND(t2.maxaog, 0) >= 34')
+            ->where('tracking.notif','1')
+            ->where('tracking.status','!=','referred')
+            // ->where('tracking.status','!=','discharged')
+            ->where('tracking.referred_to',$user->facility_id)
+            ->orderBy('t2.maxid','desc')
+            ->distinct()
+            ->get();
+
+            $notif = 0;
+            foreach($datacount as $dats)
+            {
+                if($dats->now  >= '34')
+                {
+                    $notif++;
+                }
+            }
+            $link = 0;
+
+            // dd($data);
         ?>
         <div id="navbar" class="navbar-collapse collapse" style="font-size: 13px;">
             <ul class="nav navbar-nav">
@@ -192,7 +258,8 @@
                             <li class="divider"></li>
                             <li><a href="{{ url('doctor/accepted') }}"><i class="fa fa-user-plus"></i> Accepted Patients</a></li>
                             <!-- <li><a href="{{ url('doctor/affiliated/accepted') }}"><i class="fa fa-user-plus"></i> Accepted Affiliated Patients</a></li> -->
-                            <li><a href="{{ url('doctor/discharge') }}"><i class="fa fa-ambulance"></i> Discharged/Transfered Patients</a></li>
+                            <li><a href="{{ url('doctor/discharge') }}"><i class="fa fa-ambulance"></i> Discharged Patients</a></li>
+                            <li><a href="{{ url('doctor/transferred') }}"><i class="fa fa-ambulance"></i> Transfered Patients</a></li>
                             <li><a href="{{ url('doctor/cancelled') }}"><i class="fa fa-user-times"></i> Cancelled Patients</a></li>
                             <li><a href="{{ url('doctor/archived') }}"><i class="fa fa-archive"></i> Archived Patients</a></li>
                             <li class="divider"></li>
@@ -236,6 +303,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-print"></i> Report <span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            <li><a href="{{ url('doctor/aog/weeks/'.$link) }}"><i class="fas fa-baby"></i> 34 Weeks above</a></li>
                             <li><a href="{{ url('admin/report/online') }}"><i class="fa fa-users"></i>Online Users</a></li>
                             <li><a href="{{ url('doctor/report/incidentIndex') }}"><i class="fa fa-table"></i>Incident Logs</a></li>
                             <li><a href="{{ url('online/facility') }}"><i class="fa fa-hospital-o"></i>Online Facility</a></li>
@@ -256,6 +324,31 @@
                             <li><a href="{{ url('admin/css') }}"><i class="fa fa-certificate"></i>CSS</a></li>
                         </ul>
                     </li>
+                    <li class="dropdown" style="float:right">
+                    <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-bell"></i> <small class="badge bg-red" style="margin-bottom:5px;">{{ $notif }} </small>  </a>
+                        <ul class="dropdown-menu dropdown-left-manual">
+                                @foreach($data as $dat)
+                                    @if($dat->now >= "34")
+                                        @if($dat->notif == 1)
+                                        <li>
+                                            <a href="{{ url('doctor/aog/weeks/'.$dat->patient_code) }}" style="color: white;background-color: green;"><i class="fas fa-baby"></i> {{ $dat->woman_name }}
+                                                <br><span> Current AOG {{$dat->now}} </span>
+                                            </a>
+                                        </li>
+                                        @else
+                                        <li>
+                                            <a href="{{ url('doctor/aog/weeks/'.$dat->patient_code) }}" ><i class="fas fa-baby"></i> {{ $dat->woman_name }}
+                                                <br><span> Current AOG {{$dat->now}} </span>
+                                            </a>
+                                        </li>
+                                        @endif
+                                    @endif
+                                @endforeach
+                            <!--
+                        <li><a href="{{ url('admin/report/graph/bar_chart') }}"><i class="fa fa-bar-chart-o"></i>Graph</a></li>
+                        -->
+                        </ul>
+                </li>
                 @elseif($user->level=='billing')
                 <li><a href="{{ url('billing/') }}"><i class="fa fa-home"></i> Dashboard</a></li>
                 <li><a href="{{ url('doctor/accepted') }}"><i class="fa fa-user-plus"></i> Accepted Patients</a></li>
@@ -263,7 +356,7 @@
                 <li><a href="{{ url('support/') }}"><i class="fa fa-home"></i> Dashboard</a></li>
                 <li><a href="{{ url('support/users') }}"><i class="fa fa-user-md"></i> Manage Users</a></li>
                 <li><a href="{{ url('support/hospital') }}"><i class="fa fa-hospital-o"></i> Hospital Info</a></li>
-                <li><a href="{{ url('bed').'/'.$user->facility_id }}"><i class="fa fa-bed"></i> Update Bed Availability <small class="badge bg-red"> New</small></a></li>
+                <!-- <li><a href="{{ url('bed').'/'.$user->facility_id }}"><i class="fa fa-bed"></i> Update Bed Availability <small class="badge bg-red"> New</small></a></li> -->
                 <!--
                 <li><a href="{{ url('inventory').'/'.$user->facility_id }}"><i class="fa fa-calculator"></i> Inventory <span class="badge bg-red"> New</span></a></li>
                 <li class="dropdown">
@@ -298,6 +391,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-print"></i> Report <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        
                         <li><a href="{{ url('admin/report/online') }}"><i class="fa fa-users"></i>Online Users</a></li>
                         <li><a href="{{ url('online/facility') }}"><i class="fa fa-hospital-o"></i>Online Facility</a></li>
                         <li><a href="{{ url('offline/facility') }}"><i class="fa fa-times-circle-o"></i>Offline Facility</a></li>
@@ -334,6 +428,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-print"></i> Report <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        
                         <li><a href="{{ url('admin/report/online') }}"><i class="fa fa-users"></i>Online Users</a></li>
                         <li><a href="{{ url('online/facility') }}"><i class="fa fa-hospital-o"></i>Online Facility</a></li>
                         <li><a href="{{ url('offline/facility') }}"><i class="fa fa-times-circle-o"></i>Offline Facility</a></li>
@@ -348,9 +443,9 @@
                         <li><a href="{{ url('admin/statistics/outgoing') }}"><i class="fa fa-certificate"></i>Statistics Report Outgoing</a></li>
                         <li><a href="{{ url('admin/er_ob') }}"><i class="fa fa-certificate"></i>Statistics Report ER OB</a></li>
                         <li><a href="{{ url('admin/average/user_online') }}"><i class="fa fa-certificate"></i>Average User's Online</a></li>
-                    <!--
-                <li><a href="{{ url('admin/report/graph/bar_chart') }}"><i class="fa fa-bar-chart-o"></i>Graph</a></li>
-                -->
+                    
+
+               
                     </ul>
                 </li>
                 @elseif($user->level=='admin')
@@ -401,7 +496,9 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-print"></i> Report <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                    <li><a href="{{ url('admin/pregnancy') }}"><i class="fa fa-building"></i></i>Facility Pregnancy</a></li>
+                    <li><a href="{{ url('admin/report/graph/bar_chart') }}"><i class="fa fa-bar-chart-o"></i>Graph</a></li>
+                        <li><a href="{{ url('admin/aog/weeks/report') }}"><i class="fas fa-baby"></i> 34 Weeks above</a></li>
+                        <li><a href="{{ url('admin/pregnancy') }}"><i class="fa fa-building"></i></i>Facility Pregnancy</a></li>
                         <li><a href="{{ url('admin/report/online') }}"><i class="fa fa-users"></i>Online Users</a></li>
                         <li><a href="{{ url('online/facility') }}"><i class="fa fa-hospital-o"></i>Online Facility</a></li>
                         <li><a href="{{ url('offline/facility') }}"><i class="fa fa-times-circle-o"></i>Offline Facility</a></li>
@@ -443,7 +540,7 @@
                     </li>
                 @elseif($user->level == 'bed_tracker')
                     <li><a href="{{ url('bed_tracker') }}"><i class="fa fa-home"></i> Dashboard</a></li>
-                    <li><a href="{{ url('bed').'/'.$user->facility_id }}"><i class="fa fa-bed"></i> Update Bed Availability <small class="badge bg-red"> New</small></a></li>
+                    <!-- <li><a href="{{ url('bed').'/'.$user->facility_id }}"><i class="fa fa-bed"></i> Update Bed Availability <small class="badge bg-red"> New</small></a></li> -->
                 @elseif($user->level == 'monitoring')
                 <li><a href="{{ url('monitor') }}"><i class="fa fa-home"></i> Dashboard</a></li>
                 <li class="dropdown">
@@ -473,11 +570,11 @@
 
                 @if($user->level != 'vaccine' && $user->level != 'monitoring' && $user->level != 'billing')
                 <li><a href="{{ asset('public/manual/SeHRS-User-Manual.pdf') }}" target="_blank"><i class="fa fa-file-pdf-o"></i> E-REFERRAL Manual <small class="badge bg-red"> New</small></a></li>
-                <li><a href="{{ url('bed_admin') }}"><i class="fa fa-bed"></i> Bed Availability Status <small class="badge bg-red"> New</small></a></li>
+                <!-- <li><a href="{{ url('bed_admin') }}"><i class="fa fa-bed"></i> Bed Availability Status <small class="badge bg-red"> New</small></a></li> -->
                 <li><a href="{{ url('doctor/recotored') }}"><i class="fa fa-odnoklassniki"></i> Recommend to Redirect Patients Monitoring <small class="badge bg-red"> New</small></a></li>
                 <li><a href="{{ url('patient/walkin') }}"><i class="fa fa-odnoklassniki"></i> Walk-in Patients Monitoring <small class="badge bg-red"> New</small></a></li>
                 <li><a href="{{ url('monitoring') }}"><i class="fa fa-clock-o"></i> NOT ACCEPTED within 30 minutes <small class="badge bg-red"> New</small></a></li>
-                <li><a href="{{ url('issue/concern') }}"><i class="fa fa fa-exclamation-triangle"></i> Issues and Concerns <small class="badge bg-red"> New</small></a></li>
+                <!-- <li><a href="{{ url('issue/concern') }}"><i class="fa fa fa-exclamation-triangle"></i> Issues and Concerns <small class="badge bg-red"> New</small></a></li> -->
                 <li><a href="{{ url('chat') }}"><i class="fa fa-wechat"></i> Chat <span class="badge bg-green"><span>{{ $count_chat }}</span> New</span></a></li>
                 @endif
                 @if($user->level != 'monitoring' && $user->level != 'billing')
@@ -507,33 +604,37 @@
                         @endif
                     </ul>
                 </li>
+                
+               
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 
-@if(isset(Request::segments()[3]))
-    <div class="{{ in_array(Request::segments()[0].'/'.Request::segments()[1].'/'.Request::segments()[2].'/'.Request::segments()[3], array('admin/report/patient/incoming','admin/report/patient/outgoing','admin/report/consolidated/incoming','admin/report/graph/incoming','admin/report/consolidated/incomingv2','admin/report/graph/bar_chart'), true)
-        ? 'container-fluid' : 'container' }}" >
-        <div class="loading"></div>
-        @yield('content')
-        <div class="clearfix"></div>
-    </div> <!-- /container -->
-@elseif(isset(Request::segments()[2]))
-    <div class="{{ in_array(Request::segments()[0].'/'.Request::segments()[1].'/'.Request::segments()[2], array('vaccine/vaccineview/1','vaccine/vaccineview/2','vaccine/vaccineview/3','vaccine/vaccineview/4','vaccine/facility/cebu','vaccine/facility/mandaue','vaccine/facility/lapu'), true) ? 'container-fluid' : 'container' }}" >
-        <div class="loading"></div>
-        @yield('content')
-        <div class="clearfix"></div>
-    </div> <!-- /container -->
-@else
-    <div class="{{ in_array(Request::segments()[0], array('vaccine'), true) ? 'container-fluid' : 'container' }}" id="container">
-        <div class="loading"></div>
-        <div class="row">
+
+    @if(isset(Request::segments()[3]))
+        <div class="{{ in_array(Request::segments()[0].'/'.Request::segments()[1].'/'.Request::segments()[2].'/'.Request::segments()[3], array('admin/report/patient/incoming','admin/report/patient/outgoing','admin/report/consolidated/incoming','admin/report/graph/incoming','admin/report/consolidated/incomingv2','admin/report/graph/bar_chart'), true)
+            ? 'container-fluid' : 'container' }}" >
+            <div class="loading"></div>
             @yield('content')
-        </div>
-        <div class="clearfix"></div>
-    </div> <!-- /container -->
-@endif
+            <div class="clearfix"></div>
+        </div> <!-- /container -->
+    @elseif(isset(Request::segments()[2]))
+        <div class="{{ in_array(Request::segments()[0].'/'.Request::segments()[1].'/'.Request::segments()[2], array('vaccine/vaccineview/1','vaccine/vaccineview/2','vaccine/vaccineview/3','vaccine/vaccineview/4','vaccine/facility/cebu','vaccine/facility/mandaue','vaccine/facility/lapu'), true) ? 'container-fluid' : 'container' }}" >
+            <div class="loading"></div>
+            @yield('content')
+            <div class="clearfix"></div>
+        </div> <!-- /container -->
+    @else
+        <div class="{{ in_array(Request::segments()[0], array('vaccine'), true) ? 'container-fluid' : 'container' }}" id="container">
+            <div class="loading"></div>
+            <div class="row">
+                @yield('content')
+            </div>
+            <div class="clearfix"></div>
+        </div> <!-- /container -->
+    @endif
+</div>
 
 @include('modal.server')
 @include('modal.password')
@@ -553,6 +654,8 @@
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
+
+<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="{{ asset('resources/assets/js/jquery.min.js?v='.date('mdHis')) }}"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -581,6 +684,7 @@
 <script src="{{ asset('resources/plugin/table-fixed-header/table-fixed-header.js') }}"></script>
 <!-- PUSHER -->
 <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
 <script>
     $(".select2").select2({ width: '100%' });
 
