@@ -639,8 +639,8 @@ $user = Session::get('auth');
     ?>
     @endif
 
-    @if(Session::get('validated'))
-        Lobibox.notify('warning', {
+    @if(Session::get('validated_upload'))
+        Lobibox.notify('success', {
             title: "",
             msg: "File size should be 5MB below and PDF file only",
             size: 'mini',
@@ -662,7 +662,7 @@ $user = Session::get('auth');
         });
 
     <?php
-        Session::put("validated",false);
+        Session::put("validated_upload",false);
     ?>
     @endif
 

@@ -30,10 +30,19 @@ class FiletypeCtrl extends Controller
     public function filetypeOptions(Request $req)
     {
         $data = $req->all();
+        $match = array(
+            'id' => $req->id
+        );
 
-        Filetypes::create($data);
-        Session::put("types_message","File types successfully added");
-        Session::put("types",true);
+        $upload = Filetypes::updateOrCreate($match,$data);
+
+        if($upload->wasRecentlyCreated){
+            Session::put("types_message","File types successfully added");
+            Session::put("types",true);   
+        }else{
+            Session::put("update_types_message","File types successfully updated");
+            Session::put("update_types",true);    
+        }
 
         return Redirect::back();
     }

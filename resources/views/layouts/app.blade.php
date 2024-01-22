@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
@@ -161,6 +163,7 @@
     </div>
     <div class="header" style="background-color:#59ab91;padding:10px;">
         <div class="container">
+            
             @if($user->level == 'opcen')
                 <img src="{{ asset('resources/img/opcen_banner4.png') }}" class="img-responsive" />
             @elseif($user->level == 'bed_tracker')
@@ -168,7 +171,10 @@
             @elseif($user->level == 'vaccine')
                 <img src="{{ asset('resources/img/updated_vaccine_logo4.png') }}" class="img-responsive" />
             @else
-                <img src="{{ asset('resources/img/referral_banner4.png') }}" class="img-responsive" />
+                <img src="{{ asset('resources/img/referral_banner4_new.png') }}" style=" display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;" class="img-responsive" />
             @endif
         </div>
     </div>
@@ -249,7 +255,7 @@
         ?>
         <div id="navbar" class="navbar-collapse collapse" style="font-size: 13px;">
             <ul class="nav navbar-nav">
-                @if($user->level=='doctor' || $user->level=='midwife' || $user->level=='medical_dispatcher' || $user->level=='nurse')
+                @if($user->level=='doctor' || $user->level=='midwife' || $user->level=='medical_dispatcher' || $user->level=='nurse' || $user->level=='dataencoder')
                     <li><a href="{{ url('doctor/') }}"><i class="fa fa-home"></i> Dashboard</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> Patients <span class="caret"></span></a>
@@ -349,6 +355,21 @@
                         -->
                         </ul>
                 </li>
+                @elseif($user->level == 'monitoring')
+                <li><a href="{{ url('monitor') }}"><i class="fa fa-home"></i> Dashboard</a></li>
+                <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-print"></i> Report <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('monitoring/consolidated') }}"><i class="fa fa-file-archive-o"></i>Consolidated</a></li>
+                            <li><a href="{{ url('monitoring/report/referral') }}"><i class="fa fa-line-chart"></i>Referral Status</a></li>
+                            <li><a href="{{ url('monitoring/statistics/incoming') }}"><i class="fa fa-certificate"></i>Statistics Report Incoming</a></li>
+                            <li><a href="{{ url('monitoring/statistics/outgoing') }}"><i class="fa fa-certificate"></i>Statistics Report Outgoing</a></li>
+                            <li><a href="{{ url('monitoring/patient_transactions') }}"><i class="fa fa-certificate"></i>Patient Transactions</a></li>
+                            <li><a href="{{ url('monitoring/login-status') }}"><i class="fa fa-calendar-check-o"></i>Login Status <span class="badge bg-red">New</span></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ url('monitoring/list') }}"><i class="fa fa-user-md"></i> Who's Online</a></li>
+                    <li><a href="{{ url('monitoring') }}"><i class="fa fa-clock-o"></i> NOT ACCEPTED within 30 minutes <small class="badge bg-red"> New</small></a></li>
                 @elseif($user->level=='billing')
                 <li><a href="{{ url('billing/') }}"><i class="fa fa-home"></i> Dashboard</a></li>
                 <li><a href="{{ url('doctor/accepted') }}"><i class="fa fa-user-plus"></i> Accepted Patients</a></li>
@@ -424,6 +445,7 @@
                 </li>
                 -->
                 <li><a href="{{ url('mcc/track') }}"><i class="fa fa-line-chart"></i> Track</a></li>
+
                 @elseif($user->level != 'billing' && $user->level != 'admin')
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-print"></i> Report <span class="caret"></span></a>
@@ -433,11 +455,11 @@
                         <li><a href="{{ url('online/facility') }}"><i class="fa fa-hospital-o"></i>Online Facility</a></li>
                         <li><a href="{{ url('offline/facility') }}"><i class="fa fa-times-circle-o"></i>Offline Facility</a></li>
                         <li><a href="{{ url('onboard/facility') }}"><i class="fa fa-ambulance"></i>Onboard Facility</a></li>
-                    <!--
+                    
                         <li><a href="{{ url('admin/report/referral') }}"><i class="fa fa-line-chart"></i>Referral Status</a></li>
                         <li><a href="{{ url('admin/daily/users') }}"><i class="fa fa-users"></i>Daily Users</a></li>
                         <li><a href="{{ url('admin/daily/referral') }}"><i class="fa fa-building"></i>Daily Hospital</a></li>
-                        -->
+                       
                         <li><a href="{{ url('admin/report/consolidated/incomingv2') }}"><i class="fa fa-file-archive-o"></i>Consolidated</a></li>
                         <li><a href="{{ url('admin/statistics/incoming') }}"><i class="fa fa-certificate"></i>Statistics Report Incoming</a></li>
                         <li><a href="{{ url('admin/statistics/outgoing') }}"><i class="fa fa-certificate"></i>Statistics Report Outgoing</a></li>
@@ -496,9 +518,9 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-print"></i> Report <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                    <li><a href="{{ url('admin/report/graph/bar_chart') }}"><i class="fa fa-bar-chart-o"></i>Graph</a></li>
+                    <!-- <li><a href="{{ url('admin/report/graph/bar_chart') }}"><i class="fa fa-bar-chart-o"></i>Graph</a></li> -->
                         <li><a href="{{ url('admin/aog/weeks/report') }}"><i class="fas fa-baby"></i> 34 Weeks above</a></li>
-                        <li><a href="{{ url('admin/pregnancy') }}"><i class="fa fa-building"></i></i>Facility Pregnancy</a></li>
+                        <!-- <li><a href="{{ url('admin/pregnancy') }}"><i class="fa fa-building"></i></i>Facility Pregnancy</a></li> -->
                         <li><a href="{{ url('admin/report/online') }}"><i class="fa fa-users"></i>Online Users</a></li>
                         <li><a href="{{ url('online/facility') }}"><i class="fa fa-hospital-o"></i>Online Facility</a></li>
                         <li><a href="{{ url('offline/facility') }}"><i class="fa fa-times-circle-o"></i>Offline Facility</a></li>
@@ -541,20 +563,7 @@
                 @elseif($user->level == 'bed_tracker')
                     <li><a href="{{ url('bed_tracker') }}"><i class="fa fa-home"></i> Dashboard</a></li>
                     <!-- <li><a href="{{ url('bed').'/'.$user->facility_id }}"><i class="fa fa-bed"></i> Update Bed Availability <small class="badge bg-red"> New</small></a></li> -->
-                @elseif($user->level == 'monitoring')
-                <li><a href="{{ url('monitor') }}"><i class="fa fa-home"></i> Dashboard</a></li>
-                <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-print"></i> Report <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ url('monitoring/consolidated') }}"><i class="fa fa-file-archive-o"></i>Consolidated</a></li>
-                            <li><a href="{{ url('monitoring/report/referral') }}"><i class="fa fa-line-chart"></i>Referral Status</a></li>
-                            <li><a href="{{ url('monitoring/statistics/incoming') }}"><i class="fa fa-certificate"></i>Statistics Report Incoming</a></li>
-                            <li><a href="{{ url('monitoring/statistics/outgoing') }}"><i class="fa fa-certificate"></i>Statistics Report Outgoing</a></li>
-                            <li><a href="{{ url('monitoring/patient_transactions') }}"><i class="fa fa-certificate"></i>Patient Transactions</a></li>
-                            <li><a href="{{ url('monitoring/login-status') }}"><i class="fa fa-calendar-check-o"></i>Login Status <span class="badge bg-red">New</span></a></li>
-                        </ul>
-                    </li>
-                    <li><a href="{{ url('monitoring/list') }}"><i class="fa fa-user-md"></i> Who's Online</a></li>
+               
                 @elseif($user->level=='vaccine')
                     <li><a href="{{ url('vaccine') }}"><i class="fa fa-home"></i> Dashboard</a></li>
                     @foreach(\App\Province::get() as $prov)

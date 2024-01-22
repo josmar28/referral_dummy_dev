@@ -42,7 +42,10 @@
                         <select class="form-control" name="department_id" required>
                             <option value="">Select Department...</option>
                             @foreach($departments as $dept)
-                            <option value="{{ $dept->id }}">{{ $dept->description }}</option>
+                                @if ($dept->id == 11)
+                                    <option value="{{ $dept->id }}">{{ $dept->description }}</option>
+                                @endif
+                          
                             @endforeach
                         </select>
                     </div>
@@ -56,6 +59,7 @@
                             <option value="midwife">Midwife</option>
                             <option value="medical_dispatcher">Medical Dispatcher</option>
                             <option value="nurse">Nurse</option>
+                            <option value="dataencoder">Data Encoder</option>
                             <!-- <option value="mcc">Medical Center Chief</option> -->
                         </select>
                     </div>

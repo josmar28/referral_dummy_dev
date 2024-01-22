@@ -104,6 +104,19 @@
         Session::put("types_message",false);
         ?>
         @endif
+
+        @if(Session::get('update_types'))
+        Lobibox.notify('success', {
+            title: "",
+            msg: "<?php echo Session::get("update_types_message"); ?>",
+            size: 'mini',
+            rounded: true
+        });
+        <?php
+        Session::put("update_types",false);
+        Session::put("update_types_message",false);
+        ?>
+        @endif
     </script>
 @endsection
 

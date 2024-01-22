@@ -207,7 +207,7 @@
 
     var channel1 = pusher.subscribe('pregnant_channel');
     channel1.bind('pregnant_event', function(data) {
-        $('#app_div').load(document.URL +  ' #app_div');
+        // $('#app_div').load(document.URL +  ' #app_div');
         if(facility == data['referred_to']) 
         {
             if(data['status'] == 'highrisk')

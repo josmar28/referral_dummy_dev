@@ -758,10 +758,12 @@
                         text : 'Select Department...'
                     }));
                 jQuery.each(data.departments, function(i,val){
-                    $('.select_department').append($('<option>', {
-                        value: val.id,
-                        text : val.description
-                    }));
+                    if(val.id == 11){
+                        $('.select_department').append($('<option>', {
+                            value: val.id,
+                            text : val.description
+                        }));
+                    }
 
                 });
             },

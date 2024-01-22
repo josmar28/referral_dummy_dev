@@ -1008,11 +1008,12 @@ function VitalBody(patient_id)
                         text : 'Select Department...'
                     }));
                 jQuery.each(data.departments, function(i,val){
-                    $('.select_department').append($('<option>', {
-                        value: val.id,
-                        text : val.description
-                    }));
-
+                    if(val.id == 11){
+                        $('.select_department').append($('<option>', {
+                            value: val.id,
+                            text : val.description
+                        }));
+                    }
                 });
             },
             error: function(error){
@@ -1069,505 +1070,506 @@ function VitalBody(patient_id)
         });
     });
 
+    
+    // $('.upload_code').removeClass('hide');
+    // $('.discharge_button').removeClass('hide');
+    // $('.btn_refer_preg').removeClass('hide');
+    // $('.profile_info').removeClass('hide');
+    // $('.vital_info').removeClass('hide');
 
 
-    $('.btn_refer_preg').removeClass('hide');
-    $('.profile_info').removeClass('hide');
-    $('.vital_info').removeClass('hide');
-
-
-    $('.btn_refer_preg').on('click',function(){
-    var patient_id = $(this).data('patient_id');
-    var unique_id = $(this).data('unique_id');
-        console.log(unique_id)
-        $.ajax({
-            url: "{{ url('doctor/patient/info/') }}/"+patient_id,
-            type: "GET",
-            success: function(data){
-                console.log(patient_id);
-                var sign = data.sign;
-                var form = data.form;
-                var ante = data.ante;
-                var lab = data.lab;
-                var data = data.data;
+    // $('.btn_refer_preg').on('click',function(){
+    // var patient_id = $(this).data('patient_id');
+    // var unique_id = $(this).data('unique_id');
+    //     console.log(unique_id)
+    //     $.ajax({
+    //         url: "{{ url('doctor/patient/info/') }}/"+patient_id,
+    //         type: "GET",
+    //         success: function(data){
+    //             console.log(patient_id);
+    //             var sign = data.sign;
+    //             var form = data.form;
+    //             var ante = data.ante;
+    //             var lab = data.lab;
+    //             var data = data.data;
               
-                name = data.patient_name;
-                sex = data.sex;
-                age = data.age;
-                civil_status = data.civil_status;
-                phic_status = data.phic_status;
-                phic_id = data.phic_id;
-                address = data.address;
-                contact = data.contact;
-                dob = data.dob;
+    //             name = data.patient_name;
+    //             sex = data.sex;
+    //             age = data.age;
+    //             civil_status = data.civil_status;
+    //             phic_status = data.phic_status;
+    //             phic_id = data.phic_id;
+    //             address = data.address;
+    //             contact = data.contact;
+    //             dob = data.dob;
 
-                var now = new Date();
+    //             var now = new Date();
 
-                var day = ("0" + now.getDate()).slice(-2);
-                var month = ("0" + (now.getMonth() + 1)).slice(-2);
+    //             var day = ("0" + now.getDate()).slice(-2);
+    //             var month = ("0" + (now.getMonth() + 1)).slice(-2);
 
-                var new_date_of_visit = (month)+"/"+(day)+"/"+now.getFullYear() ;
+    //             var new_date_of_visit = (month)+"/"+(day)+"/"+now.getFullYear() ;
 
-                $('.new_refer_date_of_visit').val(new_date_of_visit);
+    //             $('.new_refer_date_of_visit').val(new_date_of_visit);
 
-                $('input[name="phic_status"][value="'+phic_status+'"]').attr('checked',true);
-                $('.phic_id').html(phic_id);    
-                $('.civil_status').val( data.civil_status);    
-                $('.preg_civil_status').html( data.civil_status);
+    //             $('input[name="phic_status"][value="'+phic_status+'"]').attr('checked',true);
+    //             $('.phic_id').html(phic_id);    
+    //             $('.civil_status').val( data.civil_status);    
+    //             $('.preg_civil_status').html( data.civil_status);
 
-                $('.unique_id').val(form.unique_id);
-                $('.code').val(form.code);
+    //             $('.unique_id').val(form.unique_id);
+    //             $('.code').val(form.code);
                 
-                $('.patient_id').val(patient_id);
-                $('.patient_name').html(name);
-                $('.patient_address').html(address);
-                $('.patient_sex').val(sex);
-                $('.preg_patient_sex').html(sex);
+    //             $('.patient_id').val(patient_id);
+    //             $('.patient_name').html(name);
+    //             $('.patient_address').html(address);
+    //             $('.patient_sex').val(sex);
+    //             $('.preg_patient_sex').html(sex);
                 
-                $('.patient_dob').html($.datepicker.formatDate('M dd,  yy', new Date(dob)));
-                $('.patient_age').html(age);
-                $('.patient_contact').html(contact);
+    //             $('.patient_dob').html($.datepicker.formatDate('M dd,  yy', new Date(dob)));
+    //             $('.patient_age').html(age);
+    //             $('.patient_contact').html(contact);
 
-                if(form)
-                    {
-                        var date = new Date(form.lmp);
-                        var day = ("0" + date.getDate()).slice(-2);
-                        var month = ("0" + (date.getMonth() + 1)).slice(-2);
+    //             if(form)
+    //                 {
+    //                     var date = new Date(form.lmp);
+    //                     var day = ("0" + date.getDate()).slice(-2);
+    //                     var month = ("0" + (date.getMonth() + 1)).slice(-2);
 
-                        var lmp_new = (month)+"/"+(day)+"/"+date.getFullYear() ;
+    //                     var lmp_new = (month)+"/"+(day)+"/"+date.getFullYear() ;
 
-                        var date2 = new Date(form.edc_edd);
-                        var day2 = ("0" + date2.getDate()).slice(-2);
-                        var month2 = ("0" + (date2.getMonth() + 1)).slice(-2);
+    //                     var date2 = new Date(form.edc_edd);
+    //                     var day2 = ("0" + date2.getDate()).slice(-2);
+    //                     var month2 = ("0" + (date2.getMonth() + 1)).slice(-2);
 
-                        var edc_edd = (month2)+"/"+(day2)+"/"+date2.getFullYear() ;
+    //                     var edc_edd = (month2)+"/"+(day2)+"/"+date2.getFullYear() ;
 
-                        $('.new_refer_lmp_date').val(lmp_new);
-                        $('.edc_edd').val(edc_edd);
+    //                     $('.new_refer_lmp_date').val(lmp_new);
+    //                     $('.edc_edd').val(edc_edd);
                 
-                        $('.educ_attainment').val(form.educ_attainment);
-                        $('.family_income').val(form.family_income);
-                        $('.religion').val(form.religion);
-                        $('.ethnicity').val(form.ethnicity);
-                        $('.sibling_rank').val(form.sibling_rank);
-                        $('.out_of').val(form.out_of); 
-                        $('.patient_woman_id').val(form.patient_woman_id); 
-                        $('.unique_id').val(form.unique_id); 
-                        $('.code').val(form.code);
+    //                     $('.educ_attainment').val(form.educ_attainment);
+    //                     $('.family_income').val(form.family_income);
+    //                     $('.religion').val(form.religion);
+    //                     $('.ethnicity').val(form.ethnicity);
+    //                     $('.sibling_rank').val(form.sibling_rank);
+    //                     $('.out_of').val(form.out_of); 
+    //                     $('.patient_woman_id').val(form.patient_woman_id); 
+    //                     $('.unique_id').val(form.unique_id); 
+    //                     $('.code').val(form.code);
 
-                        $('.gravidity').val(form.gravidity);
-                        $('.parity').val(form.parity);
-                        $('.ftpal').val(form.ftpal);
-                        $('.bmi').val(form.bmi);
-                        $('.fh_personnal').val(form.fundic_height);
-                        $('.hr_personnal').val(form.hr);
-                        $('.bp_personnal').val(form.bp); 
-                        $('.temp_personnal').val(form.temp);
-                        $('.height').val(form.height); 
-                        $('.weigth').val(form.weigth); 
-
-
-
-                        var td1 = form.td1 ? new Date(form.td1) : '';
-                        var td2 = form.td2 ? new Date(form.td2) : '';
-                        var td3 = form.td3 ? new Date(form.td3) : '';
-                        var td4 = form.td4 ? new Date(form.td4) : '';
-                        var td5 = form.td5 ? new Date(form.td5) : '';
+    //                     $('.gravidity').val(form.gravidity);
+    //                     $('.parity').val(form.parity);
+    //                     $('.ftpal').val(form.ftpal);
+    //                     $('.bmi').val(form.bmi);
+    //                     $('.fh_personnal').val(form.fundic_height);
+    //                     $('.hr_personnal').val(form.hr);
+    //                     $('.bp_personnal').val(form.bp); 
+    //                     $('.temp_personnal').val(form.temp);
+    //                     $('.height').val(form.height); 
+    //                     $('.weigth').val(form.weigth); 
 
 
-                        $('.rr_personnal').val(form.gravidity);
-                        (td1 != '') ? $('.td1').val( ((td1.getMonth() > 8) ? (td1.getMonth() + 1) : ('0' + (td1.getMonth() + 1))) + '/' + ((td1.getDate() > 9) ? td1.getDate() : ('0' + td1.getDate())) + '/' + td1.getFullYear() ) : '';
-                        (td2 != '') ? $('.td2').val( ((td2.getMonth() > 8) ? (td2.getMonth() + 1) : ('0' + (td2.getMonth() + 1))) + '/' + ((td2.getDate() > 9) ? td2.getDate() : ('0' + td2.getDate())) + '/' + td2.getFullYear() ) : '';
-                        (td3 != '') ? $('.td3').val( ((td3.getMonth() > 8) ? (td3.getMonth() + 1) : ('0' + (td3.getMonth() + 1))) + '/' + ((td3.getDate() > 9) ? td3.getDate() : ('0' + td3.getDate())) + '/' + td3.getFullYear() ) : '';
-                        (td4 != '') ? $('.td4').val( ((td4.getMonth() > 8) ? (td4.getMonth() + 1) : ('0' + (td4.getMonth() + 1))) + '/' + ((td4.getDate() > 9) ? td4.getDate() : ('0' + td4.getDate())) + '/' + td4.getFullYear() ) : '';
-                        (td5 != '') ? $('.td5').val( ((td5.getMonth() > 8) ? (td5.getMonth() + 1) : ('0' + (td5.getMonth() + 1))) + '/' + ((td5.getDate() > 9) ? td5.getDate() : ('0' + td5.getDate())) + '/' + td5.getFullYear() ) : ''; 
 
-                        // console.log(form.td1)
+    //                     var td1 = form.td1 ? new Date(form.td1) : '';
+    //                     var td2 = form.td2 ? new Date(form.td2) : '';
+    //                     var td3 = form.td3 ? new Date(form.td3) : '';
+    //                     var td4 = form.td4 ? new Date(form.td4) : '';
+    //                     var td5 = form.td5 ? new Date(form.td5) : '';
+
+
+    //                     $('.rr_personnal').val(form.gravidity);
+    //                     (td1 != '') ? $('.td1').val( ((td1.getMonth() > 8) ? (td1.getMonth() + 1) : ('0' + (td1.getMonth() + 1))) + '/' + ((td1.getDate() > 9) ? td1.getDate() : ('0' + td1.getDate())) + '/' + td1.getFullYear() ) : '';
+    //                     (td2 != '') ? $('.td2').val( ((td2.getMonth() > 8) ? (td2.getMonth() + 1) : ('0' + (td2.getMonth() + 1))) + '/' + ((td2.getDate() > 9) ? td2.getDate() : ('0' + td2.getDate())) + '/' + td2.getFullYear() ) : '';
+    //                     (td3 != '') ? $('.td3').val( ((td3.getMonth() > 8) ? (td3.getMonth() + 1) : ('0' + (td3.getMonth() + 1))) + '/' + ((td3.getDate() > 9) ? td3.getDate() : ('0' + td3.getDate())) + '/' + td3.getFullYear() ) : '';
+    //                     (td4 != '') ? $('.td4').val( ((td4.getMonth() > 8) ? (td4.getMonth() + 1) : ('0' + (td4.getMonth() + 1))) + '/' + ((td4.getDate() > 9) ? td4.getDate() : ('0' + td4.getDate())) + '/' + td4.getFullYear() ) : '';
+    //                     (td5 != '') ? $('.td5').val( ((td5.getMonth() > 8) ? (td5.getMonth() + 1) : ('0' + (td5.getMonth() + 1))) + '/' + ((td5.getDate() > 9) ? td5.getDate() : ('0' + td5.getDate())) + '/' + td5.getFullYear() ) : ''; 
+
+    //                     // console.log(form.td1)
                         
-                        // var months = dateRange(form.lmp, form.edc_edd)
+    //                     // var months = dateRange(form.lmp, form.edc_edd)
 
-                        // var d = new Date(),
+    //                     // var d = new Date(),
 
-                        // n = d.getMonth() + 1,
+    //                     // n = d.getMonth() + 1,
 
-                        // y = d.getFullYear();
+    //                     // y = d.getFullYear();
 
                         
-                        // for(var i = 1; i <= months.length; i++) {
-                        //     if(n == months[0] || n == months[1] || n == months[2] || n == months[3])
-                        //     {
-                        //         $(".new_trimester").val('1st');
-                        //     }
-                        //     else if(n == months[4] || n == months[5] || n == months[6])
-                        //     {
-                        //         $(".new_trimester").val('2nd');
-                        //     }
-                        //     else if(n == months[7] || n == months[8] || n == months[9])
-                        //     {
-                        //         $(".new_trimester").val('3rd');
-                        //     }
-                        //     else
-                        //     {
-                        //         $(".new_trimester").val('3rd');
-                        //     }
-                        // }
+    //                     // for(var i = 1; i <= months.length; i++) {
+    //                     //     if(n == months[0] || n == months[1] || n == months[2] || n == months[3])
+    //                     //     {
+    //                     //         $(".new_trimester").val('1st');
+    //                     //     }
+    //                     //     else if(n == months[4] || n == months[5] || n == months[6])
+    //                     //     {
+    //                     //         $(".new_trimester").val('2nd');
+    //                     //     }
+    //                     //     else if(n == months[7] || n == months[8] || n == months[9])
+    //                     //     {
+    //                     //         $(".new_trimester").val('3rd');
+    //                     //     }
+    //                     //     else
+    //                     //     {
+    //                     //         $(".new_trimester").val('3rd');
+    //                     //     }
+    //                     // }
 
 
-                        var start = new Date(form.lmp),
-                        end   = new Date($('.new_refer_date_of_visit').val()),
-                        diff  = new Date(end - start),
-                        days  = diff/1000/60/60/24;
-                        weeks = days / 7;
+    //                     var start = new Date(form.lmp),
+    //                     end   = new Date($('.new_refer_date_of_visit').val()),
+    //                     diff  = new Date(end - start),
+    //                     days  = diff/1000/60/60/24;
+    //                     weeks = days / 7;
 
-                        n = weeks.toFixed(1);
-                        whole = Math.floor(n);      // 1
-                        fraction = n - whole; // .25
-                            var gcd = function(a, b) {
-                            if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
+    //                     n = weeks.toFixed(1);
+    //                     whole = Math.floor(n);      // 1
+    //                     fraction = n - whole; // .25
+    //                         var gcd = function(a, b) {
+    //                         if (b < 0.0000001) return a;                // Since there is a limited precision we need to limit the value.
 
-                            return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
-                            };
+    //                         return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
+    //                         };
 
-                            var fraction = fraction.toFixed(1);
-                            var len = fraction.toString().length - 2;
+    //                         var fraction = fraction.toFixed(1);
+    //                         var len = fraction.toString().length - 2;
 
-                            var denominator = Math.pow(7, len);
-                            var numerator = fraction * denominator;
+    //                         var denominator = Math.pow(7, len);
+    //                         var numerator = fraction * denominator;
 
-                            // var divisor = gcd(numerator, denominator);    // Should be 5
+    //                         // var divisor = gcd(numerator, denominator);    // Should be 5
 
-                            // numerator /= divisor;                         // Should be 687
-                            // denominator /= divisor;                       // Should be 2000
+    //                         // numerator /= divisor;                         // Should be 687
+    //                         // denominator /= divisor;                       // Should be 2000
 
-                            // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
-
-
-                            $('.new_aog').val( whole+ ' '+ Math.floor(numerator.toFixed()) + '/' + Math.floor(denominator.toFixed()));
-                            $('.new_aog').change();
+    //                         // alert(Math.floor(numerator) + '/' + Math.floor(denominator));
 
 
-                            if( whole <= '12' )
-                            {
-                                $(".new_trimester").val('1st');
-                            }
-                            else if( whole <= '28' )
-                            {
-                                $(".new_trimester").val('2nd');
-                            }
-                            else if( whole <= '40' )
-                            {
-                                $(".new_trimester").val('3rd');
-                            }
-                            else
-                            {
-                                $(".new_trimester").val('3rd');
-                            }
-                    }
+    //                         $('.new_aog').val( whole+ ' '+ Math.floor(numerator.toFixed()) + '/' + Math.floor(denominator.toFixed()));
+    //                         $('.new_aog').change();
+
+
+    //                         if( whole <= '12' )
+    //                         {
+    //                             $(".new_trimester").val('1st');
+    //                         }
+    //                         else if( whole <= '28' )
+    //                         {
+    //                             $(".new_trimester").val('2nd');
+    //                         }
+    //                         else if( whole <= '40' )
+    //                         {
+    //                             $(".new_trimester").val('3rd');
+    //                         }
+    //                         else
+    //                         {
+    //                             $(".new_trimester").val('3rd');
+    //                         }
+    //                 }
             
 
-                if(ante)
-                {
-                    if(ante.hypertension == 'yes')
-                    {
-                        $('.hypertension').prop('checked', true);
-                    }
+    //             if(ante)
+    //             {
+    //                 if(ante.hypertension == 'yes')
+    //                 {
+    //                     $('.hypertension').prop('checked', true);
+    //                 }
 
-                    if(ante.anemia == 'yes')
-                    {
-                        $('.anemia').prop('checked', true);
-                    }
+    //                 if(ante.anemia == 'yes')
+    //                 {
+    //                     $('.anemia').prop('checked', true);
+    //                 }
 
-                    if(ante.malaria == 'yes')
-                    {
-                        $('.malaria').prop('checked', true);
-                    }
+    //                 if(ante.malaria == 'yes')
+    //                 {
+    //                     $('.malaria').prop('checked', true);
+    //                 }
 
-                    if(ante.cancer == 'yes')
-                    {
-                        $('.cancer').prop('checked', true);
-                    }
+    //                 if(ante.cancer == 'yes')
+    //                 {
+    //                     $('.cancer').prop('checked', true);
+    //                 }
 
-                    if(ante.allergies == 'yes')
-                    {
-                        $('.allergies').prop('checked', true);
-                    }
+    //                 if(ante.allergies == 'yes')
+    //                 {
+    //                     $('.allergies').prop('checked', true);
+    //                 }
 
-                    if(ante.renal_disease == 'yes')
-                    {
-                        $('.renal_disease').prop('checked', true);
-                    }
+    //                 if(ante.renal_disease == 'yes')
+    //                 {
+    //                     $('.renal_disease').prop('checked', true);
+    //                 }
 
-                    if(ante.typhoid_disorders == 'yes')
-                    {
-                        $('.typhoid_disorders').prop('checked', true);
-                    }
+    //                 if(ante.typhoid_disorders == 'yes')
+    //                 {
+    //                     $('.typhoid_disorders').prop('checked', true);
+    //                 }
 
-                    if(ante.hypo_hyper == 'yes')
-                    {
-                        $('.hypo_hyperthyroidism').prop('checked', true);
-                    }
+    //                 if(ante.hypo_hyper == 'yes')
+    //                 {
+    //                     $('.hypo_hyperthyroidism').prop('checked', true);
+    //                 }
 
-                    if(ante.tuberculosis == 'yes')
-                    {
-                        $('.tuberculosis').prop('checked', true);
-                    }
+    //                 if(ante.tuberculosis == 'yes')
+    //                 {
+    //                     $('.tuberculosis').prop('checked', true);
+    //                 }
 
-                    if(ante.diabetes_mellitus == 'yes')
-                    {
-                        $('.diabetes_mellitus').prop('checked', true);
-                    }
+    //                 if(ante.diabetes_mellitus == 'yes')
+    //                 {
+    //                     $('.diabetes_mellitus').prop('checked', true);
+    //                 }
 
-                    if(ante.hepatatis_b == 'yes')
-                    {
-                        $('.hepatitisb_infection').prop('checked', true);
-                    }
+    //                 if(ante.hepatatis_b == 'yes')
+    //                 {
+    //                     $('.hepatitisb_infection').prop('checked', true);
+    //                 }
 
-                    if(ante.hiv_sti == 'yes')
-                    {
-                        $('.hiv_sti').prop('checked', true);
-                    }
+    //                 if(ante.hiv_sti == 'yes')
+    //                 {
+    //                     $('.hiv_sti').prop('checked', true);
+    //                 }
 
-                    if(ante.seizure_disorder == 'yes')
-                    {
-                        $('.seizure_disorder').prop('checked', true);
-                    }
+    //                 if(ante.seizure_disorder == 'yes')
+    //                 {
+    //                     $('.seizure_disorder').prop('checked', true);
+    //                 }
 
-                    if(ante.cardiovascular_disease == 'yes')
-                    {
-                        $('.cardiovascular_disease').prop('checked', true);
-                    }
+    //                 if(ante.cardiovascular_disease == 'yes')
+    //                 {
+    //                     $('.cardiovascular_disease').prop('checked', true);
+    //                 }
 
-                    if(ante.malnutrition == 'yes')
-                    {
-                        $('.malnutrition').prop('checked', true);
-                    }
+    //                 if(ante.malnutrition == 'yes')
+    //                 {
+    //                     $('.malnutrition').prop('checked', true);
+    //                 }
 
-                    if(ante.hemotilgic_disorder == 'yes')
-                    {
-                        $('.hemotilgic_bleeding').prop('checked', true);
-                    }
+    //                 if(ante.hemotilgic_disorder == 'yes')
+    //                 {
+    //                     $('.hemotilgic_bleeding').prop('checked', true);
+    //                 }
 
                     
-                    if(ante.substance_abuse == 'yes')
-                    {
-                        $('.alcohol_abuse').prop('checked', true);
-                    }
+    //                 if(ante.substance_abuse == 'yes')
+    //                 {
+    //                     $('.alcohol_abuse').prop('checked', true);
+    //                 }
 
-                    if(ante.anti_phospholipid == 'yes')
-                    {
-                        $('.phospholipid_syndrome').prop('checked', true);
-                    }
+    //                 if(ante.anti_phospholipid == 'yes')
+    //                 {
+    //                     $('.phospholipid_syndrome').prop('checked', true);
+    //                 }
 
-                    if(ante.restrictive_pulmonary == 'yes')
-                    {
-                        $('.asthma').prop('checked', true);
-                    }
+    //                 if(ante.restrictive_pulmonary == 'yes')
+    //                 {
+    //                     $('.asthma').prop('checked', true);
+    //                 }
 
-                    if(ante.mental_retardation == 'yes')
-                    {
-                        $('.psychiatric_mental').prop('checked', true);
-                    }
+    //                 if(ante.mental_retardation == 'yes')
+    //                 {
+    //                     $('.psychiatric_mental').prop('checked', true);
+    //                 }
 
-                    if(ante.habitual_abortion == 'yes')
-                    {
-                        $('.habitual_abortion').prop('checked', true);
-                    }
+    //                 if(ante.habitual_abortion == 'yes')
+    //                 {
+    //                     $('.habitual_abortion').prop('checked', true);
+    //                 }
 
-                    if(ante.fetus_congenital == 'yes')
-                    {
-                        $('.fetus_congenital').prop('checked', true);
-                    }
+    //                 if(ante.fetus_congenital == 'yes')
+    //                 {
+    //                     $('.fetus_congenital').prop('checked', true);
+    //                 }
 
-                    if(ante.previous_caesarean == 'yes')
-                    {
-                        $('.previous_caesarean').prop('checked', true);
-                    }
+    //                 if(ante.previous_caesarean == 'yes')
+    //                 {
+    //                     $('.previous_caesarean').prop('checked', true);
+    //                 }
 
-                    if(ante.preterm_delivery == 'yes')
-                    {
-                        $('.neonatal_death').prop('checked', true);
-                    }
+    //                 if(ante.preterm_delivery == 'yes')
+    //                 {
+    //                     $('.neonatal_death').prop('checked', true);
+    //                 }
 
-                    $('.new_ante_subjective').val(ante.subjective);
+    //                 $('.new_ante_subjective').val(ante.subjective);
 
-                    $('.bp_antepartum').val(ante.bp);
-                    $('.hr_antepartum').val(ante.hr);
-                    $('.fh_antepartum').val(ante.fh);
+    //                 $('.bp_antepartum').val(ante.bp);
+    //                 $('.hr_antepartum').val(ante.hr);
+    //                 $('.fh_antepartum').val(ante.fh);
 
-                    $('.temp_antepartum').val(ante.temp);
-                    $('.rr_antepartum').val(ante.rr);
-                    $('.antepartum_fht').val(ante.fht);
+    //                 $('.temp_antepartum').val(ante.temp);
+    //                 $('.rr_antepartum').val(ante.rr);
+    //                 $('.antepartum_fht').val(ante.fht);
 
-                    $('.new_ante_other_physical_exam').val(ante.other_physical_exam);
-                    $('.new_ante_assessment_diagnosis').val(ante.assessment_diagnosis);
-                    $('.new_ante_plan_intervention').val(ante.plan_intervention);
+    //                 $('.new_ante_other_physical_exam').val(ante.other_physical_exam);
+    //                 $('.new_ante_assessment_diagnosis').val(ante.assessment_diagnosis);
+    //                 $('.new_ante_plan_intervention').val(ante.plan_intervention);
 
-                    $('.new_others').val(ante.others);
-                }
+    //                 $('.new_others').val(ante.others);
+    //             }
 
-                if(lab)
-                {
-                    $('.new_blood_type').val(lab.blood_type).trigger('change');
-                    $('.new_hbsag_result').val(lab.hbsag_result).trigger('change');
-                    $('.new_vdrl_result').val(lab.vdrl_result).trigger('change');
-                }
+    //             if(lab)
+    //             {
+    //                 $('.new_blood_type').val(lab.blood_type).trigger('change');
+    //                 $('.new_hbsag_result').val(lab.hbsag_result).trigger('change');
+    //                 $('.new_vdrl_result').val(lab.vdrl_result).trigger('change');
+    //             }
                 
-                //preg_prev
-                if(sign)
-                {
+    //             //preg_prev
+    //             if(sign)
+    //             {
                     
-                    $(".prev_trimester").val(sign.no_trimester);
-                    $(".prev_visit").val(sign.no_visit);
-                    $(".new_visit_no").val("1st");
+    //                 $(".prev_trimester").val(sign.no_trimester);
+    //                 $(".prev_visit").val(sign.no_visit);
+    //                 $(".new_visit_no").val("1st");
                     
                 
-                    $('.prev_date').val(sign.date_of_visit);
+    //                 $('.prev_date').val(sign.date_of_visit);
 
-                    $('.prev_subjective').val(sign.subjective); 
+    //                 $('.prev_subjective').val(sign.subjective); 
 
-                    $('.prev_aog').val(sign.aog);
+    //                 $('.prev_aog').val(sign.aog);
 
-                    $('.prev_bp').val(sign.bp);
-                    $('.prev_hr').val(sign.hr);
-                    $('.prev_fh').val(sign.fh);
+    //                 $('.prev_bp').val(sign.bp);
+    //                 $('.prev_hr').val(sign.hr);
+    //                 $('.prev_fh').val(sign.fh);
 
-                    $('.prev_temp').val(sign.temp);
-                    $('.prev_rr').val(sign.rr);
-                    $('.prev_fht').val(sign.fht);
+    //                 $('.prev_temp').val(sign.temp);
+    //                 $('.prev_rr').val(sign.rr);
+    //                 $('.prev_fht').val(sign.fht);
 
-                    $('.prev_other_exam').val(sign.other_physical_exam);
-                    $('.prev_assestment_diagnosis').val(sign.assessment_diagnosis);
-                    $('.prev_plan_intervention').val(sign.plan_intervention);
+    //                 $('.prev_other_exam').val(sign.other_physical_exam);
+    //                 $('.prev_assestment_diagnosis').val(sign.assessment_diagnosis);
+    //                 $('.prev_plan_intervention').val(sign.plan_intervention);
 
 
-                    if(sign.vaginal_spotting == 'yes')
-                    {
-                        $('.prev_viganal_bleeding').prop('checked', true);
-                    }
+    //                 if(sign.vaginal_spotting == 'yes')
+    //                 {
+    //                     $('.prev_viganal_bleeding').prop('checked', true);
+    //                 }
 
-                    if(sign.severe_nausea == 'yes')
-                    {
-                        $('.prev_severe_nausea').prop('checked', true);
-                    }
+    //                 if(sign.severe_nausea == 'yes')
+    //                 {
+    //                     $('.prev_severe_nausea').prop('checked', true);
+    //                 }
 
-                    if(sign.significant_decline == 'yes')
-                    {
-                        $('.prev_significant_decline').prop('checked', true);
-                    }
+    //                 if(sign.significant_decline == 'yes')
+    //                 {
+    //                     $('.prev_significant_decline').prop('checked', true);
+    //                 }
 
-                    if(sign.premature_rupture == 'yes')
-                    {
-                        $('.prev_premature_rupture').prop('checked', true);
-                    }
+    //                 if(sign.premature_rupture == 'yes')
+    //                 {
+    //                     $('.prev_premature_rupture').prop('checked', true);
+    //                 }
 
-                    if(sign.fetal_pregnancy == 'yes')
-                    {
-                        $('.prev_multi_pregnancy').prop('checked', true);
-                    }
+    //                 if(sign.fetal_pregnancy == 'yes')
+    //                 {
+    //                     $('.prev_multi_pregnancy').prop('checked', true);
+    //                 }
 
-                    if(sign.severe_headache == 'yes')
-                    {
-                        $('.prev_persistent_severe').prop('checked', true);
-                    }
+    //                 if(sign.severe_headache == 'yes')
+    //                 {
+    //                     $('.prev_persistent_severe').prop('checked', true);
+    //                 }
 
-                    if(sign.abdominal_pain == 'yes')
-                    {
-                        $('.prev_abdominal_pain').prop('checked', true);
-                    }
+    //                 if(sign.abdominal_pain == 'yes')
+    //                 {
+    //                     $('.prev_abdominal_pain').prop('checked', true);
+    //                 }
 
-                    if(sign.edema_hands == 'yes')
-                    {
-                        $('.prev_edema_hands').prop('checked', true);
-                    }
+    //                 if(sign.edema_hands == 'yes')
+    //                 {
+    //                     $('.prev_edema_hands').prop('checked', true);
+    //                 }
 
-                    if(sign.fever_pallor == 'yes')
-                    {
-                        $('.prev_fever_pallor').prop('checked', true);
-                    }
+    //                 if(sign.fever_pallor == 'yes')
+    //                 {
+    //                     $('.prev_fever_pallor').prop('checked', true);
+    //                 }
 
-                    if(sign.seizure_consciousness == 'yes')
-                    {
-                        $('.prev_seiszure_consciousness').prop('checked', true);
-                    }
+    //                 if(sign.seizure_consciousness == 'yes')
+    //                 {
+    //                     $('.prev_seiszure_consciousness').prop('checked', true);
+    //                 }
 
-                    if(sign.difficulty_breathing == 'yes')
-                    {
-                        $('.prev_difficulty_breathing').prop('checked', true);
-                    }
+    //                 if(sign.difficulty_breathing == 'yes')
+    //                 {
+    //                     $('.prev_difficulty_breathing').prop('checked', true);
+    //                 }
 
-                    if(sign.painful_urination == 'yes')
-                    {
-                        $('.prev_painful_urination').prop('checked', true);
-                    }
+    //                 if(sign.painful_urination == 'yes')
+    //                 {
+    //                     $('.prev_painful_urination').prop('checked', true);
+    //                 }
 
-                    if(sign.elevated_bp == 'yes')
-                    {
-                        $('.prev_elevated_bp').prop('checked', true);
-                    }
-                }
-                else{
-                        val = "1" + "st";
-                        $(".new_visit_no").val(val);
-                    }
+    //                 if(sign.elevated_bp == 'yes')
+    //                 {
+    //                     $('.prev_elevated_bp').prop('checked', true);
+    //                 }
+    //             }
+    //             else{
+    //                     val = "1" + "st";
+    //                     $(".new_visit_no").val(val);
+    //                 }
                 
-                    if( $( ".new_visit_no" ).val() == "1st" )
-                    {
-                        $(".bp_personnal").keyup(function(){
-                            $(".bp_antepartum").val(this.value);
-                        });
+    //                 if( $( ".new_visit_no" ).val() == "1st" )
+    //                 {
+    //                     $(".bp_personnal").keyup(function(){
+    //                         $(".bp_antepartum").val(this.value);
+    //                     });
 
-                        $(".temp_personnal").keyup(function(){
-                            $(".temp_antepartum").val(this.value);
-                        });
+    //                     $(".temp_personnal").keyup(function(){
+    //                         $(".temp_antepartum").val(this.value);
+    //                     });
 
-                        $(".hr_personnal").keyup(function(){
-                            $(".hr_antepartum").val(this.value);
-                        });
+    //                     $(".hr_personnal").keyup(function(){
+    //                         $(".hr_antepartum").val(this.value);
+    //                     });
 
-                        $(".rr_personnal").keyup(function(){
-                            $(".rr_antepartum").val(this.value);
-                        });
+    //                     $(".rr_personnal").keyup(function(){
+    //                         $(".rr_antepartum").val(this.value);
+    //                     });
 
-                        $(".fh_personnal").keyup(function(){
-                            $(".fh_antepartum").val(this.value);
-                        });
-                    //3rd tab
-                        $(".bp_personnal").keyup(function(){
-                            $(".bp_signsymptoms").val(this.value);
-                        });
+    //                     $(".fh_personnal").keyup(function(){
+    //                         $(".fh_antepartum").val(this.value);
+    //                     });
+    //                 //3rd tab
+    //                     $(".bp_personnal").keyup(function(){
+    //                         $(".bp_signsymptoms").val(this.value);
+    //                     });
 
-                        $(".temp_personnal").keyup(function(){
-                            $(".temp_signsymptoms").val(this.value);
-                        });
+    //                     $(".temp_personnal").keyup(function(){
+    //                         $(".temp_signsymptoms").val(this.value);
+    //                     });
 
-                        $(".hr_personnal").keyup(function(){
-                            $(".hr_signsymptoms").val(this.value);
-                        });
+    //                     $(".hr_personnal").keyup(function(){
+    //                         $(".hr_signsymptoms").val(this.value);
+    //                     });
 
-                        $(".rr_personnal").keyup(function(){
-                            $(".rr_signsymptoms").val(this.value);
-                        });
+    //                     $(".rr_personnal").keyup(function(){
+    //                         $(".rr_signsymptoms").val(this.value);
+    //                     });
 
-                        $(".fh_personnal").keyup(function(){
-                            $(".fh_signsymptoms").val(this.value);
-                        });
-                    }
-                    else
-                    {
-                        $(".bp_personnal").unbind("keyup");
-                        $(".temp_personnal").unbind("keyup");
-                        $(".hr_personnal").unbind("keyup");
-                        $(".rr_personnal").unbind("keyup");
-                        $(".fh_personnal").unbind("keyup");
-                    }
+    //                     $(".fh_personnal").keyup(function(){
+    //                         $(".fh_signsymptoms").val(this.value);
+    //                     });
+    //                 }
+    //                 else
+    //                 {
+    //                     $(".bp_personnal").unbind("keyup");
+    //                     $(".temp_personnal").unbind("keyup");
+    //                     $(".hr_personnal").unbind("keyup");
+    //                     $(".rr_personnal").unbind("keyup");
+    //                     $(".fh_personnal").unbind("keyup");
+    //                 }
             
-            },
-            error: function(){
-                $('#serverModal').modal();
-            }
-        });
+    //         },
+    //         error: function(){
+    //             $('#serverModal').modal();
+    //         }
+    //     });
 
-    });
+    // });
 
     $('.profile_info').on('click',function(){
     var patient_id = $(this).data('patient_id');
@@ -1639,7 +1641,7 @@ function VitalBody(patient_id)
                             $('.unique_id').val(form.unique_id); 
                             $('.code').val(form.code);
                             
-                            var months = dateRange(form.lmp, form.edc_edd)
+                            var months = form.lmp ?? '';
 
                             var d = new Date(),
 
@@ -1743,7 +1745,7 @@ function VitalBody(patient_id)
 
                     $('.prev_subjective').val(sign.subjective); 
 
-                    $('.prev_aog').val(sign.aog);
+                    sign.aog ?? $('.prev_aog').val('');
 
                     $('.prev_bp').val(sign.bp);
                     $('.prev_hr').val(sign.hr);

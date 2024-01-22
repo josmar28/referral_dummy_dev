@@ -1,3 +1,15 @@
+<div class="modal fade" role="dialog" id="patient_modal">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-body patient_body">
+                <center>
+                    <img src="{{ asset('resources/img/loading.gif') }}" alt="">
+                </center>
+            </div><!-- /.modal-content -->
+        </div>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <div class="modal fade" role="dialog" id="pregnantModal">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
@@ -153,53 +165,3 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<div class="modal fade" id="munisearchModal">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Search Patient</h4>
-            </div>
-            <form id="munisearchForm" method="POST">
-            {{ csrf_field() }}
-                <div class="modal-body">
-                    <div class="input-group input-group-lg">
-                        <input type="text" id="patient_keyword" class="form-control">
-                        <span class="input-group-btn">
-                        <button type="button" class="btn btn-info btn-flat" onclick="searchPatient()">Go!</button>
-                        </span>
-                    </div><br>
-                    <div class="search_body"></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </form>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-
-<script>
-    function searchPatient(){
-        $(".search_body").html(loading);
-        var url = "<?php echo asset('patient/search'); ?>";
-        var json = {
-            "_token" : "<?php echo csrf_token(); ?>",
-            "patient_keyword" : $("#patient_keyword").val()
-        };
-        $.post(url,json,function(result){
-            setTimeout(function(){
-                if($("#patient_keyword").val()){
-                    $(".search_body").html(result);
-                } else {
-                    $(".search_body").html("");
-                }
-
-            },500);
-        });
-    }
-</script>

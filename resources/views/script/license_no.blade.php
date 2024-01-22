@@ -12,30 +12,30 @@ else
 }
 ?>
 <script>
-$(document).ready(function(){
-        var license_no = "<?php echo $count; ?>"
-        var level = "<?php echo $level; ?>"
+// $(document).ready(function(){
+//         var license_no = "<?php echo $count; ?>"
+//         var level = "<?php echo $level; ?>"
 
-          if( license_no == 0 && level == 'support' )
-          {  
-            Lobibox.alert(
-            'error', // Any of the following
-            {
-            title: "No License Number",
-            closeButton: false,
-            closeOnEsc: false,
-            msg: "Please Input Facility License Number",
-            rounded: true,
-            callback: function ($this, type, ev) {
-                if(type == 'ok')
-                {
+//           if( license_no == 0 && level == 'support' )
+//           {  
+//             Lobibox.alert(
+//             'error', // Any of the following
+//             {
+//             title: "No License Number",
+//             closeButton: false,
+//             closeOnEsc: false,
+//             msg: "Please Input Facility License Number",
+//             rounded: true,
+//             callback: function ($this, type, ev) {
+//                 if(type == 'ok')
+//                 {
 
-                        $('#license_noModal').modal({backdrop: 'static', keyboard: false}, 'show');
-                 }
-              }
-            });    
-          }
-    });   
+//                         $('#license_noModal').modal({backdrop: 'static', keyboard: false}, 'show');
+//                  }
+//               }
+//             });    
+//           }
+//     });   
 
     $('#license_submit').on('submit',function (e) {
         e.preventDefault();

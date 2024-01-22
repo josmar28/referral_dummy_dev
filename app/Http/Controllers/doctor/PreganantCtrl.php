@@ -66,8 +66,8 @@ class PreganantCtrl extends Controller
             'unique_id' => $unique_id
         );
 
-        $lmp = date('Y-m-d', strtotime($req->lmp));
-        $edc_edd = date('Y-m-d', strtotime($req->edc_edd));
+        $lmp = $req->lmp ? date('Y-m-d', strtotime($req->lmp)) : NULL;
+        $edc_edd = $req->edc_edd ? date('Y-m-d', strtotime($req->edc_edd)) : NULL;
           // dd($req->delivery_outcome,$req->birth_attendant,$req->status_on_discharge,$req->type_of_delivery,$req->final_diagnosis);
           $data = array(
               'unique_id' => $unique_id,

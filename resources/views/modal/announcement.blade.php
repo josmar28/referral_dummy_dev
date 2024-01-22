@@ -76,10 +76,7 @@
                 @endif
                 <div class="text-warning">
                     <span style="font-size:1.1em;color: #8a6d3b;">
-                        <strong><i class="fa fa-wifi"></i>SOCCSKSARGEN Electronic Health Referral System(Se-HRS) URL</strong><br>
-                        <ol>
-                            <li>http://222.127.126.38/doh/referral/login</li>
-                        </ol>
+                        <strong><i class="fa fa-wifi"></i>SOCCSKSARGEN Pregnancy Tracking System(S-PTS) URL</strong><br>
                     </span>
                 </div>
                 <div >
@@ -98,22 +95,18 @@
                                     <li>Garizaldy B. Epistola - 09338161374</li>
                                     <li>John Philip M. Nacional - 09169229872</li>
                                     <li>Kenny S. Marañon - 09158742458</li>
-                                    <li>Masaala D. Indol III - 09056675401</li>
                                 </ol>
                                 <li >System Implementation/Training</li>
                                 <ol>
-                                    <li>MICHAEL R. BIRUAR - 09264029988</li>
-                                    <li>Masaala D. Indol III - 09056675401</li>
-                                    
+                                    <li>Arro Maysael R. Wenceslao - 09758994468</li>
                                 </ol>
                                 <li >
                                     Register Account and Forget Password
                                 </li>
                                 <ol>
-                                    <li>MICHAEL R. BIRUAR - 09264029988</li>
                                     <li>Josmar V. Del Poso – 09167063036</li>
                                     <li>ARON JOSEPH B BRA - 09515359406</li>
-                                    <li>Masaala D. Indol III - 09056675401</li>
+                                    <li>Arro Maysael R. Wenceslao - 09758994468</li>
                                 </ol>
                             </ol>
                         </ol>

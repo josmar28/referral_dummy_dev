@@ -73,7 +73,11 @@ class LoginCtrl extends Controller
                     return redirect('midwife');
                 else if($login->level=='medical_dispatcher')
                     return redirect('medical_dispatcher');
+                else if($login->level=='monitoring')
+                    return redirect('monitoring');
                 else if($login->level=='nurse')
+                    return redirect('nurse');
+                else if($login->level=='dataencoder')
                     return redirect('nurse');
                 else if($login->level=='vaccine')
                     return redirect('vaccine');

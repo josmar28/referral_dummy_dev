@@ -25,6 +25,7 @@
                         <th>Referred To</th>
                         <th>Date Referred</th>
                         <th>Turn around time not accepted</th>
+                        <th>Status</th>
                         <th>Issue and Concern</th>
                         <th width="20%">Action</th>
                     </tr>
@@ -60,7 +61,16 @@
                                 {{ date("F d,Y",strtotime($row->date_referred)) }}<br>
                                 <small class="text-yellow">({{ date('g:i a',strtotime($row->date_referred)) }})</small>
                             </td>
+                          
                             <td><span class="text-green" style="font-size: 15pt;">{{ $row->time_not_accepted }}</span><br> minutes</td>
+                            <td>
+                                <br>
+                                @if(  $row->status == 'referred')
+                                <span class="text-{{ $department_color }}">Referred</span>
+                                @elseif ( $row->status == 'accepted')
+                                <span class="text-{{ $department_color }}">Accepted</span>
+                                @endif
+                            </td>
                             <td width="20%">
                                 <?php
                                     $issue_and_concern = \App\Issue::where("tracking_id",$row->tracking_id)->get();

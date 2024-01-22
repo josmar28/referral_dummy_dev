@@ -121,27 +121,30 @@ class PatientCtrl extends Controller
             $facility_id = $user->facility_id;
             $user = Session::get('auth');
 
-            $data = Patients::select('patients.*','patients.id as patient_id','facility.*')->leftjoin('facility','facility.id','=','patients.facility_id')
+            $data = Patients::select('patients.*','patients.id as patient_id','facility.name as facility_name')
+            ->leftjoin('facility','facility.id','=','patients.facility_id')
             ->orderBy('patients.lname','asc');
             if(!empty($brgy)){
-                $data = $data->where('brgy',$brgy);
+                $data = $data->where('patients.brgy',$brgy);
             }
             // if(!empty($mun) && $mun!='others'){
             //     $data = $data->where('muncity',$mun);
             // }
             if(!empty($others)){
-                $data = $data->where('address','like',"%$others%");
+                $data = $data->where('patients.address','like',"%$others%");
             }
             // $data = $data->where('muncity',$user->muncity)
             // $data = $data->where('facility_id',$facility_id)
             $data = $data->where('patients.province',$user->province)
             ->where(function($q) use($keyword){     
-                $q->where('lname',"like","%$keyword%")
-                    ->orWhere('fname','like',"%$keyword%")
-                    ->orwhere(DB::raw('concat(fname," ",lname)'),"like","%$keyword%");
+                $q->where('patients.lname',"like","%$keyword%")
+                    ->orWhere('patients.fname','like',"%$keyword%")
+                    ->orwhere(DB::raw('concat(patients.fname," ",patients.lname)'),"like","%$keyword%");
             });
 
             $data = $data->paginate(20);
+
+           
         }
 
         //$icd10 = \DB::connection('mysql')->select("call icd10()");
@@ -500,7 +503,7 @@ class PatientCtrl extends Controller
         }
         else if($type==='pregnant')
         {
-          $lmp = date('Ymd', strtotime($req->lmp));
+          $lmp = $req->lmp ? date('Ymd', strtotime($req->lmp)) : '';
           $edc_edd = date('Ymd', strtotime($req->edc_edd));
 
           $td1 = ($req->td1) ? date('Ymd', strtotime($req->td1)) : NULL;

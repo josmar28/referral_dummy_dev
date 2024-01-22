@@ -84,7 +84,7 @@ class UploadCtrl extends Controller
                 ]);
 
                 if($validator->fails()) {
-                    Session::put('validated',true);
+                    Session::put('validated_upload',true);
                     return Redirect::back();
                 }
                 

@@ -21,8 +21,8 @@ $dateNow = date('Y-m-d');
         <center>
            <span> <img src="{{ asset('resources/img/doh.png') }}" style="width: 25%"/>
             <img src="{{ asset('resources/img/dohro12logo2.png') }}" style="width: 25%"/><br>
-            <label style="font-size: 9pt;">DOH-CHD XII SOCCSKSARGEN</label>
-            <label style="font-size: 9pt;">Electronic Health Referral System(Se-HRS)</label></span>
+            <label style="font-size: 9pt;">DOH-CHD XII SOCCSKSARGEN</label> <br>
+            <label style="font-size: 9pt;">Pregnancy Tracking System</label></span>
         </center>
           <form role="form" method="POST" action="{{ asset('login') }}" class="form-submit" >
               {{ csrf_field() }}
@@ -58,7 +58,7 @@ $dateNow = date('Y-m-d');
                     </div>
                 </div><!-- /.login-box-body -->
                 <div style="text-align: center;">
-                <label style="font-size: 7pt; ">Created by: DOH Region VII Central Visayas</label>
+                <label style="font-size: 7pt; ">Created by: DOH Region XII SOCCSKSARGEN<br> Powered by: Central Visayas Electronic Health Referral System</label>
               </div>
           </form>
           
