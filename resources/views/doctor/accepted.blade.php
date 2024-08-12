@@ -122,14 +122,7 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                                                         data-code="{{ $row->code}}">
                                                         <i class="fas fa-skull-crossbones"></i>
                                                 </button>
-                                                <a href="#viewupload_modal"
-                                                    data-toggle="modal"
-                                                    data-code="{{$row->code}}"
-                                                    data-id = "{{ $row->id }}"
-                                                    class="btn btn-info btn-sm btn-action viewupload_code">
-                                                    <i class="fa fa-file"></i>
-                                                        
-                                                </a>
+                                              
 
                                                 <button class="btn btn-sm btn-success btn-action btn-transfer"
                                                         title="Transfer Patient"
@@ -152,14 +145,7 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                                                         data-code="{{ $row->code}}">
                                                     <i class="fa fa-wheelchair"></i>
                                                 </button>
-                                                <a href="#viewupload_modal"
-                                                    data-toggle="modal"
-                                                    data-code="{{$row->code}}"
-                                                    data-id = "{{ $row->id }}"
-                                                    class="btn btn-info btn-sm btn-action viewupload_code">
-                                                    <i class="fa fa-file"></i>
-                                                        
-                                                </a>
+                                            
                                             @endif
 
                                             @if($status=='ARRIVED' || $status=='ADMITTED' || $status=='MONITORED')
@@ -187,7 +173,7 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                                                     </button>
 
                                                     <button class="btn btn-sm btn-success btn-action patient_return"
-                                                            title="Patient Return"
+                                                            title="Add Form"
                                                             data-toggle="modal"
                                                             data-toggle="tooltip"
                                                             data-target="#patientReturnModal"
@@ -258,7 +244,7 @@ $end = \Carbon\Carbon::parse($end)->format('m/d/Y');
                             </tr>
                             <tr>
                                 <td class="text-right" width="60px"><button class="btn btn-sm btn-success"><i class="fas fa-undo"></i></button></td>
-                                <td>Patient Return</td>
+                                <td>Add Form</td>
                             </tr>
                             <tr>
                                 <td class="text-right" width="60px"><button class="btn btn-sm btn-danger"><i class="fa fa-wheelchair"></i></button></td>

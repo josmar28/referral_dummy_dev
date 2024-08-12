@@ -498,7 +498,7 @@
                     <ul class="dropdown-menu">
                     <li><a href="{{ url('admin/report/graph/bar_chart') }}"><i class="fa fa-bar-chart-o"></i>Graph</a></li>
                         <li><a href="{{ url('admin/aog/weeks/report') }}"><i class="fas fa-baby"></i> 34 Weeks above</a></li>
-                        <li><a href="{{ url('admin/pregnancy') }}"><i class="fa fa-building"></i></i>Facility Pregnancy</a></li>
+                        <!-- <li><a href="{{ url('admin/pregnancy') }}"><i class="fa fa-building"></i></i>Facility Pregnancy</a></li> -->
                         <li><a href="{{ url('admin/report/online') }}"><i class="fa fa-users"></i>Online Users</a></li>
                         <li><a href="{{ url('online/facility') }}"><i class="fa fa-hospital-o"></i>Online Facility</a></li>
                         <li><a href="{{ url('offline/facility') }}"><i class="fa fa-times-circle-o"></i>Offline Facility</a></li>

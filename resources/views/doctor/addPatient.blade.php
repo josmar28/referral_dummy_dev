@@ -145,14 +145,22 @@ $status = session::get('status');
                                 </td>
                             </tr>
                             <tr class="has-group">
+                                <td>Province :</td>
+                                <td>
+                                    <select class="form-control province filter_province select2" name="province" required>
+                                        <option value="">Province...</option>
+                                        @foreach($province as $p)
+                                            <option value="{{ $p->id }}">{{ $p->description }}</option>
+                                        @endforeach
+                                        <option value="others">Others</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="has-group">
                                 <td>Municipality/City :</td>
                                 <td>
                                     <select class="form-control muncity filter_muncity select2" name="muncity" required>
                                         <option value="">Select Municipal/City...</option>
-                                        @foreach($muncity as $m)
-                                            <option value="{{ $m->id }}">{{ $m->description }}</option>
-                                        @endforeach
-                                        <option value="others">Others</option>
                                     </select>
                                 </td>
                             </tr>

@@ -1600,7 +1600,9 @@ class ReferralCtrl extends Controller
             'delivery_outcome' => $req->delivery_outcome,
             'type_of_delivery' => $req->type_of_delivery,
             'final_diagnosis' => $final_diagnosis,
-            'status_on_discharge' => $req->status_on_discharge
+            'status_on_discharge' => $req->status_on_discharge,
+            'discharge_diagnosis' => $req->discharge_diagnosis,
+            'discharge_instruction' => $req->discharge_instruction,
         );
         PregOutcome::create($data);
 

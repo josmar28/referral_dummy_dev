@@ -1069,8 +1069,9 @@ function VitalBody(patient_id)
         });
     });
 
-
-
+    
+    $('.discharge_button').removeClass('hide');
+    $('.upload_code').removeClass('hide');
     $('.btn_refer_preg').removeClass('hide');
     $('.profile_info').removeClass('hide');
     $('.vital_info').removeClass('hide');

@@ -145,7 +145,7 @@ $user = Session::get('auth');
                                             </strong>
                                             was <span class="badge bg-green">{{ $row->status }}</span> by
                                             <span class="text-success">
-                                            Dr. {{ $row->action_md }}
+                                            {{ $row->action_md }}
                                             </span>
                                             <br><br>
                                             @include('doctor.include.timeline_footer')

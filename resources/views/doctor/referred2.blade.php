@@ -487,7 +487,7 @@ $user = Session::get('auth');
                                        data-id = "{{ $row->id }}"
                                        class="btn btn-info btn-xs btn-edit upload_code">
                                        <i class="fa fa-file"></i>
-                                        Upload {{$row->code}}
+                                        Upload
                                     </a>
                     <?php $issue_and_concern = \App\Issue::where("tracking_id","=",$row->id)->count(); ?>
                     <button class="btn btn-xs btn-danger btn-issue-referred" data-toggle="modal"
@@ -554,10 +554,11 @@ $user = Session::get('auth');
     @include('modal.feedback')
     @include('modal.transfer')
     @include('modal.legitmodal')
+    @include('modal.caller')
     @include('modal.accept_reject')
     @include('modal.cancel')
     @include('modal.accept')
-    @include('modal.caller')
+
     @include('modal.reject')
     @include('modal.contact')
 @endsection

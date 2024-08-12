@@ -9,7 +9,16 @@
             <div class="form-group">
                 <input type="text" placeholder="Search Keyword..." class="form-control" name="keyword" />
             </div>
-            <!-- <div class="form-group">
+            <div class="form-group">
+                <select class="form-control province filter_province select2" name="province" required>
+                    <option value="">Province...</option>
+                    @foreach($province as $p)
+                        <option value="{{ $p->id }}">{{ $p->description }}</option>
+                    @endforeach
+                    <option value="others">Others</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <select class="form-control muncity filter_muncity select2" name="muncity" required>
                     <option value="">Select Municipal/City...</option>
                     @foreach($muncity as $m)
@@ -25,7 +34,7 @@
             </div>
             <div class="form-group others_holder hide">
                 <input type="text" name="others" class="form-control others" placeholder="Enter Address..." />
-            </div> -->
+            </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-block btn-flat btn-success">
                     <i class="fa fa-search"></i> Filter

@@ -328,7 +328,7 @@
 
                                                                                     <div class="col-md-4">
                                                                                         <small class="text-info">AOG</small><br>
-                                                                                        <input type="text" class="form-control new_aog"  name="sign_aog" style="width: 100%;" readonly>
+                                                                                        <input type="text" class="form-control new_aog"  name="sign_aog" style="width: 100%;">
                                                                                     </div>
 
                                                                                     <div class="col-md-4">
@@ -1204,7 +1204,7 @@
 
                                                                                 <div class="col-md-4">
                                                                                     <small class="text-info">AOG</small><br>
-                                                                                    <input type="text" class="form-control new_aog"  name="sign_aog" style="width: 100%;" readonly>
+                                                                                    <input type="text" class="form-control new_aog"  name="sign_aog" style="width: 100%;" >
                                                                                 </div>
 
                                                                                 <div class="col-md-4">
@@ -1891,7 +1891,7 @@
 
                                                                                 <div class="col-md-4">
                                                                                     <small class="text-info">AOG</small><br>
-                                                                                    <input type="text" class="form-control new_aog"  name="sign_aog" style="width: 100%;" readonly>
+                                                                                    <input type="text" class="form-control new_aog"  name="sign_aog" style="width: 100%;" >
                                                                                 </div>
 
                                                                                 <div class="col-md-4">

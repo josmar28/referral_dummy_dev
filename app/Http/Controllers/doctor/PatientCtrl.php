@@ -51,7 +51,8 @@ class PatientCtrl extends Controller
             'brgy' => $req->brgy,
             'muncity' => $req->muncity,
             'others' => $req->others,
-            'source' => $req->source
+            'source' => $req->source,
+            'province' => $req->province
         );
         Session::put('profileSearch',$data);
         return self::index();
@@ -75,6 +76,7 @@ class PatientCtrl extends Controller
             $brgy = $session['brgy'];
             $mun = $session['muncity'];
             $others = $session['others'];
+            $province = $session['province'];
         }
 
         $source='referral';
@@ -121,34 +123,46 @@ class PatientCtrl extends Controller
             $facility_id = $user->facility_id;
             $user = Session::get('auth');
 
-            $data = Patients::select('patients.*','patients.id as patient_id','facility.*')->leftjoin('facility','facility.id','=','patients.facility_id')
-            ->orderBy('patients.lname','asc');
+            $data = Patients::select('patients.*','patients.id as patient_id','facility.name as facility_name')
+            ->leftjoin('facility','facility.id','=','patients.facility_id')
+            ->orderBy('patients.lname','asc')
+            ->where(function($q) use($keyword){     
+                $q->where('patients.lname',"like","%$keyword%")
+                    ->orWhere('patients.fname','like',"%$keyword%")
+                    ->orWhere('patients.mname','like',"%$keyword%")
+                    ->orwhere(DB::raw('concat(patients.fname," ",patients.lname)'),"like","%$keyword%");
+            });
+
             if(!empty($brgy)){
-                $data = $data->where('brgy',$brgy);
+                $data = $data->where('patients.brgy',$brgy);
             }
-            // if(!empty($mun) && $mun!='others'){
-            //     $data = $data->where('muncity',$mun);
-            // }
+            if(!empty($mun) && $mun!='others'){
+                $data = $data->where('patients.muncity',$mun);
+            }
+            if(!empty($province)){
+                $data = $data->where('patients.province',$province);
+            }
             if(!empty($others)){
-                $data = $data->where('address','like',"%$others%");
+                $data = $data->where('patients.address','like',"%$others%");
             }
             // $data = $data->where('muncity',$user->muncity)
             // $data = $data->where('facility_id',$facility_id)
-            $data = $data->where('patients.province',$user->province)
-            ->where(function($q) use($keyword){     
-                $q->where('lname',"like","%$keyword%")
-                    ->orWhere('fname','like',"%$keyword%")
-                    ->orwhere(DB::raw('concat(fname," ",lname)'),"like","%$keyword%");
-            });
-
+            //$data = $data->where('patients.province',$user->province)
+            
+            
             $data = $data->paginate(20);
+            
         }
+
+        $province = Province::all();
 
         //$icd10 = \DB::connection('mysql')->select("call icd10()");
         return view('doctor.patient',[
             'title' => 'Patient List',
             'data' => $data,
-            'muncity' => $muncity,
+            'province' => $province,
+            'mun' => $mun,
+            'brgy' => $brgy,
             'source' => $source,
             //'icd10' => $icd10,
             'sidebar' => 'filter_profile'
@@ -183,7 +197,7 @@ class PatientCtrl extends Controller
             'civil_status' => $req->civil_status,
             'facility_id' => $facility_id,
             'muncity' => $req->muncity,
-            'province' => $user->province,
+            'province' => $req->province,
             'brgy' => ($req->brgy) ? $req->brgy:'' ,
             'address' => ($req->others) ? $req->others: ''
         );
@@ -199,9 +213,11 @@ class PatientCtrl extends Controller
             'keyword' => $req->fname.' '.$req->lname,
             'brgy' => $req->brgy,
             'muncity' => $req->muncity,
+            'province' => $req->province,
             'others' => '',
             'source' => 'referral'
         );
+ 
         Session::put('profileSearch',$data);
         return redirect('doctor/patient');
     }
@@ -215,9 +231,14 @@ class PatientCtrl extends Controller
         })
         ->orderby('description','asc')
         ->get();
+
+        $province = Province::all();
+
+
         return view('doctor.addPatient',[
             'title' => 'Add New Patient',
             'muncity' => $muncity,
+            'province' => $province,
             'method' => 'store'
         ]);
     }
@@ -500,7 +521,7 @@ class PatientCtrl extends Controller
         }
         else if($type==='pregnant')
         {
-          $lmp = date('Ymd', strtotime($req->lmp));
+          $lmp = $req->lmp ? date('Ymd', strtotime($req->lmp)) : '';
           $edc_edd = date('Ymd', strtotime($req->edc_edd));
 
           $td1 = ($req->td1) ? date('Ymd', strtotime($req->td1)) : NULL;
@@ -732,29 +753,6 @@ class PatientCtrl extends Controller
                         'code' => $code
                     ]);
             }
-
-            // foreach ($req->final_diagnosis as $value) {
-            //     $final_diagnosis .= $value . ", ";
-            //  }
-            //  $final_diagnosis = substr($final_diagnosis, 0, -2);
-
-            // $data5 = array(
-            //     'unique_id' => $unique_id,
-            //     'patient_woman_id' => $patient_id,
-            //     'delivery_outcome' => ($req->delivery_outcome) ? $req->delivery_outcome: NULL,
-            //     'birth_attendant' => ($req->birth_attendant) ? $req->birth_attendant: NULL,
-            //     'type_of_delivery' => ($req->type_of_delivery) ? $req->type_of_delivery: NULL,
-            //     'final_diagnosis' => ($final_diagnosis) ? $final_diagnosis: NULL,
-            //     'status_on_discharge' => ($req->status_on_discharge) ? $req->status_on_discharge: NULL,
-            // );
-
-            // $pregoutcome = PregOutcome::Create($data5);
-            // if($pregoutcome->wasRecentlyCreated){
-            //     PregOutcome::where('unique_id',$unique_id)
-            //         ->update([
-            //             'code' => $code
-            //         ]);
-            // }
 
             //  dd($final_diagnosis);
             event(new PregnantNotif($data,$fac,$referring_md,$fac_to,$status));

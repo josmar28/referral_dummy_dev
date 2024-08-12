@@ -21,8 +21,8 @@ $dateNow = date('Y-m-d');
         <center>
            <span> <img src="{{ asset('resources/img/doh.png') }}" style="width: 25%"/>
             <img src="{{ asset('resources/img/dohro12logo2.png') }}" style="width: 25%"/><br>
-            <label style="font-size: 9pt;">DOH-CHD XII SOCCSKSARGEN</label>
-            <label style="font-size: 9pt;">Electronic Health Referral System(Se-HRS)</label></span>
+            <label style="font-size: 9pt;">DOH-CHD XII SOCCSKSARGEN</label><br>
+            <label style="font-size: 9pt;">Pregnancy Tracking System</label></span>
         </center>
           <form role="form" method="POST" action="{{ asset('login') }}" class="form-submit" >
               {{ csrf_field() }}
@@ -42,13 +42,13 @@ $dateNow = date('Y-m-d');
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                   </div>
                     <div class="row">
-                        <div class="col-xs-7">
+                        <!-- <div class="col-xs-7">
                             <div class="form-group">
 
                             </div>
                             <a target="_blank" href="http://bit.ly/ereferralregister"> Click me to Register </a>
-                        </div><!-- /.col -->
-                        <div class="col-xs-5">
+                        </div> -->
+                        <div class="col-xs-12">
                             <button type="submit" class="btn btn-primary btn-block btn-flat btn-submit">
                                 <i class="fa fa-lock"></i>&nbsp;&nbsp;Sign In
                             </button>
@@ -58,7 +58,7 @@ $dateNow = date('Y-m-d');
                     </div>
                 </div><!-- /.login-box-body -->
                 <div style="text-align: center;">
-                <label style="font-size: 7pt; ">Created by: DOH Region VII Central Visayas</label>
+                <label style="font-size: 7pt; ">Created by: DOH Region XII SOCCSKSARGEN<br> Powered by: Central Visayas Electronic Health Referral System</label>
               </div>
           </form>
           
@@ -69,9 +69,7 @@ $dateNow = date('Y-m-d');
     <script src="{{ asset('resources/assets/js/jquery.min.js') }}"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="{{ asset('resources/assets/js/bootstrap.min.js') }}"></script>
-       <!-- @if(!Session::has("error"))
-           @include('modal.announcement')
-       @endif -->
+    
     <script>
         $('.btn-submit').on('click',function(){
             $(this).html('<i class="fa fa-spinner fa-spin"></i> Validating...');
