@@ -48,7 +48,7 @@ use App\Http\Controllers\doctor\CSSCtrl as CSSCtrl;
                                 <tr>
                                     <th>Referring Facility</th>
                                     <th>Patient Name/Code</th>
-                                    <th>Date Discharged/Died</th>
+                                    <th>Date Discharged</th>
                                     <th>Status</th>
                                     <th>Record</th>
                                 </tr>
@@ -60,7 +60,7 @@ use App\Http\Controllers\doctor\CSSCtrl as CSSCtrl;
                                     
                                     $checker1 = CSSCtrl::checkCSS($row->code);
 
-                                    $modal = ($row->type=='normal') ? '#normalFormModal' : '#pregnantFormModal';
+                                    $modal = ($row->type=='normal') ? '#normalFormModal' : '#RefferedpregnantFormModalTrack';
                                     $type = ($row->type=='normal') ? 'Non-Pregnant' : 'Pregnant';
                                     ?>
                                     <tr>
@@ -88,11 +88,6 @@ use App\Http\Controllers\doctor\CSSCtrl as CSSCtrl;
                                         </td>
                                         <?php
                                             $status = \App\Http\Controllers\doctor\PatientCtrl::getDischargeDate('discharged',$row->code);
-                                            if(!$status)
-                                            {
-                                                $status = \App\Http\Controllers\doctor\PatientCtrl::getDischargeDate('transferred',$row->code);
-                                                $status = \App\Http\Controllers\doctor\PatientCtrl::getDischargeDate('dead',$row->code);
-                                            }
                                         ?>
                                         <td>{{ $status }}</td>
                                         <td>{{ strtoupper($row->status) }}</td>
@@ -142,6 +137,7 @@ use App\Http\Controllers\doctor\CSSCtrl as CSSCtrl;
     </script>
     @include('script.datetime')
     @include('script.accepted')
+    @include('script.referred')
 
     <script src="{{ url('resources/plugin/daterange/moment.min.js') }}"></script>
     <script src="{{ url('resources/plugin/daterange/daterangepicker.js') }}"></script>

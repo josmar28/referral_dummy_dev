@@ -55,6 +55,14 @@
                             <option value="">Select Department...</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label style="padding: 0px">PREGNANT STATUS:</label>
+                        <select name="pregnant_status" class="form-control"  style="padding: 3px" required>
+                                <option value="">Select Status...</option>
+                                <option value="moderate">Moderate</option>
+                                <option value="highrisk">High risk</option>
+                        </select>
+                    </div>
                     <hr />
                     <div class="form-fotter pull-right">
                         <button class="btn btn-default btn-flat" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
@@ -95,6 +103,14 @@
                             <option value="">Select Department...</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label style="padding: 0px">PREGNANT STATUS:</label>
+                        <select name="pregnant_status" class="form-control select2"  style="padding: 3px" required>
+                                <option value="">Select Status...</option>
+                                <option value="moderate">Moderate</option>
+                                <option value="highrisk">High risk</option>
+                        </select>
+                    </div>
                     <hr />
                     <div class="form-fotter pull-right">
                         <button class="btn btn-default btn-flat" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
@@ -118,7 +134,7 @@
 </div><!-- /.modal -->
 
 <div class="modal fade" role="dialog" id="viewupload_modal" >
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
          <div class="modal-body view_upload">
              

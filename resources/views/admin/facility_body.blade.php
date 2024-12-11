@@ -112,7 +112,7 @@ use Illuminate\Contracts\Encryption\DecryptException;
     <div class="col-sm-6">
         <div class="form-group">
             <label>Email:</label>
-            <input type="text" class="form-control" value="@if(isset($data->email)){{ Crypt::decrypt( $data->email) }}@endif" name="email" required>
+            <input type="text" class="form-control" value="@if(isset($data->email)){{ $data->email }}@endif" name="email" required>
         </div>
     </div> 
     <div class="col-sm-6"> 

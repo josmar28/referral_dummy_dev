@@ -5,7 +5,8 @@
                         <tr>
                             <th>Name</th>
                             <th>File Type</th>
-                            <th>Date By</th>
+                            <th>Uploaded By</th>
+                          
                             <th>Date Uploaded</th>
                         </tr>   
                  
@@ -24,8 +25,9 @@
                                 {{$row->file_type}}
                             </td>
                             <td>
-                                {{$row->fname}} {{$row->mname}} {{$row->lname}}
+                                {{$row->fname}} {{$row->mname}} {{$row->lname}} 
                             </td>
+                           
                             <td>
                                 {{$row->uploaded_date}}
                             </td>

@@ -6,6 +6,12 @@
 
 @section('content')
     <style>
+        .select2-hidden-accessible[required] {
+            display: block;
+            height: 0;
+            border: 1px solid transparent;
+            margin-bottom: -2px;
+        }
         .ui-autocomplete
         {
             background-color: white;
@@ -64,25 +70,57 @@
                             <th>Gender</th>
                             <th>Age / DOB</th>
                             <th>Barangay</th>
+                            <th style="width:5%;">Encoded Facility</th>
                             <th style="width:18%;">Action</th>
                         </tr>
                         @foreach($data as $row)
                         <?php
-                            $modal = ($row->type=='normal') ? '#normalFormModal' : '#pregnantFormModal';
+                            $modal = ($row->type=='normal') ? '#normalFormModal' : '#pregnantFormModalTrack';
+                            $pregv2 = \App\PregnantFormv2::where('patient_woman_id',$row->patient_id)->latest()->first();
+
+                            $tracking = \App\Tracking::where('code',$pregv2->code)->latest()->first();
+                            $activity = \App\Activity::where('code',$pregv2->code)->latest()->first();
+
+                            $user = Session::get('auth');
                         ?>
                         <tr>
-                            <td>
+                        <td>
                                 <b>
                                     <a href="#patient_modal"
                                        data-toggle="modal"
-                                       data-id = "{{ $row->id }}"
-                                       onclick="PatientBody('<?php echo $row->id ?>')"
+                                       data-id = "{{ $row->patient_id }}"
+                                       onclick="PatientBody('<?php echo $row->patient_id ?>')"
                                        class="update_info">
                                         {{ $row->lname }}, {{ $row->fname }} {{ $row->mname }}
+                                        <br> 
+                                        @if( $pregv2 && $tracking->status != 'discharged' )
+                                        <a href="{{ url('doctor/print/form/'.$tracking->id) }}" target="_blank" class="btn-refer-pregnant"> {{$tracking->code}}</a>
+                                        @endif
                                     </a>
                                 </b><br>
                                 <small class="text-success">{{ $row->contact }}</small>
                             </td>
+                            <!-- <td>
+                                <b>
+                                    @if( ($tracking->status == 'discharged' || $tracking == null)  && ($row->facility_id == $user->facility_id ) )
+                                        <a href="#patient_modal"
+                                        data-toggle="modal"
+                                        data-id = "{{ $row->patient_id }}"
+                                        onclick="PatientBody('<?php echo $row->patient_id ?>')"
+                                        class="update_info">
+                                            {{ $row->lname }}, {{ $row->fname }} {{ $row->mname }}
+                                            <br> 
+                                           
+                                        </a>
+                                    @else
+                                    {{ $row->lname }}, {{ $row->fname }} {{ $row->mname }}
+                                    @endif
+                                    @if( $pregv2 && $tracking->status != 'discharged' )
+                                                <a href="{{ url('doctor/print/form/'.$tracking->id) }}" target="_blank" class="btn-refer-pregnant"> {{$tracking->code}}</a>
+                                            @endif
+                                </b><br>
+                                <small class="text-success">{{ $row->contact }}</small>
+                            </td> -->
                             <td>
                                 {{ $row->sex }}<br>
                                 <small class="text-success">{{ $row->civil_status }}</small>
@@ -95,13 +133,14 @@
                             </td>
                             <td>
                                 <?php
-                                    $brgy_id = ($source=='tsekap') ? $row->barangay_id: $row->brgy;
-                                    $city_id = ($source=='tsekap') ? $row->muncity_id: $row->muncity;
-                                    $phic_id = ($source=='tsekap') ? $row->phicID: $row->phic_id;
+                                    $brgy_id = $row->brgy;
+                                    $city_id = $row->muncity;
+                                    $phic_id = $row->phic_id;
                                     $phic_id_stat = 0;
                                     if($phic_id){
                                         $phic_id_stat = 1;
                                     }
+                                 
                                 ?>
                                 @if($brgy_id!=0)
                                 {{ $brgy = \App\Barangay::find($brgy_id)->description }}<br />
@@ -111,40 +150,134 @@
                                 @endif
                             </td>
                             <td>
+                                {{ $row->facility_name }}
+                            </td>
+                            <td>
                                 @if($row->sex=='Female' && ($age >= 10 && $age <= 49))
-                                    <a href="#pregnantModal"
-                                       data-patient_id = "{{ $row->id }}"
-                                       data-toggle="modal"
-                                       class="btn btn-primary btn-xs profile_info hide">
-                                        <i class="fa fa-stethoscope"></i>
-                                        Refer
-                                    </a>
-                                    <a href="#pregnantModalWalkIn"
+
+                                    <!-- <a href="#pregnantModalWalkIn"
                                        data-patient_id = "{{ $row->id }}"
                                        data-toggle="modal"
                                        class="btn btn-warning btn-xs profile_info hide">
                                         <i class="fa fa-ambulance"></i>
                                         Walk-In
-                                    </a>
+                                    </a> -->
+                                 
+                                        @if( ($activity != null && $activity->status != 'discharged' && $activity->referred_to == $user->facility_id)  )
+                        
+                                            <button class="btn btn-xs btn-success btn-action profile_info hide"
+                                                    title="Patient Return"
+                                                    data-toggle="modal"
+                                                    data-toggle="tooltip"
+                                                    data-target="#patientReturnModal"
+                                                    data-unique_id = "{{ $pregv2->unique_id }}"
+                                                    data-patient_id = "{{ $pregv2->patient_woman_id }}"
+                                                    data-code="{{ $pregv2->code}}">
+                                                    <i class="fas fa-plus"></i>
+                                                    Add
+                                            </button>
+                                            <a href="#upload_modal"
+                                            data-toggle="modal"
+                                            data-code="{{ $pregv2->code}}"
+                                            data-id = "{{ $row->id }}"
+                                            class="btn btn-info btn-xs btn-edit hide upload_code">
+                                            <i class="fa fa-file"></i>
+                                                Upload
+                                            </a>
+                                                
+                                        
+                                        @elseif( ($tracking != null && $activity == null) && $tracking->referred_to == $user->facility_id)
+                                            <a href="#pregnantFormModalTrack"
+                                            data-patient_id = "{{ $row->patient_id }}"
+                                            data-toggle="modal"
+                                            class="btn btn-primary btn-xs profile_info btn_refer_preg hide">
+                                                <i class="fa fa-stethoscope"></i>
+                                                Refer
+                                            </a>
+
+                                            <button class="btn btn-xs btn-success btn-action profile_info hide"
+                                                    title="Patient Return"
+                                                    data-toggle="modal"
+                                                    data-toggle="tooltip"
+                                                    data-target="#patientReturnModal"
+                                                    data-unique_id = "{{ $pregv2->unique_id }}"
+                                                    data-patient_id = "{{ $pregv2->patient_woman_id }}"
+                                                    data-code="{{ $pregv2->code}}">
+                                                    <i class="fas fa-plus"></i>
+                                                    Add
+                                            </button>
+                                            <button class="btn btn-xs btn-warning hide btn-action discharge_button"
+                                                    title="Patient Discharged"
+                                                    data-toggle="modal"
+                                                    data-toggle="tooltip"
+                                                    data-target="#pregnantDisModal"
+                                                    data-track_id="{{ $tracking->id }}" 
+                                                    data-unique_id="{{ $pregv2->unique_id }}"
+                                                    data-patient_name="{{ $row->patient_name }}"
+                                                    data-code="{{ $pregv2->code}}">
+                                                    <i class="fab fa-accessible-icon">Discharge </i>
+                                            </button>
+                                            <a href="#upload_modal"
+                                            data-toggle="modal"
+                                            data-code="{{ $pregv2->code}}"
+                                            data-id = "{{ $row->id }}"
+                                            class="btn btn-info btn-xs btn-edit hide upload_code">
+                                            <i class="fa fa-file"></i>
+                                                Upload
+                                            </a>
+                                        @elseif($tracking == null && $activity == null)
+                                            <a href="#pregnantFormModalTrack"
+                                            data-patient_id = "{{ $row->patient_id }}"
+                                            data-toggle="modal"
+                                            class="btn btn-primary btn-xs profile_info btn_refer_preg hide">
+                                                <i class="fa fa-stethoscope"></i>
+                                                Refer
+                                            </a>
+
+                                            <a href="#pregnantAddData"
+                                            data-patient_id = "{{ $row->patient_id }}"
+                                            data-toggle="modal"
+                                            class="btn btn-success btn-xs profile_info hide">
+                                            <i class="fa fa-plus"></i>
+                                                Add
+                                            </a>
+                                        @elseif ( $tracking->status == 'discharged' )
+                                            <a href="#pregnantFormModalTrack"
+                                            data-patient_id = "{{ $row->patient_id }}"
+                                            data-toggle="modal"
+                                            class="btn btn-primary btn-xs profile_info btn_refer_preg hide">
+                                                <i class="fa fa-stethoscope"></i>
+                                                Refer
+                                            </a>
+
+                                            <a href="#pregnantAddData"
+                                            data-patient_id = "{{ $row->patient_id }}"
+                                            data-toggle="modal"
+                                            class="btn btn-success btn-xs profile_info hide">
+                                            <i class="fa fa-plus"></i>
+                                                Add
+                                            </a>
+                                        @endif
                                 @else
                                     <a href="#normalFormModal"
-                                       data-patient_id = "{{ $row->id }}"
+                                       data-patient_id = "{{ $row->patient_id }}"
                                        data-backdrop="static"
                                        data-toggle="modal"
-                                       class="btn btn-primary btn-xs profile_info hide">
+                                       class="btn btn-primary btn-xs profile_info btn_refer_preg hide">
                                         <i class="fa fa-stethoscope"></i>
                                         Refer
                                     </a>
-                                    <a href="#normalFormModalWalkIn"
+                                
+                                    <!-- <a href="#normalFormModalWalkIn"
                                        data-patient_id = "{{ $row->id }}"
                                        data-backdrop="static"
                                        data-toggle="modal"
                                        class="btn btn-warning btn-xs profile_info hide">
                                         <i class="fa fa-ambulance"></i>
                                         Walk-In
-                                    </a>
+                                    </a> -->
                                 @endif
-                                   <a href="#vital_modal"
+                                   <!-- <a href="#vital_modal"
                                       onclick="VitalBody('<?php echo $row->id ?>')"
                                        data-patient_id = "{{ $row->id }}"
                                        data-backdrop="static"
@@ -152,7 +285,7 @@
                                        class="btn btn-success btn-xs vital_info hide">
                                         <i class="fa fa-plus"></i>
                                         V.S / P.E
-                                    </a>
+                                    </a> -->
                             </td>
                         </tr>
                         @endforeach
@@ -176,20 +309,14 @@
     @include('modal.pregnantModal')
     @include('modal.pregnant_modal_track')
     @include('modal.normal_form_editable')
-    @include('modal.normal_form_editable_walkin')
-    @include('modal.pregnant_form_editable')
-    @include('modal.pregnant_form_editable_walkin')
-    @include('modal.addvital')
-    @include('modal.pexam')
 @endsection
 
 @section('js')
+
 @include('script.filterMuncity')
 @include('script.firebase')
 @include('script.datetime')
 @include('script.patient_script')
-@include('script.pregnant_check')
-@include('script.sign_symptoms')
 @include('script.pregnant_modal')
 @endsection
 

@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="col-md-2">
-            <img src="{{ asset('resources/img/f1.jpg') }}" width="100">
+            <img src="{{ asset('resources/img/dohro12logo2.png') }}" width="100">
         </div>
     </div>
 </center>
